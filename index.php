@@ -45,7 +45,7 @@ if(isset($_POST['login']))
 
 						<hr/>
 
-						<form method="POST" action="login_pf.php" class="form-horizontal" role="form">
+						<form method="POST" action="login.php" class="form-horizontal" role="form">
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-6">
 									<label>E-mail</label>

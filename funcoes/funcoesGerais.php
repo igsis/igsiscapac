@@ -7,7 +7,7 @@
 
 	// Framework
 	//autentica login e cria inicia uma session
-	function autenticaloginpf($login, $senha)
+	function autenticalogin($login, $senha)
 	{
 		$sql = "SELECT * FROM usuario AS usr
 		WHERE usr.email = '$login' LIMIT 0,1";
@@ -30,7 +30,7 @@
 					$_SESSION['idUser'] = $user['id'];
 					$log = "Fez login.";
 					//gravarLog($log);
-					header("Location: visual/index_pf.php");
+					header("Location: visual/index.php");
 				}
 				else
 				{

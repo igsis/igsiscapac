@@ -9,10 +9,10 @@ session_cache_expire(60);
 
 //carrega as funcoes gerais
 require "../funcoes/funcoesConecta.php";
-require "../funcoes/funcoesGerais.php"; 
+require "../funcoes/funcoesGerais.php";
 
 //carrega o cabeçalho
-require "cabecalho.php"; 
+require "cabecalho.php";
 
 // carrega o perfil
 if(isset($_GET['perfil']))
@@ -21,7 +21,7 @@ if(isset($_GET['perfil']))
 }
 else
 {
-	include "../perfil/inicio_pf.php";
+	include "../perfil/inicio.php";
 }
 
  //carrega o rodapé

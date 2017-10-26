@@ -66,26 +66,26 @@ if($num_busca > 0)
 									</tbody>
 								</table>
 							</div>
-							
+
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-8">
-									<a href="index.php"><input type="submit" value="Entrar com outro usuário" class="btn btn-theme btn-block"></a> 
+									<a href="index.php"><input type="submit" value="Entrar com outro usuário" class="btn btn-theme btn-block"></a>
 								</div>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>
 			</section>
 		</body>
-	</html>	
+	</html>
 
 <?php
 }
 else
 { // se não existir o cpf, imprime um formulário.
 	$busca = $_POST['busca'];
-?>	
+?>
 	<html>
 		<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -99,7 +99,7 @@ else
 			<section id="contact" class="home-section bg-white">
 				<div class="container">
 					<div class="form-group">
-						<h3>CADASTRO DE PESSOA FÍSICA</h3>				
+						<h3>CADASTRO DE PESSOA FÍSICA</h3>
 						<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 					</div>
 					<div class="row">
@@ -110,7 +110,7 @@ else
 									<input type="text" class="form-control" name="nome" placeholder="Nome completo">
 								</div>
 							</div>
-							  
+
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-6"><strong>Senha: *</strong>
 									<input type="password" name="senha01" class="form-control" id="inputName" placeholder="">
@@ -119,16 +119,16 @@ else
 									<input type="password" name="senha02" class="form-control" id="inputEmail" placeholder="">
 								</div>
 							</div>
-							
-							<div class="form-group">	
+
+							<div class="form-group">
 								<div class="col-md-offset-2 col-md-6"><strong>CPF: *</strong><br/>
-									<input type="text" readonly class="form-control" name="cpf" value="<?php echo $busca ?>" placeholder="CPF">
+									<input type="text" readonly class="form-control" name="cpf" placeholder="CPF">
 								</div>
 								<div class="col-md-6"><strong>Email: *</strong><br/>
-									<input type="text" class="form-control" name="email" placeholder="Email">
+									<input type="text" class="form-control" name="email" value="<?php echo $busca ?>" placeholder="Email">
 								</div>
 							</div>
-								  
+
 							<!-- Botão para Gravar -->
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-8">
@@ -138,7 +138,7 @@ else
 								</div>
 							</div>
 						</form>
-						
+
 						</div>
 					</div>
 				</div>
