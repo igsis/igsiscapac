@@ -803,13 +803,26 @@ function validaCNPJ($cnpj)
 // Função que valida e-mails
 function validaEmail($email)
 {
-	$conta = "^[a-zA-Z0-9\._-]+@";
-	$domino = "[a-zA-Z0-9\._-]+.";
-	$extensao = "([a-zA-Z]{2,4})$";
-	$pattern = $conta.$domino.$extensao;
-	if (preg_match($pattern, $email))
-	return true;
+	/* Verifica se o email e valido */
+	if (filter_var($email, FILTER_VALIDATE_EMAIL))
+	{
+		/* Obtem o dominio do email */
+		list($usuario, $dominio) = explode('@', $email);
+
+		/* Faz um verificacao de DNS no dominio */
+		if (checkdnsrr($dominio, 'MX') == 1)
+		{
+			return TRUE;
+		}
+		else
+		{
+		return FALSE;
+		}
+	}
 	else
-	return false;
+	{
+		return FALSE;
+	}
 }
+
 ?>

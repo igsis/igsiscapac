@@ -7,16 +7,17 @@ $con = bancoMysqli();
 
 if(isset($_POST['busca']))
 {
-	if (validaEmail($_POST['busca']))
+	$validacao = validaEmail($_POST['busca']);
+	if($validacao == false)
+	{
+		echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=erro_login.php'>";
+	}
+	else
 	{
 		$busca = $_POST['busca'];
 		$sql_busca = "SELECT * FROM usuario WHERE email = '$busca' ORDER BY nome";
 		$query_busca = mysqli_query($con,$sql_busca);
 		$num_busca = mysqli_num_rows($query_busca);
-	}
-	else
-	{
-		echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=erro_login.php'>";
 	}
 }
 
