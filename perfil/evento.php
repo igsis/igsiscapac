@@ -1,6 +1,7 @@
 <?php
 	$con = bancoMysqli();
 	$idUser= $_SESSION['idUser'];
+	unset($_SESSION['idEvento']);
 
 	$usuario = recuperaDados("usuario","id",$idUser);
 ?>
@@ -27,7 +28,7 @@
 				<div class="table-responsive list_info">
 				<?php
 					$sql = "SELECT * FROM evento
-							WHERE publicado = 1 AND idusuario ='$idUser'
+							WHERE publicado = 1 AND idUsuario ='$idUser'
 							ORDER BY id DESC";
 					$query = mysqli_query($con,$sql);
 					$num = mysqli_num_rows($query);
@@ -37,7 +38,7 @@
 							<table class='table table-condensed'>
 								<thead>
 									<tr class='list_menu'>
-										<td width='20%'>ID evento</td>
+										<td width='10%'>ID evento</td>
 										<td>Nome do evento</td>
 										<td>Tipo de evento</td>
 										<td>Data cadastro</td>
@@ -55,13 +56,13 @@
 									echo "<td class='list_description'>".$campo['dataCadastro']."</td>";
 									echo "
 										<td class='list_description'>
-											<form method='POST' action='?perfil=evento&p=basica'>
-												<input type='hidden' name='carregar' value='".$campo['idEvento']."' />
+											<form method='POST' action='?perfil=evento_edicao'>
+												<input type='hidden' name='carregar' value='".$campo['id']."' />
 												<input type ='submit' class='btn btn-theme btn-block' value='carregar'></td></form>";
 									echo "
 										<td class='list_description'>
-											<form method='POST' action='?perfil=evento&p=carregar'>
-												<input type='hidden' name='apagar' value='".$campo['idEvento']."' />
+											<form method='POST' action='?perfil=evento_edicao'>
+												<input type='hidden' name='apagar' value='".$campo['id']."' />
 												<input type ='submit' class='btn btn-theme  btn-block' value='apagar'></td></form>"	;
 									echo "</tr>";
 								}

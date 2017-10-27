@@ -50,19 +50,19 @@
 
 	//saudacao inicial
 	function saudacao()
-	{ 
+	{
 		$hora = date('H');
 		if(($hora > 12) AND ($hora <= 18))
 		{
-			return "Boa tarde";	
+			return "Boa tarde";
 		}
 		else if(($hora > 18) AND ($hora <= 23))
 		{
-			return "Boa noite";	
+			return "Boa noite";
 		}
 		else if(($hora >= 0) AND ($hora <= 4))
 		{
-			return "Boa noite";	
+			return "Boa noite";
 		}
 		else if(($hora > 4) AND ($hora <=12))
 		{
@@ -79,30 +79,30 @@
 	//retorna data d/m/y de mysql/date(a-m-d)
 	function exibirDataBr($data)
 	{
-		$timestamp = strtotime($data); 
-		return date('d/m/Y', $timestamp);	
+		$timestamp = strtotime($data);
+		return date('d/m/Y', $timestamp);
 	}
 	// retorna datatime sem hora
 	function retornaDataSemHora($data)
 	{
 		$semhora = substr($data, 0, 10);
 		return $semhora;
-	}	
-	//retorna data d/m/y de mysql/datetime(a-m-d H:i:s)	
+	}
+	//retorna data d/m/y de mysql/datetime(a-m-d H:i:s)
 	function exibirDataHoraBr($data)
 	{
-		$timestamp = strtotime($data); 
-		return date('d/m/y - H:i:s', $timestamp);	
+		$timestamp = strtotime($data);
+		return date('d/m/y - H:i:s', $timestamp);
 	}
 	//retorna hora H:i de um datetime
 	function exibirHora($data)
 	{
-		$timestamp = strtotime($data); 
-		return date('H:i', $timestamp);	
+		$timestamp = strtotime($data);
+		return date('H:i', $timestamp);
 	}
 	//retorna data mysql/date (a-m-d) de data/br (d/m/a)
 	function exibirDataMysql($data)
-	{ 
+	{
 		list ($dia, $mes, $ano) = explode ('/', $data);
 		$data_mysql = $ano.'-'.$mes.'-'.$dia;
 		return $data_mysql;
@@ -123,7 +123,7 @@
 	}
 	//retorna valor xxx.xx para xxx,xx
 	function dinheiroParaBr($valor)
-	{ 
+	{
 		$valor = number_format($valor, 2, ',', '.');
 		return $valor;
 	}
@@ -162,14 +162,14 @@
 		}
 		return "$diasemana";
 	}
-	
+
 	//soma(+) ou substrai(-) dias de um date(a-m-d)
 	function somarDatas($data,$dias)
 	{
-		$data_final = date('Y-m-d', strtotime("$dias days",strtotime($data)));	
+		$data_final = date('Y-m-d', strtotime("$dias days",strtotime($data)));
 		return $data_final;
 	}
-	
+
 	//retorna a diferença de dias entre duas datas
 	function diferencaDatas($data_inicial,$data_final)
 	{
@@ -183,7 +183,7 @@
 		$dias = (int)floor( $diferenca / (60 * 60 * 24)); // 225 dias
 		return $dias;
 	}
-					
+
 	function gravarLog($log)
 	{
 		//grava na tabela log os inserts e updates
@@ -191,52 +191,62 @@
 		$idLogin = $_SESSION['idUser'];
 		$ip = $_SERVER["REMOTE_ADDR"];
 		$data = date('Y-m-d H:i:s');
-		$sql = "INSERT INTO `log` (`id`, `idUsuario`, `ip`, `data`, `descricao`) 
+		$sql = "INSERT INTO `log` (`id`, `idUsuario`, `ip`, `data`, `descricao`)
 			VALUES (NULL, '$idLogin', '$ip', '$data', '$logTratado')";
 		$mysqli = bancoMysqli();
 		$mysqli->query($sql);
 	}
-	
+
 	function geraOpcao($tabela,$select)
 	{
 		//gera os options de um select
 		$sql = "SELECT * FROM $tabela ORDER BY 2";
-		
+
 		$con = bancoMysqli();
 		$query = mysqli_query($con,$sql);
 		while($option = mysqli_fetch_row($query))
 		{
 			if($option[0] == $select)
 			{
-				echo "<option value='".$option[0]."' selected >".$option[1]."</option>";	
+				echo "<option value='".$option[0]."' selected >".$option[1]."</option>";
 			}
 			else
 			{
-				echo "<option value='".$option[0]."'>".$option[1]."</option>";	
+				echo "<option value='".$option[0]."'>".$option[1]."</option>";
 			}
 		}
 	}
-	
+
 	function geraCombobox($tabela,$campo,$order,$select)
 	{
 		//gera os options de um select
 		$sql = "SELECT * FROM $tabela ORDER BY $order";
-		
+
 		$con = bancoMysqli();
 		$query = mysqli_query($con,$sql);
 		while($option = mysqli_fetch_row($query))
 		{
 			if($option[0] == $select)
 			{
-				echo "<option value='".$option[0]."' selected >".$option[$campo]."</option>";	
+				echo "<option value='".$option[0]."' selected >".$option[$campo]."</option>";
 			}
 			else
 			{
-				echo "<option value='".$option[0]."'>".$option[$campo]."</option>";	
+				echo "<option value='".$option[0]."'>".$option[$campo]."</option>";
 			}
 		}
 	}
-	
+
+	function retornaTipo($id)
+	{
+		//retorna o tipo de evento
+		$con = bancoMysqli();
+		$sql = "SELECT * FROM tipo_evento WHERE id = '$id'";
+		$query = mysqli_query($con,$sql);
+		$x = mysqli_fetch_array($query);
+		return $x['tipoEvento'];
+	}
+
 	function recuperaModulo($pag)
 	{
 		$sql = "SELECT * FROM modulo WHERE pagina = '$pag'";
@@ -245,11 +255,11 @@
 		$modulo = mysqli_fetch_array($query);
 		return $modulo;
 	}
-	
+
 	function retornaModulos($perfil)
 	{
 		// recupera quais módulos o usuário tem acesso
-		$sql = "SELECT * FROM perfil WHERE id = $perfil"; 
+		$sql = "SELECT * FROM perfil WHERE id = $perfil";
 		$con = bancoMysqli();
 		$query = mysqli_query($con,$sql);
 		$campoFetch = mysqli_fetch_array($query);
@@ -264,12 +274,12 @@
 		}
 		return substr($nome,1);
 	}
-	
+
 	function listaModulos($perfil)
 	{
 		//gera as tds dos módulos a carregar
 		// recupera quais módulos o usuário tem acesso
-		$sql = "SELECT * FROM perfil WHERE id = $perfil"; 
+		$sql = "SELECT * FROM perfil WHERE id = $perfil";
 		$con = bancoMysqli();
 		$query = mysqli_query($con,$sql);
 		$campoFetch = mysqli_fetch_array($query);
@@ -289,7 +299,7 @@
 			}
 		}
 	}
-	
+
 	function listaModulosAlfa($perfil)
 	{
 		//gera as tds dos módulos a carregar
@@ -314,9 +324,9 @@
 							<input type ='submit' class='btn btn-theme btn-lg btn-block' value='carregar'></td></form>"	;
 				echo "</tr>";
 			}
-		}	
+		}
 	}
-		
+
 	function recuperaUsuarioCompleto($id)
 	{
 		//retorna dados do usuário
@@ -328,7 +338,7 @@
 				"email" => $recupera['email'],
 				"login" => $recupera['login'],
 				"telefone1" => $recupera['telefone1'],
-				"telefone2" => $recupera['telefone2']);	
+				"telefone2" => $recupera['telefone2']);
 			return $x;
 		}
 		else
@@ -336,7 +346,7 @@
 			return NULL;
 		}
 	}
-	
+
 	function recuperaDados($tabela,$campo,$variavelCampo)
 	{
 		//retorna uma array com os dados de qualquer tabela. serve apenas para 1 registro.
@@ -344,10 +354,9 @@
 		$sql = "SELECT * FROM $tabela WHERE ".$campo." = '$variavelCampo' LIMIT 0,1";
 		$query = mysqli_query($con,$sql);
 		$campo = mysqli_fetch_array($query);
-		return $campo;		
+		return $campo;
 	}
-	
-	
+
 	function verificaExiste($idTabela,$idCampo,$idDado,$st)
 	{
 		//retorna uma array com indice 'numero' de registros e 'dados' da tabela
@@ -365,33 +374,33 @@
 		$numero = mysqli_num_rows($query);
 		$dados = mysqli_fetch_array($query);
 		$campo['numero'] = $numero;
-		$campo['dados'] = $dados;	
+		$campo['dados'] = $dados;
 		return $campo;
 	}
-	
+
 	function recuperaIdDado($tabela,$id)
-	{ 
+	{
 		$con = bancoMysqli();
 		//recupera os nomes dos campos
 		$sql = "SELECT * FROM $tabela";
 		$query = mysqli_query($con,$sql);
 		$campo01 = mysqli_field_name($query, 0);
-		$campo02 = mysqli_field_name($query, 1);	
+		$campo02 = mysqli_field_name($query, 1);
 		$sql = "SELECT * FROM $tabela WHERE $campo01 = $id";
 		$query = mysql_query($sql);
 		$campo = mysql_fetch_array($query);
 		return $campo[$campo02];
 	}
-		
+
 	function checar($id)
 	{
 		//funcao para imprimir checked do checkbox
 		if($id == 1)
 		{
-			echo "checked";	
-		}	
+			echo "checked";
+		}
 	}
-	
+
 	function valorPorExtenso($valor=0)
 	{
 		//retorna um valor por extenso
@@ -408,7 +417,7 @@
 			for($ii=strlen($inteiro[$i]);$ii<3;$ii++)
 				$inteiro[$i] = "0".$inteiro[$i];
 		$rt = "";
-		// $fim identifica onde que deve se dar junção de centenas por "e" ou por "," ;) 
+		// $fim identifica onde que deve se dar junção de centenas por "e" ou por "," ;)
 		$fim = count($inteiro) - ($inteiro[count($inteiro)-1] > 0 ? 1 : 2);
 		for ($i=0;$i<count($inteiro);$i++)
 		{
@@ -425,7 +434,7 @@
 		}
 		return($rt ? $rt : "zero");
 	}
-	
+
 	function analisaArray($array)
 	{
 		//imprime o conteúdo de uma array
@@ -433,16 +442,16 @@
 		print_r($array);
 		echo "</pre>";
 	}
-	
+
 	function recuperaUltimo($tabela)
 	{
 		$con = bancoMysqli();
 		$sql = "SELECT * FROM $tabela ORDER BY 1 DESC LIMIT 0,1";
 		$query =  mysqli_query($con,$sql);
 		$campo = mysqli_fetch_array($query);
-		return $campo[0];	
+		return $campo[0];
 	}
-		
+
 	function retornaMes($mes)
 	{
 		switch($mes)
@@ -485,7 +494,7 @@
 			break;
 		}
 	}
-	
+
 	function retornaMesExtenso($data)
 	{
 		$meses = array('Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro');
@@ -493,10 +502,10 @@
 		$mes = $data[1];
 		return $meses[($mes) - 1];
 	}
-	
+
 	//retorna o dia da semana segundo um date(a-m-d)
 	function diaSemanaBase($data)
-	{ 
+	{
 		$ano =  substr("$data", 0, 4);
 		$mes =  substr("$data", 5, -3);
 		$dia =  substr("$data", 8, 9);
@@ -527,12 +536,12 @@
 		}
 		return "$diasemana";
 	}
-	
+
 	function soNumero($str)
 	{
 		return preg_replace("/[^0-9]/", "", $str);
 	}
-	
+
 	// Gera o endereço no PDF
 	function enderecoCEP($cep)
 	{
@@ -561,55 +570,6 @@
 		$dados['estado']  = strtoupper($campo01['uf']);
 		return $dados;
 	}
-	
-	
-/*function listaArquivoCampo($idPessoa,$tipoPessoa,$idCampo,$pagina)
-{
-	$con = bancoMysqli();
-	$sql = "SELECT * 
-			FROM upload_lista_documento as list
-			INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
-			WHERE arq.idPessoa = '$idPessoa' 
-			AND arq.idTipoPessoa = '$tipoPessoa' 
-			AND list.id = '$idCampo'
-			AND arq.publicado = '1'";
-	$query = mysqli_query($con,$sql);
-	$linhas = mysqli_num_rows($query);
-	
-	if ($linhas > 0)
-	{	
-	echo "
-		<table class='table table-condensed'>
-			<thead>
-				<tr class='list_menu'>
-					<td>Nome do arquivo</td>
-					<td width='10%'></td>
-				</tr>
-			</thead>
-			<tbody>";
-				while($arquivo = mysqli_fetch_array($query))
-				{					
-					echo "<tr>";
-					echo "<td class='list_description'><a href='../uploadsdocs/".$arquivo['arquivo']."' target='_blank'>".$arquivo['arquivo']."</a><br/>(".$arquivo['documento'].")</td>";
-					echo " 
-						<td class='list_description'>
-							<form method='POST' action='?perfil=".$pagina."'>
-								<input type='hidden' name='idPessoa' value='".$idPessoa."' />
-								<input type='hidden' name='tipoPessoa' value='".$tipoPessoa."' />
-								<input type='hidden' name='apagar' value='".$arquivo['id']."' />
-								<input type ='submit' class='btn btn-theme  btn-block' value='apagar'></td>
-							</form>";
-					echo "</tr>";					
-				}
-				echo "
-		</tbody>
-		</table>";
-	}
-	else
-	{
-		echo "<p>Não há arquivo(s) inserido(s).<p/><br/>";
-	}	
-}*/
 
 function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 {
@@ -680,17 +640,15 @@ function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 						AND arq.idTipoPessoa = '$tipoPessoa' 
 						AND list.id NOT IN('9','21','54')
 						AND arq.publicado = '1'";
-					
 				}
 			}
 		}
-		
 	}
 	$query = mysqli_query($con,$sql);
 	$linhas = mysqli_num_rows($query);
-	
+
 	if ($linhas > 0)
-	{	
+	{
 	echo "
 		<table class='table table-condensed'>
 			<thead>
@@ -701,7 +659,7 @@ function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 			</thead>
 			<tbody>";
 				while($arquivo = mysqli_fetch_array($query))
-				{					
+				{
 					echo "<tr>";
 					echo "<td class='list_description'><a href='../uploadsdocs/".$arquivo['arquivo']."' target='_blank'>".$arquivo['arquivo']."</a><br/>(".$arquivo['documento'].")</td>";
 					echo " 
@@ -712,7 +670,7 @@ function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 								<input type='hidden' name='apagar' value='".$arquivo['id']."' />
 								<input type ='submit' class='btn btn-theme  btn-block' value='apagar'></td>
 							</form>";
-					echo "</tr>";					
+					echo "</tr>";
 				}
 				echo "
 		</tbody>
@@ -721,7 +679,7 @@ function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 	else
 	{
 		echo "<p>Não há arquivo(s) inserido(s).<p/><br/>";
-	}	
+	}
 }
 
 // Função que valida o CPF
@@ -787,7 +745,8 @@ function validaCNPJ($cnpj)
 		'99999999999999'
 	);
 	// Verifica se o CNPJ está na lista de inválidos
-	if (in_array($cnpj, $invalidos)) {	
+	if (in_array($cnpj, $invalidos))
+	{
 		return false;
 	}
 	// Valida segundo dígito verificador

@@ -21,7 +21,7 @@
 							<label>Tipo de Evento *</label>
 							<select class="form-control" name="idTipoEvento" id="inputSubject" >
 								<option value="1"></option>
-								<?php echo geraOpcao("tipo_evento",$campo['id'],"") ?>
+								<?php echo geraOpcao("tipo_evento","") ?>
 							</select>
 						</div>
 					</div>
@@ -42,7 +42,7 @@
 							<label>Classificação/indicação etária*</label>
 							<select class="form-control" name="idFaixaEtaria" id="inputSubject" >
 								<option value="0"></option>
-								<?php echo geraOpcao("faixa_etaria",$campo['id'],"") ?>
+								<?php echo geraOpcao("faixa_etaria","") ?>
 							</select>
 						</div>
 					</div>
@@ -61,7 +61,7 @@
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
 							<label>Links </label>
-							<textarea name="links" class="form-control" rows="5" placeholder="Links para auxiliar a divulgação e o jurídico. Site oficinal, vídeos, clipping, artigos, etc "></textarea>
+							<textarea name="link" class="form-control" rows="5" placeholder="Links para auxiliar a divulgação e o jurídico. Site oficinal, vídeos, clipping, artigos, etc "></textarea>
 						</div>
 					</div>
 					<div class="form-group">
