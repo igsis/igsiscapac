@@ -121,11 +121,11 @@ else
 							</div>
 
 							<div class="form-group">
-								<div class="col-md-offset-2 col-md-6"><strong>CPF: *</strong><br/>
-									<input type="text" readonly class="form-control" name="cpf" placeholder="CPF">
+								<div class="col-md-offset-2 col-md-6"><strong>Telefone: *</strong><br/>
+									<input type="text" class="form-control" name="telefone" placeholder="(11) 98765-4321">
 								</div>
 								<div class="col-md-6"><strong>Email: *</strong><br/>
-									<input type="text" class="form-control" name="email" value="<?php echo $busca ?>" placeholder="Email">
+									<input type="text" readonly class="form-control" name="email" value="<?php echo $busca ?>" placeholder="Email">
 								</div>
 							</div>
 
