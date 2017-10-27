@@ -1,12 +1,11 @@
 <?php
 $con = bancoMysqli();
 $idUser= $_SESSION['idUser'];
-
 if(isset($_POST['atualizarUsuario']))
 {		
-	$Email = $_POST['email'];
-	$Telefone1 = addslashes($_POST['telefone1']);
-	if($Email == '' OR $Telefone1 == '')
+	$Nome = addslashes($_POST['nome']);
+	$Telefone = addslashes($_POST['telefone']);
+	if($Nome == '' OR $Telefone == '')
 	{
 		$mensagem = "Por favor, preencha todos os campos.";
 	}
@@ -16,14 +15,11 @@ if(isset($_POST['atualizarUsuario']))
 	$Nome = addslashes($_POST['nome']);
 	$Telefone = $_POST['telefone'];
 	$Email = $_POST['email'];
-	$dataAtualizacao = date("Y-m-d");
 		
 	
 	$sql_atualiza_usuario = "UPDATE usuario SET
 	`nome` = '$Nome',
-	`telefone` = '$Telefone', 
-	`email` = '$Email',
-	`dataAtualizacao` = '$dataAtualizacao'
+	`telefone` = '$Telefone'
 	WHERE `id` = '$idUser'";	
 	
 	if(mysqli_query($con,$sql_atualiza_usuario))
@@ -36,9 +32,7 @@ if(isset($_POST['atualizarUsuario']))
 	}	
 	}
 }
-
 $usuario = recuperaDados("usuario","id",$idUser);
-
 ?>
 
 <section id="contact" class="home-section bg-white">
@@ -50,7 +44,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-			<form class="form-horizontal" role="form" action="?minha_conta.php" method="post">
+			<form class="form-horizontal" role="form" action="?perfil=minha_conta" method="post">
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Nome *:</strong><br/>
 						<input type="text" class="form-control" name="nome" placeholder="Insira seu nome completo" value="<?php echo $usuario['nome']; ?>" >
@@ -78,18 +72,9 @@ $usuario = recuperaDados("usuario","id",$idUser);
 			
 			<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
-			</div>
-				
-				<!-- Botão para Prosseguir -->
-				<div class="form-group">
-					<form class="form-horizontal" role="form" action="?perfil=senha" method="post">
-						<div class="col-md-offset-8 col-md-2">
-							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idUser ?>">
-						</div>
-					</form>
-				</div>	
+			</div>	
 		
 			</div>
 		</div>
 	</div>
-</section>  
+</section>

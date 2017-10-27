@@ -79,7 +79,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
 		<!-- Redefinição de senha -->
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-				<form method="POST" action="?perfil=senha"class="form-horizontal" role="form">
+				<form method="POST" action="?perfil=senha" class="form-horizontal" role="form">
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8"><label>Insira sua senha antiga para confirmar a mudança.</label>
 							<input type="password" name="senha03" class="form-control" id="inputName" placeholder="">
@@ -108,7 +108,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
 		<!-- Pergunta de Segurança -->
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-				<form method="POST" action="?perfil=senha"class="form-horizontal" role="form">
+				<form method="POST" action="?perfil=senha" class="form-horizontal" role="form">
 					<h5>Recuperar Senha</h5>
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-8"><strong>Escolha uma pergunta secreta, para casos de recuperação de senha:</strong><br/>
@@ -137,16 +137,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
 				</div>	
 					
 				</form>
-				
-				<!-- Botão para Voltar -->
-				<div class="form-group">
-					<form class="form-horizontal" role="form" action="?perfil=minha_conta" method="post">
-						<div class="col-md-offset-2 col-md-2">
-							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idUser ?>">
-						</div>
-					</form>
-				</div>	
-				
+		
 			</div>
 		</div>
 		<!-- Fim Pergunta de Segurança -->

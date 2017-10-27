@@ -15,9 +15,9 @@
 					<br />
 					<a href="?perfil=evento" class="btn btn-theme btn-lg btn-block" target="_blank" >EVENTO</a>
 					<br />
-					<a href="?perfil=evento" class="btn btn-theme btn-lg btn-block" target="_blank" >PESSOA FÍSICA</a>
+					<a href="" class="btn btn-theme btn-lg btn-block" target="_blank" >PESSOA FÍSICA</a>
 					<br />
-					<a href="?perfil=evento" class="btn btn-theme btn-lg btn-block" target="_blank" >PESSOA JURÍDICA</a>
+					<a href="" class="btn btn-theme btn-lg btn-block" target="_blank" >PESSOA JURÍDICA</a>
 					<br />
 					<a href="?perfil=minha_conta" class="btn btn-theme btn-lg btn-block" target="_blank" >MINHA CONTA</a>
 				</div>
