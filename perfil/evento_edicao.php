@@ -73,7 +73,6 @@
 		<div class="form-group">
 			<h3>EVENTO - Informações Gerais</h3>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
-			<p><?php //var_dump($evento) ?></p>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
