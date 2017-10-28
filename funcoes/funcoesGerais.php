@@ -5,49 +5,6 @@
 		error_reporting(E_ALL);
 	}
 
-	// Framework
-	//autentica login e cria inicia uma session
-	function autenticalogin($login, $senha)
-	{
-		$sql = "SELECT * FROM usuario AS usr
-		WHERE usr.email = '$login' LIMIT 0,1";
-		$con = bancoMysqli();
-		$query = mysqli_query($con,$sql);
-		//query que seleciona os campos que voltarão para na matriz
-		if($query)
-		{
-			//verifica erro no banco de dados
-			if(mysqli_num_rows($query) > 0)
-			{
-				// verifica se retorna usuário válido
-				$user = mysqli_fetch_array($query);
-				if($user['senha'] == md5($_POST['senha']))
-				{
-					// compara as senhas
-					session_start();
-					$_SESSION['login'] = $user['email'];
-					$_SESSION['nome'] = $user['nome'];
-					$_SESSION['idUser'] = $user['id'];
-					$log = "Fez login.";
-					//gravarLog($log);
-					header("Location: visual/index.php");
-				}
-				else
-				{
-					echo "A senha está incorreta.";
-				}
-			}
-			else
-			{
-				echo "O usuário não existe.";
-			}
-		}
-		else
-		{
-			echo "Erro no banco de dados";
-		}
-	}
-
 	//saudacao inicial
 	function saudacao()
 	{

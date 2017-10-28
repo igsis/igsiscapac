@@ -3,12 +3,50 @@
 include "funcoes/funcoesGerais.php";
 require "funcoes/funcoesConecta.php";
 
+//autentica login e cria inicia uma session
 if(isset($_POST['login']))
 {
 	$login = $_POST['login'];
 	$senha = $_POST['senha'];
-	autenticalogin($login,$senha);
+	$sql = "SELECT * FROM usuario AS usr
+	WHERE usr.email = '$login' LIMIT 0,1";
+	$con = bancoMysqli();
+	$query = mysqli_query($con,$sql);
+	//query que seleciona os campos que voltarão para na matriz
+	if($query)
+	{
+		//verifica erro no banco de dados
+		if(mysqli_num_rows($query) > 0)
+		{
+			// verifica se retorna usuário válido
+			$user = mysqli_fetch_array($query);
+			if($user['senha'] == md5($_POST['senha']))
+			{
+				// compara as senhas
+				session_start();
+				$_SESSION['login'] = $user['email'];
+				$_SESSION['nome'] = $user['nome'];
+				$_SESSION['idUser'] = $user['id'];
+				$log = "Fez login.";
+				//gravarLog($log);
+				header("Location: visual/index.php");
+			}
+			else
+			{
+				$mensagem = "A senha está incorreta.";
+			}
+		}
+		else
+		{
+			$mensagem = "O usuário não existe.";
+		}
+	}
+	else
+	{
+		$mensagem = "Erro no banco de dados";
+	}
 }
+
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -45,7 +83,9 @@ if(isset($_POST['login']))
 
 						<hr/>
 
-						<form method="POST" action="login.php" class="form-horizontal" role="form">
+						<h5><?php if(isset($mensagem)){ echo $mensagem; } ?></h5>
+
+						<form method="POST" action="index.php" class="form-horizontal" role="form">
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-6">
 									<label>E-mail</label>
