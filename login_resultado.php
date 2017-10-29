@@ -99,12 +99,12 @@ else
 			<section id="contact" class="home-section bg-white">
 				<div class="container">
 					<div class="form-group">
-						<h3>CADASTRO DE PESSOA FÍSICA</h3>
+						<h3>CADASTRO DE USUÁRIO</h3>
 						<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 					</div>
 					<div class="row">
 						<div class="col-md-offset-1 col-md-10">
-						<form class="form-horizontal" role="form" action="login_cadastro_pf.php" method="post">
+						<form class="form-horizontal" role="form" action="login_cadastro.php" method="post">
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-8"><strong>Nome: *</strong><br/>
 									<input type="text" class="form-control" name="nome" placeholder="Nome completo">
@@ -133,7 +133,7 @@ else
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-8">
 									<input type="hidden" value="<?php echo $busca ?>">
-									<input type="hidden" name="cadastraNovoPf">
+									<input type="hidden" name="cadastraR">
 									<input type="submit" value="Enviar" class="btn btn-theme btn-lg btn-block">
 								</div>
 							</div>
