@@ -2,7 +2,6 @@
 $con = bancoMysqli();
 $idUser= $_SESSION['idUser'];
 
-
 	if(isset($_POST['senha01']))
 	{
 		//verifica se há um post
@@ -11,7 +10,7 @@ $idUser= $_SESSION['idUser'];
 			if($_POST['senha01'] == $_POST['senha02'])
 			{
 				// verifica se a nova senha foi digitada corretamente duas vezes
-				$senha = recuperaDados("usuario","email",$_SESSION['email']);
+				$senha = recuperaDados("usuario","email",$_SESSION['login']);
 				if(md5($_POST['senha03']) == $senha['senha'])
 				{
 					$usuario = $_SESSION['idUser'];
@@ -50,12 +49,12 @@ $idUser= $_SESSION['idUser'];
 		$idFraseSeguranca = $_POST['idFraseSeguranca'];
 		$respostaFrase = $_POST['respostaFrase'];
 		
-		$sql_seguranca = "UPDATE usuario SET
+		$sql_seguranca_pf = "UPDATE usuario SET
 		`idFraseSeguranca` = '$idFraseSeguranca', 
 		`respostaFrase` = '$respostaFrase'
 		WHERE `id` = '$idUser'";	
 		
-		if(mysqli_query($con,$sql_seguranca))
+		if(mysqli_query($con,$sql_seguranca_pf))
 		{
 			$mensagem = "Pergunta secreta atualizada com sucesso!";	
 		}
@@ -66,20 +65,19 @@ $idUser= $_SESSION['idUser'];
 	}
 	
 $usuario = recuperaDados("usuario","id",$idUser);
+	
 ?>
 <section id="contact" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_minhaconta.php'; ?>
 		<div class="form-group">
-			<h3>SENHA</h3>
-			<p></p>
-			<h5>Alterar Senha</h5>
+			<h3>DADOS DA CONTA</h3>
 			<p><b>Código de cadastro:</b> <?php echo $idUser; ?> | <b>Nome:</b> <?php echo $usuario['nome']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
 		<!-- Redefinição de senha -->
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-				<form method="POST" action="?perfil=senha" class="form-horizontal" role="form">
+				<form method="POST" action="?perfil=senha"class="form-horizontal" role="form">
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8"><label>Insira sua senha antiga para confirmar a mudança.</label>
 							<input type="password" name="senha03" class="form-control" id="inputName" placeholder="">
@@ -108,8 +106,8 @@ $usuario = recuperaDados("usuario","id",$idUser);
 		<!-- Pergunta de Segurança -->
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-				<form method="POST" action="?perfil=senha" class="form-horizontal" role="form">
-					<h5>Recuperar Senha</h5>
+				<form method="POST" action="?perfil=senha"class="form-horizontal" role="form">
+					<h5>Recuperação de Senha</h5>
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-8"><strong>Escolha uma pergunta secreta, para casos de recuperação de senha:</strong><br/>
 								<select class="form-control" name="idFraseSeguranca" id="idFraseSeguranca">
@@ -134,10 +132,9 @@ $usuario = recuperaDados("usuario","id",$idUser);
 				
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
-				</div>	
-					
+				</div>					
 				</form>
-		
+
 			</div>
 		</div>
 		<!-- Fim Pergunta de Segurança -->
