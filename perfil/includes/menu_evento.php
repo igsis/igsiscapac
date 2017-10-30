@@ -2,8 +2,10 @@
 	<div class="form-group">
 		<div class="col-md-offset-2 col-md-8">
 			<strong>
+			| <a href="?secao=perfil">Voltar ao início</a>
 			| <a href="?perfil=evento">Carregar Eventos</a>
 			| <a href="?perfil=produtor">Produtor</a>
+			| <a href="?perfil=proponente">Informações do Proponente</a>
 			| <a href="../manual" target="_blank">Ajuda</a>
 			| <a href="../include/logoff.php">Sair</a> |</strong><br/>
 		</div>
