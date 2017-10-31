@@ -1,7 +1,7 @@
 <section id="inserir" class="home-section bg-white">
     <div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<h3>EVENTO - Informações Gerais</h3>
+			<h3>EVENTO - Produtor</h3>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
