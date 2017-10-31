@@ -53,7 +53,7 @@
 									echo "<td class='list_description'>".$campo['id']."</td>";
 									echo "<td class='list_description'>".$campo['nomeEvento']."</td>";
 									echo "<td class='list_description'>".retornaTipo($campo['idTipoEvento'])."</td>";
-									echo "<td class='list_description'>".$campo['dataCadastro']."</td>";
+									echo "<td class='list_description'>".exibirDataHoraBr($campo['dataCadastro'])."</td>";
 									echo "
 										<td class='list_description'>
 											<form method='POST' action='?perfil=evento_edicao'>
