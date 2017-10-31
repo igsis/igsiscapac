@@ -1,3 +1,6 @@
+<script type="text/javascript">
+	$(document).ready(function(){	$("#cnpj").mask("99.999.999/9999-99");});
+</script>
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
 		<div class="form-group">
@@ -9,7 +12,7 @@
 	            	<div class="col-md-offset-2 col-md-8">
 	                    <form method="POST" action="?perfil=proponente_pj_resultado" class="form-horizontal" role="form">
 							<label>Insira o CNPJ</label>
-							<input type="text" name="busca" class="form-control" id="CNPJ"><br />
+							<input type="text" name="busca" class="form-control" id="cnpj"><br />
 							<br />
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-8">

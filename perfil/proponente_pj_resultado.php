@@ -60,6 +60,62 @@ if($query != '')
 }
 else
 {
-	echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=?perfil=informacoes_iniciais_pj.php'>";
+	$busca = $_POST['busca'];
+?>
+	<section id="contact" class="home-section bg-white">
+		<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
+			<div class="form-group">
+				<h3>INFORMAÇÕES INICIAIS</h3>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<form class="form-horizontal" role="form" action="?perfil=informacoes_iniciais_pj" method="post">
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8"><strong>Razão Social *:</strong><br/>
+							<input type="text" class="form-control" name="razaoSocial" placeholder="Razão Social" >
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-6"><strong>CNPJ *:</strong><br/>
+							<input type="text" readonly class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ" value="<?php echo $busca; ?>">
+						</div>
+						<div class="col-md-6"><strong>CCM:</strong><br/>
+							<input type="text" class="form-control" id="ccm" name="ccm" placeholder="CCM" >
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-6"><strong>Celular *:</strong><br/>
+							<input type="text" class="form-control" name="telefone1" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" >
+						</div>
+						<div class="col-md-6"><strong>Telefone #2:</strong><br/>
+							<input type="text" class="form-control" name="telefone2" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" >
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-6"><strong>Telefone #3:</strong><br/>
+							<input type="text" class="form-control" name="telefone3" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" >
+						</div>
+						<div class="col-md-6"><strong>E-mail *:</strong><br/>
+							<input type="text" class="form-control" name="email" placeholder="E-mail" >
+						</div>
+					</div>
+
+					<!-- Botão para Gravar -->
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8">
+							<input type="submit" name="cadastrarJuridica" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
+						</div>
+					</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+<?php
 }
 ?>

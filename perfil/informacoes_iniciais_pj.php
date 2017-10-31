@@ -1,46 +1,59 @@
 ﻿<?php
+
 $con = bancoMysqli();
-$idPessoaJuridica = $_SESSION['idUser'];
+//$idPessoaJuridica = $_SESSION['idUser'];
 
 
 if(isset($_POST['cadastrarJuridica']))
-{		
-	$Email = $_POST['email'];
-	$Telefone1 = addslashes($_POST['telefone1']);
-	if($Email == '' OR $Telefone1 == '')
+{
+	$razaoSocial = addslashes($_POST['razaoSocial']);
+	$cnpj = $_POST['cnpj'];
+	$ccm = $_POST['ccm'];
+	$telefone1 = $_POST['telefone1'];
+	$telefone2 = $_POST['telefone2'];
+	$telefone3 = $_POST['telefone3'];
+	$email = $_POST['email'];
+
+	$sql_cadastra_pj = "INSERT INTO `pessoa_juridica`(`razaoSocial`, `cnpj`, `ccm`, `cep`, `numero`, `complemento`, `telefone1`, `telefone2`, `telefone3`, `email`) VALUES ('$razaoSocial', '$cnpj', '$ccm', ''$telefone1', '$telefone2', '$telefone3', '$email')";
+	if(mysqli_query($con,$sql_cadastra_pj))
 	{
-		$mensagem = "Por favor, preencha todos os campos.";
+		$mensagem = "Cadastrado com sucesso!";
 	}
 	else
-	{	
-	$idPessoaJuridica = $_POST['cadastrarJuridica'];
-	$RazaoSocial = addslashes($_POST['razaoSocial']);
-	$Telefone1 = $_POST['telefone1'];
-	$Telefone2 = $_POST['telefone2'];
-	$Telefone3 = $_POST['telefone3'];
-	$Email = $_POST['email'];
-	$Login = $_POST['login'];
-	
-	$sql_atualiza_pj = "UPDATE usuario_pj SET
-	`razaoSocial` = '$RazaoSocial',
-	`telefone1` = '$Telefone1', 
-	`telefone2` = '$Telefone2',  
-	`telefone3` = '$Telefone3', 
-	`email` = '$Email'
-	WHERE `id` = '$idPessoaJuridica'";	
-	
+	{
+		$mensagem = "Erro ao cadastrar! Tente novamente.";
+	}
+}
+
+if(isset($_POST['atualizarJuridica']))
+{
+	$razaoSocial = addslashes($_POST['razaoSocial']);
+	$cnpj = $_POST['cnpj'];
+	$ccm = $_POST['ccm'];
+	$telefone1 = $_POST['telefone1'];
+	$telefone2 = $_POST['telefone2'];
+	$telefone3 = $_POST['telefone3'];
+	$email = $_POST['email'];
+
+	$sql_atualiza_pj = "UPDATE pessoa_juridica SET
+	`razaoSocial` = '$razaoSocial',
+	`telefone1` = '$telefone1',
+	`telefone2` = '$telefone2',
+	`telefone3` = '$telefone3',
+	`email` = '$email'
+	WHERE `id` = '$idPessoaJuridica'";
+
 	if(mysqli_query($con,$sql_atualiza_pj))
 	{
-		$mensagem = "Atualizado com sucesso!";	
+		$mensagem = "Atualizado com sucesso!";
 	}
 	else
 	{
 		$mensagem = "Erro ao atualizar! Tente novamente.";
-	}	
 	}
 }
 
-$pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
+$pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);*/
 ?>
 
 <section id="contact" class="home-section bg-white">
@@ -58,7 +71,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 						<input type="text" class="form-control" name="razaoSocial" placeholder="Razão Social" value="<?php echo $pj['razaoSocial']; ?>" >
 					</div>
 				</div>
-				  
+
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>Celular *:</strong><br/>
 						<input type="text" class="form-control" name="telefone1" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pj['telefone1']; ?>">
@@ -67,7 +80,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 						<input type="text" class="form-control" name="telefone2" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pj['telefone2']; ?>">
 					</div>
 				</div>
-						  
+
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>Telefone #3:</strong><br/>
 						<input type="text" class="form-control" name="telefone3" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pj['telefone3']; ?>" >
@@ -75,22 +88,20 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 					<div class="col-md-6"><strong>E-mail *:</strong><br/>
 						<input type="text" class="form-control" name="email" placeholder="E-mail" value="<?php echo $pj['email']; ?>" >
 					</div>
-				</div>					
-		  
-					  
+				</div>
+
 				<!-- Botão para Gravar -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<input type="hidden" name="cadastrarJuridica" value="<?php echo $idPessoaJuridica ?>">
+						<input type="hidden" name="atualizarJuridica" value="<?php echo $idPessoaJuridica ?>">
 						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 					</div>
 				</div>
 			</form>
-			
+
 			<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
-			</div>			
-			
+			</div>
 				<!-- Botão para Prosseguir -->
 				<div class="form-group">
 					<form class="form-horizontal" role="form" action="?perfil=documentos_pj" method="post">
@@ -99,9 +110,8 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 						</div>
 					</form>
 				</div>
-			
-		
+
 			</div>
 		</div>
 	</div>
-</section>  
+</section>
