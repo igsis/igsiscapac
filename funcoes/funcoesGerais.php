@@ -409,6 +409,15 @@
 		return $campo[0];
 	}
 
+	function recuperaUltimoDoUsuario($tabela,$idUser)
+	{
+		$con = bancoMysqli();
+		$sql = "SELECT * FROM $tabela WHERE idUsuario = $idUser ORDER BY 1 DESC LIMIT 0,1";
+		$query =  mysqli_query($con,$sql);
+		$campo = mysqli_fetch_array($query);
+		return $campo[0];
+	}
+
 	function retornaMes($mes)
 	{
 		switch($mes)

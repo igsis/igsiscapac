@@ -1,7 +1,7 @@
 ﻿<?php
 
 $con = bancoMysqli();
-//$idPessoaJuridica = $_SESSION['idUser'];
+$idUser = $_SESSION['idUser'];
 
 
 if(isset($_POST['cadastrarJuridica']))
@@ -14,10 +14,30 @@ if(isset($_POST['cadastrarJuridica']))
 	$telefone3 = $_POST['telefone3'];
 	$email = $_POST['email'];
 
-	$sql_cadastra_pj = "INSERT INTO `pessoa_juridica`(`razaoSocial`, `cnpj`, `ccm`, `cep`, `numero`, `complemento`, `telefone1`, `telefone2`, `telefone3`, `email`) VALUES ('$razaoSocial', '$cnpj', '$ccm', ''$telefone1', '$telefone2', '$telefone3', '$email')";
+	$sql_cadastra_pj = "INSERT INTO `pessoa_juridica`(`razaoSocial`, `cnpj`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`) VALUES ('$razaoSocial', '$cnpj', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email')";
 	if(mysqli_query($con,$sql_cadastra_pj))
 	{
 		$mensagem = "Cadastrado com sucesso!";
+		if(isset($_SESSION['idEvento']))
+		{
+			$idEvento = $_SESSION['idEvento'];
+			$sql_ultimo = "SELECT id FROM pessoa_juridica WHERE idUsuario = '$idUser' ORDER BY id DESC LIMIT 0,1";
+			$query_ultimo = mysqli_query($con,$sql_ultimo);
+			$ultimoPj = mysqli_fetch_array($query_ultimo);
+			$_SESSION['idUser'] = $ultimoPj['id'];
+			$idPj = $_SESSION['idUser'];
+
+			$sql_atualiza_evento = "UPDATE evento SET idPj = '$idPj' WHERE id = '$idEvento'";
+			if(mysqli_query($con,$sql_atualiza_evento))
+			{
+				$mensagem .= " Empresa inserida no evento.";
+				$_SESSION['idPj'] = $idPj;
+			}
+			else
+			{
+				$mensagem .= "Erro ao cadastrar no evento";
+			}
+		}
 	}
 	else
 	{
@@ -53,14 +73,15 @@ if(isset($_POST['atualizarJuridica']))
 	}
 }
 
-$pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);*/
+$idPj = $_SESSION['idPj'];
+$pj = recuperaDados("pessoa_juridica","id",$idPj);
 ?>
 
 <section id="contact" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
 		<div class="form-group">
 			<h3>INFORMAÇÕES INICIAIS</h3>
-			<p><b>Código de cadastro:</b> <?php echo $idPessoaJuridica; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
+			<p><b>Código de cadastro:</b> <?php echo $idPj ; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>
 		<div class="row">
