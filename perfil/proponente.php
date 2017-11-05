@@ -144,8 +144,8 @@ else
 											<tr class='list_menu'>
 												<td>Razão Social</td>
 												<td>CNPJ</td>
-												<td>Artista/td>
-												<td>CPF</td>
+												<td>Telefone</td>
+												<td>E-mail</td>
 												<td width='10%'></td>
 												<td width='10%'></td>
 											</tr>
@@ -156,17 +156,17 @@ else
 											echo "<tr>";
 											echo "<td class='list_description'>".$campo['razaoSocial']."</td>";
 											echo "<td class='list_description'>".$campo['cnpj']."</td>";
-											echo "<td class='list_description'>".$campo['nome']."</td>";
-											echo "<td class='list_description'>".$campo['cpf']."</td>";
+											echo "<td class='list_description'>".$campo['telefone1']."</td>";
+											echo "<td class='list_description'>".$campo['email']."</td>";
 											echo "
 												<td class='list_description'>
-													<form method='POST' action='?perfil=proponente_pf'>
-														<input type='hidden' name='carregar' value='".$campo['nome']."' />
+													<form method='POST' action='?perfil=proponente_pj'>
+														<input type='hidden' name='carregar' value='".$campo['id']."' />
 														<input type ='submit' class='btn btn-theme btn-block' value='carregar'></td></form>";
 											echo "
 												<td class='list_description'>
-													<form method='POST' action='?perfil=evento_edicao'>
-														<input type='hidden' name='apagar' value='".$campo['nome']."' />
+													<form method='POST' action='?perfil=proponente_pj>
+														<input type='hidden' name='apagar' value='".$campo['id']."' />
 														<input type ='submit' class='btn btn-theme  btn-block' value='apagar'></td></form>"	;
 											echo "</tr>";
 										}
