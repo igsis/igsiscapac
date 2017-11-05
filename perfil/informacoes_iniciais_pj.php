@@ -14,7 +14,7 @@ if(isset($_POST['cadastrarJuridica']))
 	$telefone3 = $_POST['telefone3'];
 	$email = $_POST['email'];
 
-	$sql_cadastra_pj = "INSERT INTO `pessoa_juridica`(`razaoSocial`, `cnpj`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`) VALUES ('$razaoSocial', '$cnpj', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email')";
+	$sql_cadastra_pj = "INSERT INTO `pessoa_juridica`(`razaoSocial`, `cnpj`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `idUsuario`) VALUES ('$razaoSocial', '$cnpj', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$idUser')";
 	if(mysqli_query($con,$sql_cadastra_pj))
 	{
 		$mensagem = "Cadastrado com sucesso!";
@@ -24,8 +24,8 @@ if(isset($_POST['cadastrarJuridica']))
 			$sql_ultimo = "SELECT id FROM pessoa_juridica WHERE idUsuario = '$idUser' ORDER BY id DESC LIMIT 0,1";
 			$query_ultimo = mysqli_query($con,$sql_ultimo);
 			$ultimoPj = mysqli_fetch_array($query_ultimo);
-			$_SESSION['idUser'] = $ultimoPj['id'];
-			$idPj = $_SESSION['idUser'];
+			$_SESSION['idPj'] = $ultimoPj['id'];
+			$idPj = $_SESSION['idPj'];
 
 			$sql_atualiza_evento = "UPDATE evento SET idPj = '$idPj' WHERE id = '$idEvento'";
 			if(mysqli_query($con,$sql_atualiza_evento))
@@ -54,6 +54,7 @@ if(isset($_POST['atualizarJuridica']))
 	$telefone2 = $_POST['telefone2'];
 	$telefone3 = $_POST['telefone3'];
 	$email = $_POST['email'];
+	$idPj = $_SESSION['idPj'];
 
 	$sql_atualiza_pj = "UPDATE pessoa_juridica SET
 	`razaoSocial` = '$razaoSocial',
@@ -61,7 +62,7 @@ if(isset($_POST['atualizarJuridica']))
 	`telefone2` = '$telefone2',
 	`telefone3` = '$telefone3',
 	`email` = '$email'
-	WHERE `id` = '$idPessoaJuridica'";
+	WHERE `id` = '$idPj'";
 
 	if(mysqli_query($con,$sql_atualiza_pj))
 	{
@@ -86,7 +87,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-			<form class="form-horizontal" role="form" action="?inicio.php" method="post">
+			<form class="form-horizontal" role="form" action="?perfil=informacoes_iniciais_pj" method="post">
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Razão Social *:</strong><br/>
 						<input type="text" class="form-control" name="razaoSocial" placeholder="Razão Social" value="<?php echo $pj['razaoSocial']; ?>" >
