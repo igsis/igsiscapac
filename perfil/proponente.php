@@ -8,6 +8,23 @@ $evento = recuperaDados("evento","id",$idEvento);
 $idPf = $evento['idPf'];
 $idPj = $evento['idPj'];
 
+if(isset($_POST['apagar']))
+{
+	$idPj = $_POST['apagar'];
+	$sql_apaga = "UPDATE evento SET idPj = NULL WHERE id = '$idEvento'";
+	if(mysqli_query($con,$sql_apaga))
+	{
+		$mensagem = "Apagado com sucesso!<br/>Carregando...";
+		echo "<script type=\"text/javascript\">
+				 window.setTimeout(\"location.href='?perfil=proponente';\", 4000);
+			</script>";
+	}
+	else
+	{
+		$mensagem = "Erro ao apagar! Tente novamente.";
+	}
+}
+
 if($idPf == NULL && $idPj == NULL)
 {
 ?>
@@ -15,6 +32,7 @@ if($idPf == NULL && $idPj == NULL)
 		<div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
 			<div class="form-group">
 				<h3>CADASTRO DE PROPONENTE</h3>
+				<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 			</div>
 			<div class="row">
 				<div class="col-md-offset-1 col-md-10">
@@ -99,7 +117,7 @@ else
 														<input type ='submit' class='btn btn-theme btn-block' value='carregar'></td></form>";
 											echo "
 												<td class='list_description'>
-													<form method='POST' action='?perfil=evento_edicao'>
+													<form method='POST' action='?perfil=evento'>
 														<input type='hidden' name='apagar' value='".$campo['id']."' />
 														<input type ='submit' class='btn btn-theme  btn-block' value='apagar'></td></form>"	;
 											echo "</tr>";
@@ -165,7 +183,7 @@ else
 														<input type ='submit' class='btn btn-theme btn-block' value='carregar'></td></form>";
 											echo "
 												<td class='list_description'>
-													<form method='POST' action='?perfil=proponente_pj>
+													<form method='POST' action='?perfil=proponente'>
 														<input type='hidden' name='apagar' value='".$campo['id']."' />
 														<input type ='submit' class='btn btn-theme  btn-block' value='apagar'></td></form>"	;
 											echo "</tr>";
