@@ -74,6 +74,28 @@ if(isset($_POST['atualizarJuridica']))
 	}
 }
 
+if(isset($_POST['carregar']))
+{
+	$_SESSION['idPj'] = $_POST['carregar'];
+}
+
+if(isset($_POST['apagar']))
+{
+	$idPj = $_POST['apagar'];
+	$idEvento = $_SESSION['idEvento'];
+	$sql_apaga = "UPDATE evento SET idPj = NULL WHERE id = '$idEvento'";
+	if(mysqli_query($con,$sql_apaga))
+	{
+		$mensagem = "Apagado com sucesso!";
+		return $mensagem;
+	}
+	else
+	{
+		$mensagem = "Erro ao apagar! Tente novamente.";
+		return $mensagem;
+	}
+}
+
 $idPj = $_SESSION['idPj'];
 $pj = recuperaDados("pessoa_juridica","id",$idPj);
 ?>

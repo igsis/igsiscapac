@@ -160,7 +160,7 @@ else
 											echo "<td class='list_description'>".$campo['email']."</td>";
 											echo "
 												<td class='list_description'>
-													<form method='POST' action='?perfil=proponente_pj'>
+													<form method='POST' action='?perfil=informacoes_iniciais_pj'>
 														<input type='hidden' name='carregar' value='".$campo['id']."' />
 														<input type ='submit' class='btn btn-theme btn-block' value='carregar'></td></form>";
 											echo "
