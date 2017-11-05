@@ -8,10 +8,10 @@ $evento = recuperaDados("evento","id",$idEvento);
 $idPf = $evento['idPf'];
 $idPj = $evento['idPj'];
 
-if(isset($_POST['apagar']))
+if(isset($_POST['apagarPj']))
 {
-	$idPj = $_POST['apagar'];
-	$sql_apaga = "UPDATE evento SET idPj = NULL WHERE id = '$idEvento'";
+	$idPj = $_POST['apagarPj'];
+	$sql_apaga = "UPDATE evento SET idPj = NULL AND idTipoPessoa = NULL WHERE id = '$idEvento'";
 	if(mysqli_query($con,$sql_apaga))
 	{
 		$mensagem = "Apagado com sucesso!<br/>Carregando...";
@@ -184,7 +184,7 @@ else
 											echo "
 												<td class='list_description'>
 													<form method='POST' action='?perfil=proponente'>
-														<input type='hidden' name='apagar' value='".$campo['id']."' />
+														<input type='hidden' name='apagarPj' value='".$campo['id']."' />
 														<input type ='submit' class='btn btn-theme  btn-block' value='apagar'></td></form>"	;
 											echo "</tr>";
 										}

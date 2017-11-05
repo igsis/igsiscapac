@@ -27,7 +27,7 @@ if(isset($_POST['cadastrarJuridica']))
 			$_SESSION['idPj'] = $ultimoPj['id'];
 			$idPj = $_SESSION['idPj'];
 
-			$sql_atualiza_evento = "UPDATE evento SET idPj = '$idPj' WHERE id = '$idEvento'";
+			$sql_atualiza_evento = "UPDATE evento SET idPj = '$idPj' AND idTipoPessoa = '2' WHERE id = '$idEvento'";
 			if(mysqli_query($con,$sql_atualiza_evento))
 			{
 				$mensagem .= " Empresa inserida no evento.";
@@ -101,6 +101,15 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				</div>
 
 				<div class="form-group">
+					<div class="col-md-offset-2 col-md-6"><strong>CNPJ *:</strong><br/>
+						<input type="text" readonly class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ" value="<?php echo $pj['cnpj']; ?>" >
+					</div>
+					<div class="col-md-6"><strong>CCM:</strong><br/>
+						<input type="text" class="form-control" id="ccm" name="ccm" placeholder="CCM" value="<?php echo $pj['ccm']; ?>">
+					</div>
+				</div>
+
+				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>Celular *:</strong><br/>
 						<input type="text" class="form-control" name="telefone1" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pj['telefone1']; ?>">
 					</div>
@@ -127,9 +136,89 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				</div>
 			</form>
 
-			<div class="form-group">
+				<!-- Links emissão de documentos -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class="table-responsive list_info"><h6>Gerar Arquivo(s)</h6>
+						<p>Para gerar alguns dos arquivos online, utilize os links abaixo:</p>
+							<div align="left">
+								<a href="http://www.receita.fazenda.gov.br/pessoajuridica/cnpj/cnpjreva/cnpjreva_solicitacao.asp" target="_blank">Cartão CNPJ</a></i><br/><br />
+								<a href="https://ccm.prefeitura.sp.gov.br/login/contribuinte?tipo=F" target="_blank">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</a></i><br/><br />
+								<a href='<?php echo $link1 ?>' target="_blank">Declaração CCM (Empresa Fora de São Paulo)</a></i><br/><br />
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Exibir arquivos -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
+							<?php listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","documentos_pj",2); ?>
+						</div>
+					</div>
+				</div>
+
+				<!-- Upload de arquivo 1 -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class = "center">
+						<form method="POST" action="?perfil=documentos_pj" enctype="multipart/form-data">
+							<table>
+								<tr>
+									<td width="50%"><td>
+								</tr>
+								<?php
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '9'";
+									$query_arquivos = mysqli_query($con,$sql_arquivos);
+									while($arq = mysqli_fetch_array($query_arquivos))
+									{
+								?>
+								<tr>
+									<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+								</tr>
+								<?php
+									}
+								?>
+							</table><br>
+						</div>
+					</div>
+				</div>
+
+				<!-- Upload de arquivo 2 -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class = "center">
+							<table>
+								<tr>
+									<td width="50%"><td>
+								</tr>
+								<?php
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '21'";
+									$query_arquivos = mysqli_query($con,$sql_arquivos);
+									while($arq = mysqli_fetch_array($query_arquivos))
+									{
+								?>
+										<tr>
+											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+										</tr>
+								<?php
+									}
+								?>
+							</table><br>
+							<input type="hidden" name="idPessoa" value="<?php echo $idPessoaJuridica ?>"  />
+							<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
+							<input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>
+						</form>
+						</div>
+					</div>
+				</div>
+				<!-- Fim Upload de arquivo -->
+
+				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
-			</div>
+				</div>
+
 				<!-- Botão para Prosseguir -->
 				<div class="form-group">
 					<form class="form-horizontal" role="form" action="?perfil=documentos_pj" method="post">
