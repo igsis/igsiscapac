@@ -4,8 +4,15 @@
 			<strong>
 			| <a href="?secao=perfil">Voltar ao início</a>
 			| <a href="?perfil=evento">Carregar Eventos</a>
-			| <a href="?perfil=produtor">Produtor</a>
-			| <a href="?perfil=proponente">Informações do Proponente</a>
+			<?php
+			if(isset($_SESSION['idEvento']))
+			{
+			?>
+				| <a href="?perfil=produtor">Produtor</a>
+				| <a href="?perfil=proponente">Informações do Proponente</a>
+			<?php
+			}
+			?>
 			| <a href="../manual" target="_blank">Ajuda</a>
 			| <a href="../include/logoff.php">Sair</a> |</strong><br/>
 		</div>
