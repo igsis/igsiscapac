@@ -24,35 +24,32 @@ if($query != '')
 			<div class="row">
 				<div class="col-md-offset-2 col-md-8">
 					<div class="section-heading">
-						<h4>Contratados - Pessoa Jurídica</h4>
-						<p></p>
+						<h4>PESSOA JURÍDICA</h4>
+						<p><strong><a href="?perfil=proponente_pj">Pesquisar outro CNPJ</a></strong></p>
+					</div>
+					<div class="table-responsive list_info">
+						<table class="table table-condensed">
+							<thead>
+								<tr class="list_menu">
+									<td>Razão Social</td>
+									<td>CNPJ</td>
+									<td width="25%"></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class='list_description'><?php echo $query["razaoSocial"]; ?></td>
+									<td class='list_description'><?php echo $query["cnpj"] ?></td>
+									<td class='list_description'>
+										<form method='POST' action='?perfil=proponente'>
+										<input type='hidden' name='inserePj' value='<?php echo $query["id"] ?>'>
+										<input type ='submit' class='btn btn-theme btn-md btn-block' value='inserir'></form>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
-			</div>
-
-			<div class="table-responsive list_info">
-				<table class="table table-condensed">
-					<thead>
-						<tr class="list_menu">
-							<td>Razão Social</td>
-							<td>CNPJ</td>
-							<td width="25%"></td>
-							<td width="5%"></td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class='list_description'><b><?php echo $query["razaoSocial"]; ?></b></td>
-							<td class='list_description'><b><?php echo $query["cnpj"] ?></b></td>
-							<td class='list_description'>
-								<form method='POST' action='?perfil=contratados&p=lista'>
-								<input type='hidden' name='insereJuridica' value='1'>
-								<input type='hidden' name='Id_PessoaJuridica' value='<?php echo $query1['Id_PessoaJuridica'] ?>'>
-								<input type ='submit' class='btn btn-theme btn-md btn-block' value='inserir'></form>
-							</td>
-						</tr>
-					</tbody>
-				</table>
 			</div>
 		</div>
 	</section>

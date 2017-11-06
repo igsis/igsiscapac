@@ -25,6 +25,23 @@ if(isset($_POST['apagarPj']))
 	}
 }
 
+if(isset($_POST['inserePj']))
+{
+	$idPj = $_POST['inserePj'];
+	$sql_inserePj = "UPDATE evento SET idPj = '$idPj' AND idTipoPessoa = '2' WHERE id = '$idEvento'";
+	if(mysqli_query($con,$sql_inserePj))
+	{
+		$mensagem = "Inserido com sucesso!<br/>Carregando...";
+		/*echo "<script type=\"text/javascript\">
+				 window.setTimeout(\"location.href='?perfil=proponente';\", 4000);
+			</script>";*/
+	}
+	else
+	{
+		$mensagem = "Erro ao inserir! Tente novamente.";
+	}
+}
+
 if($idPf == NULL && $idPj == NULL)
 {
 ?>
