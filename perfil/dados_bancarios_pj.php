@@ -1,22 +1,22 @@
 ﻿<?php
 $con = bancoMysqli();
-$idPessoaJuridica = $_SESSION['idUser'];
+$idPj = $_SESSION['idPj'];
 
 $idCampo = 54;
 $tipoPessoa = 2;
 
 if(isset($_POST['cadastrarBanco']))
 {
-	$idPessoaJuridica = $_POST['cadastrarBanco'];
+	$idPj = $_POST['cadastrarBanco'];
 	$CodigoBanco = $_POST['codigoBanco'];
 	$Agencia = $_POST['agencia'];
 	$Conta = $_POST['conta'];
 	
-	$sql_atualiza_pj = "UPDATE usuario_pj SET
+	$sql_atualiza_pj = "UPDATE pessoa_juridica SET
 	`codigoBanco` = '$CodigoBanco', 
 	`agencia` = '$Agencia', 
 	`conta` = '$Conta'
-	WHERE `id` = '$idPessoaJuridica'";	
+	WHERE `id` = '$idPj'";	
 	
 	if(mysqli_query($con,$sql_atualiza_pj))
 	{
@@ -63,7 +63,7 @@ if(isset($_POST["enviar"]))
 				{				
 					if(move_uploaded_file($nome_temporario, $dir.$new_name))
 					{  
-						$sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPessoaJuridica', '$idCampo', '$new_name', '$hoje', '1'); ";
+						$sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPj', '$idCampo', '$new_name', '$hoje', '1'); ";
 						$query = mysqli_query($con,$sql_insere_arquivo);
 					
 						if($query)
@@ -104,14 +104,14 @@ if(isset($_POST['apagar']))
 		$mensagem = "Erro ao apagar o arquivo. Tente novamente!";
 	}
 }
-$pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
+$pj = recuperaDados("pessoa_juridica","id",$idPj);
 ?>
 
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
 		<div class="form-group">
 			<h3>DADOS BANCÁRIOS</h3>
-			<p><b>Código de cadastro:</b> <?php echo $idPessoaJuridica; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
+			<p><b>Código de cadastro:</b> <?php echo $idPj; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>
 		<div class="row">
@@ -142,7 +142,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 		  
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<input type="hidden" name="cadastrarBanco" value="<?php echo $idPessoaJuridica ?>">
+						<input type="hidden" name="cadastrarBanco" value="<?php echo $idPj ?>">
 						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 					</div>
 				</div>
@@ -156,7 +156,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 				<?php
 					$server = "http://".$_SERVER['SERVER_NAME']."/capac/"; 
 					$http = $server."/pdf/";
-					$link1 = $http."rlt_facc_pj.php"."?id_pj=".$idPessoaJuridica;
+					$link1 = $http."rlt_facc_pj.php"."?id_pj=".$idPj;
 				?>
 					
 				<div class="form-group">
@@ -177,7 +177,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
-							<?php listaArquivoCamposMultiplos($idPessoaJuridica,$tipoPessoa,$idCampo,"dados_bancarios_pj",3); ?>
+							<?php listaArquivoCamposMultiplos($idPj,$tipoPessoa,$idCampo,"dados_bancarios_pj",3); ?>
 						</div>
 					</div>
 				</div>				
@@ -205,7 +205,7 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 									}
 								?>
 							</table><br>						
-							<input type="hidden" name="idPessoa" value="<?php echo $idPessoaJuridica; ?>"  />
+							<input type="hidden" name="idPessoa" value="<?php echo $idPj; ?>"  />
 							<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
 							<input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>
 						</form>
@@ -222,12 +222,12 @@ $pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
 				<div class="form-group">					
 					<div class="col-md-offset-2 col-md-2">
 						<form class="form-horizontal" role="form" action="?perfil=representante2_pj" method="post">
-							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>	
 					</div>
 					<div class="col-md-offset-4 col-md-2">
 						<form class="form-horizontal" role="form" action="?perfil=anexos_pj" method="post">	
-							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>	
 					</div>					
 				</div>

@@ -2,6 +2,7 @@
 
 $con = bancoMysqli();
 $idUser = $_SESSION['idUser'];
+$tipoPessoa = 2;
 
 
 if(isset($_POST['cadastrarJuridica']))
@@ -80,7 +81,87 @@ if(isset($_POST['carregar']))
 }
 
 
+if(isset($_POST["enviar"]))
+{
+	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id IN (9,21)";
+	$query_arquivos = mysqli_query($con,$sql_arquivos);
+	while($arq = mysqli_fetch_array($query_arquivos))
+	{
+		$idPj = $_SESSION['idPj'];
+		$y = $arq['id'];
+		$x = $arq['sigla'];
+		$nome_arquivo = $_FILES['arquivo']['name'][$x];
+		$f_size = $_FILES['arquivo']['size'][$x];
+
+		//Extensões permitidas
+		$ext = array("PDF","pdf");
+
+		if($f_size > 2097152) // 2MB em bytes
+		{
+			$mensagem = "Erro! Tamanho de arquivo excedido! Tamanho máximo permitido: 02 MB.";
+		}
+		else
+		{
+			if($nome_arquivo != "")
+			{
+				$nome_temporario = $_FILES['arquivo']['tmp_name'][$x];
+				$new_name = date("YmdHis")."_".semAcento($nome_arquivo); //Definindo um novo nome para o arquivo
+				$hoje = date("Y-m-d H:i:s");
+				$dir = '../uploadsdocs/'; //Diretório para uploads
+				$allowedExts = array(".pdf", ".PDF"); //Extensões permitidas
+				$ext = strtolower(substr($nome_arquivo,-4));
+
+				if(in_array($ext, $allowedExts)) //Pergunta se a extensão do arquivo, está presente no array das extensões permitidas
+				{
+					if(move_uploaded_file($nome_temporario, $dir.$new_name))
+					{
+						$sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPj', '$y', '$new_name', '$hoje', '1'); ";
+						$query = mysqli_query($con,$sql_insere_arquivo);
+						if($query)
+						{
+							$mensagem = "Arquivo recebido com sucesso!";
+						}
+						else
+						{
+							$mensagem = "Erro ao gravar no banco!";
+						}
+					}
+					else
+					{
+						 $mensagem = "Erro no upload! Tente novamente!";
+					}
+				}
+				else
+				{
+					$mensagem = "Erro no upload! Anexar documentos somente no formato PDF.";
+				}
+			}
+		}
+	}
+}
+
+if(isset($_POST['apagar']))
+{
+	$idArquivo = $_POST['apagar'];
+	$sql_apagar_arquivo = "UPDATE upload_arquivo SET publicado = 0 WHERE id = '$idArquivo'";
+	if(mysqli_query($con,$sql_apagar_arquivo))
+	{
+		$mensagem =	"Arquivo apagado com sucesso!";
+		gravarLog($sql_apagar_arquivo);
+	}
+	else
+	{
+		$mensagem = "Erro ao apagar o arquivo. Tente novamente!";
+	}
+}
+
+
 $idPj = $_SESSION['idPj'];
+
+$server = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/";
+$http = $server."/pdf/";
+$link1 = $http."rlt_declaracaoccm_pj.php"."?id_pj=".$idPj;
+
 $pj = recuperaDados("pessoa_juridica","id",$idPj);
 ?>
 
@@ -130,11 +211,15 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				<!-- Botão para Gravar -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<input type="hidden" name="atualizarJuridica" value="<?php echo $idPessoaJuridica ?>">
+						<input type="hidden" name="atualizarJuridica" value="<?php echo $idPj ?>">
 						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 					</div>
 				</div>
 			</form>
+
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><hr/></div>
+				</div>
 
 				<!-- Links emissão de documentos -->
 				<div class="form-group">
@@ -150,6 +235,10 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 					</div>
 				</div>
 
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><hr/></div>
+				</div>
+
 				<!-- Exibir arquivos -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
@@ -163,7 +252,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class = "center">
-						<form method="POST" action="?perfil=documentos_pj" enctype="multipart/form-data">
+						<form method="POST" action="?perfil=informacoes_iniciais_pj" enctype="multipart/form-data">
 							<table>
 								<tr>
 									<td width="50%"><td>
@@ -206,7 +295,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 									}
 								?>
 							</table><br>
-							<input type="hidden" name="idPessoa" value="<?php echo $idPessoaJuridica ?>"  />
+							<input type="hidden" name="idPessoa" value="<?php echo $idPj ?>"  />
 							<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
 							<input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>
 						</form>
@@ -221,9 +310,9 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 
 				<!-- Botão para Prosseguir -->
 				<div class="form-group">
-					<form class="form-horizontal" role="form" action="?perfil=documentos_pj" method="post">
+					<form class="form-horizontal" role="form" action="?perfil=endereco_pj" method="post">
 						<div class="col-md-offset-8 col-md-2">
-							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</div>
 					</form>
 				</div>

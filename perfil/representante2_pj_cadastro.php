@@ -1,6 +1,6 @@
 <?php
 $con = bancoMysqli();
-$idPessoaJuridica = $_SESSION['idUser'];
+$idPj = $_SESSION['idPj'];
 
 // Cadastro um representante que não existe
 if(isset($_POST['cadastraRepresentante']))
@@ -26,7 +26,7 @@ if(isset($_POST['cadastraRepresentante']))
 	{
 		$mensagem = "Cadastrado com sucesso!";
 		$idRep2 = recuperaUltimo("representante_legal");
-		$sql_representante2_empresa = "UPDATE usuario_pj SET idRepresentanteLegal2 = '$idRep2' WHERE id = '$idPessoaJuridica'";
+		$sql_representante2_empresa = "UPDATE pessoa_juridica SET idRepresentanteLegal2 = '$idRep2' WHERE id = '$idPj'";
 		$query_representante2_empresa = mysqli_query($con,$sql_representante2_empresa);
 	}
 	else
@@ -72,7 +72,7 @@ if(isset($_POST['editaRepresentante']))
 	if(mysqli_query($con,$sql_atualiza_rep2))
 	{
 		$mensagem = "Atualizado com sucesso!";
-		$sql_representante2_empresa = "UPDATE usuario_pj SET idRepresentanteLegal2 = '$idRep2' WHERE id = '$idPessoaJuridica'";
+		$sql_representante2_empresa = "UPDATE pessoa_juridica SET idRepresentanteLegal2 = '$idRep2' WHERE id = '$idPj'";
 		$query_representante2_empresa = mysqli_query($con,$sql_representante2_empresa);		
 	}
 	else
@@ -82,7 +82,7 @@ if(isset($_POST['editaRepresentante']))
 	}
 }
 
-$pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
+$pj = recuperaDados("pessoa_juridica","id",$idPj);
 $representante2 = recuperaDados("representante_legal","id",$idRep2);
 ?>
 
@@ -90,7 +90,7 @@ $representante2 = recuperaDados("representante_legal","id",$idRep2);
 	<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
 		<div class="form-group">
 			<h3>REPRESENTANTE LEGAL #2</h3>
-			<p><b>Código de cadastro:</b> <?php echo $idPessoaJuridica; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
+			<p><b>Código de cadastro:</b> <?php echo $idPj; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>
 		<div class="row">
@@ -140,12 +140,12 @@ $representante2 = recuperaDados("representante_legal","id",$idRep2);
 				<div class="form-group">					
 					<div class="col-md-offset-2 col-md-2">
 						<form class="form-horizontal" role="form" action="?perfil=representante1_pj" method="post">
-							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>	
 					</div>
 					<div class="col-md-offset-4 col-md-2">
 						<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pj" method="post">	
-							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>	
 					</div>					
 				</div>

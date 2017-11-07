@@ -11,7 +11,7 @@ $idPj = $evento['idPj'];
 if(isset($_POST['apagarPj']))
 {
 	$idPj = $_POST['apagarPj'];
-	$sql_apaga = "UPDATE evento SET idPj = NULL AND idTipoPessoa = NULL WHERE id = '$idEvento'";
+	$sql_apaga = "UPDATE evento SET idPj = NULL, idTipoPessoa = NULL WHERE id = '$idEvento'";
 	if(mysqli_query($con,$sql_apaga))
 	{
 		$mensagem = "Apagado com sucesso!<br/>Carregando...";
@@ -28,13 +28,13 @@ if(isset($_POST['apagarPj']))
 if(isset($_POST['inserePj']))
 {
 	$idPj = $_POST['inserePj'];
-	$sql_inserePj = "UPDATE evento SET idPj = '$idPj' AND idTipoPessoa = '2' WHERE id = '$idEvento'";
+	$sql_inserePj = "UPDATE evento SET idPj = '$idPj', idTipoPessoa = '2' WHERE id = '$idEvento'";
 	if(mysqli_query($con,$sql_inserePj))
 	{
-		$mensagem = "Inserido com sucesso!<br/>Carregando...";
-		/*echo "<script type=\"text/javascript\">
+		$mensagem = "Inserido com sucesso!";
+		echo "<script type=\"text/javascript\">
 				 window.setTimeout(\"location.href='?perfil=proponente';\", 4000);
-			</script>";*/
+			</script>";
 	}
 	else
 	{

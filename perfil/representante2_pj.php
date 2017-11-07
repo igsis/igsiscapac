@@ -1,16 +1,16 @@
 <?php
 $con = bancoMysqli();
-$idPessoaJuridica = $_SESSION['idUser'];
+$idPj = $_SESSION['idPj'];
 
-$pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
+$pj = recuperaDados("pessoa_juridica","id",$idPj);
 
 // Edita os dados do representante
 if(isset($_POST['apagaRepresentante']))
 {
-	$idPessoaJuridica = $_POST['apagaRepresentante'];
+	$idPj = $_POST['apagaRepresentante'];
 			
-	$sql_apaga_rep1 = "UPDATE usuario_pj SET idRepresentanteLegal2 = '0'
-	WHERE `id` = '$idPessoaJuridica'";	
+	$sql_apaga_rep1 = "UPDATE pessoa_juridica SET idRepresentanteLegal2 = '0'
+	WHERE `id` = '$idPj'";	
 	
 		
 	if(mysqli_query($con,$sql_apaga_rep1))
@@ -69,12 +69,12 @@ if ($pj['idRepresentanteLegal2'] == 0) // Não possui representante legal cadast
 				<div class="form-group">					
 					<div class="col-md-offset-2 col-md-2">
 						<form class="form-horizontal" role="form" action="?perfil=representante1_pj" method="post">
-							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>	
 					</div>
 					<div class="col-md-offset-4 col-md-2">
 						<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pj" method="post">	
-							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>	
 					</div>					
 				</div>
@@ -123,7 +123,7 @@ else
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-8">
 								<form method='POST' action='?perfil=representante2_pj'>
-									<input type="hidden" name="apagaRepresentante" value="<?php echo $idPessoaJuridica ?>">
+									<input type="hidden" name="apagaRepresentante" value="<?php echo $idPj ?>">
 									<input type="submit" value="Trocar o Representante" class="btn btn-theme btn-lg btn-block">
 								</form>	
 							</div>
@@ -137,12 +137,12 @@ else
 						<div class="form-group">					
 							<div class="col-md-offset-2 col-md-2">
 								<form class="form-horizontal" role="form" action="?perfil=representante1_pj" method="post">
-									<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+									<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 								</form>	
 							</div>
 							<div class="col-md-offset-4 col-md-2">
 								<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pj" method="post">	
-									<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+									<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 								</form>	
 							</div>					
 						</div>

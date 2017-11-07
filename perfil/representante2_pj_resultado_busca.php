@@ -1,8 +1,8 @@
 <?php
 $con = bancoMysqli();
-$idPessoaJuridica = $_SESSION['idUser'];
+$idPj = $_SESSION['idPj'];
 
-$pj = recuperaDados("usuario_pj","id",$idPessoaJuridica);
+$pj = recuperaDados("pessoa_juridica","id",$idPj);
 
 if(isset($_POST['busca']))
 {
@@ -28,7 +28,7 @@ if($num_busca > 0)
 		<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
 			<div class="form-group">
 				<h3>REPRESENTANTE LEGAL #2</h3>
-				<p><b>Código de cadastro:</b> <?php echo $idPessoaJuridica; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
+				<p><b>Código de cadastro:</b> <?php echo $idPj; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
 				<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 			</div>
 			<div class="row">
@@ -50,7 +50,7 @@ if($num_busca > 0)
 										<tr>
 											<td class='list_description'><b>".$descricao['nome']."</b></td>
 											<td class='list_description'>".$descricao['cpf']."</td><td class='list_description'>
-											<form method='POST' action='?perfil=representante2_pj_cadastro&id_pj=".$idPessoaJuridica."'>
+											<form method='POST' action='?perfil=representante2_pj_cadastro&id_pj=".$idPj."'>
 												<input type='hidden' name='insereRepresentante' value='".$descricao['id']."'>
 												<input type ='submit' class='btn btn-theme btn-md btn-block' value='escolher'>
 											</form>
@@ -83,7 +83,7 @@ else
 		<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
 			<div class="form-group">
 				<h3>CADASTRO REPRESENTANTE LEGAL #2</h3>
-				<p><b>Código de cadastro:</b> <?php echo $idPessoaJuridica; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
+				<p><b>Código de cadastro:</b> <?php echo $idPj; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
 				<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 			</div>
 			<div class="row">
