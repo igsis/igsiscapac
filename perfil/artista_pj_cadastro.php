@@ -1,157 +1,205 @@
 <?php
 $con = bancoMysqli();
-$idPj = $_SESSION['idPj'];
+$idUser = $_SESSION['idUser'];
+$idEvento = $_SESSION['idEvento'];
+
+// Insere um Artista que foi pesquisado
+if(isset($_POST['insereArtista']))
+{
+	$idPf = $_POST['insereArtista'];
+	$sql_insere = "UPDATE evento SET idPf = '$idPf' WHERE id = '$idEvento'";
+	if(mysqli_query($con,$sql_insere))
+	{
+		$mensagem = "Artista inserido no evento com sucesso!";
+	}
+	else
+	{
+		$mensagem = "Erro ao inserir artista no evento! Tente novamente.";
+	}
+}
 
 // Cadastro um representante que não existe
-if(isset($_POST['cadastraRepresentante']))
+if(isset($_POST['cadastraArtista']))
 {
 	$nome = addslashes($_POST['nome']);
-	$rg = $_POST['rg'];
-	if($rg == '' OR $nome == '')
-	{
-		
-		$mensagem = "Por favor, preencha todos os campos obrigatórios!";
-	}	
-	else
-	{		
-	$idRep1 = $_POST['cadastraRepresentante'];
-	$nome = addslashes($_POST['nome']);
+	$nomeArtistico = addslashes($_POST['nomeArtistico']);
 	$rg = $_POST['rg'];
 	$cpf = $_POST['cpf'];
-	$idEstadoCivil = $_POST['idEstadoCivil'];
-	$nacionalidade = $_POST['nacionalidade'];
-	
-	$sql_insere_rep1 = "INSERT INTO `representante_legal` (`nome`, `rg`, `cpf`, `nacionalidade`, `idEstadoCivil`) VALUES ('$nome', '$rg', '$cpf', '$nacionalidade', '$idEstadoCivil')";
-			
-	if(mysqli_query($con,$sql_insere_rep1))
+	$email = $_POST['email'];
+	$telefone1 = $_POST['telefone1'];
+	$telefone2 = $_POST['telefone2'];
+	$telefone3 = $_POST['telefone3'];
+	$drt = $_POST['drt'];
+	$dataAtualizacao = date("Y-m-d H:m:s");
+
+	$sql_cadastra = "INSERT INTO `pessoa_fisica`(`nome`, `nomeArtistico`, `rg`, `cpf`,  `telefone1`, `telefone2`, `telefone3`, `email`, `drt`, `idTipoDocumento`, `dataAtualizacao`, `idUsuario`)  VALUES ('$nome', '$nomeArtistico', '$rg', '$cpf', '$telefone1', '$telefone2', '$telefone3', '$email', '$drt', '1', '$dataAtualizacao', '$idUser')";
+	if(mysqli_query($con,$sql_cadastra))
 	{
 		$mensagem = "Cadastrado com sucesso!";
-		$idRep1 = recuperaUltimo("representante_legal");
-		$sql_representante1_empresa = "UPDATE pessoa_juridica SET idRepresentanteLegal1 = '$idRep1' WHERE id = '$idPj'";
-		$query_representante1_empresa = mysqli_query($con,$sql_representante1_empresa);
+		$idEvento = $_SESSION['idEvento'];
+		$sql_ultimo = "SELECT id FROM pessoa_fisica WHERE idUsuario = '$idUser' ORDER BY id DESC LIMIT 0,1";
+		$query_ultimo = mysqli_query($con,$sql_ultimo);
+		$ultimoPf = mysqli_fetch_array($query_ultimo);
+		$idPf = $ultimoPf['id'];
+
+		$sql_atualiza_evento = "UPDATE evento SET idPf = '$idPf' WHERE id = '$idEvento'";
+		if(mysqli_query($con,$sql_atualiza_evento))
+		{
+			$mensagem .= " Artista inserido no evento.";
+		}
+		else
+		{
+			$mensagem .= "Erro ao cadastrar no evento";
+		}
 	}
 	else
 	{
 		$mensagem = "Erro ao cadastrar! Tente novamente.";
-	}	
 	}
 }
 
-// Insere um Representante que foi pesquisado
-if(isset($_POST['insereRepresentante']))
+// Edita os dados do artista
+if(isset($_POST['editaArtista']))
 {
-	$idRep1 = $_POST['insereRepresentante'];
-}	
+	$idArtista = $_POST['editaArtista'];
+	$nome = addslashes($_POST['nome']);
+	$nomeArtistico = addslashes($_POST['nomeArtistico']);
+	$rg = $_POST['rg'];
+	$email = $_POST['email'];
+	$telefone1 = $_POST['telefone1'];
+	$telefone2 = $_POST['telefone2'];
+	$telefone3 = $_POST['telefone3'];
+	$drt = $_POST['drt'];
+	$dataAtualizacao = date("Y-m-d H:m:s");
 
-// Edita os dados do representante
-if(isset($_POST['editaRepresentante']))
-{
-	$nome = addslashes($_POST['nome']);
-	$rg = $_POST['rg'];
-	if($rg == '' OR $nome == '')
-	{
-		$mensagem = "Por favor, preencha todos os campos obrigatórios!";
-	}
-	else
-	{	
-	$idRep1 = $_POST['editaRepresentante'];
-	$nome = addslashes($_POST['nome']);
-	$rg = $_POST['rg'];
-	$cpf = $_POST['cpf'];
-	$idEstadoCivil = $_POST['idEstadoCivil'];
-	$nacionalidade = $_POST['nacionalidade'];
-	
-	$sql_atualiza_rep1 = "UPDATE `representante_legal` SET 
-	`nome` = '$nome',
-	`rg` = '$rg', 
-	`cpf` = '$cpf',  
-	`nacionalidade` = '$nacionalidade', 
-	`idEstadoCivil` = '$idEstadoCivil'
-	WHERE `id` = '$idRep1'";	
-	
-		
-	if(mysqli_query($con,$sql_atualiza_rep1))
+	$sql_edita = "UPDATE `pessoa_fisica` SET
+	nome = '$nome',
+	nomeArtistico = '$nomeArtistico',
+	rg = '$rg',
+	telefone1 = '$telefone1',
+	telefone2 = '$telefone2',
+	telefone3 = '$telefone3',
+	email = '$email',
+	drt = '$drt'
+	WHERE id = '$idArtista'";
+
+	if(mysqli_query($con,$sql_edita))
 	{
 		$mensagem = "Atualizado com sucesso!";
-		$sql_representante1_empresa = "UPDATE pessoa_juridica SET idRepresentanteLegal1 = '$idRep1' WHERE id = '$idPj'";
-		$query_representante1_empresa = mysqli_query($con,$sql_representante1_empresa);		
 	}
 	else
 	{
 		$mensagem = "Erro ao atualizar! Tente novamente.";
-	}	
-}
+	}
 }
 
-$pj = recuperaDados("pessoa_juridica","id",$idPj);
-$representante1 = recuperaDados("representante_legal","id",$idRep1);
+// Remove o artista do evento e redireciona para a página de busca
+if(isset($_POST['remover']))
+{
+	$sql_remove = "UPDATE evento SET idPF = NULL WHERE id = '$idEvento'";
+	if(mysqli_query($con,$sql_remove))
+	{
+		echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=?perfil=artista_pj'>";
+	}
+}
+
+$evento = recuperaDados("evento","id",$idEvento);
+$artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 ?>
 
 <section id="contact" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
 		<div class="form-group">
-			<h3>REPRESENTANTE LEGAL #1</h3>
-			<p><b>Código de cadastro:</b> <?php echo $idPj; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
-			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
+			<h3>ARTISTA - Líder do Grupo</h3>
+			<div class="col-md-offset-3 col-md-3">
+				<form class="form-horizontal" role="form" action="?perfil=artista_pj_cadastro" method="post">
+					<input type="submit" name="remover" value="Trocar o artista" class="btn btn-theme btn-md btn-block">
+				</form>
+			</div>
+			<div class="col-md-3">
+				<form class="form-horizontal" role="form" action="?perfil=artista_pj_integrantes" method="post">
+					<input type="submit" name="integrantes" value="Integrantes do Grupo" class="btn btn-theme btn-md btn-block">
+				</form>
+			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-				<form class="form-horizontal" role="form" action="?perfil=representante1_pj_cadastro" method="post">
+				<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
+				<form class="form-horizontal" role="form" action="?perfil=artista_pj_cadastro" method="post">
+
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8"><strong>Nome: *</strong><br/>
-							<input type="text" class="form-control" name="nome" placeholder="Nome completo" value="<?php echo $representante1['nome']; ?>" >
+							<input type="text" class="form-control" name="nome" placeholder="Nome completo" value="<?php echo $artista['nome']; ?>">
 						</div>
 					</div>
-					  
+
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8"><strong>Nome Artístico:</strong><br/>
+							<input type="text" class="form-control" name="nomeArtistico" placeholder="Nome Artístico" value="<?php echo $artista['nomeArtistico']; ?>">
+						</div>
+					</div>
+
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-6"><strong>RG: *</strong><br/>
-							<input type="text" class="form-control" name="rg" placeholder="RG" value="<?php echo $representante1['rg']; ?>" >
+							<input type="text" class="form-control" name="rg" placeholder="RG" value="<?php echo $artista['rg']; ?>">
 						</div>
 						<div class="col-md-6"><strong>CPF: *</strong><br/>
-							<input type="text" readonly class="form-control" name="cpf" value="<?php echo $representante1['cpf'] ?>" placeholder="CPF">
+							<input type="text" readonly class="form-control" name="cpf" value="<?php echo $artista['cpf']; ?>" placeholder="CPF">
 						</div>
 					</div>
-					
+
 					<div class="form-group">
-						<div class="col-md-offset-2 col-md-6"><strong>Nacionalidade: </strong><br/>
-							<input type="text" class="form-control" name="nacionalidade" placeholder="Nacionalidade" value="<?php echo $representante1['nacionalidade']; ?>">
+						<div class="col-md-offset-2 col-md-8"><strong>E-mail *:</strong><br/>
+							<input type="text" class="form-control" name="email" placeholder="E-mail" value="<?php echo $artista['email']; ?>">
 						</div>
-						<div class="col-md-6"><strong>Estado civil:</strong><br/>
-							<select class="form-control" name="idEstadoCivil" >
-								<?php geraOpcao("estado_civil",$representante1['idEstadoCivil'],""); ?>  
-							</select>
-						</div>	
-					</div>	  
-			  
-						  
+					</div>
+
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-6"><strong>Celular *:</strong><br/>
+							<input type="text" class="form-control" name="telefone1" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $artista['telefone1']; ?>">
+						</div>
+						<div class="col-md-6"><strong>Telefone #2:</strong><br/>
+							<input type="text" class="form-control" name="telefone2" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $artista['telefone2']; ?>">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-6"><strong>Telefone #3:</strong><br/>
+							<input type="text" class="form-control" name="telefone3" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $artista['telefone3']; ?>">
+						</div>
+						<div class="col-md-6"><strong>DRT: </strong><br/>
+							<input type="text" class="form-control" name="drt" placeholder="DRT do ator" value="<?php echo $artista['drt']; ?>">
+						</div>
+					</div>
+
 					<!-- Botão para Gravar -->
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
-							<input type="hidden" name="editaRepresentante" value="<?php echo $idRep1 ?>">
+							<input type="hidden" name="editaArtista" value="<?php echo $artista['id'] ?>">
 							<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 						</div>
 					</div>
 				</form>
-				
+
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
 				</div>
-				
+
 				<!-- Botão para Voltar e Prosseguir -->
-				<div class="form-group">					
+				<div class="form-group">
 					<div class="col-md-offset-2 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=endereco_pj" method="post">
-							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
-						</form>	
+						<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pj" method="post">
+							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block">
+						</form>
 					</div>
 					<div class="col-md-offset-4 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=representante2_pj" method="post">	
-							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
-						</form>	
-					</div>					
+						<form class="form-horizontal" role="form" action="?perfil=anexos_pj" method="post">
+							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
+						</form>
+					</div>
 				</div>
-			
+
 			</div>
 		</div>
 	</div>
-</section>  
+</section>

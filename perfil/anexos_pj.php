@@ -161,7 +161,20 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				<!-- Botão para Voltar -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pj" method="post">
+						<?php
+						if(isset($_SESSION['idEvento']))
+						{
+						?>
+							<form class="form-horizontal" role="form" action="?perfil=artista_pj" method="post">
+						<?php
+						}
+						else
+						{
+						?>
+							<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pj" method="post">
+						<?php
+						}
+						?>
 							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaFisica ?>">
 						</form>
 					</div>

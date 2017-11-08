@@ -7,7 +7,14 @@
 			| <a href="?perfil=representante1_pj">Representante #1</a>
 			| <a href="?perfil=representante2_pj">Representante #2</a>
 			| <a href="?perfil=dados_bancarios_pj">Dados Bancários</a>
-			| <a href="?perfil=artista_pj">Artista</a>
+			<?php
+			if(isset($_SESSION['idEvento']))
+			{
+			?>
+				| <a href="?perfil=artista_pj">Artista</a>
+			<?php
+			}
+			?>
 			| <a href="?perfil=anexos_pj">Demais Anexos</a>
 			| <a href="?secao=perfil">Início</a>
 			| <a href="../manual" target="_blank">Ajuda</a>

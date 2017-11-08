@@ -201,10 +201,10 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 										<tr>
 											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
 										</tr>
-								<?php 
+								<?php
 									}
 								?>
-							</table><br>						
+							</table><br>
 							<input type="hidden" name="idPessoa" value="<?php echo $idPj; ?>"  />
 							<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
 							<input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>
@@ -213,26 +213,39 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 					</div>
 				</div>
 				<!-- Fim Upload de arquivo -->
-				
+
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
-				</div>		
-		
+				</div>
+
 				<!-- Botão para Voltar e Prosseguir -->
-				<div class="form-group">					
+				<div class="form-group">
 					<div class="col-md-offset-2 col-md-2">
 						<form class="form-horizontal" role="form" action="?perfil=representante2_pj" method="post">
 							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
-						</form>	
+						</form>
 					</div>
 					<div class="col-md-offset-4 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=anexos_pj" method="post">	
+						<?php
+						if(isset($_SESSION['idEvento']))
+						{
+						?>
+							<form class="form-horizontal" role="form" action="?perfil=artista_pj" method="post">
+						<?php
+						}
+						else
+						{
+						?>
+							<form class="form-horizontal" role="form" action="?perfil=anexos_pj" method="post">
+						<?php
+						}
+						?>
 							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
-						</form>	
-					</div>					
+						</form>
+					</div>
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
-</section>  
+</section>
