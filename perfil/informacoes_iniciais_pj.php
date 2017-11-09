@@ -14,8 +14,9 @@ if(isset($_POST['cadastrarJuridica']))
 	$telefone2 = $_POST['telefone2'];
 	$telefone3 = $_POST['telefone3'];
 	$email = $_POST['email'];
+	$dataAtualizacao = date("Y-m-d H:i:s");
 
-	$sql_cadastra_pj = "INSERT INTO `pessoa_juridica`(`razaoSocial`, `cnpj`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `idUsuario`) VALUES ('$razaoSocial', '$cnpj', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$idUser')";
+	$sql_cadastra_pj = "INSERT INTO `pessoa_juridica`(`razaoSocial`, `cnpj`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `dataAtualizacao`, `idUsuario`) VALUES ('$razaoSocial', '$cnpj', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$dataAtualizacao', '$idUser')";
 	if(mysqli_query($con,$sql_cadastra_pj))
 	{
 		$mensagem = "Cadastrado com sucesso!";
@@ -62,6 +63,7 @@ if(isset($_POST['atualizarJuridica']))
 	$telefone2 = $_POST['telefone2'];
 	$telefone3 = $_POST['telefone3'];
 	$email = $_POST['email'];
+	$dataAtualizacao = date("Y-m-d H:i:s");
 	$idPj = $_SESSION['idPj'];
 
 	$sql_atualiza_pj = "UPDATE pessoa_juridica SET
@@ -69,7 +71,8 @@ if(isset($_POST['atualizarJuridica']))
 	`telefone1` = '$telefone1',
 	`telefone2` = '$telefone2',
 	`telefone3` = '$telefone3',
-	`email` = '$email'
+	`email` = '$email',
+	`dataAtualizacao` = 'dataAtualizacao'
 	WHERE `id` = '$idPj'";
 
 	if(mysqli_query($con,$sql_atualiza_pj))
