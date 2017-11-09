@@ -14,7 +14,7 @@ unset($_SESSION['idPj']);
 						<br />
 						<a href="?perfil=evento" class="btn btn-theme btn-lg btn-block">EVENTO</a>
 						<br />
-						<a href="" class="btn btn-theme btn-lg btn-block">PESSOA FÍSICA</a>
+						<a href="?perfil=proponente_pf" class="btn btn-theme btn-lg btn-block">PESSOA FÍSICA</a>
 						<br />
 						<a href="?perfil=proponente_pj" class="btn btn-theme btn-lg btn-block">PESSOA JURÍDICA</a>
 						<br />
