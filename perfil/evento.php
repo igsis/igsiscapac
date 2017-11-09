@@ -76,4 +76,4 @@
 			</div>
 		</div>
 	</div>
-</section> <!--/#list_items-->
+</section>

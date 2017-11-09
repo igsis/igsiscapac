@@ -5,7 +5,7 @@ $con = bancoMysqli();
 $validacao = validaCNPJ($_POST['busca']);
 if($validacao == false)
 {
-	echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=?perfil=contratados&p=erro_pj'>";
+	echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=?perfil=erros&p=erro_pj'>";
 }
 else
 {
@@ -41,9 +41,9 @@ if($query != '')
 									<td class='list_description'><?php echo $query["razaoSocial"]; ?></td>
 									<td class='list_description'><?php echo $query["cnpj"] ?></td>
 									<td class='list_description'>
-										<form method='POST' action='?perfil=proponente'>
-										<input type='hidden' name='inserePj' value='<?php echo $query["id"] ?>'>
-										<input type ='submit' class='btn btn-theme btn-md btn-block' value='inserir'></form>
+										<form method='POST' action='?perfil=informacoes_iniciais_pj'>
+										<input type='hidden' name='carregar' value='<?php echo $query["id"] ?>'>
+										<input type ='submit' class='btn btn-theme btn-md btn-block' value='Carregar'></form>
 									</td>
 								</tr>
 							</tbody>

@@ -16,6 +16,14 @@
 			}
 			?>
 			| <a href="?perfil=anexos_pj">Demais Anexos</a>
+			<?php
+			if(isset($_SESSION['idEvento']))
+			{
+			?>
+				| <a href="?perfil=evento">Evento</a>
+			<?php
+			}
+			?>
 			| <a href="?secao=perfil">Início</a>
 			| <a href="../manual" target="_blank">Ajuda</a>
 			| <a href="../include/logoff.php">Sair</a> |</strong><br/>

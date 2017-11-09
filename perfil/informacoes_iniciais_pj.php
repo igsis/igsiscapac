@@ -25,19 +25,26 @@ if(isset($_POST['cadastrarJuridica']))
 			$sql_ultimo = "SELECT id FROM pessoa_juridica WHERE idUsuario = '$idUser' ORDER BY id DESC LIMIT 0,1";
 			$query_ultimo = mysqli_query($con,$sql_ultimo);
 			$ultimoPj = mysqli_fetch_array($query_ultimo);
-			$_SESSION['idPj'] = $ultimoPj['id'];
-			$idPj = $_SESSION['idPj'];
+			$idPj = $ultimoPj['id'];
 
-			$sql_atualiza_evento = "UPDATE evento SET idPj = '$idPj' AND idTipoPessoa = '2' WHERE id = '$idEvento'";
+			$sql_atualiza_evento = "UPDATE evento SET idPj = '$idPj', idTipoPessoa = '2' WHERE id = '$idEvento'";
 			if(mysqli_query($con,$sql_atualiza_evento))
 			{
-				$mensagem .= " Empresa inserida no evento.";
+				$mensagem .= " Empresa inserida no evento.<br/>";
 				$_SESSION['idPj'] = $idPj;
 			}
 			else
 			{
 				$mensagem .= "Erro ao cadastrar no evento";
 			}
+		}
+		else
+		{
+			$sql_ultimo = "SELECT id FROM pessoa_juridica WHERE idUsuario = '$idUser' ORDER BY id DESC LIMIT 0,1";
+			$query_ultimo = mysqli_query($con,$sql_ultimo);
+			$ultimoPj = mysqli_fetch_array($query_ultimo);
+			$_SESSION['idPj'] = $ultimoPj['id'];
+			$idPj = $_SESSION['idPj'];
 		}
 	}
 	else
@@ -68,6 +75,19 @@ if(isset($_POST['atualizarJuridica']))
 	if(mysqli_query($con,$sql_atualiza_pj))
 	{
 		$mensagem = "Atualizado com sucesso!";
+		if(isset($_SESSION['idEvento']))
+		{
+			$idEvento = $_SESSION['idEvento'];
+			$sql_atualiza_evento = "UPDATE evento SET idPj = '$idPj', idTipoPessoa = '2' WHERE id = '$idEvento'";
+			if(mysqli_query($con,$sql_atualiza_evento))
+			{
+				$mensagem .= " Empresa inserida no evento.<br/>";
+			}
+			else
+			{
+				$mensagem .= "Erro ao cadastrar no evento";
+			}
+		}
 	}
 	else
 	{
