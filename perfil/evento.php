@@ -3,7 +3,6 @@
 	$idUser= $_SESSION['idUser'];
 	unset($_SESSION['idEvento']);
 	unset($_SESSION['idPj']);
-	unset($_SESSION['idPf']);
 
 	$usuario = recuperaDados("usuario","id",$idUser);
 ?>

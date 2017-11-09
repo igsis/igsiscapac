@@ -1,4 +1,8 @@
-﻿<section id="contact" class="home-section bg-white">
+﻿<?php
+unset($_SESSION['idEvento']);
+unset($_SESSION['idPj']);
+?>
+<section id="contact" class="home-section bg-white">
 	<div class="container">
 		<div class="form-group">
 			<h3>INFORMAÇÕES INICIAIS</h3>
