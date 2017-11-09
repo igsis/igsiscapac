@@ -1,32 +1,31 @@
-<?php 
-   
+<?php
+
 // INSTALAÇÃO DA CLASSE NA PASTA FPDF.
 require_once("../include/lib/fpdf/fpdf.php");
 require_once("../funcoes/funcoesConecta.php");
 require_once("../funcoes/funcoesGerais.php");
 
-//CONEXÃO COM BANCO DE DADOS 
-$conexao = bancoMysqli(); 
-   
+//CONEXÃO COM BANCO DE DADOS
+$conexao = bancoMysqli();
+
 session_start();
-  
+
 class PDF extends FPDF
 {
 	// Page header
 	function Header()
-	{	
+	{
 		// Logo
 		$this->Image('../pdf/img/facc_pj.jpg',15,10,180);
-		
 		// Line break
 		$this->Ln(20);
 	}
 }
 
-//CONSULTA 
-$idPessoaJuridica = $_SESSION['idUser'];
+//CONSULTA
+$idPj = $_SESSION['idPj'];
 
-$pessoa = recuperaDados("usuario_pj","id",$idPessoaJuridica);
+$pessoa = recuperaDados("pessoa_juridica","id",$idPj);
 $enderecoCEP = enderecoCEP($pessoa['cep']);
 $dbBanco = recuperaDados("banco","id",$pessoa['codigoBanco']);
 $rep01 = recuperaDados("representante_legal","id",$pessoa['idRepresentanteLegal1']);

@@ -35,19 +35,19 @@ $rep01RG = $rep01["rg"];
 $rep01CPF = $rep01["cpf"];
 
 
-//header("Content-type: application/vnd.ms-word");
-//header("Content-Disposition: attachment;Filename=declaracao-ccm-$pjRazaoSocial.doc");
+header("Content-type: application/vnd.ms-word");
+header("Content-Disposition: attachment;Filename=declaracao-ccm-$pjRazaoSocial.doc");
 echo "<html>";
 echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=Windows-1252\">";
 echo "<body>";
 echo
 	"<p align='center'><strong>DECLARAÇÃO</strong></p>".
 	"<p>&nbsp;</p>".
-	"<p>Declaramos, sob as penas da lei, que a empresa ".$pjRazaoSocial.", CNPJ ".$pjCNPJ.", sediada na $rua CEP: ".$pjcep.", Bairro ".$bairro.", cidade ".$cidade.", ".$estado.", não é inscrita no CCM de São Paulo e que não tem débitos perante à Fazenda Pública Municipal de São Paulo no tocante a encargos tributários e que está ciente de que o ISS incidente sobre a operação será retido.</p>".
+	"<p align='justify'>Declaramos, sob as penas da lei, que a empresa ".$pjRazaoSocial.", CNPJ ".$pjCNPJ.", sediada na $rua CEP: ".$pjcep.", Bairro ".$bairro.", cidade ".$cidade.", ".$estado.", não é inscrita no CCM de São Paulo e que não tem débitos perante à Fazenda Pública Municipal de São Paulo no tocante a encargos tributários e que está ciente de que o ISS incidente sobre a operação será retido.</p>".
 	"<p>&nbsp;</p>".
-	"<p>______________________________________</p>".
-	"<p><strong>Nome do Representante Legal:</strong> ".$rep01Nome."</p>".
-	"<p><strong>CNPJ:</strong> ".$pjCNPJ."</p>";
+	"<p>_____________________________________________________</p>".
+	"<p><strong>Representante Legal:</strong> ".$rep01Nome."<br/>".
+	"<strong>CNPJ:</strong> ".$pjCNPJ."</p>";
 echo "</body>";
 echo "</html>";
 ?>
