@@ -2,7 +2,7 @@
 
 $con = bancoMysqli();
 $idUser = $_SESSION['idUser'];
-$tipoPessoa = 1;
+$tipoPessoa = "1";
 
 
 if(isset($_POST['cadastrarFisica']))
@@ -23,7 +23,7 @@ if(isset($_POST['cadastrarFisica']))
 	$pis = $_POST['pis'];
 	$dataAtualizacao = date("Y-m-d H:i:s");
 
-	$sql_cadastra_pf = "INSERT INTO `pessoa_fisica`(`nome`, `nomeArtistico`, `idTipoDocumento`, `rg`, `cpf`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `dataNascimento`, `idEstadoCivil`, `nacionalidade`, `pis`, `dataAtualizacao`, `idUsuario`) VALUES ('$nome', '$nomeArtistico', '$idTipoDocumento', '$rg', '$cpf', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$dataNascimento', '$idEstadoCivil', '$nacionalidade', '$pis', $dataAtualizacao', '$idUser')";
+	$sql_cadastra_pf = "INSERT INTO `pessoa_fisica`(`nome`, `nomeArtistico`, `idTipoDocumento`, `rg`, `cpf`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `dataNascimento`, `idEstadoCivil`, `nacionalidade`, `pis`, `dataAtualizacao`, `idUsuario`) VALUES ('$nome', '$nomeArtistico', '$idTipoDocumento', '$rg', '$cpf', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$dataNascimento', '$idEstadoCivil', '$nacionalidade', '$pis', '$dataAtualizacao', '$idUser')";
 	if(mysqli_query($con,$sql_cadastra_pf))
 	{
 		$mensagem = "Cadastrado com sucesso!";
@@ -35,10 +35,10 @@ if(isset($_POST['cadastrarFisica']))
 			$ultimoPf = mysqli_fetch_array($query_ultimo);
 			$idPf = $ultimoPf['id'];
 
-			$sql_atualiza_evento = "UPDATE evento SET idPf = '$idPf', idTipoPessoa = '2' WHERE id = '$idEvento'";
+			$sql_atualiza_evento = "UPDATE evento SET idPf = '$idPf', idTipoPessoa = '$tipoPessoa' WHERE id = '$idEvento'";
 			if(mysqli_query($con,$sql_atualiza_evento))
 			{
-				$mensagem .= " Empresa inserida no evento.<br/>";
+				$mensagem .= " Pessoa inserida no evento.<br/>";
 				$_SESSION['idPf'] = $idPf;
 			}
 			else
@@ -213,7 +213,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 	<div class="container"><?php include 'includes/menu_interno_pf.php'; ?>
 		<div class="form-group">
 			<h3>INFORMAÇÕES INICIAIS</h3>
-			<p><b>Código de cadastro:</b> <?php echo $idPf ; ?> | <b>Razão Social:</b> <?php echo $pf['nome']; ?></p>
+			<p><b>Código de cadastro:</b> <?php echo $idPf ; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>
 		<div class="row">
@@ -227,7 +227,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Nome Artístico*:</strong><br/>
-						<input type="text" class="form-control" name="nome" placeholder="Nome" value="<?php echo $pf['nomeArtistico']; ?>" >
+						<input type="text" class="form-control" name="nomeArtistico" placeholder="Nome Artístico" value="<?php echo $pf['nomeArtistico']; ?>" >
 					</div>
 				</div>
 
@@ -237,7 +237,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 							<?php geraOpcao("tipo_documento",$pf['idTipoDocumento']); ?>
 						</select>
 					</div>
-					<div class="col-md-offset-2 col-md-6"><strong>Nº do documento *:</strong><br/>
+					<div class="col-md-6"><strong>Nº do documento *:</strong><br/>
 						<input type="text" class="form-control" name="rg" placeholder="Número do Documento" value="<?php echo $pf['rg']; ?>">
 					</div>
 				</div>
@@ -264,25 +264,28 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 					<div class="col-md-offset-2 col-md-6"><strong>Telefone #3:</strong><br/>
 						<input type="text" class="form-control" name="telefone3" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pf['telefone3']; ?>" >
 					</div>
-					<div class="col-md-6"><strong>Data Nascimento *:</strong><br/>
-						<input type="text" class="form-control" name="dataNascimento" placeholder="Data de Nascimento" >
-					</div>
+					<div class="col-md-6"><strong>E-mail *:</strong><br/>
+							<input type="text" class="form-control" name="email" placeholder="E-mail" value="<?php echo $pf['email']; ?>">
+						</div>
 				</div>
 
 				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><strong>E-mail *:</strong><br/>
-						<input type="text" class="form-control" name="email" placeholder="E-mail" value="<?php echo $pf['email']; ?>" >
+						<div class="col-md-offset-2 col-md-6"><strong>Data Nascimento *:</strong><br/>
+							<input type="text" class="form-control" name="dataNascimento" id="datepicker01" placeholder="Data de Nascimento" value = "<?php echo exibirDataBr($pf['dataNascimento']) ?>">
+						</div>
+						<div class="col-md-6"><strong>Estado civil:</strong><br/>
+							<select class="form-control" name="idEstadoCivil" >
+								<?php geraOpcao("estado_civil",$pf['idEstadoCivil']); ?>
+							</select>
+						</div>
 					</div>
-				</div>
 
 				<div class="form-group">
-					<div class="col-md-offset-2 col-md-6"><strong>Estado civil:</strong><br/>
-						<select class="form-control" name="idEstadoCivil" >
-							<?php geraOpcao("estado_civil",$pf['idEstadoCivil']); ?>
-						</select>
-					</div>
-					<div class="col-md-6"><strong>Nacionalidade:</strong><br/>
+					<div class="col-md-offset-2 col-md-6"><strong>Nacionalidade:</strong><br/>
 						<input type="text" class="form-control" name="nacionalidade" placeholder="Nacionalidade" value="<?php echo $pf['nacionalidade']; ?>">
+					</div>
+					<div class="col-md-6"><strong>PIS/PASEP/NIT:</strong><br/>
+						<input type="text" class="form-control" name="pis" placeholder="Nº do PIS/PASEP/NIT" value="<?php echo $pf['pis']; ?>">
 					</div>
 				</div>
 

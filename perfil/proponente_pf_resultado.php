@@ -84,7 +84,7 @@ else
 								<?php geraOpcao("tipo_documento",""); ?>
 							</select>
 						</div>
-						<div class="col-md-offset-2 col-md-6"><strong>Nº do documento *:</strong><br/>
+						<div class="col-md-6"><strong>Nº do documento *:</strong><br/>
 							<input type="text" class="form-control" name="rg" placeholder="Número">
 						</div>
 					</div>
@@ -118,7 +118,7 @@ else
 
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-6"><strong>Data Nascimento *:</strong><br/>
-							<input type="text" class="form-control" name="dataNascimento" placeholder="Data de Nascimento" >
+							<input type="text" class="form-control" name="dataNascimento" id="datepicker01" placeholder="Data de Nascimento" >
 						</div>
 						<div class="col-md-6"><strong>Estado civil:</strong><br/>
 							<select class="form-control" name="idEstadoCivil" >
