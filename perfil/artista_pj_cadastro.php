@@ -117,7 +117,7 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 				</form>
 			</div>
 			<div class="col-md-3">
-				<form class="form-horizontal" role="form" action="?perfil=artista_pj_integrantes" method="post">
+				<form class="form-horizontal" role="form" action="?perfil=grupo" method="post">
 					<input type="submit" name="integrantes" value="Integrantes do Grupo" class="btn btn-theme btn-md btn-block">
 				</form>
 			</div>
