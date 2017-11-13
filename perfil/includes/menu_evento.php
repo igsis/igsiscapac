@@ -8,6 +8,7 @@
 			if(isset($_SESSION['idEvento']))
 			{
 			?>
+				| <a href="?perfil=evento_edicao">Informações Gerais</a>
 				| <a href="?perfil=produtor">Produtor</a>
 				| <a href="?perfil=proponente">Informações do Proponente</a>
 			<?php

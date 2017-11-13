@@ -213,12 +213,27 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 	<div class="container"><?php include 'includes/menu_interno_pf.php'; ?>
 		<div class="form-group">
 			<h3>INFORMAÇÕES INICIAIS</h3>
-			<p><b>Código de cadastro:</b> <?php echo $idPf ; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 			<form class="form-horizontal" role="form" action="?perfil=informacoes_iniciais_pf" method="post">
+				<!-- Botão para inserir pessoa no evento -->
+				<?php
+					$evento = recuperaDados("evento","id",$_SESSION['idEvento']);
+					if($evento['idPf'] == NULL)
+					{
+				?>
+						<div class="form-group">
+							<div class="col-md-offset-2 col-md-8">
+								<input type="hidden" name="atualizarFisica" value="<?php echo $idPf ?>">
+								<input type="submit" value="Inserir Pessoa no evento" class="btn btn-theme btn-md btn-block">
+							</div>
+						</div>
+				<?php
+					}
+				?>
+
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Nome *:</strong><br/>
 						<input type="text" class="form-control" name="nome" placeholder="Nome" value="<?php echo $pf['nome']; ?>" >
@@ -308,9 +323,9 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 						<div class="table-responsive list_info"><h6>Gerar Arquivo(s)</h6>
 						<p>Para gerar alguns dos arquivos online, utilize os links abaixo:</p>
 							<div align="left">
-								<a href="http://www.receita.fazenda.gov.br/pessoajuridica/cnpj/cnpjreva/cnpjreva_solicitacao.asp" target="_blank">Cartão CNPJ</a></i><br/><br />
+								<a href="https://www.receita.fazenda.gov.br/Aplicacoes/SSL/ATCTA/cpf/ImpressaoComprovante/ConsultaImpressao.asp" target="_blank">Cartão CPF</a></i><br/><br />
 								<a href="https://ccm.prefeitura.sp.gov.br/login/contribuinte?tipo=F" target="_blank">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</a></i><br/><br />
-								<a href='<?php echo $link1 ?>' target="_blank">Declaração CCM (Empresa Fora de São Paulo)</a></i><br/><br />
+								<a href='<?php echo $link1 ?>' target="_blank">Declaração CCM</a></i><br/><br />
 							</div>
 						</div>
 					</div>
@@ -324,7 +339,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
-							<?php listaArquivoCamposMultiplos($idPf,$tipoPessoa,"","documentos_pf",1); ?>
+							<?php listaArquivoCamposMultiplos($idPf,$tipoPessoa,"","informacoes_iniciais_pf",1); ?>
 						</div>
 					</div>
 				</div>
@@ -339,14 +354,14 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									<td width="50%"><td>
 								</tr>
 								<?php
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '9'";
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '1'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{
 								?>
-								<tr>
-									<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
-								</tr>
+										<tr>
+											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+										</tr>
 								<?php
 									}
 								?>
@@ -364,7 +379,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									<td width="50%"><td>
 								</tr>
 								<?php
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '21'";
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '2'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{
@@ -376,7 +391,57 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									}
 								?>
 							</table><br>
-							<input type="hidden" name="idPessoa" value="<?php echo $idPf ?>"  />
+						</div>
+					</div>
+				</div>
+
+				<!-- Upload de arquivo 3 -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class = "center">
+							<table>
+								<tr>
+									<td width="50%"><td>
+								</tr>
+								<?php
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '11'";
+									$query_arquivos = mysqli_query($con,$sql_arquivos);
+									while($arq = mysqli_fetch_array($query_arquivos))
+									{
+								?>
+								<tr>
+									<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+								</tr>
+								<?php
+									}
+								?>
+							</table><br>
+						</div>
+					</div>
+				</div>
+
+				<!-- Upload de arquivo 4 -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class = "center">
+							<table>
+								<tr>
+									<td width="50%"><td>
+								</tr>
+								<?php
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '14'";
+									$query_arquivos = mysqli_query($con,$sql_arquivos);
+									while($arq = mysqli_fetch_array($query_arquivos))
+									{
+								?>
+										<tr>
+											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+										</tr>
+								<?php
+									}
+								?>
+							</table><br>
+							<input type="hidden" name="idPessoa" value="<?php echo $idPf; ?>"  />
 							<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
 							<input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>
 						</form>

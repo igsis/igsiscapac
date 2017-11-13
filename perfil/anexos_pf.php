@@ -1,5 +1,4 @@
 ﻿<?php
-require "includes/funcoes.php";
 
 $con = bancoMysqli();
 $idPf = $_SESSION['idUser'];
@@ -7,7 +6,7 @@ $idPf = $_SESSION['idUser'];
 $tipoPessoa = 1;
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
-$server = "http://".$_SERVER['SERVER_NAME']."/proponente/"; //mudar para pasta do igsis
+$server = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/"; //mudar para pasta do igsis
 $http = $server."/pdf/";
 
 

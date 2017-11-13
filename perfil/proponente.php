@@ -8,10 +8,9 @@ $evento = recuperaDados("evento","id",$idEvento);
 $idPf = $evento['idPf'];
 $idPj = $evento['idPj'];
 
-if(isset($_POST['apagarPj']))
+if(isset($_POST['apagar']))
 {
-	$idPj = $_POST['apagarPj'];
-	$sql_apaga = "UPDATE evento SET idPj = NULL, idTipoPessoa = NULL WHERE id = '$idEvento'";
+	$sql_apaga = "UPDATE evento SET idPj = NULL, idPf = NULL, idTipoPessoa = NULL WHERE id = '$idEvento'";
 	if(mysqli_query($con,$sql_apaga))
 	{
 		$mensagem = "Apagado com sucesso!<br/>Carregando...";
@@ -129,14 +128,15 @@ else
 											echo "<td class='list_description'>".$campo['cpf']."</td>";
 											echo "
 												<td class='list_description'>
-													<form method='POST' action='?perfil=proponente_pf'>
+													<form method='POST' action='?perfil=informacoes_iniciais_pf'>
 														<input type='hidden' name='carregar' value='".$campo['id']."' />
 														<input type ='submit' class='btn btn-theme btn-block' value='carregar'></td></form>";
 											echo "
 												<td class='list_description'>
-													<form method='POST' action='?perfil=evento'>
-														<input type='hidden' name='apagar' value='".$campo['id']."' />
-														<input type ='submit' class='btn btn-theme  btn-block' value='apagar'></td></form>"	;
+													<form method='POST' action='?perfil=proponente'>
+														<input type ='submit' name='apagar'class='btn btn-theme  btn-block' value='Remover'>
+													</form>
+												</td>";
 											echo "</tr>";
 										}
 										echo "
@@ -201,8 +201,9 @@ else
 											echo "
 												<td class='list_description'>
 													<form method='POST' action='?perfil=proponente'>
-														<input type='hidden' name='apagarPj' value='".$campo['id']."' />
-														<input type ='submit' class='btn btn-theme  btn-block' value='apagar'></td></form>"	;
+														<input type ='submit' name='apagar'class='btn btn-theme  btn-block' value='Remover'>
+													</form>
+												</td>";
 											echo "</tr>";
 										}
 										echo "

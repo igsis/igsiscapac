@@ -66,6 +66,10 @@
 		$idEvento = $_SESSION['idEvento'];
 	}
 
+	if(isset($_SESSION['idEvento']))
+	{
+		$idEvento = $_SESSION['idEvento'];
+	}
 	$evento = recuperaDados("evento","id",$idEvento);
 ?>
 <section id="inserir" class="home-section bg-white">
