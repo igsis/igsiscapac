@@ -2,70 +2,69 @@
 $con = bancoMysqli();
 $idUser= $_SESSION['idUser'];
 
-	if(isset($_POST['senha01']))
+if(isset($_POST['senha01']))
+{
+	//verifica se há um post
+	if(($_POST['senha01'] != "") AND (strlen($_POST['senha01']) >= 5))
 	{
-		//verifica se há um post
-		if(($_POST['senha01'] != "") AND (strlen($_POST['senha01']) >= 5))
+		if($_POST['senha01'] == $_POST['senha02'])
 		{
-			if($_POST['senha01'] == $_POST['senha02'])
+			// verifica se a nova senha foi digitada corretamente duas vezes
+			$senha = recuperaDados("usuario","email",$_SESSION['login']);
+			if(md5($_POST['senha03']) == $senha['senha'])
 			{
-				// verifica se a nova senha foi digitada corretamente duas vezes
-				$senha = recuperaDados("usuario","email",$_SESSION['login']);
-				if(md5($_POST['senha03']) == $senha['senha'])
+				$usuario = $_SESSION['idUser'];
+				$senha01 = md5($_POST['senha01']);
+				$sql_senha = "UPDATE `usuario` SET `senha` = '$senha01' WHERE `id` = '$usuario';";
+				$con = bancoMysqli();
+				$query_senha = mysqli_query($con,$sql_senha);
+				if($query_senha)
 				{
-					$usuario = $_SESSION['idUser'];
-					$senha01 = md5($_POST['senha01']);
-					$sql_senha = "UPDATE `usuario` SET `senha` = '$senha01' WHERE `id` = '$usuario';";
-					$con = bancoMysqli();
-					$query_senha = mysqli_query($con,$sql_senha);
-					if($query_senha)
-					{
-						$mensagem = "Senha alterada com sucesso!";	
-					}
-					else
-					{
-						$mensagem = "Não foi possível mudar a senha. Tente novamente.";	
-					}
+					$mensagem = "Senha alterada com sucesso!";
 				}
 				else
 				{
-						$mensagem = "Senha atual incorreta.";	
+					$mensagem = "Não foi possível mudar a senha. Tente novamente.";
 				}
 			}
 			else
 			{
-				// caso não tenha digitado 2 vezes
-				$mensagem = "As senhas não conferem. Tente novamente.";
+					$mensagem = "Senha atual incorreta.";
 			}
 		}
 		else
 		{
-			$mensagem = "A senha não pode estar em branco e deve conter mais de 5 caracteres";	
+			// caso não tenha digitado 2 vezes
+			$mensagem = "As senhas não conferem. Tente novamente.";
 		}
 	}
-	
-		if(isset($_POST['fraseSeguranca']))
+	else
 	{
-		$idFraseSeguranca = $_POST['idFraseSeguranca'];
-		$respostaFrase = $_POST['respostaFrase'];
-		
-		$sql_seguranca_pf = "UPDATE usuario SET
-		`idFraseSeguranca` = '$idFraseSeguranca', 
-		`respostaFrase` = '$respostaFrase'
-		WHERE `id` = '$idUser'";	
-		
-		if(mysqli_query($con,$sql_seguranca_pf))
-		{
-			$mensagem = "Pergunta secreta atualizada com sucesso!";	
-		}
-		else
-		{
-			$mensagem = "Erro ao atualizar sua pergunta secreta! Tente novamente.";
-		}	
+		$mensagem = "A senha não pode estar em branco e deve conter mais de 5 caracteres";
 	}
-	
+}
+
+if(isset($_POST['fraseSeguranca']))
+{
+	$idFraseSeguranca = $_POST['idFraseSeguranca'];
+	$respostaFrase = $_POST['respostaFrase'];
+
+	$sql_seguranca_pf = "UPDATE usuario SET
+	`idFraseSeguranca` = '$idFraseSeguranca',
+	`respostaFrase` = '$respostaFrase'
+	WHERE `id` = '$idUser'";
+
+	if(mysqli_query($con,$sql_seguranca_pf))
+	{
+		$mensagem = "Pergunta secreta atualizada com sucesso!";
+	}
+	else
+	{
+		$mensagem = "Erro ao atualizar sua pergunta secreta! Tente novamente.";
+	}
+}
+
 $usuario = recuperaDados("usuario","id",$idUser);
-	
 ?>
 <section id="contact" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_minhaconta.php'; ?>
@@ -83,7 +82,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
 							<input type="password" name="senha03" class="form-control" id="inputName" placeholder="">
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-6"><label>Nova senha</label>
 							<input type="password" name="senha01" class="form-control" id="inputName" placeholder="">
@@ -92,7 +91,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
 							<input type="password" name="senha02" class="form-control" id="inputEmail" placeholder="">
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
 							<button type="submit" class="btn btn-theme btn-lg btn-block">Mudar a senha</button>
@@ -102,7 +101,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
 			</div>
 		</div>
 		<!-- Fim Redefinição de Senha -->
-		
+
 		<!-- Pergunta de Segurança -->
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
@@ -113,30 +112,25 @@ $usuario = recuperaDados("usuario","id",$idUser);
 								<select class="form-control" name="idFraseSeguranca" id="idFraseSeguranca">
 									<option></option>
 									<?php geraOpcao("frase_seguranca",$usuario['idFraseSeguranca'],"");	?>
-								</select>	
+								</select>
 							</div>
-						</div> 
-					
+						</div>
+
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8"><strong>Resposta:</strong><br/>
 							<input type="text" class="form-control" id="respostaFrase" maxlength="10" name="respostaFrase" placeholder="" value="<?php echo $usuario['respostaFrase']; ?>">
 						</div>
 					</div>
-					
+
 				<!-- Botão para gravar -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<input type="submit" name ="fraseSeguranca" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 					</div>
 				</div>
-				
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
-				</div>					
 				</form>
-
+				<!-- Fim Pergunta de Segurança -->
 			</div>
 		</div>
-		<!-- Fim Pergunta de Segurança -->
 	</div>
 </section>
