@@ -86,7 +86,7 @@ $produtor = recuperaDados("produtor","id",$idProdutor);
 							<input type="text" class="form-control" name="telefone1" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $produtor['telefone1']; ?>">
 						</div>
 						<div class="col-md-6">
-							<label>Telefone #2:</label>
+							<label>Outro telefone:</label>
 							<input type="text" class="form-control" name="telefone2" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $produtor['telefone2']; ?>">
 						</div>
 					</div>
