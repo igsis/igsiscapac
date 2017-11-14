@@ -11,6 +11,16 @@ if(isset($_POST['insereArtista']))
 	if(mysqli_query($con,$sql_insere))
 	{
 		$mensagem = "Artista inserido no evento com sucesso!";
+		$evento = recuperaDados("evento","id",$idEvento);
+		$artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
+		$nome = $artista['nome'];
+		$rg = $artista['rg'];
+		$cpf = $artista['cpf'];
+		$sql_grupo = "INSERT INTO `grupo`(`idEvento`, `nome`, `rg`, `cpf`, `publicado`) VALUES ('$idEvento', '$nome', '$rg', '$cpf', '1')";
+		if(mysqli_query($con,$sql_grupo))
+		{
+			$mensagem .= "!!";
+		}
 	}
 	else
 	{
@@ -45,7 +55,17 @@ if(isset($_POST['cadastraArtista']))
 		$sql_atualiza_evento = "UPDATE evento SET idPf = '$idPf' WHERE id = '$idEvento'";
 		if(mysqli_query($con,$sql_atualiza_evento))
 		{
-			$mensagem .= " Artista inserido no evento.";
+			$mensagem .= " Artista inserido no evento";
+			$evento = recuperaDados("evento","id",$idEvento);
+			$artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
+			$nome = $artista['nome'];
+			$rg = $artista['rg'];
+			$cpf = $artista['cpf'];
+			$sql_grupo = "INSERT INTO `grupo`(`idEvento`, `nome`, `rg`, `cpf`, `publicado`) VALUES ('$idEvento', '$nome', '$rg', '$cpf', '1')";
+			if(mysqli_query($con,$sql_grupo))
+			{
+				$mensagem .= ".";
+			}
 		}
 		else
 		{

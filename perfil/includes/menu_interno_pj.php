@@ -20,7 +20,7 @@
 			if(isset($_SESSION['idEvento']))
 			{
 			?>
-				| <a href="?perfil=evento">Evento</a>
+				| <a href="?perfil=evento_edicao">Evento</a>
 			<?php
 			}
 			?>

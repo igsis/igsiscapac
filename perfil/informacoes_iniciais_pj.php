@@ -198,14 +198,20 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 			<form class="form-horizontal" role="form" action="?perfil=informacoes_iniciais_pj" method="post">
-				<!-- Botão para inserir empresa no evento -->
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<input type="hidden" name="atualizarJuridica" value="<?php echo $idPj ?>">
-						<input type="submit" value="Inserir empresa no evento" class="btn btn-theme btn-md btn-block">
+				<?php
+				$evento = recuperaDados("evento","id",$_SESSION['idEvento']);
+				if($evento['idPj'] == NULL)
+				{
+				?>
+					<!-- Botão para inserir empresa no evento -->
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8">
+							<input type="hidden" name="atualizarJuridica" value="<?php echo $idPj ?>">
+							<input type="submit" value="Inserir empresa no evento" class="btn btn-theme btn-md btn-block">
+						</div>
 					</div>
-				</div>
-
+				<?php
+				} ?>
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Razão Social *:</strong><br/>
 						<input type="text" class="form-control" name="razaoSocial" placeholder="Razão Social" value="<?php echo $pj['razaoSocial']; ?>" >

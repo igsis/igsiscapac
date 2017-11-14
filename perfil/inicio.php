@@ -4,8 +4,7 @@ unset($_SESSION['idPj']);
 ?>
 <section id="contact" class="home-section bg-white">
 	<div class="container">
-		<div class="form-group">
-			<h3>INFORMAÇÕES INICIAIS</h3>
+		<div class="form-group"><br/>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
