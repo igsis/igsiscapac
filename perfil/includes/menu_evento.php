@@ -10,6 +10,7 @@
 			?>
 				| <a href="?perfil=evento_edicao">Informações Gerais</a>
 				| <a href="?perfil=produtor">Produtor</a>
+				| <a href="?perfil=arquivos_com_prod">Arquivos Comunicação-Produção</a>
 				| <a href="?perfil=proponente">Informações do Proponente</a>
 			<?php
 			}
