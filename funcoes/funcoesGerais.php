@@ -750,4 +750,35 @@ function validaEmail($email)
 	}
 }
 
+function listaArquivos($idEvento)
+{
+	//lista arquivos de determinado evento
+	$con = bancoMysqli();
+	$sql = "SELECT * FROM upload_arquivo_com_prod WHERE idEvento = '$idEvento' AND publicado = '1'";
+	$query = mysqli_query($con,$sql);
+	echo "
+		<table class='table table-condensed'>
+			<thead>
+				<tr class='list_menu'>
+					<td>Nome do arquivo</td>
+					<td width='10%'></td>
+				</tr>
+			</thead>
+			<tbody>";
+	while($campo = mysqli_fetch_array($query))
+	{
+		echo "<tr>";
+		echo "<td class='list_description'><a href='../uploads/".$campo['arquivo']."' target='_blank'>".$campo['arquivo']."</a></td>";
+		echo "
+			<td class='list_description'>
+				<form method='POST' action='?perfil=arquivos_com_prod'>
+					<input type='hidden' name='apagar' value='".$campo['id']."' />
+					<input type ='submit' class='btn btn-theme  btn-block' value='apagar'></td></form>"	;
+		echo "</tr>";
+	}
+	echo "
+		</tbody>
+		</table>";
+}
+
 ?>
