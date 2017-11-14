@@ -1,11 +1,25 @@
 <?php
-	$con = bancoMysqli();
-	$idUser= $_SESSION['idUser'];
-	unset($_SESSION['idEvento']);
-	unset($_SESSION['idPj']);
-	unset($_SESSION['idPf']);
+$con = bancoMysqli();
+$idUser= $_SESSION['idUser'];
+unset($_SESSION['idEvento']);
+unset($_SESSION['idPj']);
+unset($_SESSION['idPf']);
 
-	$usuario = recuperaDados("usuario","id",$idUser);
+if(isset($_POST['apagar']))
+{
+	$idEvento = $_POST['apagar'];
+	$sql_apaga = "UPDATE evento SET publicado = '0' WHERE id = '$idEvento'";
+	if(mysqli_query($con,$sql_apaga))
+	{
+		$mensagem = "Evento apagado com sucesso!";
+	}
+	else
+	{
+		$mensagem = "Erro ao apagar o evento! Tente novamente.";
+	}
+}
+
+$usuario = recuperaDados("usuario","id",$idUser);
 ?>
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
@@ -63,7 +77,7 @@
 												<input type ='submit' class='btn btn-theme btn-block' value='carregar'></td></form>";
 									echo "
 										<td class='list_description'>
-											<form method='POST' action='?perfil=evento_edicao'>
+											<form method='POST' action='?perfil=evento'>
 												<input type='hidden' name='apagar' value='".$campo['id']."' />
 												<input type ='submit' class='btn btn-theme  btn-block' value='apagar'></td></form>"	;
 									echo "</tr>";
