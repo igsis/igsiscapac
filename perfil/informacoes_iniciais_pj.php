@@ -188,7 +188,7 @@ $link1 = $http."rlt_declaracaoccm_pj.php"."?id_pj=".$idPj;
 $pj = recuperaDados("pessoa_juridica","id",$idPj);
 ?>
 
-<section id="contact" class="home-section bg-white">
+<section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
 		<div class="form-group">
 			<h3>INFORMAÇÕES INICIAIS</h3>
@@ -265,19 +265,18 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				<!-- Links emissão de documentos -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<div class="table-responsive list_info"><h6>Gerar Arquivo(s)</h6>
+						<h6>Gerar Arquivo(s)</h6>
 						<p>Para gerar alguns dos arquivos online, utilize os links abaixo:</p>
-							<div align="left">
-								<a href="http://www.receita.fazenda.gov.br/pessoajuridica/cnpj/cnpjreva/cnpjreva_solicitacao.asp" target="_blank">Cartão CNPJ</a></i><br/><br />
-								<a href="https://ccm.prefeitura.sp.gov.br/login/contribuinte?tipo=F" target="_blank">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</a></i><br/><br />
-								<a href='<?php echo $link1 ?>' target="_blank">Declaração CCM (Empresa Fora de São Paulo)</a></i><br/><br />
-							</div>
-						</div>
+						<p align="justify">
+							<a href="http://www.receita.fazenda.gov.br/pessoajuridica/cnpj/cnpjreva/cnpjreva_solicitacao.asp" target="_blank">Cartão CNPJ</a><br />
+							<a href="https://ccm.prefeitura.sp.gov.br/login/contribuinte?tipo=F" target="_blank">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</a><br />
+							<a href='<?php echo $link1 ?>' target="_blank">Declaração CCM (Empresa Fora de São Paulo)</a>
+						</p>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><hr/></div>
+					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
 				</div>
 
 				<!-- Exibir arquivos -->

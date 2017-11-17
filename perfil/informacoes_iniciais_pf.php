@@ -209,7 +209,7 @@ $link1 = $http."rlt_declaracaoccm_pf.php"."?id_pf=".$idPf;
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
 ?>
 
-<section id="contact" class="home-section bg-white">
+<section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_interno_pf.php'; ?>
 		<div class="form-group">
 			<h3>INFORMAÇÕES INICIAIS</h3>
@@ -322,19 +322,18 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 				<!-- Links emissão de documentos -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<div class="table-responsive list_info"><h6>Gerar Arquivo(s)</h6>
+						<h6>Gerar Arquivo(s)</h6>
 						<p>Para gerar alguns dos arquivos online, utilize os links abaixo:</p>
-							<div align="left">
-								<a href="https://www.receita.fazenda.gov.br/Aplicacoes/SSL/ATCTA/cpf/ImpressaoComprovante/ConsultaImpressao.asp" target="_blank">Cartão CPF</a></i><br/><br />
-								<a href="https://ccm.prefeitura.sp.gov.br/login/contribuinte?tipo=F" target="_blank">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</a></i><br/><br />
-								<a href='<?php echo $link1 ?>' target="_blank">Declaração CCM</a></i><br/><br />
-							</div>
-						</div>
+						<p align="justify">
+							<a href="https://www.receita.fazenda.gov.br/Aplicacoes/SSL/ATCTA/cpf/ImpressaoComprovante/ConsultaImpressao.asp" target="_blank">Cartão CPF</a><br/>
+							<a href="https://ccm.prefeitura.sp.gov.br/login/contribuinte?tipo=F" target="_blank">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</a><br/>
+							<a href='<?php echo $link1 ?>' target="_blank">Declaração CCM</a>
+						</p>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><hr/></div>
+					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
 				</div>
 
 				<!-- Exibir arquivos -->
