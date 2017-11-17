@@ -168,7 +168,7 @@ else
 							$sql = "SELECT * FROM evento AS eve
 									INNER JOIN pessoa_juridica AS pj ON pj.id = eve.idPj
 									WHERE idPj ='$idPj'
-									ORDER BY razaoSocial";
+									ORDER BY razaoSocial LIMIT 0,1";
 							$query = mysqli_query($con,$sql);
 							$num = mysqli_num_rows($query);
 							if($num > 0)

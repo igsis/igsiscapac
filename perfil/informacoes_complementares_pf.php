@@ -1,6 +1,6 @@
 ﻿<?php
 $con = bancoMysqli();
-$idPf = $_SESSION['idUser'];
+$idPf = $_SESSION['idPf'];
 
 $idCampo = 30;
 $tipoPessoa = 1;

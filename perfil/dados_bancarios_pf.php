@@ -1,6 +1,6 @@
 ﻿<?php
 $con = bancoMysqli();
-$idPf = $_SESSION['idUser'];
+$idPf = $_SESSION['idPf'];
 
 $idCampo = 25;
 $tipoPessoa = 1;
@@ -76,11 +76,10 @@ if(isset($_POST["enviar"]))
 						{
 							$mensagem = "Erro ao gravar no banco";
 						}
-						
 					}
 					else
 					{
-						 $mensagem = "Erro no upload"; 
+						 $mensagem = "Erro no upload";
 					}
 				}
 				else
@@ -159,7 +158,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 					
 				<!-- Gerar FACC -->
 				<?php
-					$server = "http://".$_SERVER['SERVER_NAME']."/capac/"; 
+					$server = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/"; 
 					$http = $server."/pdf/";
 					$link1 = $http."rlt_facc_pf.php"."?id_pf=".$idPf;
 				?>

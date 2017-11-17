@@ -136,7 +136,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 					<div class="col-md-offset-1 col-md-10">
 						<div class = "center">
 						<form method="POST" action="?perfil=anexos_pj" enctype="multipart/form-data">
-							<table>
+							<table class='table table-condensed'>
 								<?php
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id NOT IN (9,21,54)";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
@@ -144,7 +144,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 									{
 								?>
 										<tr>
-											<td><label><?php echo $arq['documento']?></label></td>
+											<td><?php echo $arq['documento']?></td>
 											<td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
 										</tr>
 								<?php

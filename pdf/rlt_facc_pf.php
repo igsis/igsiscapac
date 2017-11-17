@@ -1,40 +1,38 @@
-<?php 
-   
+<?php
 // INSTALAÇÃO DA CLASSE NA PASTA FPDF.
 require_once("../include/lib/fpdf/fpdf.php");
 require_once("../funcoes/funcoesConecta.php");
 require_once("../funcoes/funcoesGerais.php");
 
-//CONEXÃO COM BANCO DE DADOS 
-$conexao = bancoMysqli(); 
-   
+//CONEXÃO COM BANCO DE DADOS
+$conexao = bancoMysqli();
+
 session_start();
-  
+
 class PDF extends FPDF
 {
 	// Page header
 	function Header()
-	{	
+	{
 		// Logo
 		$this->Image('../pdf/img/facc_pf.jpg',15,10,180);
-		
 		// Line break
 		$this->Ln(20);
 	}
 }
 
 
-//CONSULTA 
-$idPessoaFisica = $_SESSION['idUser'];
+//CONSULTA
+$idPf = $_SESSION['idPf'];
 
-$pessoa = recuperaDados("usuario_pf","id",$idPessoaFisica);
+$pessoa = recuperaDados("pessoa_fisica","id",$idPf);
 $enderecoCEP = enderecoCEP($pessoa['cep']);
 $dbBanco = recuperaDados("banco","id",$pessoa['codigoBanco']);
 
 $banco = $dbBanco["banco"];
 $codbanco = $dbBanco["codigoBanco"];
 
-$rua = $enderecoCEP["rua"]; 
+$rua = $enderecoCEP["rua"];
 $bairro = $enderecoCEP["bairro"];
 $cidade = $enderecoCEP["cidade"];
 $estado = $enderecoCEP["estado"];
@@ -59,10 +57,9 @@ $pdf = new PDF('P','mm','A4'); //CRIA UM NOVO ARQUIVO PDF NO TAMANHO A4
 $pdf->AliasNbPages();
 $pdf->AddPage();
 
-   
 $x=20;
-$l=7; //DEFINE A ALTURA DA LINHA   
-   
+$l=7; //DEFINE A ALTURA DA LINHA
+
    $pdf->SetXY( $x , 40 );// SetXY - DEFINE O X (largura) E O Y (altura) NA PÁGINA
 
    $pdf->SetXY(113, 40);
