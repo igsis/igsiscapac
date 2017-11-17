@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Mapeamento e Cadastro de Artistas e Profissionais de Arte e Cultura</title>
+		<title>IGSIS - Cadastro de Artistas e Profissionais de Arte e Cultura</title>
 		<link href="visual/css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link href="visual/css/style.css" rel="stylesheet" media="screen">
 		<link href="visual/color/default.css" rel="stylesheet" media="screen">

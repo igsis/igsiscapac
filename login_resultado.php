@@ -58,7 +58,7 @@ if(isset($_POST['busca']))
 	$validacao = validaEmail($_POST['busca']);
 	if($validacao == false)
 	{
-		echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=erro_email.php'>";
+		echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=erro_login.php'>";
 	}
 	else
 	{
