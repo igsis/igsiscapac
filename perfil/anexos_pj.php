@@ -95,23 +95,31 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-			<!-- Links emissão de documentos -->
+
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><hr/></div>
+				</div>
+
+				<!-- Links emissão de documentos -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<div class="table-responsive list_info"><h6>Gerar Arquivo(s)</h6>
+						<h6>Gerar Arquivo(s)</h6>
 						<p>Para gerar alguns dos arquivos online, utilize os links abaixo:</p>
-							<div align="left">
-								<a href="https://www.sifge.caixa.gov.br/Cidadao/Crf/FgeCfSCriteriosPesquisa.asp" target="_blank">CRF do FGTS</a></i><br/><br />
-								<a href="https://www3.prefeitura.sp.gov.br/cpom2/Consulta_Tomador.aspx" target="_blank">CPOM - Cadastro de Empresas Fora do Município</a></i><br/><br />
-								<a href="http://www3.prefeitura.sp.gov.br/certidaotributaria/forms/frmConsultaEmissaoCertificado.aspx" target="_blank">CTM - Certidão Negativa de Débitos Tributários Mobiliários Municipais (opção: mobiliária)</a></i><br/><br />
-								<a href="http://www.receita.fazenda.gov.br/Aplicacoes/ATSPO/Certidao/CNDConjuntaSegVia/NICertidaoSegVia.asp?Tipo=1" target="_blank">CND - Certidão de regularidade perante o INSS</a></i><br/><br />
-								<a href="http://www.receita.fazenda.gov.br/Aplicacoes/ATSPO/Certidao/certaut/CndConjunta/ConfirmaAutenticCndSolicitacao.asp?ORIGEM=PJ" target="_blank">Autenticidade de CND ­ Certidão de Débitos Relativos a Créditos Tributários Federais e à Dívida Ativa da União (CND)</a></i><br/><br />
-								<a href="http://www.tst.jus.br/certidao" target="_blank">CNDT - Certidão Negativa de Débitos Trabalhistas</a></i><br/><br />
-								<a href="http://www3.prefeitura.sp.gov.br/cadin/Pesq_Deb.aspx" target="_blank">CADIN Municipal</a></i><br/><br />
-								<a href="https://ccm.prefeitura.sp.gov.br/login/contribuinte?tipo=F" target="_blank">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</a></i><br/><br />
-							</div>
-						</div>
+						<p align="justify">
+							<a href="https://www.sifge.caixa.gov.br/Cidadao/Crf/FgeCfSCriteriosPesquisa.asp" target="_blank">CRF do FGTS</a><br />
+							<a href="https://www3.prefeitura.sp.gov.br/cpom2/Consulta_Tomador.aspx" target="_blank">CPOM - Cadastro de Empresas Fora do Município</a><br />
+							<a href="http://www3.prefeitura.sp.gov.br/certidaotributaria/forms/frmConsultaEmissaoCertificado.aspx" target="_blank">CTM - Certidão Negativa de Débitos Tributários Mobiliários Municipais (opção: mobiliária)</a><br />
+							<a href="http://www.receita.fazenda.gov.br/Aplicacoes/ATSPO/Certidao/CNDConjuntaSegVia/NICertidaoSegVia.asp?Tipo=1" target="_blank">CND - Certidão de regularidade perante o INSS</a><br />
+							<a href="http://www.receita.fazenda.gov.br/Aplicacoes/ATSPO/Certidao/certaut/CndConjunta/ConfirmaAutenticCndSolicitacao.asp?ORIGEM=PJ" target="_blank">Autenticidade de CND ­ Certidão de Débitos Relativos a Créditos Tributários Federais e à Dívida Ativa da União (CND)</a><br />
+							<a href="http://www.tst.jus.br/certidao" target="_blank">CNDT - Certidão Negativa de Débitos Trabalhistas</a><br />
+							<a href="http://www3.prefeitura.sp.gov.br/cadin/Pesq_Deb.aspx" target="_blank">CADIN Municipal</a><br />
+							<a href="https://ccm.prefeitura.sp.gov.br/login/contribuinte?tipo=F" target="_blank">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</a>
+						</p>
 					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
 				</div>
 
 				<!-- Exibir arquivos -->
@@ -129,9 +137,6 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 						<div class = "center">
 						<form method="POST" action="?perfil=anexos_pj" enctype="multipart/form-data">
 							<table>
-								<tr>
-									<td width="50%"><td>
-								</tr>
 								<?php
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id NOT IN (9,21,54)";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
@@ -139,7 +144,8 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 									{
 								?>
 										<tr>
-											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+											<td><label><?php echo $arq['documento']?></label></td>
+											<td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
 										</tr>
 								<?php
 									}
@@ -176,11 +182,6 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 						}
 						?>
 							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaFisica ?>">
-						</form>
-					</div>
-					<div class="col-md-offset-4 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=senha_pj" method="post">
-							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>
 					</div>
 				</div>
