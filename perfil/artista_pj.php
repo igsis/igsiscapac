@@ -12,7 +12,7 @@ if($evento['idPf'] == NULL)
 			<div class="row">
 				<div class="col-md-offset-2 col-md-8">
 					<div class="section-heading">
-						<h3>ARTISTA - Líder do Grupo</h3>
+						<h3>ARTISTA - Líder do Grupo ou Artista Solo</h3>
 						<p><strong><?php if(isset($mensagem)){echo $mensagem;} ?></strong></p>
 						<p><strong>Você está inserindo o líder do grupo</strong></p>
 						<p></p>

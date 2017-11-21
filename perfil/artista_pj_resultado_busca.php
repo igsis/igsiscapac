@@ -24,7 +24,7 @@ if($num_busca > 0)
 	<section id="list_items" class="home-section bg-white">
 		<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
 			<div class="form-group">
-				<h3>ARTISTA - Líder do Grupo</h3>
+				<h3>ARTISTA - Líder do Grupo ou Artista Solo</h3>
 				<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 			</div>
 			<div class="row">

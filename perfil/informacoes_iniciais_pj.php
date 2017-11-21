@@ -282,7 +282,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				<!-- Exibir arquivos -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
+						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s) Somente em PDF</h6>
 							<?php listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","informacoes_iniciais_pj",2); ?>
 						</div>
 					</div>
