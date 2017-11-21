@@ -12,7 +12,7 @@
 			{
 			?>
 				| <a href="?perfil=artista_pj">Artista</a>
-				| <a href="?perfil=grupo">Integrantes do Grupo</a>
+				| <a href="?perfil=grupo">Integrantes do Elenco</a>
 			<?php
 			}
 			?>
