@@ -47,6 +47,7 @@ $num = mysqli_num_rows($query_grupos);
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
+				<p align="justify"><i>No caso de espetáculos de teatro, dança e circo, os integrantes a serem cadastrados são os componentes do elenco e o diretor do espetáculo. Caso o espetáculo tenha música ao vivo, os músicos também devem ser cadastrados. No caso de espetáculo de música, os integrantes a serem cadastrados são os músicos do espetáculo.</i></p>
 				<?php
 				if($num > 0)
 				{

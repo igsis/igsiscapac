@@ -148,6 +148,12 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 				<form class="form-horizontal" role="form" action="?perfil=artista_pj_cadastro" method="post">
 
 					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8">
+							<p align="justify"><i>No caso de espetáculos de teatro, dança e circo, este deve ser do elenco ou o diretor do espetáculo e deve ter DRT. No caso de espetáculo de música, este deve ser um músico do espetáculo.</i></p>
+						</div>
+					</div>
+
+					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8"><strong>Nome: *</strong><br/>
 							<input type="text" class="form-control" name="nome" placeholder="Nome completo" value="<?php echo $artista['nome']; ?>">
 						</div>
