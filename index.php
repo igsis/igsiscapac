@@ -58,17 +58,14 @@ if(isset($_POST['login']))
 		<script src="visual/js/modernizr.custom.js"></script>
 	</head>
 	<body>
-		<section id="spacer1" class="home-section spacer">
-           <div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="color-light">
-							<h1 class="wow bounceInDown" data-wow-delay="1s">IGSIS - CADASTRO DE ARTISTAS E PROFISSIONAIS DE ARTE E CULTURA</h1>
-						</div>
-					</div>
-				</div>
-            </div>
-		</section>
+		<div id="bar">
+			<p id="p-bar"><img src="visual/images/logo_cultura_h.png" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IGSIS - CADASTRO DE ARTISTAS E PROFISSIONAIS DE ARTE E CULTURA<!--<img src="images/logo_pequeno.png" />-->
+			</p>
+		</div>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+
 		<section id="contact" class="home-section bg-white">
 			<div class="container">
 				<div class="row">
@@ -118,17 +115,19 @@ if(isset($_POST['login']))
 					</div>
 				</div>
 			</div>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<footer>
+				<div class="container">
+					<table width="100%">
+						<tr>
+							<td width="20%"></td>
+							<td align="center"><font color="#ccc">2017 @ IGSIS - Cadastro de Artistas e Profissionais de Arte e Cultura<br/>Secretaria Municipal de Cultura<br/>Prefeitura de São Paulo</font></td>
+							<td><img src="visual/images/logo_igsis_azul.png" align="right"/></td>
+						</tr>
+					</table>
+				</div>
+			</footer>
 		</section>
-		<footer>
-			<div class="container">
-				<table width="100%">
-					<tr>
-						<td><img src="visual/images/logo_cultura_q.png" align="left"/></td>
-						<td align="center"><font color="#ccc">2017 @ IGSIS - Cadastro de Artistas e Profissionais de Arte e Cultura<br/>Secretaria Municipal de Cultura<br/>Prefeitura de São Paulo</font></td>
-						<td><img src="visual/images/logo_igsis_azul.png" align="right"/></td>
-					</tr>
-				</table>
-			</div>
-		</footer>
     </body>
 </html>
