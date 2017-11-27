@@ -53,6 +53,7 @@ if(isset($_POST['cadastrar']))
 	}
 }
 
+/* ESTÁ DANDO ERRO NA VALIDAÇAO DE EMAIL ONLINE
 if(isset($_POST['busca']))
 {
 	$validacao = validaEmail($_POST['busca']);
@@ -67,6 +68,15 @@ if(isset($_POST['busca']))
 		$query_busca = mysqli_query($con,$sql_busca);
 		$num_busca = mysqli_num_rows($query_busca);
 	}
+}
+*/
+
+if(isset($_POST['busca']))
+{
+	$busca = $_POST['busca'];
+	$sql_busca = "SELECT * FROM usuario WHERE email = '$busca' ORDER BY nome";
+	$query_busca = mysqli_query($con,$sql_busca);
+	$num_busca = mysqli_num_rows($query_busca);
 }
 
 if($num_busca > 0)
