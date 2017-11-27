@@ -181,10 +181,6 @@ if(isset($_POST['apagar']))
 
 $idPj = $_SESSION['idPj'];
 
-$server = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/";
-$http = $server."/pdf/";
-$link1 = $http."rlt_declaracaoccm_pj.php"."?id_pj=".$idPj;
-
 $pj = recuperaDados("pessoa_juridica","id",$idPj);
 ?>
 
@@ -270,7 +266,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 						<p align="justify">
 							<a href="http://www.receita.fazenda.gov.br/pessoajuridica/cnpj/cnpjreva/cnpjreva_solicitacao.asp" target="_blank">Cartão CNPJ</a><br />
 							<a href="https://ccm.prefeitura.sp.gov.br/login/contribuinte?tipo=F" target="_blank">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</a><br />
-							<a href='<?php echo $link1 ?>' target="_blank">Declaração CCM (Empresa Fora de São Paulo)</a>
+							<a href="https://www3.prefeitura.sp.gov.br/cpom2/Consulta_Tomador.aspx" target="_blank">CPOM - Cadastro de Empresas Fora do Município</a>
 						</p>
 					</div>
 				</div>
@@ -298,7 +294,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 									<td width="50%"><td>
 								</tr>
 								<?php
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '9'";
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '22'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{
@@ -318,12 +314,38 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class = "center">
+						<form method="POST" action="?perfil=informacoes_iniciais_pj" enctype="multipart/form-data">
 							<table>
 								<tr>
 									<td width="50%"><td>
 								</tr>
 								<?php
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '21'";
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '43'";
+									$query_arquivos = mysqli_query($con,$sql_arquivos);
+									while($arq = mysqli_fetch_array($query_arquivos))
+									{
+								?>
+								<tr>
+									<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+								</tr>
+								<?php
+									}
+								?>
+							</table><br>
+						</div>
+					</div>
+				</div>
+
+				<!-- Upload de arquivo 3 -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class = "center">
+							<table>
+								<tr>
+									<td width="50%"><td>
+								</tr>
+								<?php
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '28'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{

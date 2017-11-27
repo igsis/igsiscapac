@@ -540,7 +540,7 @@
 function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 {
 	//$pf == 1 > documentos_pf
-	//$pf == 2 > documentos_pj
+	//$pf == 2 > informacoes_iniciais_pj
 	//$pf == 3 > dados_bancarios e informações_complementares
 	//$pf == 4 > anexos_pf
 	//$else > anexos_pj
@@ -563,8 +563,9 @@ function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 	{
 		if($pf == 2)
 		{
-			$arq1 = "AND (list.id = '9' OR ";
-			$arq2 = "list.id = '21')";
+			$arq1 = "AND (list.id = '22' OR ";
+			$arq2 = "list.id = '43' OR";
+			$arq2 = "list.id = '28')";
 			$sql = "SELECT * 
 				FROM upload_lista_documento as list
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
