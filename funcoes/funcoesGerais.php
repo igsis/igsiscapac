@@ -545,6 +545,7 @@ function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 	//$pf == 4 > anexos_pf
 	//$pf == 5 > representante_legal1
 	//$pf == 6 > representante_legal2
+	//$pf == 7 > artista_pj_cadastro
 	//$else > anexos_pj
 	$con = bancoMysqli();
 	if($pf == 1)
@@ -630,13 +631,29 @@ function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 						}
 						else
 						{
-							$sql = "SELECT *
-								FROM upload_lista_documento as list
-								INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
-								WHERE arq.idPessoa = '$idPessoa'
-								AND arq.idTipoPessoa = '$tipoPessoa'
-								AND list.id NOT IN ('20','21','22','28','43','89','103','104')
-								AND arq.publicado = '1'";
+							if($pf == 7)
+							{
+								$arq1 = "AND (list.id = '2' OR ";
+								$arq2 = "list.id = '3' OR";
+								$arq3 = "list.id = '60')";
+								$sql = "SELECT *
+									FROM upload_lista_documento as list
+									INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+									WHERE arq.idPessoa = '$idPessoa'
+									AND arq.idTipoPessoa = '$tipoPessoa'
+									$arq1 $arq2 $arq3
+									AND arq.publicado = '1'";
+							}
+							else
+							{
+								$sql = "SELECT *
+									FROM upload_lista_documento as list
+									INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+									WHERE arq.idPessoa = '$idPessoa'
+									AND arq.idTipoPessoa = '$tipoPessoa'
+									AND list.id NOT IN ('20','21','22','28','43','89','103','104')
+									AND arq.publicado = '1'";
+							}
 						}
 					}
 				}
