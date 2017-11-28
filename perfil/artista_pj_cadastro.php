@@ -138,7 +138,7 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 			</div>
 			<div class="col-md-3">
 				<form class="form-horizontal" role="form" action="?perfil=grupo" method="post">
-					<input type="submit" name="integrantes" value="Integrantes do Grupo" class="btn btn-theme btn-md btn-block">
+					<input type="submit" name="integrantes" value="Integrantes do Elenco" class="btn btn-theme btn-md btn-block">
 				</form>
 			</div>
 		</div>
@@ -219,7 +219,7 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 						</form>
 					</div>
 					<div class="col-md-offset-4 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=anexos_pj" method="post">
+						<form class="form-horizontal" role="form" action="?perfil=grupo" method="post">
 							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
 						</form>
 					</div>

@@ -100,10 +100,29 @@ $num = mysqli_num_rows($query_grupos);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<form class="form-horizontal" role="form" action="?perfil=grupo_cadastro"  method="post">
-							<input type ='submit' class='btn btn-theme btn-block' value='Inserir novo integrante'></td>
+							<input type ='submit' class='btn btn-theme btn-block' value='Inserir novo integrante'>
 						</form>
 					</div>
 				</div>
+
+				<div class="form-group">
+					<div class="col-md-offset-1 col-md-10"><hr/><br/></div>
+				</div>
+
+				<!-- Botão para Voltar e Prosseguir -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-2">
+						<form class="form-horizontal" role="form" action="?perfil=artista_pj" method="post">
+							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block">
+						</form>
+					</div>
+					<div class="col-md-offset-4 col-md-2">
+						<form class="form-horizontal" role="form" action="?perfil=anexos_pj" method="post">
+							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
+						</form>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
