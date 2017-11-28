@@ -5,9 +5,6 @@ $idPj = $_SESSION['idPj'];
 $tipoPessoa = 2;
 $pj = recuperaDados("pessoa_juridica","id",$idPj);
 
-$server = "http://".$_SERVER['SERVER_NAME']."/proponente/"; //mudar para pasta do igsis
-$http = $server."/pdf/";
-
 if(isset($_POST["enviar"]))
 {
 	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN (20,21,22,28,43,89,103,104) AND publicado = '1'";
