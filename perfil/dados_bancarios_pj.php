@@ -2,7 +2,7 @@
 $con = bancoMysqli();
 $idPj = $_SESSION['idPj'];
 
-$idCampo = 54;
+$idCampo = 89;
 $tipoPessoa = 2;
 
 if(isset($_POST['cadastrarBanco']))
@@ -29,7 +29,7 @@ if(isset($_POST['cadastrarBanco']))
 }
 if(isset($_POST["enviar"]))
 {
-	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '$idCampo'";
+	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idCampo'";
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
 	{
@@ -189,7 +189,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 									<td width="50%"><td>
 								</tr>
 								<?php
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '$idCampo'";
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idCampo'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{
