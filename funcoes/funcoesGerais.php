@@ -543,7 +543,8 @@ function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 	//$pf == 2 > informacoes_iniciais_pj
 	//$pf == 3 > dados_bancarios e informações_complementares
 	//$pf == 4 > anexos_pf
-	//$pf == 5 > representante_legal
+	//$pf == 5 > representante_legal1
+	//$pf == 6 > representante_legal2
 	//$else > anexos_pj
 	$con = bancoMysqli();
 	if($pf == 1)
