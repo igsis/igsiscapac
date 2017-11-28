@@ -10,7 +10,7 @@ $http = $server."/pdf/";
 
 if(isset($_POST["enviar"]))
 {
-	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id NOT IN (9,21,54)";
+	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN (20,21,22,28,43,89,103,104) AND publicado = '1'";
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
 	{
@@ -123,7 +123,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
-							<?php listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","anexos_pj",5); ?>
+							<?php listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","anexos_pj",""); ?>
 						</div>
 					</div>
 				</div>
@@ -135,7 +135,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 						<form method="POST" action="?perfil=anexos_pj" enctype="multipart/form-data">
 							<table class='table table-condensed'>
 								<?php
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN ('20','21','22','28','43','89') AND publicado = '1'";
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN ('20','21','22','28','43','89','103','104') AND publicado = '1'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{
