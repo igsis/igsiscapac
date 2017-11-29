@@ -152,9 +152,8 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 
 				<!-- Gerar FACC -->
 				<?php
-					$server = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/";
-					$http = $server."/pdf/";
-					$link1 = $http."rlt_facc_pj.php"."?id_pj=".$idPj;
+					$http = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/pdf/";
+					$link1 = $http."rlt_facc_pj.php";
 				?>
 
 				<div class="form-group">
@@ -162,7 +161,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 						<p align="left">Após inserir seus dados pessoais e os dados bancários, clique no botão para gerar a FACC</p>
 					</div>
 					<div class="col-md-3">
-						<a href='<?php echo $link1 ?>' target='_blank' class="btn btn-theme btn-lg btn-block"><strong>Gerar</strong></a>
+						<a href='<?php echo $link1; ?>' target='_blank' class="btn btn-theme btn-lg btn-block"><strong>Gerar</strong></a>
 					</div>
 				</div>
 				<!--  FIM Gerar FACC -->
