@@ -120,7 +120,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
-							<?php listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","anexos_pj",""); ?>
+							<?php listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","anexos_pj",8); ?>
 						</div>
 					</div>
 				</div>
