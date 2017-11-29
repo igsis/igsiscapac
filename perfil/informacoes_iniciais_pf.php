@@ -127,7 +127,7 @@ if(isset($_POST['carregar']))
 
 if(isset($_POST["enviar"]))
 {
-	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id IN (1,2,11,14)";
+	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id IN (2,3,25,31)";
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
 	{
@@ -393,6 +393,31 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 				</div>
 
 				<!-- Upload de arquivo 3 -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<div class = "center">
+							<table>
+								<tr>
+									<td width="50%"><td>
+								</tr>
+								<?php
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '25'";
+									$query_arquivos = mysqli_query($con,$sql_arquivos);
+									while($arq = mysqli_fetch_array($query_arquivos))
+									{
+								?>
+										<tr>
+											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+										</tr>
+								<?php
+									}
+								?>
+							</table><br>
+						</div>
+					</div>
+				</div>
+
+				<!-- Upload de arquivo 4 -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class = "center">
