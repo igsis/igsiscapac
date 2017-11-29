@@ -202,10 +202,6 @@ if(isset($_POST['apagar']))
 
 $idPf = $_SESSION['idPf'];
 
-$server = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/";
-$http = $server."/pdf/";
-$link1 = $http."rlt_declaracaoccm_pf.php"."?id_pf=".$idPf;
-
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
 ?>
 
