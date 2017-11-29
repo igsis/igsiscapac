@@ -2,7 +2,7 @@
 $con = bancoMysqli();
 $idPf = $_SESSION['idPf'];
 
-$idCampo = 3;
+$idCampo = 4;
 $tipoPessoa = 1;
 
 if(isset($_POST['cadastrarEndereco']))
@@ -182,7 +182,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									<td width="50%"><td>
 								</tr>
 								<?php
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '$idCampo'";
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idCampo'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{

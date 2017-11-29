@@ -2,7 +2,7 @@
 $con = bancoMysqli();
 $idPf = $_SESSION['idPf'];
 
-$idCampo = 25;
+$idCampo = 51;
 $tipoPessoa = 1;
 
 if(isset($_POST['cadastrarBanco']))
@@ -11,21 +11,21 @@ if(isset($_POST['cadastrarBanco']))
 	$CodigoBanco = $_POST['codigoBanco'];
 	$Agencia = $_POST['agencia'];
 	$Conta = $_POST['conta'];
-	
+
 	$sql_atualiza_pf = "UPDATE pessoa_fisica SET
-	`codigoBanco` = '$CodigoBanco', 
-	`agencia` = '$Agencia', 
+	`codigoBanco` = '$CodigoBanco',
+	`agencia` = '$Agencia',
 	`conta` = '$Conta'
-	WHERE `id` = '$idPf'";	
-	
+	WHERE `id` = '$idPf'";
+
 	if(mysqli_query($con,$sql_atualiza_pf))
 	{
-		$mensagem = "Atualizado com sucesso!!!";	
+		$mensagem = "Atualizado com sucesso!!!";
 	}
 	else
 	{
 		$mensagem = "Erro ao atualizar! Tente novamente.";
-	}	
+	}
 }
 
 
@@ -34,15 +34,15 @@ if(isset($_POST["enviar"]))
 	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '$idCampo'";
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
-	{ 
+	{
 		$y = $arq['id'];
 		$x = $arq['sigla'];
 		$nome_arquivo = $_FILES['arquivo']['name'][$x];
 		$f_size = $_FILES['arquivo']['size'][$x];
-		
+
 		//Extensões permitidas
 		$ext = array("PDF","pdf");
-		
+
 		if($f_size > 2097152) // 2MB em bytes
 		{
 			$mensagem = "Erro! Tamanho de arquivo excedido! Tamanho máximo permitido: 02 MB.";
@@ -51,23 +51,22 @@ if(isset($_POST["enviar"]))
 		{
 			if($nome_arquivo != "")
 			{
-				$nome_temporario = $_FILES['arquivo']['tmp_name'][$x];		
+				$nome_temporario = $_FILES['arquivo']['tmp_name'][$x];
 				$new_name = date("YmdHis")."_".semAcento($nome_arquivo); //Definindo um novo nome para o arquivo
 				$hoje = date("Y-m-d H:i:s");
 				$dir = '../uploadsdocs/'; //Diretório para uploads
-				
+
 				$allowedExts = array(".pdf", ".PDF"); //Extensões permitidas
-				
+
 				$ext = strtolower(substr($nome_arquivo,-4));
 
 				if(in_array($ext, $allowedExts)) //Pergunta se a extensão do arquivo, está presente no array das extensões permitidas
-				{			
-			
+				{
 					if(move_uploaded_file($nome_temporario, $dir.$new_name))
-					{  
+					{
 						$sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPf', '$idCampo', '$new_name', '$hoje', '1'); ";
 						$query = mysqli_query($con,$sql_insere_arquivo);
-					
+
 						if($query)
 						{
 							$mensagem = "Arquivo recebido com sucesso";
@@ -84,8 +83,8 @@ if(isset($_POST["enviar"]))
 				}
 				else
 				{
-					$mensagem = "Erro no upload! Anexar documentos somente no formato PDF."; 
-				}	
+					$mensagem = "Erro no upload! Anexar documentos somente no formato PDF.";
+				}
 			}
 		}
 	}
@@ -121,62 +120,62 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 			<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pf" method="post">
-			
+
 			<font color="#FF0000"><strong>Realizamos pagamentos de valores acima de R$ 5.000,00 *SOMENTE COM CONTA CORRENTE NO BANCO DO BRASIL*.<br />
 			Não são aceitas: conta fácil, poupança e conjunta.</strong></font><br />
 			<p>
-			
+
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Banco:</strong><br/>
 						<select class="form-control" name="codigoBanco" id="codigoBanco">
 							<option></option>
 							<?php geraOpcao("banco",$pf['codigoBanco'],"");	?>
-						</select>	
+						</select>
 					</div>
-				</div> 
-		  
+				</div>
+
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>Agência</strong><br/>
 						<input type="text" class="form-control" id="agencia" name="agencia" placeholder="" value="<?php echo $pf['agencia']; ?>">
-					</div>				  
+					</div>
 					<div class=" col-md-6"><strong>Conta:</strong><br/>
 						<input type="text" class="form-control" id="conta" name="conta" placeholder="" value="<?php echo $pf['conta']; ?>">
 					</div>
-				</div> 
-		  
+				</div>
+
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<input type="hidden" name="cadastrarBanco" value="<?php echo $idPf ?>">
 						<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 					</div>
 				</div>
-			</form>				
-				
+			</form>
+
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><hr/></div>
 				</div>
-					
+
 				<!-- Gerar FACC -->
 				<?php
-					$server = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/"; 
+					$server = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/";
 					$http = $server."/pdf/";
 					$link1 = $http."rlt_facc_pf.php"."?id_pf=".$idPf;
 				?>
-					
+
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-5">
-						<p align="left">Após inserir seus dados pessoais e os dados bancários, clique no botão para gerar a FACC</p>						
+						<p align="left">Após inserir seus dados pessoais e os dados bancários, clique no botão para gerar a FACC</p>
 					</div>
 					<div class="col-md-3">
-						<a href='<?php echo $link1 ?>' target='_blank' class="btn btn-theme btn-lg btn-block"><strong>Gerar</strong></a>							
+						<a href='<?php echo $link1 ?>' target='_blank' class="btn btn-theme btn-lg btn-block"><strong>Gerar</strong></a>
 					</div>
 				</div>
 				<!--  FIM Gerar FACC -->
-								
+
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
 				</div>
-				
+
 				<!-- Exibir arquivos -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
@@ -184,9 +183,8 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 							<?php listaArquivoCamposMultiplos($idPf,$tipoPessoa,$idCampo,"dados_bancarios_pf",3); ?>
 						</div>
 					</div>
-				</div>				
-				
-				
+				</div>
+
 				<!-- Upload de arquivo -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
@@ -196,19 +194,19 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 								<tr>
 									<td width="50%"><td>
 								</tr>
-								<?php 
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '$idCampo'";
+								<?php
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idCampo'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
-									{ 
+									{
 								?>
 										<tr>
 											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
 										</tr>
-								<?php 
+								<?php
 									}
 								?>
-							</table><br>						
+							</table><br>
 							<input type="hidden" name="idPessoa" value="<?php echo $idPf; ?>"  />
 							<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
 							<input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>
@@ -217,26 +215,26 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 					</div>
 				</div>
 				<!-- Fim Upload de arquivo -->
-				
+
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
 				</div>
-											
+
 				<!-- Botão para Voltar e Prosseguir -->
-				<div class="form-group">					
+				<div class="form-group">
 					<div class="col-md-offset-2 col-md-2">
 						<form class="form-horizontal" role="form" action="?perfil=informacoes_complementares_pf" method="post">
 							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
-						</form>	
+						</form>
 					</div>
 					<div class="col-md-offset-4 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=anexos_pf" method="post">	
+						<form class="form-horizontal" role="form" action="?perfil=anexos_pf" method="post">
 							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
-						</form>	
-					</div>					
+						</form>
+					</div>
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
-</section>  
+</section>

@@ -355,7 +355,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									<td width="50%"><td>
 								</tr>
 								<?php
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '1'";
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '2'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{
@@ -380,7 +380,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									<td width="50%"><td>
 								</tr>
 								<?php
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '2'";
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '3'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{
@@ -405,32 +405,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									<td width="50%"><td>
 								</tr>
 								<?php
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '11'";
-									$query_arquivos = mysqli_query($con,$sql_arquivos);
-									while($arq = mysqli_fetch_array($query_arquivos))
-									{
-								?>
-								<tr>
-									<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
-								</tr>
-								<?php
-									}
-								?>
-							</table><br>
-						</div>
-					</div>
-				</div>
-
-				<!-- Upload de arquivo 4 -->
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<div class = "center">
-							<table>
-								<tr>
-									<td width="50%"><td>
-								</tr>
-								<?php
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '14'";
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '31'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{

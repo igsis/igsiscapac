@@ -541,17 +541,17 @@ function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 {
 	$con = bancoMysqli();
 	switch ($pf) {
-		case 1: //documentos_pf
-			$arq1 = "AND (list.id = '1' OR ";
-			$arq2 = "list.id = '2' OR";
-			$arq3 = "list.id = '11' OR";
-			$arq4 = "list.id = '14')";
+		case 1: //informacoes_iniciais_pf
+			$arq1 = "AND (list.id = '2' OR ";
+			$arq2 = "list.id = '3' OR";
+			$arq2 = "list.id = '25' OR";
+			$arq3 = "list.id = '31')";
 			$sql = "SELECT *
 				FROM upload_lista_documento as list
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
 				AND arq.idTipoPessoa = '$tipoPessoa'
-				$arq1 $arq2 $arq3 $arq4
+				$arq1 $arq2 $arq3
 				AND arq.publicado = '1'";
 		break;
 		case 2: //informacoes_iniciais_pj
@@ -581,7 +581,7 @@ function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
 				AND arq.idTipoPessoa = '$tipoPessoa'
-				AND list.id NOT IN('1','2','3','11','14','25','29','30')
+				AND list.id NOT IN (2,3,4,25,31,51,60)
 				AND arq.publicado = '1'";
 		break;
 		case 5: //representante_legal1
