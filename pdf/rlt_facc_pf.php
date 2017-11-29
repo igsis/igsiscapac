@@ -108,5 +108,5 @@ $l=7; //DEFINE A ALTURA DA LINHA
    $pdf->Cell(50,$l,utf8_decode($RG),0,0,'L');
 
 
-$pdf->Output("FACC - ".$Nome."", "I");
+$pdf->Output("FACC - ".$Nome.".pdf", "I");
 ?>
