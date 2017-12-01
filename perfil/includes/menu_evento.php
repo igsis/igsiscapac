@@ -13,8 +13,8 @@
 			<?php
 			}
 			?>
-			| <a href="?perfil=evento">Carregar Eventos</a>
 			| <a href="?secao=perfil">Início</a>
+			| <a href="?perfil=evento">Carregar Eventos</a>
 			| <a href="../manual" target="_blank">Ajuda</a>
 			| <a href="../include/logoff.php">Sair</a> |</strong><br/>
 		</div>
