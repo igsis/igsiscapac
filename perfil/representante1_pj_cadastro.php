@@ -28,6 +28,7 @@ if(isset($_POST['cadastraRepresentante']))
 			$idRep1 = recuperaUltimo("representante_legal");
 			$sql_representante1_empresa = "UPDATE pessoa_juridica SET idRepresentanteLegal1 = '$idRep1' WHERE id = '$idPj'";
 			$query_representante1_empresa = mysqli_query($con,$sql_representante1_empresa);
+			gravarLog($sql_insere_rep1);
 		}
 		else
 		{
@@ -44,6 +45,7 @@ if(isset($_POST['insereRepresentante']))
 	if(mysqli_query($con,$sql_representante1_empresa))
 	{
 		$mensagem = "Atualizado com sucesso!";
+		gravarLog($sql_representante1_empresa);
 	}
 	else
 	{
@@ -82,6 +84,8 @@ if(isset($_POST['editaRepresentante']))
 			$mensagem = "Atualizado com sucesso!";
 			$sql_representante1_empresa = "UPDATE pessoa_juridica SET idRepresentanteLegal1 = '$idRep1' WHERE id = '$idPj'";
 			$query_representante1_empresa = mysqli_query($con,$sql_representante1_empresa);
+			gravarLog($sql_atualiza_rep1);
+
 		}
 		else
 		{
@@ -129,6 +133,7 @@ if(isset($_POST["enviar"]))
 						if($query)
 						{
 							$mensagem = "Arquivo recebido com sucesso!";
+							gravarLog($sql_insere_arquivo);
 						}
 						else
 						{

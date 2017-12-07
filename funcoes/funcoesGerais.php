@@ -145,11 +145,11 @@
 	{
 		//grava na tabela log os inserts e updates
 		$logTratado = addslashes($log);
-		$idLogin = $_SESSION['idUser'];
+		$idUser = $_SESSION['idUser'];
 		$ip = $_SERVER["REMOTE_ADDR"];
 		$data = date('Y-m-d H:i:s');
-		$sql = "INSERT INTO `log` (`id`, `idUsuario`, `ip`, `data`, `descricao`)
-			VALUES (NULL, '$idLogin', '$ip', '$data', '$logTratado')";
+		$sql = "INSERT INTO `log` (`id`, `idUsuario`, `enderecoIP`, `dataLog`, `descricao`)
+			VALUES (NULL, '$idUser', '$ip', '$data', '$logTratado')";
 		$mysqli = bancoMysqli();
 		$mysqli->query($sql);
 	}

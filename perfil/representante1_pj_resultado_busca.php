@@ -11,6 +11,7 @@ if(isset($_POST['busca']))
 	if($validacao == false)
 	{
 		echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=?perfil=erros&p=erro_representante1'>";
+		
 	}
 	else
 	{

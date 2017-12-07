@@ -30,6 +30,7 @@ if(isset($_POST['login']))
 				$log = "Fez login.";
 				//gravarLog($log);
 				header("Location: visual/index.php");
+				gravarLog($sql);
 			}
 			else
 			{

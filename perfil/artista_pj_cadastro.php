@@ -12,6 +12,7 @@ if(isset($_POST['insereArtista']))
 	if(mysqli_query($con,$sql_insere))
 	{
 		$mensagem = "Artista inserido no evento com sucesso!";
+		gravarLog($sql_insere);
 		$evento = recuperaDados("evento","id",$idEvento);
 		$artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 		$nome = $artista['nome'];
@@ -21,6 +22,7 @@ if(isset($_POST['insereArtista']))
 		if(mysqli_query($con,$sql_grupo))
 		{
 			$mensagem .= "!!";
+			gravarLog($sql_grupo);
 		}
 	}
 	else
@@ -47,16 +49,19 @@ if(isset($_POST['cadastraArtista']))
 	if(mysqli_query($con,$sql_cadastra))
 	{
 		$mensagem = "Cadastrado com sucesso!";
+		gravarLog($sql_cadastra);
 		$idEvento = $_SESSION['idEvento'];
 		$sql_ultimo = "SELECT id FROM pessoa_fisica WHERE idUsuario = '$idUser' ORDER BY id DESC LIMIT 0,1";
 		$query_ultimo = mysqli_query($con,$sql_ultimo);
 		$ultimoPf = mysqli_fetch_array($query_ultimo);
 		$idPf = $ultimoPf['id'];
 
+		
 		$sql_atualiza_evento = "UPDATE evento SET idPf = '$idPf' WHERE id = '$idEvento'";
 		if(mysqli_query($con,$sql_atualiza_evento))
 		{
 			$mensagem .= " Artista inserido no evento";
+			gravarLog ($sql_atualiza_evento);
 			$evento = recuperaDados("evento","id",$idEvento);
 			$artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 			$nome = $artista['nome'];
@@ -66,6 +71,7 @@ if(isset($_POST['cadastraArtista']))
 			if(mysqli_query($con,$sql_grupo))
 			{
 				$mensagem .= ".";
+				gravarLog ($sql_grupo);
 			}
 		}
 		else
@@ -107,6 +113,7 @@ if(isset($_POST['editaArtista']))
 	if(mysqli_query($con,$sql_edita))
 	{
 		$mensagem = "Atualizado com sucesso!";
+		gravarLog ($sql_edita);
 	}
 	else
 	{
@@ -121,6 +128,7 @@ if(isset($_POST['remover']))
 	if(mysqli_query($con,$sql_remove))
 	{
 		echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=?perfil=artista_pj'>";
+		gravarLog($sql_remove);
 	}
 }
 
@@ -163,6 +171,7 @@ if(isset($_POST["enviar"]))
 						if($query)
 						{
 							$mensagem = "Arquivo recebido com sucesso!";
+							gravarLog ($sql_insere_arquivo);
 						}
 						else
 						{

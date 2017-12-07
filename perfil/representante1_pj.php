@@ -14,6 +14,8 @@ if(isset($_POST['apagaRepresentante']))
 	if(mysqli_query($con,$sql_apaga_rep1))
 	{
 		$mensagem = "Apagado com sucesso!";
+		gravarLog($sql_apaga_rep1);
+
 	?>
 		<script language="JavaScript">
 			window.location = "?perfil=representante1_pj";

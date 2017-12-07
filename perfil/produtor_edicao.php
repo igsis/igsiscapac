@@ -19,7 +19,6 @@ if(isset($_POST['insere']))
 	$sql_insere = "INSERT INTO `produtor`(`nome`, `email`, `telefone1`, `telefone2`, `idUsuario`) VALUES ('$nome', '$email', '$telefone1', '$telefone2', '$idUser')";
 	if(mysqli_query($con,$sql_insere))
 	{
-		gravarLog($sql_insere);
 		$sql_ultimo = "SELECT id FROM produtor WHERE idUsuario = '$idUser' ORDER BY id DESC LIMIT 0,1";
 		$query_ultimo = mysqli_query($con,$sql_ultimo);
 		$ultimoProdutor = mysqli_fetch_array($query_ultimo);
@@ -28,6 +27,7 @@ if(isset($_POST['insere']))
 		if(mysqli_query($con,$sql_grava_evento))
 		{
 			$mensagem = "Inserido com sucesso!";
+			gravarLog($sql_grava_evento);
 		}
 		else
 		{
@@ -50,6 +50,7 @@ if(isset($_POST['atualizar']))
 	if(mysqli_query($con,$sql_atualizar))
 	{
 		$mensagem = "Atualizado com sucesso!";
+		gravarLog($sql_atualizar);
 	}
 	else
 	{

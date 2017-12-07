@@ -25,6 +25,7 @@ if(isset($_POST['atualizarCadastro']))
 		if(mysqli_query($con,$sql_atualiza_cadastro))
 		{
 			$mensagem = "Atualizado com sucesso!";
+			gravarLog($sql_atualiza_cadastro);
 		}
 		else
 		{

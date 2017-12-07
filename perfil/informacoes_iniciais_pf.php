@@ -27,6 +27,7 @@ if(isset($_POST['cadastrarFisica']))
 	if(mysqli_query($con,$sql_cadastra_pf))
 	{
 		$mensagem = "Cadastrado com sucesso!";
+		gravarLog($sql_cadastra_pf);
 		if(isset($_SESSION['idEvento']))
 		{
 			$idEvento = $_SESSION['idEvento'];
@@ -40,6 +41,7 @@ if(isset($_POST['cadastrarFisica']))
 			{
 				$mensagem .= " Pessoa inserida no evento.<br/>";
 				$_SESSION['idPf'] = $idPf;
+				gravarLog($sql_atualiza_evento);
 			}
 			else
 			{
@@ -99,6 +101,7 @@ if(isset($_POST['atualizarFisica']))
 	if(mysqli_query($con,$sql_atualiza_pf))
 	{
 		$mensagem = "Atualizado com sucesso!";
+		gravarLog($sql_atualiza_pf);
 		if(isset($_SESSION['idEvento']))
 		{
 			$idEvento = $_SESSION['idEvento'];
@@ -106,6 +109,8 @@ if(isset($_POST['atualizarFisica']))
 			if(mysqli_query($con,$sql_atualiza_evento))
 			{
 				$mensagem .= " Pessoa inserida no evento.<br/>";
+				gravarLog($sql_atualiza_evento);
+
 			}
 			else
 			{
@@ -164,6 +169,7 @@ if(isset($_POST["enviar"]))
 						if($query)
 						{
 							$mensagem = "Arquivo recebido com sucesso!";
+							gravarLog($sql_insere_arquivo);
 						}
 						else
 						{

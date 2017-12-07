@@ -13,6 +13,7 @@ if(isset($_POST['insereIntegrante']))
 	if(mysqli_query($con,$sql_insere))
 	{
 		$mensagem = "Inserido com sucesso!";
+		gravarLog($sql_insere);
 	}
 	else
 	{
@@ -27,6 +28,7 @@ if(isset($_POST['apagarIntegrante']))
 	if(mysqli_query($con,$sql_apaga))
 	{
 		$mensagem = "Removido com sucesso!";
+		gravarLog($sql_apaga);
 	}
 	else
 	{
@@ -71,6 +73,7 @@ if(isset($_POST["enviar"]))
 						if($query)
 						{
 							$mensagem = "Arquivo recebido com sucesso";
+							gravarLog($sql_insere_arquivo);
 						}
 						else
 						{

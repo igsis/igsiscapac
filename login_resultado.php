@@ -34,6 +34,7 @@ if(isset($_POST['cadastrar']))
 					 echo "<script type=\"text/javascript\">
 						  window.setTimeout(\"location.href='index.php';\", 4000);
 						</script>";
+					gravarLog($sql_cadastra);
 				}
 				else
 				{
@@ -141,7 +142,7 @@ if($num_busca > 0)
 <?php
 }
 else
-{ // se não existir o cpf, imprime um formulário.
+{ // se não existir o email, imprime um formulário.
 	$busca = $_POST['busca'];
 	require "include/script.php";
 ?>

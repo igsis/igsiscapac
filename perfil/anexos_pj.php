@@ -42,6 +42,7 @@ if(isset($_POST["enviar"]))
 						if($query)
 						{
 							$mensagem = "Arquivo recebido com sucesso";
+							gravarLog($sql_insere_arquivo);
 						}
 						else
 						{

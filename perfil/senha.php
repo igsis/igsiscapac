@@ -21,6 +21,7 @@ if(isset($_POST['senha01']))
 				if($query_senha)
 				{
 					$mensagem = "Senha alterada com sucesso!";
+					gravarLog($sql_senha);
 				}
 				else
 				{
@@ -57,6 +58,7 @@ if(isset($_POST['fraseSeguranca']))
 	if(mysqli_query($con,$sql_seguranca_pf))
 	{
 		$mensagem = "Pergunta secreta atualizada com sucesso!";
+		gravarLog($sql_seguranca_pf);
 	}
 	else
 	{

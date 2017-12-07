@@ -13,6 +13,7 @@ if(isset($_POST['cadastrarJuridica']))
 	if(mysqli_query($con,$sql_atualiza_complementares))
 	{
 		$mensagem = "Atualizado com sucesso!";	
+		gravarLog($sql_atualiza_complementares);
 	}
 	else
 	{

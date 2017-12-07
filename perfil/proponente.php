@@ -17,6 +17,7 @@ if(isset($_POST['apagar']))
 		echo "<script type=\"text/javascript\">
 				 window.setTimeout(\"location.href='?perfil=proponente';\", 4000);
 			</script>";
+		gravarLog($sql_apaga);	
 	}
 	else
 	{
@@ -34,6 +35,7 @@ if(isset($_POST['inserePj']))
 		echo "<script type=\"text/javascript\">
 				 window.setTimeout(\"location.href='?perfil=proponente';\", 4000);
 			</script>";
+		gravarLog($sql_inserePj);		
 	}
 	else
 	{

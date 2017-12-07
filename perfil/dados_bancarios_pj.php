@@ -20,7 +20,8 @@ if(isset($_POST['cadastrarBanco']))
 
 	if(mysqli_query($con,$sql_atualiza_pj))
 	{
-		$mensagem = "Atualizado com sucesso!!!";
+		$mensagem = "Atualizado com sucesso!";
+		gravarLog($sql_atualiza_pj);
 	}
 	else
 	{
@@ -68,6 +69,7 @@ if(isset($_POST["enviar"]))
 						if($query)
 						{
 							$mensagem = "Arquivo recebido com sucesso";
+							gravarLog($sql_insere_arquivo);
 						}
 						else
 						{

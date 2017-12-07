@@ -61,7 +61,6 @@ $campo = recuperaDados("evento","id",$_SESSION['idEvento']);
 							$idEvento = $_SESSION['idEvento'];
 							$sql = "INSERT INTO `upload_arquivo_com_prod`(`idEvento`, `arquivo`, `publicado`) VALUES ('$idEvento', '$arquivo_base', '1' )";
 							mysqli_query($con,$sql);
-							gravarLog($sql);
 							if( !move_uploaded_file( $arquivoTmp, $arquivo ) )
 							{
 								$msg[$i] = 'Erro no upload do arquivo '.$i;
@@ -69,6 +68,7 @@ $campo = recuperaDados("evento","id",$_SESSION['idEvento']);
 							else
 							{
 								$msg[$i] = sprintf('Upload do arquivo %s foi um sucesso!',$i);
+								gravarLog($sql);
 							}
 						}
 					}

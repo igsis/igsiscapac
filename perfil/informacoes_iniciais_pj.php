@@ -20,6 +20,7 @@ if(isset($_POST['cadastrarJuridica']))
 	if(mysqli_query($con,$sql_cadastra_pj))
 	{
 		$mensagem = "Cadastrado com sucesso!";
+		gravarLog($sql_cadastra_pj);
 		if(isset($_SESSION['idEvento']))
 		{
 			$idEvento = $_SESSION['idEvento'];
@@ -33,6 +34,8 @@ if(isset($_POST['cadastrarJuridica']))
 			{
 				$mensagem .= " Empresa inserida no evento.<br/>";
 				$_SESSION['idPj'] = $idPj;
+				gravarLog($sql_atualiza_evento);
+
 			}
 			else
 			{
@@ -78,6 +81,7 @@ if(isset($_POST['atualizarJuridica']))
 	if(mysqli_query($con,$sql_atualiza_pj))
 	{
 		$mensagem = "Atualizado com sucesso!";
+		gravarLog($sql_atualiza_pj);
 		if(isset($_SESSION['idEvento']))
 		{
 			$idEvento = $_SESSION['idEvento'];
@@ -85,6 +89,7 @@ if(isset($_POST['atualizarJuridica']))
 			if(mysqli_query($con,$sql_atualiza_evento))
 			{
 				$mensagem .= " Empresa inserida no evento.<br/>";
+				gravarLog($sql_atualiza_evento);
 			}
 			else
 			{
@@ -143,6 +148,7 @@ if(isset($_POST["enviar"]))
 						if($query)
 						{
 							$mensagem = "Arquivo recebido com sucesso!";
+							gravarLog($sql_insere_arquivo);
 						}
 						else
 						{

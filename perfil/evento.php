@@ -12,6 +12,7 @@ if(isset($_POST['apagar']))
 	if(mysqli_query($con,$sql_apaga))
 	{
 		$mensagem = "Evento apagado com sucesso!";
+		gravarLog($sql_apaga);
 	}
 	else
 	{

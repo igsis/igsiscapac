@@ -17,6 +17,7 @@ if(isset($_POST['cadastrarFisica']))
 	if (mysqli_query($con,$sql_atualiza_complementares))
 	{
 		$mensagem = "Atualizado com sucesso!";
+		gravarLog($sql_atualiza_complementares);
 	}
 	else
 	{
@@ -66,6 +67,7 @@ if(isset($_POST["enviar"]))
 						if($query)
 						{
 							$mensagem = "Arquivo recebido com sucesso!";
+							gravarLog($sql_insere_arquivo);
 						}
 						else
 						{

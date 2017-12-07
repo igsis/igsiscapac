@@ -19,6 +19,8 @@ if(isset($_POST['cadastrarEndereco']))
 	if(mysqli_query($con,$sql_atualiza_endereco_pj))
 	{
 		$mensagem = "Atualizado com sucesso!";
+		gravarLog($sql_atualiza_endereco_pj);
+
 	}
 	else
 	{
