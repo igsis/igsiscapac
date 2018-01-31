@@ -22,11 +22,12 @@ if(isset($_POST['cadastraRepresentante']))
 		$nacionalidade = $_POST['nacionalidade'];
 
 		$sql_insere_rep1 = "INSERT INTO `representante_legal` (`nome`, `rg`, `cpf`, `nacionalidade`, `idEstadoCivil`) VALUES ('$nome', '$rg', '$cpf', '$nacionalidade', '$idEstadoCivil')";
+
 		if(mysqli_query($con,$sql_insere_rep1))
 		{
 			$mensagem = "Cadastrado com sucesso!";
-			$idRep1 = recuperaUltimo("representante_legal");
-			$sql_representante1_empresa = "UPDATE pessoa_juridica SET idRepresentanteLegal1 = '$idRep1' WHERE id = '$idPj'";
+			$idrep1 = recuperaUltimo("representante_legal");
+			$sql_representante1_empresa = "UPDATE pessoa_juridica SET idRepresentanteLegal1 = '$idrep1' WHERE id = '$idPj'";
 			$query_representante1_empresa = mysqli_query($con,$sql_representante1_empresa);
 			gravarLog($sql_insere_rep1);
 		}
@@ -40,8 +41,8 @@ if(isset($_POST['cadastraRepresentante']))
 // Insere um Representante que foi pesquisado
 if(isset($_POST['insereRepresentante']))
 {
-	$idRep1 = $_POST['insereRepresentante'];
-	$sql_representante1_empresa = "UPDATE pessoa_juridica SET idRepresentanteLegal2 = '$idRep1' WHERE id = '$idPj'";
+	$idrep1 = $_POST['insereRepresentante'];
+	$sql_representante1_empresa = "UPDATE pessoa_juridica SET idRepresentanteLegal1 = '$idrep1' WHERE id = '$idPj'";
 	if(mysqli_query($con,$sql_representante1_empresa))
 	{
 		$mensagem = "Atualizado com sucesso!";
@@ -64,7 +65,7 @@ if(isset($_POST['editaRepresentante']))
 	}
 	else
 	{
-		$idRep1 = $_POST['editaRepresentante'];
+		$idrep1 = $_POST['editaRepresentante'];
 		$nome = addslashes($_POST['nome']);
 		$rg = $_POST['rg'];
 		$cpf = $_POST['cpf'];
@@ -77,15 +78,14 @@ if(isset($_POST['editaRepresentante']))
 		`cpf` = '$cpf',
 		`nacionalidade` = '$nacionalidade',
 		`idEstadoCivil` = '$idEstadoCivil'
-		WHERE `id` = '$idRep1'";
+		WHERE `id` = '$idrep1'";
 
 		if(mysqli_query($con,$sql_atualiza_rep1))
 		{
 			$mensagem = "Atualizado com sucesso!";
-			$sql_representante1_empresa = "UPDATE pessoa_juridica SET idRepresentanteLegal1 = '$idRep1' WHERE id = '$idPj'";
+			$sql_representante1_empresa = "UPDATE pessoa_juridica SET idRepresentanteLegal1 = '$idrep1' WHERE id = '$idPj'";
 			$query_representante1_empresa = mysqli_query($con,$sql_representante1_empresa);
 			gravarLog($sql_atualiza_rep1);
-
 		}
 		else
 		{
@@ -194,7 +194,7 @@ $representante1 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
 							<input type="text" class="form-control" name="rg" placeholder="RG" value="<?php echo $representante1['rg']; ?>" >
 						</div>
 						<div class="col-md-6"><strong>CPF: *</strong><br/>
-							<input type="text" readonly class="form-control" name="cpf" value="<?php echo $representante1['cpf'] ?>" placeholder="CPF">
+							<input type="text" readonly class="form-control" name="cpf" placeholder="CPF" value="<?php echo $representante1['cpf']; ?>" >
 						</div>
 					</div>
 
@@ -212,7 +212,7 @@ $representante1 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
 					<!-- Botão para Gravar -->
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
-							<input type="hidden" name="editaRepresentante" value="<?php echo $idRep1 ?>">
+							<input type="hidden" name="editaRepresentante" value="<?php echo $idrep1 ?>">
 							<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 						</div>
 					</div>
@@ -226,7 +226,7 @@ $representante1 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s) Somente em PDF</h6>
-							<?php listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","representante1_pj_cadastro",5); ?>
+							<?php listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","representante1_pj_cadastro",6); ?>
 						</div>
 					</div>
 				</div>
@@ -241,7 +241,7 @@ $representante1 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
 									<td width="50%"><td>
 								</tr>
 								<?php
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '20'";
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '103'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{
@@ -266,7 +266,7 @@ $representante1 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
 									<td width="50%"><td>
 								</tr>
 								<?php
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '21'";
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '104'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{
@@ -292,24 +292,24 @@ $representante1 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
 				</div>
 
 				<!-- Botão para Trocar o Representante -->
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<form method='POST' action='?perfil=representante1_pj'>
-							<input type="hidden" name="apagaRepresentante" value="<?php echo $idPj ?>">
-							<input type="submit" value="Trocar o Representante" class="btn btn-theme btn-lg btn-block">
-						</form>
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8">
+							<form method='POST' action='?perfil=representante1_pj'>
+								<input type="hidden" name="apagaRepresentante" value="<?php echo $idPj ?>">
+								<input type="submit" value="Trocar o Representante" class="btn btn-theme btn-lg btn-block">
+							</form>
+						</div>
 					</div>
-				</div>
 
 				<!-- Botão para Voltar e Prosseguir -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=endereco_pj" method="post">
+						<form class="form-horizontal" role="form" action="?perfil=representante1_pj" method="post">
 							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>
 					</div>
 					<div class="col-md-offset-4 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=representante2_pj" method="post">
+						<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pj" method="post">
 							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>
 					</div>

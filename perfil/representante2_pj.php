@@ -9,13 +9,13 @@ if(isset($_POST['apagaRepresentante']))
 {
 	$idPj = $_POST['apagaRepresentante'];
 
-	$sql_apaga_rep1 = "UPDATE pessoa_juridica SET idRepresentanteLegal2 = '0'
+	$sql_apaga_rep2 = "UPDATE pessoa_juridica SET idRepresentanteLegal2 = '0'
 	WHERE `id` = '$idPj'";
 
-	if(mysqli_query($con,$sql_apaga_rep1))
+	if(mysqli_query($con,$sql_apaga_rep2))
 	{
 		$mensagem = "Apagado com sucesso!";
-		gravarLog($sql_apaga_rep1);
+		gravarLog($sql_apaga_rep2);
 	?>
 		<script language="JavaScript">
 			window.location = "?perfil=representante2_pj";
@@ -69,7 +69,7 @@ if ($pj['idRepresentanteLegal2'] == 0) // Não possui representante legal cadast
 				<!-- Botão para Voltar e Prosseguir -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=representante1_pj" method="post">
+						<form class="form-horizontal" role="form" action="?perfil=representante2_pj" method="post">
 							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>
 					</div>

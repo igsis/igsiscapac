@@ -8,6 +8,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 if(isset($_POST['apagaRepresentante']))
 {
 	$idPj = $_POST['apagaRepresentante'];
+
 	$sql_apaga_rep1 = "UPDATE pessoa_juridica SET idRepresentanteLegal1 = '0'
 	WHERE `id` = '$idPj'";
 
@@ -15,7 +16,6 @@ if(isset($_POST['apagaRepresentante']))
 	{
 		$mensagem = "Apagado com sucesso!";
 		gravarLog($sql_apaga_rep1);
-
 	?>
 		<script language="JavaScript">
 			window.location = "?perfil=representante1_pj";
@@ -69,16 +69,17 @@ if ($pj['idRepresentanteLegal1'] == 0) // Não possui representante legal cadast
 				<!-- Botão para Voltar e Prosseguir -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=endereco_pj" method="post">
+						<form class="form-horizontal" role="form" action="?perfil=representante1_pj" method="post">
 							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>
 					</div>
 					<div class="col-md-offset-4 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=representante2_pj" method="post">
+						<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pj" method="post">
 							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</section>
@@ -87,6 +88,6 @@ if ($pj['idRepresentanteLegal1'] == 0) // Não possui representante legal cadast
 }
 else
 {
-	echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=?perfil=representante1_pj_cadastro'>";
+	echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=?perfil=representante1_pj_cadastro&id_pj=".$idPj."'>";
 }
 ?>
