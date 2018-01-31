@@ -57,7 +57,7 @@ if(isset($_POST["enviar"]))
 				$allowedExts = array(".pdf", ".PDF"); //Extensões permitidas
 				$ext = strtolower(substr($nome_arquivo,-4));
 
-				if(in_array($ext, $allowedExts)) //Pergunta se a extensão do arquivo, está presente no array das extensões permitidas
+				if(in_array($ext, $allowedExts)) //Pergunta se a extensão do arquivo, está presente no array das extensões permitidas/
 				{
 					if(move_uploaded_file($nome_temporario, $dir.$new_name))
 					{
