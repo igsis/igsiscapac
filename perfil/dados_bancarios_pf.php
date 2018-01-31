@@ -32,7 +32,7 @@ if(isset($_POST['cadastrarBanco']))
 
 if(isset($_POST["enviar"]))
 {
-	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoPessoa = '$tipoPessoa' AND id = '$idCampo'";
+	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idCampo'";
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
 	{
@@ -40,9 +40,7 @@ if(isset($_POST["enviar"]))
 		$x = $arq['sigla'];
 		$nome_arquivo = $_FILES['arquivo']['name'][$x];
 		$f_size = $_FILES['arquivo']['size'][$x];
-
-		//Extensões permitidas
-		$ext = array("PDF","pdf");
+		$ext = array("PDF","pdf"); //Extensões permitidas
 
 		if($f_size > 2097152) // 2MB em bytes
 		{
@@ -56,9 +54,7 @@ if(isset($_POST["enviar"]))
 				$new_name = date("YmdHis")."_".semAcento($nome_arquivo); //Definindo um novo nome para o arquivo
 				$hoje = date("Y-m-d H:i:s");
 				$dir = '../uploadsdocs/'; //Diretório para uploads
-
 				$allowedExts = array(".pdf", ".PDF"); //Extensões permitidas
-
 				$ext = strtolower(substr($nome_arquivo,-4));
 
 				if(in_array($ext, $allowedExts)) //Pergunta se a extensão do arquivo, está presente no array das extensões permitidas
@@ -67,20 +63,19 @@ if(isset($_POST["enviar"]))
 					{
 						$sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPf', '$idCampo', '$new_name', '$hoje', '1'); ";
 						$query = mysqli_query($con,$sql_insere_arquivo);
-
 						if($query)
 						{
-							$mensagem = "Arquivo recebido com sucesso";
+							$mensagem = "Arquivo recebido com sucesso!";
 							gravarLog($sql_insere_arquivo);
 						}
 						else
 						{
-							$mensagem = "Erro ao gravar no banco";
+							$mensagem = "Erro ao gravar no banco!";
 						}
 					}
 					else
 					{
-						 $mensagem = "Erro no upload";
+						$mensagem = "Erro no upload. Tete novamente!";
 					}
 				}
 				else
