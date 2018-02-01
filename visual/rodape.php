@@ -3,9 +3,9 @@
 	<div class="container">
 		<table width="100%">
 			<tr>
-				<td><img src="visual/images/logo_cultura_q.png" align="left"/></td>
+				<td><img src="../visual/images/logo_cultura_q.png" align="left"/></td>
 				<td align="center"><font color="#ccc">2017 @ IGSIS - Cadastro de Artistas e Profissionais de Arte e Cultura<br/>Secretaria Municipal de Cultura<br/>Prefeitura de São Paulo</font></td>
-				<td><img src="visual/images/logo_igsis_azul.png" align="right"/></td>
+				<td><img src="../visual/images/logo_igsis_azul.png" align="right"/></td>
 			</tr>
 		</table>
 		<div class="row">
@@ -20,10 +20,9 @@
 				//} */
 			?>
 			</div>
-		</div>		
-	</div>	
+		</div>
+	</div>
 </footer>
- 
 
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.smooth-scroll.min.js"></script>
