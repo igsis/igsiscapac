@@ -149,7 +149,7 @@ $num = mysqli_num_rows($query_grupos);
 										<td class='list_description'>
 											<form method='POST' action='?perfil=grupo'>
 												<input type="hidden" name="apagarIntegrante" value="<?php echo $grupo['id'] ?>" />
-												<input type ='submit' class='btn btn-theme btn-block' value='apagarIntegrante'>
+												<input type ='submit' class='btn btn-theme btn-block' value='apagar Integrante'>
 											</form>
 										</td>
 									</tr>
