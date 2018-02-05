@@ -180,13 +180,13 @@ $evento = recuperaDados("evento","id",$idEvento);
 					</div>
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
-							<label>Ficha técnica completa*</label>
+							<label>Ficha técnica completa *</label>
 							<textarea name="fichaTecnica" class="form-control" rows="10" placeholder="Elenco, técnicos, programa do concerto, outros profissionais envolvidos."><?php echo $evento['fichaTecnica'] ?></textarea>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
-							<label>Classificação/indicação etária*</label>
+							<label>Classificação indicativa *</label> <a href="?perfil=classificacaoIndicativa" target="_blank"><i>(Confira aqui como classificar)</i></a>
 							<select class="form-control" name="idFaixaEtaria" id="inputSubject" >
 								<option>Selecione...</option>
 								<?php echo geraOpcao("faixa_etaria",$evento['idFaixaEtaria']) ?>

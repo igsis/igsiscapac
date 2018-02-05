@@ -39,7 +39,7 @@
 					</div>
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
-							<label>Classificação/indicação etária*</label>
+							<label>Classificação indicativa *</label> <a href="?perfil=classificacaoIndicativa" target="_blank"><i>(Confira aqui como classificar)</i></a>
 							<select class="form-control" name="idFaixaEtaria" id="inputSubject" >
 								<option value="0"></option>
 								<?php echo geraOpcao("faixa_etaria","") ?>
