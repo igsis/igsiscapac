@@ -23,7 +23,7 @@ if($evento['fichaTecnica'] == NULL)
 	$i = 1;
 }
 
-if($evento['idFaixaEtaria'] == NULL)
+if($evento['idFaixaEtaria'] == NULL OR $evento['idFaixaEtaria'] == 0)
 {
 	$mensagem = $mensagem."Faixa Etária<br/>";
 	$i = 1;
@@ -186,9 +186,19 @@ if($tipoPessoa == 1)
 		$i = 1;
 	}
 }
+
+if(isset($_POST['enviar']))
+{
+	$sql_envia = "UPDATE `evento` SET `publicado`= 2 WHERE `id` = '$idEvento'";
+	$con = bancoMysqli();
+	if(mysqli_query($con,$sql_envia))
+	{
+		$mensagem = "<h4>Enviado com sucesso! Entre em contato com o programador do seu evento e informe o código: <font color='red'>".$idEvento."</font></h4>";
+	}
+}
 ?>
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_interno_pf.php'; ?>
+	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
 			<h3>FINALIZAR</h3><?php echo $i ?>
 		</div>
@@ -196,7 +206,20 @@ if($tipoPessoa == 1)
 			<div class="col-md-offset-1 col-md-10">
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<p><strong>O(s) seguinte(s) campo(s) obrigatório(s) não foram preenchidos:</strong></p>
+						<?php
+						if($i == 0)
+						{
+						?>
+							<p><strong>Não há pendências de preenchimento de campos.</strong></p>
+						<?php
+						}
+						else
+						{
+						?>
+							<p><strong>O(s) seguinte(s) campo(s) obrigatório(s) não foram preenchidos:</strong></p>
+						<?php
+						}
+						?>
 						<p align="left"><?php if(isset($mensagem)){echo $mensagem;};?></p>
 					</div>
 				</div>
@@ -206,7 +229,7 @@ if($tipoPessoa == 1)
 						if($i == 0)
 						{
 						?>
-							<form class="form-horizontal" role="form" action="?perfil=pendencias" method="post">
+							<form class="form-horizontal" role="form" action="?perfil=finalizar" method="post">
 								<input type="submit" name="enviar" value="ENVIAR" class="btn btn-theme btn-lg btn-block">
 							</form>
 						<?php

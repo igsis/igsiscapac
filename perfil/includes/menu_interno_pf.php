@@ -12,6 +12,7 @@
 			{
 			?>
 				| <a href="?perfil=evento_edicao">Evento</a>
+				| <a href="?perfil=finalizar">Finalizar</a>
 			<?php
 			}
 			?>

@@ -45,7 +45,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
 				<div class="table-responsive list_info">
 				<?php
 					$sql = "SELECT * FROM evento
-							WHERE publicado = 1 AND idUsuario ='$idUser'
+							WHERE publicado > 0 AND idUsuario ='$idUser'
 							ORDER BY id DESC";
 					$query = mysqli_query($con,$sql);
 					$num = mysqli_num_rows($query);
@@ -59,6 +59,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
 										<td>Nome do evento</td>
 										<td>Tipo de evento</td>
 										<td>Data cadastro</td>
+										<td>Enviado</td>
 										<td width='10%'></td>
 										<td width='10%'></td>
 									</tr>
@@ -71,16 +72,31 @@ $usuario = recuperaDados("usuario","id",$idUser);
 									echo "<td class='list_description'>".$campo['nomeEvento']."</td>";
 									echo "<td class='list_description'>".retornaTipo($campo['idTipoEvento'])."</td>";
 									echo "<td class='list_description'>".exibirDataHoraBr($campo['dataCadastro'])."</td>";
+									if($campo['publicado'] == 2)
+									{
+										echo "<td class='list_description'>Sim</td>";
+									}
+									else
+									{
+										echo "<td class='list_description'>Não</td>";
+									}
 									echo "
 										<td class='list_description'>
 											<form method='POST' action='?perfil=evento_edicao'>
 												<input type='hidden' name='carregar' value='".$campo['id']."' />
-												<input type ='submit' class='btn btn-theme btn-block' value='carregar'></td></form>";
-									echo "
-										<td class='list_description'>
-											<form method='POST' action='?perfil=evento'>
-												<input type='hidden' name='apagar' value='".$campo['id']."' />
-												<input type ='submit' class='btn btn-theme  btn-block' value='apagar'></td></form>"	;
+												<input type ='submit' class='btn btn-theme btn-block' value='carregar'>
+											</form>
+										</td>";
+									if($campo['publicado'] == 1)
+									{
+										echo "
+											<td class='list_description'>
+												<form method='POST' action='?perfil=evento'>
+													<input type='hidden' name='apagar' value='".$campo['id']."' />
+													<input type ='submit' class='btn btn-theme  btn-block' value='apagar'>
+												</form>
+											</td>";
+									}
 									echo "</tr>";
 								}
 								echo "
