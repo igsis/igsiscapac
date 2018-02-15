@@ -193,7 +193,7 @@ if(isset($_POST['enviar']))
 	$con = bancoMysqli();
 	if(mysqli_query($con,$sql_envia))
 	{
-		$mensagem = "<h4>Enviado com sucesso! Entre em contato com o programador do seu evento e informe o código: <font color='red'>".$idEvento."</font></h4>";
+		$mensagem = "<h4>Enviado com sucesso! Entre em contato com o programador do seu evento e informe o código do CAPAC: <font color='red'>".$idEvento."</font></h4>";
 	}
 }
 ?>
