@@ -29,7 +29,6 @@ function menuEvento($perfil,$voltar,$avancar)
 	</div>
 	<div class="form-group">
 		<div class="col-md-offset-2 col-md-8">
-			<strong>
 			<?php
 			if(isset($_SESSION['idEvento']))
 			{
@@ -49,7 +48,7 @@ function menuEvento($perfil,$voltar,$avancar)
 				    break;
 				    case 'produtor_edicao':
 				        $perfil = "produtor_edicao";
-				        $voltar = "arquivos_proponente";
+				        $voltar = "arquivos_edicao";
 				        $avancar = "arquivos_com_prod";
 				        $menu = menuEvento($perfil,$voltar,$avancar);
 				    break;
