@@ -38,11 +38,11 @@ function menuEvento($perfil,$voltar,$avancar)
 				    case 'evento_edicao':
 				        $perfil = "evento_edicao";
 				        $voltar = "evento";
-				        $avancar = "arquivos_proponente";
+				        $avancar = "arquivos_evento";
 				        $menu = menuEvento($perfil,$voltar,$avancar);
 				    break;
-				    case 'arquivos_proponente':
-				        $perfil = "arquivos_proponente";
+				    case 'arquivos_evento':
+				        $perfil = "arquivos_evento";
 				        $voltar = "evento_edicao";
 				        $avancar = "produtor_edicao";
 				        $menu = menuEvento($perfil,$voltar,$avancar);
