@@ -34,17 +34,18 @@ if(isset($_POST['login']))
 			}
 			else
 			{
-				$mensagem = "A senha está incorreta.";
+			$mensagem = "<font color='#FF0000'><strong>A senha está incorreta!</strong></font>";
+
 			}
 		}
 		else
 		{
-			$mensagem = "O usuário não existe.";
+			$mensagem = "<font color='#FF0000'><strong>O usuário não existe.</strong></font>";
 		}
 	}
 	else
 	{
-		$mensagem = "Erro no banco de dados";
+		$mensagem = "<font color='#FF0000'><strong>Erro no banco de dados!</strong></font>";
 	}
 }
 

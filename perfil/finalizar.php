@@ -193,7 +193,7 @@ if(isset($_POST['enviar']))
 	$con = bancoMysqli();
 	if(mysqli_query($con,$sql_envia))
 	{
-		$mensagem = "<h4>Enviado com sucesso! Entre em contato com o programador do seu evento e informe o código do CAPAC: <font color='red'>".$idEvento."</font></h4>";
+		$mensagem = "<h4><font color='#01DF3A'>Enviado com sucesso! Entre em contato com o programador do seu evento e informe o código do CAPAC: </font><font color='#FF0000'>".$idEvento."</font></h4>";
 	}
 }
 ?>
@@ -210,7 +210,7 @@ if(isset($_POST['enviar']))
 						if($i == 0)
 						{
 						?>
-							<p><strong>Não há pendências de preenchimento de campos.</strong></p>
+							<p><strong><font color='#01DF3A'>Não há pendências de preenchimento de campos.</font></strong></p>
 						<?php
 						}
 						else
@@ -238,7 +238,7 @@ if(isset($_POST['enviar']))
 						{
 						?>
 							<br/><br/>
-							<h6>Para habilitar o botão de envio, preencha todos os campos obrigatórios.</h6>
+							<h6><font color='#FF0000'>Para habilitar o botão de envio, preencha todos os campos obrigatórios.</font></h6>
 						<?php
 						}
 						?>

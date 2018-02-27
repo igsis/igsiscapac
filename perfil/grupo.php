@@ -12,12 +12,12 @@ if(isset($_POST['insereIntegrante']))
 	$sql_insere = "INSERT INTO `grupo`(`idEvento`, `nome`, `rg`, `cpf`, `publicado`) VALUES ('$idEvento', '$nome', '$rg', '$cpf', '1')";
 	if(mysqli_query($con,$sql_insere))
 	{
-		$mensagem = "Inserido com sucesso!";
+		$mensagem = "<font color='#01DF3A'><strong>Inserido com sucesso!</strong></font>";
 		gravarLog($sql_insere);
 	}
 	else
 	{
-		$mensagem = "Erro ao inserir! Tente novamente.";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao inserir! Tente novamente.</strong></font>";
 	}
 }
 
@@ -27,12 +27,12 @@ if(isset($_POST['apagarIntegrante']))
 	$sql_apaga = "UPDATE `grupo` SET publicado = '0' WHERE id = '$idIntegrante'";
 	if(mysqli_query($con,$sql_apaga))
 	{
-		$mensagem = "Removido com sucesso!";
+		$mensagem = "<font color='#01DF3A'><strong>Removido com sucesso!</strong></font>";
 		gravarLog($sql_apaga);
 	}
 	else
 	{
-		$mensagem = "Erro ao remover! Tente novamente.";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao remover! Tente novamente.</strong></font>";
 	}
 }
 
@@ -51,7 +51,7 @@ if(isset($_POST["enviar"]))
 		$ext = array("PDF","pdf");
 		if($f_size > 2097152) // 2MB em bytes
 		{
-			$mensagem = "Erro! Tamanho de arquivo excedido! Tamanho máximo permitido: 02 MB.";
+			$mensagem = "<font color='#FF0000'><strong>Erro! Tamanho de arquivo excedido! Tamanho máximo permitido: 02 MB.</strong></font>";
 		}
 		else
 		{
@@ -72,22 +72,22 @@ if(isset($_POST["enviar"]))
 						$query = mysqli_query($con,$sql_insere_arquivo);
 						if($query)
 						{
-							$mensagem = "Arquivo recebido com sucesso";
+							$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 							gravarLog($sql_insere_arquivo);
 						}
 						else
 						{
-							$mensagem = "Erro ao gravar no banco";
+							$mensagem = "<font color='#FF0000'><strong>Erro ao gravar no banco.</strong></font>";
 						}
 					}
 					else
 					{
-						 $mensagem = "Erro no upload";
+						$mensagem = "<font color='#FF0000'><strong>Erro no upload!</strong></font>";
 					}
 				}
 				else
 				{
-					$mensagem = "Erro no upload! Anexar documentos somente no formato PDF.";
+					$mensagem = "<font color='#FF0000'><strong>Erro no upload! Anexar documentos somente no formato PDF.</strong></font>";
 				}
 			}
 		}
@@ -100,12 +100,12 @@ if(isset($_POST['apagar']))
 	$sql_apagar_arquivo = "UPDATE upload_arquivo SET publicado = 0 WHERE id = '$idArquivo'";
 	if(mysqli_query($con,$sql_apagar_arquivo))
 	{
-		$mensagem =	"Arquivo apagado com sucesso!";
+		$mensagem = "<font color='#01DF3A'><strong>Arquivo apagado com sucesso!</strong></font>";
 		gravarLog($sql_apagar_arquivo);
 	}
 	else
 	{
-		$mensagem = "Erro ao apagar o arquivo. Tente novamente!";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao apagar arquivo! Tente novamente.</strong></font>";
 	}
 }
 

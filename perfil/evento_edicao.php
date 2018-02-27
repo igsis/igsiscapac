@@ -21,7 +21,7 @@ if(isset($_POST['insere']))
 	$sql_insere = "INSERT INTO `evento`(`idTipoEvento`, `nomeEvento`, `nomeGrupo`, `fichaTecnica`, `idFaixaEtaria`, `sinopse`, `releaseCom`, `link`, `dataCadastro`, `publicado`, `idUsuario`) VALUES ('$idTipoEvento', '$nomeEvento', '$nomeGrupo', '$fichaTecnica', '$idFaixaEtaria', '$sinopse', '$release', '$link', '$dataCadastro', '1', '$idUser')";
 	if(mysqli_query($con,$sql_insere))
 	{
-		$mensagem = "Inserido com sucesso!";
+		$mensagem = "<font color='#01DF3A'><strong>Inserido com sucesso!</strong></font>";
 		gravarLog($sql_insere);
 		$sql_ultimo = "SELECT id FROM evento WHERE idUsuario = '$idUser' ORDER BY id DESC LIMIT 0,1";
 		$query_ultimo = mysqli_query($con,$sql_ultimo);
@@ -31,7 +31,7 @@ if(isset($_POST['insere']))
 	}
 	else
 	{
-		$mensagem = "Erro ao gravar... tente novamente";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao gravar! Tente novamente.</strong></font>";
 	}
 }
 
@@ -52,12 +52,12 @@ if(isset($_POST['atualizar']))
 		WHERE id = '$idEvento'";
 	if(mysqli_query($con,$sql_atualizar))
 	{
-		$mensagem = "Atualizado com sucesso!";
+		$mensagem = "<font color='#01DF3A'><strong>Atualizado com sucesso!</strong></font>";
 		gravarLog($sql_atualizar);
 	}
 	else
 	{
-		$mensagem = "Erro ao atualizar... tente novamente";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao atualizar! Tente novamente.</strong></font>";
 	}
 }
 

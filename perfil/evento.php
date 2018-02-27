@@ -11,12 +11,12 @@ if(isset($_POST['apagar']))
 	$sql_apaga = "UPDATE evento SET publicado = '0' WHERE id = '$idEvento'";
 	if(mysqli_query($con,$sql_apaga))
 	{
-		$mensagem = "Evento apagado com sucesso!";
+		$mensagem = "<font color='#01DF3A'><strong>Evento apagado com sucesso!</strong></font>";
 		gravarLog($sql_apaga);
 	}
 	else
 	{
-		$mensagem = "Erro ao apagar o evento! Tente novamente.";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao apagar evento! Tente novamente.</strong></font>";
 	}
 }
 
