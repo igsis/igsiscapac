@@ -62,7 +62,7 @@ function menuEvento($perfil,$voltar,$avancar)
 				        $perfil = "proponente";
 				        $voltar = "arquivos_com_prod";
 				        $avancar = "proponente";
-				        echo "menuEvento($perfil,$voltar,$avancar)";
+				        $menu = menuEvento($perfil,$voltar,$avancar);
 				    break;
 				    default:
 				    break;
