@@ -34,6 +34,7 @@ function menuEvento($perfil,$voltar,$avancar)
 			{
 				switch ($perfil)
 				{
+				    //INICIO EVENTO
 				    case 'evento_edicao':
 				        $perfil = "evento_edicao";
 				        $voltar = "evento";
@@ -64,6 +65,11 @@ function menuEvento($perfil,$voltar,$avancar)
 				        $avancar = "proponente";
 				        $menu = menuEvento($perfil,$voltar,$avancar);
 				    break;
+				    //FIM EVENTO
+				    //INICIO PJ
+				    //FIM PJ
+				    //INICIO PF
+				    //FIM PF
 				    default:
 				    break;
 				}
