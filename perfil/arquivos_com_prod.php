@@ -54,7 +54,7 @@ $campo = recuperaDados("evento","id",$_SESSION['idEvento']);
 						$arquivo_base = $dataUnique."_".semAcento($file['name']);
 						if(file_exists($arquivo))
 						{
-							echo "O arquivo ".$arquivo_base." já existe! Renomeie e tente novamente<br />";
+							echo "<font color='#01DF3A'><strong>O arquivo ".$arquivo_base." já existe! Renomeie e tente novamente</strong></font><br />";
 						}
 						else
 						{
