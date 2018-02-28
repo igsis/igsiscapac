@@ -26,7 +26,7 @@ if(isset($_POST['cadastrarFisica']))
 	$sql_cadastra_pf = "INSERT INTO `pessoa_fisica`(`nome`, `nomeArtistico`, `idTipoDocumento`, `rg`, `cpf`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `dataNascimento`, `idEstadoCivil`, `nacionalidade`, `pis`, `dataAtualizacao`, `idUsuario`) VALUES ('$nome', '$nomeArtistico', '$idTipoDocumento', '$rg', '$cpf', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$dataNascimento', '$idEstadoCivil', '$nacionalidade', '$pis', '$dataAtualizacao', '$idUser')";
 	if(mysqli_query($con,$sql_cadastra_pf))
 	{
-		$mensagem = "Cadastrado com sucesso!";
+		$mensagem = "<font color='#01DF3A'><strong>Cadastrado com sucesso!</strong></font>";
 		gravarLog($sql_cadastra_pf);
 		if(isset($_SESSION['idEvento']))
 		{
@@ -39,13 +39,13 @@ if(isset($_POST['cadastrarFisica']))
 			$sql_atualiza_evento = "UPDATE evento SET idPf = '$idPf', idTipoPessoa = '$tipoPessoa' WHERE id = '$idEvento'";
 			if(mysqli_query($con,$sql_atualiza_evento))
 			{
-				$mensagem .= " Pessoa inserida no evento.<br/>";
+				$mensagem .= "<font color='#01DF3A'><strong>Pessoa inserida no evento.</strong></font><br/>";
 				$_SESSION['idPf'] = $idPf;
 				gravarLog($sql_atualiza_evento);
 			}
 			else
 			{
-				$mensagem .= "Erro ao cadastrar no evento";
+				$mensagem .= "<font color='#FF0000'><strong>Erro ao cadastrar evento!</strong></font>";
 			}
 		}
 		else
@@ -59,7 +59,7 @@ if(isset($_POST['cadastrarFisica']))
 	}
 	else
 	{
-		$mensagem = "Erro ao cadastrar! Tente novamente.";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao cadastrar!</strong></font>";
 	}
 }
 
@@ -100,7 +100,7 @@ if(isset($_POST['atualizarFisica']))
 
 	if(mysqli_query($con,$sql_atualiza_pf))
 	{
-		$mensagem = "Atualizado com sucesso!";
+		$mensagem = "<font color='#01DF3A'><strong>Atualizado com sucesso!</strong></font>";
 		gravarLog($sql_atualiza_pf);
 		if(isset($_SESSION['idEvento']))
 		{
@@ -108,19 +108,19 @@ if(isset($_POST['atualizarFisica']))
 			$sql_atualiza_evento = "UPDATE evento SET idPf = '$idPf', idTipoPessoa = '$tipoPessoa' WHERE id = '$idEvento'";
 			if(mysqli_query($con,$sql_atualiza_evento))
 			{
-				$mensagem .= " Pessoa inserida no evento.<br/>";
+				$mensagem .= "<font color='#01DF3A'><strong>Pessoa inserida no evento.</strong></font>";
 				gravarLog($sql_atualiza_evento);
 
 			}
 			else
 			{
-				$mensagem .= "Erro ao cadastrar no evento";
+				$mensagem .= "<font color='#01DF3A'><strong>Erro ao cadastrar evento.</strong></font>";
 			}
 		}
 	}
 	else
 	{
-		$mensagem = "Erro ao atualizar! Tente novamente.";
+		$mensagem .= "<font color='#01DF3A'><strong>Erro ao atualizar! Tente novamente.</strong></font>";
 	}
 }
 
@@ -147,7 +147,7 @@ if(isset($_POST["enviar"]))
 
 		if($f_size > 2097152) // 2MB em bytes
 		{
-			$mensagem = "Erro! Tamanho de arquivo excedido! Tamanho máximo permitido: 02 MB.";
+			$mensagem = "<font color='#01DF3A'><strong>Erro! Tamanho de arquivo excedido! Tamanho máximo permitido: 02 MB.</strong></font>";
 		}
 		else
 		{
@@ -168,22 +168,22 @@ if(isset($_POST["enviar"]))
 						$query = mysqli_query($con,$sql_insere_arquivo);
 						if($query)
 						{
-							$mensagem = "Arquivo recebido com sucesso!";
+							$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 							gravarLog($sql_insere_arquivo);
 						}
 						else
 						{
-							$mensagem = "Erro ao gravar no banco!";
+							$mensagem = "<font color='#FF0000'><strong>Erro ao gravar no banco.</strong></font>";
 						}
 					}
 					else
 					{
-						 $mensagem = "Erro no upload! Tente novamente!";
+						$mensagem = "<font color='#FF0000'><strong>Erro no upload! Tente novamente.</strong></font>";
 					}
 				}
 				else
 				{
-					$mensagem = "Erro no upload! Anexar documentos somente no formato PDF.";
+					$mensagem = "<font color='#FF0000'><strong>Erro no upload! Anexar documentos somente no formato PDF.</strong></font>";
 				}
 			}
 		}
@@ -196,12 +196,12 @@ if(isset($_POST['apagar']))
 	$sql_apagar_arquivo = "UPDATE upload_arquivo SET publicado = 0 WHERE id = '$idArquivo'";
 	if(mysqli_query($con,$sql_apagar_arquivo))
 	{
-		$mensagem =	"Arquivo apagado com sucesso!";
+		$mensagem = "<font color='#01DF3A'><strong>Arquivo apagado com sucesso!</strong></font>";
 		gravarLog($sql_apagar_arquivo);
 	}
 	else
 	{
-		$mensagem = "Erro ao apagar o arquivo. Tente novamente!";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao apagar arquivo!</strong></font>";
 	}
 }
 
