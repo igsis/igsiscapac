@@ -68,12 +68,6 @@ function menuEvento($perfil,$voltar,$avancar)
 				        $avancar = "arquivos_pj";
 				        $menu = menuEvento($perfil,$voltar,$avancar);
 				    break;
-				    case 'informacoes_iniciais_pj':
-				        $perfil = "informacoes_iniciais_pj";
-				        $voltar = "proponente";
-				        $avancar = "arquivos_pj";
-				        $menu = menuEvento($perfil,$voltar,$avancar);
-				    break;
 				    //FIM PJ
 				    //INICIO PF
 				    //FIM PF
