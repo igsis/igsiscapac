@@ -23,7 +23,7 @@ if(isset($_POST['cadastraRepresentante']))
 
 		if(mysqli_query($con,$sql_insere_rep1))
 		{
-			$mensagem = "Cadastrado com sucesso!";
+			$mensagem = "<font color='#01DF3A'><strong>Cadastrado com sucesso!</strong></font>";
 			$idrep1 = recuperaUltimo("representante_legal");
 			$sql_representante1_empresa = "UPDATE pessoa_juridica SET idRepresentanteLegal1 = '$idrep1' WHERE id = '$idPj'";
 			$query_representante1_empresa = mysqli_query($con,$sql_representante1_empresa);
@@ -76,7 +76,7 @@ if(isset($_POST['editaRepresentante']))
 
 		if(mysqli_query($con,$sql_atualiza_rep1))
 		{
-			$mensagem = "Atualizado com sucesso!";
+			$mensagem = "<font color='#01DF3A'><strong>Atualizado com sucesso!</strong></font>";
 			$sql_representante1_empresa = "UPDATE pessoa_juridica SET idRepresentanteLegal1 = '$idrep1' WHERE id = '$idPj'";
 			$query_representante1_empresa = mysqli_query($con,$sql_representante1_empresa);
 			gravarLog($sql_atualiza_rep1);
