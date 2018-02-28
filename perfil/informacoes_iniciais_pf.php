@@ -76,7 +76,7 @@ if(isset($_POST['atualizarFisica']))
 	$email = $_POST['email'];
 	$dataNascimento = exibirDataMysql($_POST['dataNascimento']);
 	$idEstadoCivil = $_POST['idEstadoCivil'];
-	$nacionalidade = $_POST['nacionalidade'];
+	$nacionalidade = (string)$_POST['nacionalidade'];
 	$pis = $_POST['pis'];
 	$dataAtualizacao = date("Y-m-d H:i:s");
 	$idPf = $_SESSION['idPf'];
@@ -145,9 +145,9 @@ if(isset($_POST["enviar"]))
 		//Extensões permitidas
 		$ext = array("PDF","pdf");
 
-		if($f_size > 2097152) // 2MB em bytes
+		if($f_size > 3145728) // 3MB em bytes
 		{
-			$mensagem = "<font color='#01DF3A'><strong>Erro! Tamanho de arquivo excedido! Tamanho máximo permitido: 02 MB.</strong></font>";
+			$mensagem = "<font color='#01DF3A'><strong>Erro! Tamanho de arquivo excedido! Tamanho máximo permitido: 03 MB.</strong></font>";
 		}
 		else
 		{
