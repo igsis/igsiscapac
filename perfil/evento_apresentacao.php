@@ -106,7 +106,12 @@ $idUser= $_SESSION['idUser'];
 								<li>Telefone #3</li>
 								<li>DRT</li>
 							</ul>
-							<p>PASSO 14: Arquivos do Líder do Grupo ou Artista Solo</p>
+							<p>PASSO 14: Arquivos do Líder do Grupo ou Artista Solo em PDF</p>
+							<ul>
+								<li>RG</li>
+								<li>CPF</li>
+								<li>DRT</li>
+							</ul>
 
 						</div>
 					</div>
