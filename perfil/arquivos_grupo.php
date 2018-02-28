@@ -3,38 +3,6 @@ $con = bancoMysqli();
 $idEvento = $_SESSION['idEvento'];
 $tipoPessoa = '3';
 
-if(isset($_POST['insereIntegrante']))
-{
-	$nome = $_POST['nome'];
-	$rg = $_POST['rg'];
-	$cpf = $_POST['cpf'];
-
-	$sql_insere = "INSERT INTO `grupo`(`idEvento`, `nome`, `rg`, `cpf`, `publicado`) VALUES ('$idEvento', '$nome', '$rg', '$cpf', '1')";
-	if(mysqli_query($con,$sql_insere))
-	{
-		$mensagem = "<font color='#01DF3A'><strong>Inserido com sucesso!</strong></font>";
-		gravarLog($sql_insere);
-	}
-	else
-	{
-		$mensagem = "<font color='#FF0000'><strong>Erro ao inserir! Tente novamente.</strong></font>";
-	}
-}
-
-if(isset($_POST['apagarIntegrante']))
-{
-	$idIntegrante = $_POST['apagarIntegrante'];
-	$sql_apaga = "UPDATE `grupo` SET publicado = '0' WHERE id = '$idIntegrante'";
-	if(mysqli_query($con,$sql_apaga))
-	{
-		$mensagem = "<font color='#01DF3A'><strong>Removido com sucesso!</strong></font>";
-		gravarLog($sql_apaga);
-	}
-	else
-	{
-		$mensagem = "<font color='#FF0000'><strong>Erro ao remover! Tente novamente.</strong></font>";
-	}
-}
 
 if(isset($_POST["enviar"]))
 {
@@ -115,75 +83,13 @@ $num = mysqli_num_rows($query_grupos);
 ?>
 
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_evento.php'; ?>
+	<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
 		<div class="form-group">
 			<h3>Integrantes do Elenco ou Artista Solo</h3>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-				<p align="justify"><i>No caso de espetáculos de teatro, dança e circo, os integrantes a serem cadastrados são os componentes do elenco e o diretor do espetáculo. Caso o espetáculo tenha música ao vivo, os músicos também devem ser cadastrados. No caso de espetáculo de música, os integrantes a serem cadastrados são os músicos do espetáculo.</i></p>
-				<?php
-				if($num > 0)
-				{
-				?>
-					<div class="table-responsive list_info">
-						<table class="table table-condensed">
-							<thead>
-								<tr class="list_menu">
-									<td>Nome</td>
-									<td>RG</td>
-									<td>CPF</td>
-									<td width="15%"></td>
-								</tr>
-							</thead>
-							<tbody>
-							<?php
-								while($grupo = mysqli_fetch_array($query_grupos))
-								{
-							?>
-									<tr>
-										<td><?php echo $grupo['nome'] ?></td>
-										<td><?php echo $grupo['rg'] ?></td>
-										<td><?php echo $grupo['cpf'] ?></td>
-										<td class='list_description'>
-											<form method='POST' action='?perfil=grupo'>
-												<input type="hidden" name="apagarIntegrante" value="<?php echo $grupo['id'] ?>" />
-												<input type ='submit' class='btn btn-theme btn-block' value='apagar Integrante'>
-											</form>
-										</td>
-									</tr>
-							<?php
-								}
-							?>
-							</tbody>
-						</table>
-					</div>
-				<?php
-				}
-				else
-				{
-				?>
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8">
-            				<h6>Não há integrantes de grupos inseridos.</h6><br />
-            			</div>
-            		</div>
-				<?php
-				}
-				?>
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<form class="form-horizontal" role="form" action="?perfil=grupo_cadastro"  method="post">
-							<input type ='submit' class='btn btn-theme btn-block' value='Inserir novo integrante'>
-						</form>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="col-md-offset-1 col-md-10"><hr/><br/></div>
-				</div>
-
 				<!-- Exibir arquivos -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">

@@ -112,6 +112,10 @@ $idUser= $_SESSION['idUser'];
 								<li>CPF</li>
 								<li>DRT</li>
 							</ul>
+							<p>PASSO 15: Integrantes do Elenco ou Artista Solo</p>
+							<ul>
+								<li></li>
+							</ul>
 
 						</div>
 					</div>
