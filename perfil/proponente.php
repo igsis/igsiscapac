@@ -35,7 +35,7 @@ if(isset($_POST['inserePj']))
 		echo "<script type=\"text/javascript\">
 				 window.setTimeout(\"location.href='?perfil=proponente';\", 4000);
 			</script>";
-		gravarLog($sql_inserePj);		
+		gravarLog($sql_inserePj);
 	}
 	else
 	{
@@ -49,7 +49,7 @@ if($idPf == NULL && $idPj == NULL)
 	<section id="list_items" class="home-section bg-white">
 		<div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
 			<div class="form-group">
-				<h3>CADASTRO DE PROPONENTE</h3>
+				<h4>PASSO 5: Cadastro do Proponente</h4>
 				<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 			</div>
 			<div class="row">
@@ -92,7 +92,7 @@ else
 		<section id="list_items" class="home-section bg-white">
 			<div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
 				<div class="form-group">
-					<h3>CADASTRO DE PROPONENTE</h3>
+					<h4>PASSO 5: Cadastro do Proponente</h4>
 					<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 				</div>
 				<div class="row">
@@ -170,7 +170,7 @@ else
 		<section id="list_items" class="home-section bg-white">
 			<div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
 				<div class="form-group">
-					<h3>CADASTRO DE PROPONENTE</h3>
+					<h4>PASSO 5: Cadastro do Proponente</h4>
 					<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 				</div>
 				<div class="row">

@@ -12,7 +12,7 @@ unset($_SESSION['idPf']);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<br />
-						<a href="?perfil=evento" class="btn btn-theme btn-lg btn-block">EVENTO</a>
+						<a href="?perfil=evento_apresentacao" class="btn btn-theme btn-lg btn-block">EVENTO</a>
 						<br />
 						<a href="?perfil=proponente_pf" class="btn btn-theme btn-lg btn-block">PESSOA FÍSICA</a>
 						<br />

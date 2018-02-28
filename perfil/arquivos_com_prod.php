@@ -22,7 +22,7 @@ $campo = recuperaDados("evento","id",$_SESSION['idEvento']);
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<h3>ARQUIVOS COMUNICAÇÃO - PRODUÇÃO</h3>
+			<h4>PASSSO 4: Arquivos Para Comunicação e Produção</h4>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 			<?php
 			if( isset( $_POST['enviar'] ) )

@@ -93,10 +93,10 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 ?>
 
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
+	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<h3>INFORMAÇÕES INICIAIS</h3>
-			<p><b>Código de cadastro:</b> <?php echo $idPj ; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
+			<h4>PASSO 7: Arquivos da Empresa</h4>
+			<p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>
 		<div class="row">
