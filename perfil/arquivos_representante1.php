@@ -106,7 +106,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class = "center">
-						<form method="POST" action="?perfil=representante1_pj_cadastro" enctype="multipart/form-data">
+						<form method="POST" action="?perfil=arquios_representante1" enctype="multipart/form-data">
 							<table>
 								<tr>
 									<td width="50%"><td>

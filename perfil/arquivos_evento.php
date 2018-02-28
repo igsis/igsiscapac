@@ -110,7 +110,7 @@ if(isset($_POST['apagar']))
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class = "center">
-						<form method="POST" action="?perfil=evento_edicao" enctype="multipart/form-data">
+						<form method="POST" action="?perfil=arquivos_evento" enctype="multipart/form-data">
 							<table>
 								<tr>
 									<td width="50%"><td>

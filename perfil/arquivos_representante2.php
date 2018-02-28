@@ -83,7 +83,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 ?>
 
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
+	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
 			<h3>REPRESENTANTE LEGAL #2</h3>
 			<p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
@@ -104,7 +104,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class = "center">
-						<form method="POST" action="?perfil=representante2_pj_cadastro" enctype="multipart/form-data">
+						<form method="POST" action="?perfil=arquivos_representante2" enctype="multipart/form-data">
 							<table>
 								<tr>
 									<td width="50%"><td>
@@ -163,7 +163,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				<!-- Botão para Voltar e Prosseguir -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=representante1_pj" method="post">
+						<form class="form-horizontal" role="form" action="?perfil=representante2_pj" method="post">
 							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>
 					</div>
