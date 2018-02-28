@@ -114,7 +114,20 @@ $idUser= $_SESSION['idUser'];
 							</ul>
 							<p>PASSO 15: Integrantes do Elenco ou Artista Solo</p>
 							<ul>
-								<li></li>
+								<li>Cadastrar cada artista</li>
+							</ul>
+							<p>PASSO 16: Arquivos dos Integrantes do Elenco ou Artista Solo</p>
+							<ul>
+								<li>Arquivos cada artista</li>
+							</ul>
+							<p>PASSO 17: Demais Anexos</p>
+							<ul>
+								<li>Demais anexos necessários para a contratação</li>
+							</ul>
+							<p>PASSO 18: Finalizar</p>
+							<ul>
+								<li>Nesta tela haverá um resumo de toda informação inserida neste evento</li>
+								<li>Listará também algum campo pendente de preenchimento.</li>
 							</ul>
 
 						</div>
