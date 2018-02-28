@@ -160,12 +160,12 @@ $representante2 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
 				<!-- Botão para Voltar e Prosseguir -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=representante1_pj" method="post">
+						<form class="form-horizontal" role="form" action="?perfil=arquivos_representante1" method="post">
 							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>
 					</div>
 					<div class="col-md-offset-4 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pj" method="post">
+						<form class="form-horizontal" role="form" action="?perfil=arquivos_representante2" method="post">
 							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>
 					</div>

@@ -71,13 +71,13 @@ $idUser= $_SESSION['idUser'];
 								<li>Número</li>
 								<li>Complemento</li>
 							</ul>
-							<p>PASSO 9: Representante Legal #1</p>
+							<p>PASSO 9: Representante Legal</p>
 							<ul>
 								<li>Nome</li>
 								<li>RG</li>
 								<li>CPF</li>
 							</ul>
-							<p>PASSO 10: Arquivos do Representante Legal #1 em PDF</p>
+							<p>PASSO 10: Arquivos do Representante Legal em PDF</p>
 							<ul>
 								<li>RG</li>
 								<li>CPF</li>
