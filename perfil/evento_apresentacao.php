@@ -82,6 +82,19 @@ $idUser= $_SESSION['idUser'];
 								<li>RG</li>
 								<li>CPF</li>
 							</ul>
+							<p>PASSO 11: Dados Bancários</p>
+							<p><font color="#FF0000"><strong>Realizamos pagamentos de valores acima de R$ 5.000,00 *SOMENTE COM CONTA CORRENTE NO BANCO DO BRASIL*.<br />Não são aceitas: conta fácil, poupança e conjunta.</strong></font></p>
+							<ul>
+								<li>Banco</li>
+								<li>Agência</li>
+								<li>Conta</li>
+							</ul>
+							<p>PASSO 12: Arquivo dos Dados Bancários em PDF</p>
+							<ul>
+								<li>Gerar FACC</li>
+								<li>Anexar a FACC depois de assinada</li>
+							</ul>
+
 						</div>
 					</div>
 				</div>
