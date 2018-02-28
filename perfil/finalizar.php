@@ -200,7 +200,7 @@ if(isset($_POST['enviar']))
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<h3>FINALIZAR</h3><?php echo $i ?>
+			<h3>FINALIZAR</h3>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">

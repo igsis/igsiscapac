@@ -86,10 +86,10 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 
 
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
+	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
 			<h3>DEMAIS ANEXOS</h3>
-			<p><b>Código de cadastro:</b> <?php echo $idPj; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
+			<p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
 		<div class="row">
@@ -156,9 +156,9 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				</div>
 				<!-- Fim Upload de arquivo -->
 
-			<div class="form-group">
-				<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
-			</div>
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
+				</div>
 
 				<!-- Botão para Voltar -->
 				<div class="form-group">
@@ -177,9 +177,21 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 						<?php
 						}
 						?>
-							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaFisica ?>">
+							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
 						</form>
 					</div>
+						<?php
+						if(isset($_SESSION['idEvento']))
+						{
+						?>
+							<div class="col-md-offset-4 col-md-2">
+								<form class="form-horizontal" role="form" action="?perfil=finalizar" method="post">
+									<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
+								</form>
+							</div>
+						<?php
+						}
+						?>
 				</div>
 			</div>
 		</div>
