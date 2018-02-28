@@ -94,6 +94,19 @@ $idUser= $_SESSION['idUser'];
 								<li>Gerar FACC</li>
 								<li>Anexar a FACC depois de assinada</li>
 							</ul>
+							<p>PASSO 13: ARTISTA - Líder do Grupo ou Artista Solo</p>
+							<ul>
+								<li>Nome</li>
+								<li>Nome Artístico</li>
+								<li>RG</li>
+								<li>CPF</li>
+								<li>E-mail</li>
+								<li>Celular</li>
+								<li>Telefone #2</li>
+								<li>Telefone #3</li>
+								<li>DRT</li>
+							</ul>
+							<p>PASSO 14: Arquivos do Líder do Grupo ou Artista Solo</p>
 
 						</div>
 					</div>
