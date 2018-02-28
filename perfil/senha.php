@@ -20,28 +20,29 @@ if(isset($_POST['senha01']))
 				$query_senha = mysqli_query($con,$sql_senha);
 				if($query_senha)
 				{
-					$mensagem = "Senha alterada com sucesso!";
+					$mensagem = "<font color='#01DF3A'><strong>Senha alterada com sucesso!</strong></font>";
 					gravarLog($sql_senha);
 				}
 				else
 				{
-					$mensagem = "Não foi possível mudar a senha. Tente novamente.";
+					$mensagem = "<font color='#FF0000'><strong>Não foi possível mudar a senha! Tente novamente.</strong></font>";
+
 				}
 			}
 			else
 			{
-					$mensagem = "Senha atual incorreta.";
+				$mensagem = "<font color='#FF0000'><strong>Senha atual incorreta!</strong></font>";
 			}
 		}
 		else
 		{
 			// caso não tenha digitado 2 vezes
-			$mensagem = "As senhas não conferem. Tente novamente.";
+			$mensagem = "<font color='#FF0000'><strong>As senhas não conferem! Tente novamente.</strong></font>";
 		}
 	}
 	else
 	{
-		$mensagem = "A senha não pode estar em branco e deve conter mais de 5 caracteres";
+			$mensagem = "<font color='#FF0000'><strong>A senha não pode estar vazia e deve conter mais de 5 caracteres.</strong></font>";
 	}
 }
 
@@ -57,12 +58,12 @@ if(isset($_POST['fraseSeguranca']))
 
 	if(mysqli_query($con,$sql_seguranca_pf))
 	{
-		$mensagem = "Pergunta secreta atualizada com sucesso!";
+		$mensagem = "<font color='#01DF3A'><strong>Pergunta secreta atualizada com sucesso!</strong></font>";
 		gravarLog($sql_seguranca_pf);
 	}
 	else
 	{
-		$mensagem = "Erro ao atualizar sua pergunta secreta! Tente novamente.";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao atualizar sua pergunta secreta! Tente novamente.</strong></font>";
 	}
 }
 

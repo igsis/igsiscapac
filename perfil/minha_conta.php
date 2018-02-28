@@ -8,7 +8,7 @@ if(isset($_POST['atualizarCadastro']))
 	$Telefone = addslashes($_POST['telefone']);
 	if($Telefone == '')
 	{
-		$mensagem = "Por favor, preencha todos os campos.";
+		$mensagem = "<font color='#FF0000'><strong>Por favor, preencha todos os campos!</strong></font>";
 	}
 	else
 	{
@@ -24,12 +24,12 @@ if(isset($_POST['atualizarCadastro']))
 
 		if(mysqli_query($con,$sql_atualiza_cadastro))
 		{
-			$mensagem = "Atualizado com sucesso!";
+			$mensagem = "<font color='#01DF3A'><strong>Atualizado com sucesso!</strong></font>";
 			gravarLog($sql_atualiza_cadastro);
 		}
 		else
 		{
-			$mensagem = "Erro ao atualizar! Tente novamente.";
+			$mensagem = "<font color='#FF0000'><strong>Erro ao atualizar! Tente novamente.</strong></font>";
 		}
 	}
 }

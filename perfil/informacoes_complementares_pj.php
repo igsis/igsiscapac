@@ -12,12 +12,12 @@ if(isset($_POST['cadastrarJuridica']))
 	
 	if(mysqli_query($con,$sql_atualiza_complementares))
 	{
-		$mensagem = "Atualizado com sucesso!";	
+		$mensagem = "<font color='#01DF3A'><strong>Atualizado com sucesso!</strong></font>";
 		gravarLog($sql_atualiza_complementares);
 	}
 	else
 	{
-		$mensagem = "Erro ao atualizar! Tente novamente.";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao atualizar! Tente novamente.</strong></font>";
 	}	
 }
 
