@@ -13,7 +13,7 @@ if(isset($_POST['apagar']))
 	$sql_apaga = "UPDATE evento SET idPj = NULL, idPf = NULL, idTipoPessoa = NULL WHERE id = '$idEvento'";
 	if(mysqli_query($con,$sql_apaga))
 	{
-		$mensagem = "Apagado com sucesso!<br/>Carregando...";
+		$mensagem = "<font color='#01DF3A'><strong>Apagado com sucesso!<br/>Carregando...</strong></font>";
 		echo "<script type=\"text/javascript\">
 				 window.setTimeout(\"location.href='?perfil=proponente';\", 4000);
 			</script>";
@@ -21,7 +21,7 @@ if(isset($_POST['apagar']))
 	}
 	else
 	{
-		$mensagem = "Erro ao apagar! Tente novamente.";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao apagar! Tente novamente./strong></font>";
 	}
 }
 
@@ -31,7 +31,7 @@ if(isset($_POST['inserePj']))
 	$sql_inserePj = "UPDATE evento SET idPj = '$idPj', idTipoPessoa = '2' WHERE id = '$idEvento'";
 	if(mysqli_query($con,$sql_inserePj))
 	{
-		$mensagem = "Inserido com sucesso!";
+		$mensagem = "<font color='#01DF3A'><strong>Inserido com sucesso!</strong></font>";
 		echo "<script type=\"text/javascript\">
 				 window.setTimeout(\"location.href='?perfil=proponente';\", 4000);
 			</script>";
@@ -39,7 +39,7 @@ if(isset($_POST['inserePj']))
 	}
 	else
 	{
-		$mensagem = "Erro ao inserir! Tente novamente.";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao inserir! Tente novamente./strong></font>";
 	}
 }
 

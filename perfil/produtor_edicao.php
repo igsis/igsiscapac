@@ -26,17 +26,17 @@ if(isset($_POST['insere']))
 		$sql_grava_evento = "UPDATE evento SET idProdutor = '$idProdutor' WHERE id = '$idEvento'";
 		if(mysqli_query($con,$sql_grava_evento))
 		{
-			$mensagem = "Inserido com sucesso!";
+			$mensagem = "<font color='#01DF3A'><strong>Produtor inserido com sucesso!</strong></font>";
 			gravarLog($sql_grava_evento);
 		}
 		else
 		{
-			$mensagem = "Erro ao inserir o produtor no evento!";
+			$mensagem = "<font color='#FF0000'><strong>Erro ao inserir produtor no evento!</strong></font>";
 		}
 	}
 	else
 	{
-		$mensagem = "Erro ao gravar... tente novamente";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao gravar! Tente novamente,.</strong></font>";
 	}
 }
 if(isset($_POST['atualizar']))
@@ -49,12 +49,12 @@ if(isset($_POST['atualizar']))
 		WHERE id = '$idProdutor'";
 	if(mysqli_query($con,$sql_atualizar))
 	{
-		$mensagem = "Atualizado com sucesso!";
+		$mensagem = "<font color='#01DF3A'><strong>Atualizado com sucesso!</strong></font>";
 		gravarLog($sql_atualizar);
 	}
 	else
 	{
-		$mensagem = "Erro ao atualizar!";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao atualizar!</strong></font>";
 	}
 }
 
