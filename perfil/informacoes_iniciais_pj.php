@@ -19,7 +19,7 @@ if(isset($_POST['cadastrarJuridica']))
 	$sql_cadastra_pj = "INSERT INTO `pessoa_juridica`(`razaoSocial`, `cnpj`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `dataAtualizacao`, `idUsuario`) VALUES ('$razaoSocial', '$cnpj', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$dataAtualizacao', '$idUser')";
 	if(mysqli_query($con,$sql_cadastra_pj))
 	{
-		$mensagem = "Cadastrado com sucesso!";
+		$mensagem = "<font color='#01DF3A'><strong>Cadastrado com sucesso!</strong></font>";
 		gravarLog($sql_cadastra_pj);
 		if(isset($_SESSION['idEvento']))
 		{
@@ -32,14 +32,14 @@ if(isset($_POST['cadastrarJuridica']))
 			$sql_atualiza_evento = "UPDATE evento SET idPj = '$idPj', idTipoPessoa = '2' WHERE id = '$idEvento'";
 			if(mysqli_query($con,$sql_atualiza_evento))
 			{
-				$mensagem .= " Empresa inserida no evento.<br/>";
+				$mensagem .= "<font color='#01DF3A'><strong>Empresa inserida no evento.</strong></font><br/>";
 				$_SESSION['idPj'] = $idPj;
 				gravarLog($sql_atualiza_evento);
 
 			}
 			else
 			{
-				$mensagem .= "Erro ao cadastrar no evento";
+				$mensagem .= "<font color='#FF0000'><strong>Erro ao cadastrar no evento!</strong></font>";
 			}
 		}
 		else
@@ -53,7 +53,7 @@ if(isset($_POST['cadastrarJuridica']))
 	}
 	else
 	{
-		$mensagem = "Erro ao cadastrar! Tente novamente.";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao cadastrar! Tente novamente.</strong></font>";
 	}
 }
 
@@ -80,7 +80,7 @@ if(isset($_POST['atualizarJuridica']))
 
 	if(mysqli_query($con,$sql_atualiza_pj))
 	{
-		$mensagem = "Atualizado com sucesso!";
+		$mensagem = "<font color='#01DF3A'><strong>Atualizado com sucesso!</strong></font>";
 		gravarLog($sql_atualiza_pj);
 		if(isset($_SESSION['idEvento']))
 		{
@@ -88,18 +88,18 @@ if(isset($_POST['atualizarJuridica']))
 			$sql_atualiza_evento = "UPDATE evento SET idPj = '$idPj', idTipoPessoa = '2' WHERE id = '$idEvento'";
 			if(mysqli_query($con,$sql_atualiza_evento))
 			{
-				$mensagem .= " Empresa inserida no evento.<br/>";
+				$mensagem .= "<font color='#01DF3A'><strong>Empresa inserida no evento.</strong></font><br/>";
 				gravarLog($sql_atualiza_evento);
 			}
 			else
 			{
-				$mensagem .= "Erro ao cadastrar no evento";
+				$mensagem .= "<font color='#FF0000'><strong>Erro ao cadastrar no evento!</strong></font>";
 			}
 		}
 	}
 	else
 	{
-		$mensagem = "Erro ao atualizar! Tente novamente.";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao atualizar! Tente novamente.</strong></font>";
 	}
 }
 

@@ -10,7 +10,7 @@ if(isset($_POST['cadastraRepresentante']))
 	$rg = $_POST['rg'];
 	if($rg == '' OR $nome == '')
 	{
-		$mensagem = "Por favor, preencha todos os campos obrigatórios!";
+		$mensagem = "<font color='#FF0000'><strong>Por favor, preencha todos os campos obrigatórios!</strong></font>";
 	}
 	else
 	{
@@ -25,7 +25,7 @@ if(isset($_POST['cadastraRepresentante']))
 
 		if(mysqli_query($con,$sql_insere_rep2))
 		{
-			$mensagem = "Cadastrado com sucesso!";
+			$mensagem = "<font color='#01DF3A'><strong>Cadastrado com sucesso!</strong></font>";
 			$idRep2 = recuperaUltimo("representante_legal");
 			$sql_representante2_empresa = "UPDATE pessoa_juridica SET idRepresentanteLegal2 = '$idRep2' WHERE id = '$idPj'";
 			$query_representante2_empresa = mysqli_query($con,$sql_representante2_empresa);
@@ -33,7 +33,7 @@ if(isset($_POST['cadastraRepresentante']))
 		}
 		else
 		{
-			$mensagem = "Erro ao cadastrar! Tente novamente.";
+			$mensagem = "<font color='#FF0000'><strong>Erro ao cadastrar! Tente novamente.</strong></font>";
 		}
 	}
 }
@@ -45,12 +45,12 @@ if(isset($_POST['insereRepresentante']))
 	$sql_representante2_empresa = "UPDATE pessoa_juridica SET idRepresentanteLegal2 = '$idRep2' WHERE id = '$idPj'";
 	if(mysqli_query($con,$sql_representante2_empresa))
 	{
-		$mensagem = "Atualizado com sucesso!";
+		$mensagem = "<font color='#01DF3A'><strong>Atualizado com sucesso!</strong></font>";
 		gravarLog($sql_representante2_empresa);
 	}
 	else
 	{
-		$mensagem = "Erro ao inserir representante!";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao inserir representante!</strong></font>";
 	}
 }
 
@@ -61,7 +61,7 @@ if(isset($_POST['editaRepresentante']))
 	$rg = $_POST['rg'];
 	if($rg == '' OR $nome == '')
 	{
-		$mensagem = "Por favor, preencha todos os campos obrigatórios!";
+		$mensagem = "<font color='#FF0000'><strong>Por favor, preencha todos os campos obrigatórios!</strong></font>";
 	}
 	else
 	{
@@ -82,14 +82,14 @@ if(isset($_POST['editaRepresentante']))
 
 		if(mysqli_query($con,$sql_atualiza_rep2))
 		{
-			$mensagem = "Atualizado com sucesso!";
+			$mensagem = "<font color='#01DF3A'><strong>Atualizado com sucesso!</strong></font>";
 			$sql_representante2_empresa = "UPDATE pessoa_juridica SET idRepresentanteLegal2 = '$idRep2' WHERE id = '$idPj'";
 			$query_representante2_empresa = mysqli_query($con,$sql_representante2_empresa);
 			gravarLog($sql_atualiza_rep2);
 		}
 		else
 		{
-			$mensagem = "Erro ao atualizar! Tente novamente.";
+			$mensagem = "<font color='#FF0000'><strong>Erro ao atualizar! Tente novamente.</strong></font>";
 		}
 	}
 }

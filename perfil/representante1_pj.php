@@ -14,7 +14,7 @@ if(isset($_POST['apagaRepresentante']))
 
 	if(mysqli_query($con,$sql_apaga_rep1))
 	{
-		$mensagem = "Apagado com sucesso!";
+		$mensagem = "<font color='#01DF3A'><strong>Apagado com sucesso!</strong></font>";
 		gravarLog($sql_apaga_rep1);
 	?>
 		<script language="JavaScript">
@@ -24,7 +24,7 @@ if(isset($_POST['apagaRepresentante']))
 	}
 	else
 	{
-		$mensagem = "Erro ao atualizar! Tente novamente.";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao atualizar! Tente novamente.</strong></font>";
 	}
 }
 
