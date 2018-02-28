@@ -110,5 +110,6 @@ $campo = recuperaDados("evento","id",$_SESSION['idEvento']);
 					</div>
 			</div>
 		</div>
+		<?php include '../perfil/includes/menu_evento_footer.php'; ?>
 	</div>
 </section>

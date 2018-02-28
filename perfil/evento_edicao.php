@@ -153,5 +153,6 @@ $evento = recuperaDados("evento","id",$idEvento);
 				</form>
 			</div>
 		</div>
+		<?php include '../perfil/includes/menu_evento_footer.php'; ?>
 	</div>
 </section>

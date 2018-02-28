@@ -179,7 +179,7 @@ $representante1 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
 	<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
 		<div class="form-group">
 			<h3>REPRESENTANTE LEGAL #1</h3>
-			<p><b>Código de cadastro:</b> <?php echo $idPj; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
+			<p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>
 		<div class="row">
@@ -224,75 +224,6 @@ $representante1 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
 					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
 				</div>
 
-				<!-- Exibir arquivos -->
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s) Somente em PDF</h6>
-							<?php listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","representante1_pj_cadastro",6); ?>
-						</div>
-					</div>
-				</div>
-
-				<!-- Upload de arquivo 1 -->
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<div class = "center">
-						<form method="POST" action="?perfil=representante1_pj_cadastro" enctype="multipart/form-data">
-							<table>
-								<tr>
-									<td width="50%"><td>
-								</tr>
-								<?php
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '20'";
-									$query_arquivos = mysqli_query($con,$sql_arquivos);
-									while($arq = mysqli_fetch_array($query_arquivos))
-									{
-								?>
-								<tr>
-									<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
-								</tr>
-								<?php
-									}
-								?>
-							</table><br>
-						</div>
-					</div>
-				</div>
-
-				<!-- Upload de arquivo 2 -->
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<div class = "center">
-							<table>
-								<tr>
-									<td width="50%"><td>
-								</tr>
-								<?php
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '21'";
-									$query_arquivos = mysqli_query($con,$sql_arquivos);
-									while($arq = mysqli_fetch_array($query_arquivos))
-									{
-								?>
-										<tr>
-											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
-										</tr>
-								<?php
-									}
-								?>
-							</table><br>
-							<input type="hidden" name="idPessoa" value="<?php echo $idPj ?>"  />
-							<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
-							<input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>
-						</form>
-						</div>
-					</div>
-				</div>
-				<!-- Fim Upload de arquivo -->
-
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
-				</div>
-
 				<!-- Botão para Trocar o Representante -->
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
@@ -311,7 +242,7 @@ $representante1 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
 						</form>
 					</div>
 					<div class="col-md-offset-4 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=representante2_pj" method="post">
+						<form class="form-horizontal" role="form" action="?perfil=arquivos_representante1" method="post">
 							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>
 					</div>

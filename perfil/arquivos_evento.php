@@ -264,5 +264,6 @@ if(isset($_POST['apagar']))
 
 			</div>
 		</div>
+		<?php include '../perfil/includes/menu_evento_footer.php'; ?>
 	</div>
 </section>

@@ -100,5 +100,6 @@ $produtor = recuperaDados("produtor","id",$idProdutor);
 				</form>
 			</div>
 		</div>
+		<?php include '../perfil/includes/menu_evento_footer.php'; ?>
 	</div>
 </section>
