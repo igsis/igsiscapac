@@ -7,12 +7,12 @@ if(isset($_POST['apagar']))
 	if(mysqli_query($con,$sql_apagar_arquivo))
 	{
 		$arq = recuperaDados("upload_arquivo_com_prod","id",$idArquivo);
-		$mensagem =	"Arquivo ".$arq['arquivo']." apagado com sucesso!";
+		$mensagem = "<font color='#01DF3A'><strong>Arquivo ".$arq['arquivo']." apagado com sucesso!</strong></font>";
 		gravarLog($sql_apagar_arquivo);
 	}
 	else
 	{
-		$mensagem = "Erro ao apagar o arquivo. Tente novamente!";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao apagar o arquivo. Tente novamente!</strong></font>";
 	}
 }
 
