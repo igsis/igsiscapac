@@ -368,6 +368,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 								<?php
 									}
 								?>
+				
 							</table><br>
 						</div>
 					</div>

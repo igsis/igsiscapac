@@ -170,7 +170,7 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 					</div>
 
 					<div class="form-group">
-						<div class="col-md-offset-2 col-md-6"><strong>RG: *</strong><br/>
+						<div class="col-md-offset-2 col-md-6"><strong>RG/RNE/PASSAPORTE: *</strong><br/>
 							<input type="text" class="form-control" name="rg" placeholder="RG" value="<?php echo $artista['rg']; ?>">
 						</div>
 						<div class="col-md-6"><strong>CPF: *</strong><br/>
