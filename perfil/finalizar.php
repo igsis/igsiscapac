@@ -195,7 +195,7 @@ $produtor = recuperaDados("produtor","id",$evento['idProdutor']);
 
 if($produtor['nome'] == NULL)
 {
-	$mensagem = $mensagem."<a href='index.php?perfil=produtor_edicao'> Nome do produtor</a><br/>";
+	$mensagem = $mensagem."<center><a href='index.php?perfil=produtor_edicao'> Nome do produtor</a><br/>";
 	$i = 1;
 }
 
@@ -207,7 +207,7 @@ if($produtor['email'] == NULL)
 
 if($produtor['telefone1'] == NULL)
 {
-	$mensagem = $mensagem."<a href='index.php?perfil=produtor_edicao'>Celular do produtor</a><br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=produtor_edicao'>Celular do produtor</a><br/></center>";
 	$i = 1;
 }
 
@@ -360,7 +360,7 @@ if(isset($_POST['enviar']))
 						else
 						{
 						?>
-							<p><strong>O(s) seguinte(s) campo(s) obrigatório(s) não foram preenchidos:</strong></p>
+							<p><strong><font color="red">O(s) seguinte(s) campo(s) obrigatório(s) não foram preenchidos:</font></strong></p>
 						<?php
 						}
 						?>
@@ -375,7 +375,7 @@ if(isset($_POST['enviar']))
 
 				<!-- Início de Detalhes -->
 				<div class="left">
-					<p align="justify"><strong>Tipo de evento:</strong> <?php echo $tipoEvento['tipoEvento'] ?></p>
+					<p align="justify"><br><br><br><br><br><strong>Tipo de evento:</strong> <?php echo $tipoEvento['tipoEvento'] ?></p>
 					<p align="justify"><strong>Nome de Grupo:</strong> <?php echo $evento['nomeGrupo'] ?></p>
 					<p align="justify"><strong>Ficha Técnica:</strong> <?php echo $evento['fichaTecnica'] ?></p>
 					<p align="justify"><strong>Faixa Etária:</strong> <?php echo $faixaEtaria['faixaEtaria'] ?></p>
@@ -442,7 +442,6 @@ if(isset($_POST['enviar']))
 					if($evento['idTipoPessoa'] == 1)
 					{
 					?>
-						<p align="justify"><strong>Estado Civil:</strong> <?php echo recuperaEstadoCivilCapac($pessoaFisica['idEstadoCivil']) ?></p>
 						<p align="justify"><strong>Data de Nascimento:</strong> <?php echo exibirDataBr($pessoaFisica['dataNascimento']) ?></p>
 						<p align="justify"><strong>Nacionalidade:</strong> <?php echo $pessoaFisica['nacionalidade'] ?></p>
 						<p align="justify"><strong>PIS / PASEP / NIT:</strong> <?php echo $pessoaFisica['pis'] ?></p>
