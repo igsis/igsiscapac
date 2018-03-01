@@ -474,7 +474,7 @@ if(isset($_POST['enviar']))
 							<?php listaArquivoCamposMultiplos1($pessoaJuridica['id'],2); ?>
 						</div>
 
-						<div class="table-responsive list_info"><h6>Arquivo(s) Reprsentante Legal</h6>
+						<div class="table-responsive list_info"><h6>Arquivo(s) Representante Legal</h6>
 							<?php listaArquivoCamposMultiplos1($pessoaJuridica['id'],3); ?>
 						</div>
 					<?php
