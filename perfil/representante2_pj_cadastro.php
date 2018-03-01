@@ -123,17 +123,6 @@ $representante2 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
 						</div>
 					</div>
 
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-6"><strong>Nacionalidade: </strong><br/>
-							<input type="text" class="form-control" name="nacionalidade" placeholder="Nacionalidade" value="<?php echo $representante2['nacionalidade']; ?>">
-						</div>
-						<div class="col-md-6"><strong>Estado civil:</strong><br/>
-							<select class="form-control" name="idEstadoCivil" >
-								<?php geraOpcao("estado_civil",$representante2['idEstadoCivil'],""); ?>
-							</select>
-						</div>
-					</div>
-
 					<!-- Botão para Gravar -->
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">

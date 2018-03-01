@@ -104,19 +104,7 @@ else
 							<input type="text" readonly class="form-control" name="cpf" value="<?php echo $busca ?>" placeholder="CPF">
 						</div>
 					</div>
-					
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-6"><strong>Nacionalidade: </strong><br/>
-							<input type="text" class="form-control" name="nacionalidade" placeholder="Nacionalidade">
-						</div>
-						<div class="col-md-6"><strong>Estado civil:</strong><br/>
-							<select class="form-control" name="idEstadoCivil" >
-								<?php geraOpcao("estado_civil","",""); ?>  
-							</select>
-						</div>	
-					</div>	  
-			  
-						  
+									  
 					<!-- Botão para Gravar -->
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
