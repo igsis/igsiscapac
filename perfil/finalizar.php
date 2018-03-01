@@ -145,49 +145,49 @@ $i = 0;
 
 if($evento['nomeEvento'] == NULL)
 {
-	$mensagem = "Nome do evento<br/>";
+	$mensagem = "<a href='index.php?perfil=evento_edicao'>Nome do evento</a><br/>";
 	$i = 1;
 }
 
 if($evento['idTipoEvento'] == NULL)
 {
-	$mensagem = $mensagem."Tipo de evento<br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=evento_edicao'>Tipo de evento</a><br/>";
 	$i = 1;
 }
 
 if($evento['fichaTecnica'] == NULL)
 {
-	$mensagem = $mensagem."Ficha técnica<br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=evento_edicao'>Ficha técnica</a><br/>";
 	$i = 1;
 }
 
 if($evento['idFaixaEtaria'] == NULL OR $evento['idFaixaEtaria'] == 0)
 {
-	$mensagem = $mensagem."Faixa Etária<br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=evento_edicao'>Faixa Etária</a><br/>";
 	$i = 1;
 }
 
 if($evento['sinopse'] == NULL)
 {
-	$mensagem = $mensagem."Sinopse<br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=evento_edicao'>Sinopse</a><br/>";
 	$i = 1;
 }
 
 if($evento['releaseCom'] == NULL)
 {
-	$mensagem = $mensagem."Realease<br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=evento_edicao'>Realease</a><br/>";
 	$i = 1;
 }
 
 if($evento['idProdutor'] == NULL)
 {
-	$mensagem = $mensagem."Dados do produtor<br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil='>Dados do produtor</a><br/>";
 	$i = 1;
 }
 
 if($evento['idPf'] == NULL)
 {
-	$mensagem = $mensagem."Dados do artista<br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil='>Dados do artista</a><br/>";
 	$i = 1;
 }
 
@@ -195,19 +195,19 @@ $produtor = recuperaDados("produtor","id",$evento['idProdutor']);
 
 if($produtor['nome'] == NULL)
 {
-	$mensagem = $mensagem."Nome do produtor<br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=produtor_edicao'> Nome do produtor</a><br/>";
 	$i = 1;
 }
 
 if($produtor['email'] == NULL)
 {
-	$mensagem = $mensagem."E-mail do produtor<br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=produtor_edicao'>E-mail do produtor</a><br/>";
 	$i = 1;
 }
 
 if($produtor['telefone1'] == NULL)
 {
-	$mensagem = $mensagem."Celular do produtor<br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=produtor_edicao'>Celular do produtor</a><br/>";
 	$i = 1;
 }
 
@@ -218,43 +218,43 @@ if($idTipoPessoa == 2)
 
 	if($pj['razaoSocial'] == NULL)
 	{
-		$mensagem = $mensagem."Razão Social<br/>";
+		$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pj'>Razão Social</a><br/>";
 		$i = 1;
 	}
 
 	if($pj['cnpj'] == NULL)
 	{
-		$mensagem = $mensagem."CNPJ<br/>";
+		$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pj'>CNPJ</a><br/>";
 		$i = 1;
 	}
 
 	if($pj['telefone1'] == NULL)
 	{
-		$mensagem = $mensagem."Celular da empresa<br/>";
+		$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pj'>Celular da empresa</a><br/>";
 		$i = 1;
 	}
 
 	if($pj['email'] == NULL)
 	{
-		$mensagem = $mensagem."E-mail da empresa<br/>";
+		$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pj'>E-mail da empresa</a><br/>";
 		$i = 1;
 	}
 
 	if($pj['cep'] == NULL)
 	{
-		$mensagem = $mensagem."CEP da empresa<br/>";
+		$mensagem = $mensagem."<a href='index.php?perfil=endereco_pj'>CEP da empresa</a><br/>";
 		$i = 1;
 	}
 
 	if($pj['numero'] == NULL)
 	{
-		$mensagem = $mensagem."Número do endereço da empresa<br/>";
+		$mensagem = $mensagem."<a href='index.php?perfil=endereco_pj'>Número do endereço da empresa</a><br/>";
 		$i = 1;
 	}
 
 	if($pj['idRepresentanteLegal1'] == NULL)
 	{
-		$mensagem = $mensagem."Dados do representante legal<br/>";
+		$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj_cadastro&id_pj=21'>Dados do representante legal</a><br/>";
 		$i = 1;
 	}
 }
@@ -262,51 +262,57 @@ if($idTipoPessoa == 2)
 $representante = recuperaDados("representante_legal","id",$pj['idRepresentanteLegal1']);
 if($representante['nome'] == NULL)
 {
-	$mensagem = $mensagem."Nome do artista<br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj_cadastro&id_pj=21'>Nome do artista</a><br/>";
 	$i = 1;
 }
 
 if($representante['rg'] == NULL)
 {
-	$mensagem = $mensagem."RG do artista<br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj_cadastro&id_pj=21'>RG do artista</a><br/>";
 	$i = 1;
 }
 
 if($representante['cpf'] == NULL)
 {
-	$mensagem = $mensagem."CPF do artista<br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil='>CPF do artista</a><br/>";
 	$i = 1;
 }
 
-
+# Pessoa fica
 $pf = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 if($pf['nome'] == NULL)
 {
-	$mensagem = $mensagem."Nome do artista<br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pf'>Nome do artista</a><br/>";
+	$i = 1;
+}
+
+if($pf['nomeArtistico'] == NULL)
+{
+	$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pf'>Nome Artístico</a><br/>";
 	$i = 1;
 }
 
 if($pf['rg'] == NULL)
 {
-	$mensagem = $mensagem."RG do artista<br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pf'>RG do artista</a><br/>";
 	$i = 1;
 }
 
 if($pf['cpf'] == NULL)
 {
-	$mensagem = $mensagem."CPF do artista<br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pf'>CPF do artista</a><br/>";
 	$i = 1;
 }
 
 if($pf['telefone1'] == NULL)
 {
-	$mensagem = $mensagem."Telefone do artista<br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pf'>Telefone do artista</a><br/>";
 	$i = 1;
 }
 
 if($pf['email'] == NULL)
 {
-	$mensagem = $mensagem."E-mail do artista<br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pf'>E-mail do artista</a><br/>";
 	$i = 1;
 }
 
@@ -314,13 +320,13 @@ if($tipoPessoa == 1)
 {
 	if($pf['cep'] == NULL)
 	{
-		$mensagem = $mensagem."CEP do artista<br/>";
+		$mensagem = $mensagem."<a href='index.php?perfil=endereco_pf'>CEP do artista</a><br/>";
 		$i = 1;
 	}
 
 	if($pf['numero'] == NULL)
 	{
-		$mensagem = $mensagem."Número do endereço do artista<br/>";
+		$mensagem = $mensagem."<a href='index.php?perfil=endereco_pf'>Número do endereço do artista</a><br/>";
 		$i = 1;
 	}
 }
@@ -358,7 +364,12 @@ if(isset($_POST['enviar']))
 						<?php
 						}
 						?>
-						<p align="left"><?php if(isset($mensagem)){echo $mensagem;};?></p>
+						<p align="left">
+							<?php 
+							if(isset($mensagem)){
+								echo $mensagem;
+							};
+							?></p>
 					</div>
 				</div>
 
