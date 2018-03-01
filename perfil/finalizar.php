@@ -257,25 +257,25 @@ if($idTipoPessoa == 2)
 		$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj_cadastro&id_pj=21'>Dados do representante legal</a><br/>";
 		$i = 1;
 	}
-}
 
-$representante = recuperaDados("representante_legal","id",$pj['idRepresentanteLegal1']);
-if($representante['nome'] == NULL)
-{
-	$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj_cadastro&id_pj=21'>Nome do artista</a><br/>";
-	$i = 1;
-}
+	$representante = recuperaDados("representante_legal","id",$pj['idRepresentanteLegal1']);
+	if($representante['nome'] == NULL)
+	{
+		$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj_cadastro&id_pj=21'>Nome do artista</a><br/>";
+		$i = 1;
+	}
 
-if($representante['rg'] == NULL)
-{
-	$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj_cadastro&id_pj=21'>RG do artista</a><br/>";
-	$i = 1;
-}
+	if($representante['rg'] == NULL)
+	{
+		$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj_cadastro&id_pj=21'>RG do artista</a><br/>";
+		$i = 1;
+	}
 
-if($representante['cpf'] == NULL)
-{
-	$mensagem = $mensagem."<a href='index.php?perfil='>CPF do artista</a><br/>";
-	$i = 1;
+	if($representante['cpf'] == NULL)
+	{
+		$mensagem = $mensagem."<a href='index.php?perfil='>CPF do artista</a><br/>";
+		$i = 1;
+	}
 }
 
 # Pessoa fica
