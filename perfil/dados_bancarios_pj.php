@@ -42,6 +42,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 
 			<font color="#FF0000"><strong>Realizamos pagamentos de valores acima de R$ 5.000,00 *SOMENTE COM CONTA CORRENTE NO BANCO DO BRASIL*.<br />
 			Não são aceitas: conta fácil, poupança e conjunta.</strong></font><br />
+			<font color="#FF0000"><strong>*A conta deve estar em nome da Pessoa Jurídica que está sendo contratada*</strong></font><br />
 			<p>
 
 				<div class="form-group">
