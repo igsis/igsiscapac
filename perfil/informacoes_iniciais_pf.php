@@ -18,8 +18,6 @@ if(isset($_POST['cadastrarFisica']))
 	$telefone3 = $_POST['telefone3'];
 	$email = $_POST['email'];
 	$dataNascimento = exibirDataMysql($_POST['dataNascimento']);
-	$idEstadoCivil = $_POST['idEstadoCivil'];
-	$nacionalidade = $_POST['nacionalidade'];
 	$pis = $_POST['pis'];
 	$dataAtualizacao = date("Y-m-d H:i:s");
 
@@ -292,17 +290,6 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 						<div class="col-md-offset-2 col-md-6"><strong>Data Nascimento *:</strong><br/>
 							<input type="text" class="form-control" name="dataNascimento" id="datepicker01" placeholder="Data de Nascimento" value = "<?php echo exibirDataBr($pf['dataNascimento']) ?>">
 						</div>
-						<div class="col-md-6"><strong>Estado civil:</strong><br/>
-							<select class="form-control" name="idEstadoCivil" >
-								<?php geraOpcao("estado_civil",$pf['idEstadoCivil']); ?>
-							</select>
-						</div>
-					</div>
-
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-6"><strong>Nacionalidade:</strong><br/>
-						<input type="text" class="form-control" name="nacionalidade" placeholder="Nacionalidade" value="<?php echo $pf['nacionalidade']; ?>">
-					</div>
 					<div class="col-md-6"><strong>PIS/PASEP/NIT:</strong><br/>
 						<input type="text" class="form-control" name="pis" placeholder="Nº do PIS/PASEP/NIT" value="<?php echo $pf['pis']; ?>">
 					</div>
