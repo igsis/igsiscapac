@@ -170,31 +170,31 @@ else
 						<form class="form-horizontal" role="form" action="login_resultado.php" method="post">
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-8"><strong>Nome: *</strong><br/>
-									<input type="text" class="form-control" name="nome" placeholder="Nome completo">
+									<input type="text" class="form-control" name="nome" placeholder="Nome completo" required>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-6"><strong>Senha: *</strong>
-									<input type="password" name="senha01" class="form-control" id="inputName" placeholder="">
+									<input type="password" name="senha01" class="form-control" id="inputName" placeholder="" required>
 								</div>
 								<div class=" col-md-6"><strong>Redigite a senha: *</strong>
-									<input type="password" name="senha02" class="form-control" id="inputEmail" placeholder="">
+									<input type="password" name="senha02" class="form-control" id="inputEmail" placeholder="" required>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-6"><strong>Telefone *:</strong><br/>
-									<input type="text" class="form-control" name="telefone" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" />
+									<input type="text" class="form-control" name="telefone" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" required />
 								</div>
 								<div class="col-md-6"><strong>Email: *</strong><br/>
-									<input type="text" readonly class="form-control" name="email" value="<?php echo $busca ?>" placeholder="Email">
+									<input type="text" readonly class="form-control" name="email" value="<?php echo $busca ?>" placeholder="Email" required>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-8"><strong>Escolha uma pergunta secreta, para casos de recuperação de senha:</strong><br/>
-									<select class="form-control" name="idFraseSeguranca" id="idFraseSeguranca">
+									<select class="form-control" name="idFraseSeguranca" id="idFraseSeguranca" required>
 										<option>Selecione...</option>
 										<?php geraOpcao("frase_seguranca","");	?>
 									</select>
@@ -203,7 +203,7 @@ else
 
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-8"><strong>Resposta:</strong><br/>
-									<input type="text" class="form-control" id="respostaFrase" maxlength="10" name="respostaFrase" />
+									<input type="text" class="form-control" id="respostaFrase" maxlength="10" name="respostaFrase" required/>
 								</div>
 							</div>
 

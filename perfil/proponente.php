@@ -124,7 +124,7 @@ else
 											<tr class='list_menu'>
 												<td>Nome</td>
 												<td>Nome Artístico</td>
-												<td>RG</td>
+												<td>RG/RNE/PASSAPORTE</td>
 												<td>CPF</td>
 												<td width='10%'></td>
 												<td width='10%'></td>

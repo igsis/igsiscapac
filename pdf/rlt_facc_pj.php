@@ -27,22 +27,20 @@ class PDF extends FPDF
 $idPj = $_SESSION['idPj'];
 
 $pessoa = recuperaDados("pessoa_juridica","id",$idPj);
-$enderecoCEP = enderecoCEP($pessoa['cep']);
 $dbBanco = recuperaDados("banco","id",$pessoa['codigoBanco']);
 $rep01 = recuperaDados("representante_legal","id",$pessoa['idRepresentanteLegal1']);
 
 $banco = $dbBanco["banco"];
 $codbanco = $dbBanco["codigoBanco"];
 
-$rua = $enderecoCEP["rua"];
-$bairro = $enderecoCEP["bairro"];
-$cidade = $enderecoCEP["cidade"];
-$estado = $enderecoCEP["estado"];
-
 //PessoaJuridica
 $pjRazaoSocial = $pessoa["razaoSocial"];
 $pjCNPJ = $pessoa['cnpj'];
 $pjCCM = $pessoa["ccm"];
+$rua = $pessoa['logradouro'];
+$bairro = $pessoa["bairro"];
+$cidade = $pessoa["cidade"];
+$estado = $pessoa["estado"];
 $pjNumEndereco = $pessoa["numero"];
 $pjComplemento = $pessoa["complemento"];
 $pjcep = $pessoa["cep"];
@@ -105,7 +103,6 @@ $l=7; //DEFINE A ALTURA DA LINHA
    $pdf->SetFont('Arial','', 9);
    $pdf->Cell(80,$l,utf8_decode($rep01Nome),0,0,'L');
    $pdf->Cell(50,$l,utf8_decode($rep01RG),0,0,'L');
-
 
 $pdf->Output("FACC - ".$pjRazaoSocial.".pdf", "I");
 ?>

@@ -6,11 +6,19 @@ $idPj = $_SESSION['idPj'];
 if(isset($_POST['cadastrarEndereco']))
 {
 	$idPj = $_POST['cadastrarEndereco'];
+	$Endereco = $_POST['Endereco'];
+	$Bairro = $_POST['Bairro'];
+	$Cidade = $_POST['Cidade'];
+	$Estado = $_POST['Estado'];
 	$CEP = $_POST['CEP'];
 	$Numero = $_POST['Numero'];
 	$Complemento = $_POST['Complemento'];
 
 	$sql_atualiza_endereco_pj = "UPDATE pessoa_juridica SET
+	`logradouro` = '$Endereco',
+	`bairro` = '$Bairro',
+	`cidade` = '$Cidade',
+	`estado` = '$Estado',
 	`cep` = '$CEP',
 	`numero` = '$Numero',
 	`complemento` = '$Complemento'
@@ -24,7 +32,7 @@ if(isset($_POST['cadastrarEndereco']))
 	}
 	else
 	{
-		$mensagem = "<font color='#FF0000'><strong>Erro ao atualizar! Tente novamente.</strong></font>";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao atualizar! Tente novamente.</strong></font>".$sql_atualiza_endereco_pj;
 	}
 }
 
@@ -51,7 +59,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Endereço:</strong><br/>
-						<input type="text" readonly class="form-control" id="Endereco" name="Endereco" placeholder="Endereço">
+						<input type="text" readonly class="form-control" id="Endereco" name="Endereco" placeholder="Endereço" value="<?php echo $pj['logradouro']; ?>">
 					</div>
 				</div>
 
@@ -66,16 +74,16 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Bairro:</strong><br/>
-						<input type="text" readonly class="form-control" id="Bairro" name="Bairro" placeholder="Bairro">
+						<input type="text" readonly class="form-control" id="Bairro" name="Bairro" placeholder="Bairro" value="<?php echo $pj['bairro']; ?>">
 					</div>
 				</div>
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>Cidade:</strong><br/>
-						<input type="text" readonly class="form-control" id="Cidade" name="Cidade" placeholder="Cidade">
+						<input type="text" readonly class="form-control" id="Cidade" name="Cidade" placeholder="Cidade" value="<?php echo $pj['cidade']; ?>">
 					</div>
 					<div class="col-md-6"><strong>Estado:</strong><br/>
-						<input type="text" readonly class="form-control" id="Estado" name="Estado" placeholder="Estado">
+						<input type="text" readonly class="form-control" id="Estado" name="Estado" placeholder="Estado" value="<?php echo $pj['estado']; ?>">
 					</div>
 				</div>
 
