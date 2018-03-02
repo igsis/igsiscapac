@@ -407,7 +407,7 @@ if(isset($_POST['enviar']))
 						<br/>
 						<p align="justify"><strong>REPRESENTANTE LEGAL #1</strong></p>
 						<p align="justify"><strong>Nome:</strong> <?php echo $representante1['nome'] ?></p>
-						<p align="justify"><strong>RG:</strong> <?php echo $representante1['rg'] ?></p>
+						<p align="justify"><strong>RG/RNE/PASSAPORTE:</strong> <?php echo $representante1['rg'] ?></p>
 						<p align="justify"><strong>CPF:</strong> <?php echo $representante1['cpf'] ?></p>
 						<br/>
 						<?php
@@ -416,7 +416,7 @@ if(isset($_POST['enviar']))
 						?>
 							<p align="justify"><strong>REPRESENTANTE LEGAL #2</strong></p>
 							<p align="justify"><strong>Nome:</strong> <?php echo $representante2['nome'] ?></p>
-							<p align="justify"><strong>RG:</strong> <?php echo $representante2['rg'] ?></p>
+							<p align="justify"><strong>RG/RNE/PASSAPORTE:</strong> <?php echo $representante2['rg'] ?></p>
 							<p align="justify"><strong>CPF:</strong> <?php echo $representante2['cpf'] ?></p>
 							<br/>
 						<?php
@@ -433,7 +433,7 @@ if(isset($_POST['enviar']))
 					<p align="justify"><strong>ARTISTA</strong></p>
 					<p align="justify"><strong>Nome:</strong> <?php echo $pessoaFisica['nome'] ?></p>
 					<p align="justify"><strong>Nome Artístico:</strong> <?php echo $pessoaFisica['nomeArtistico'] ?></p>
-					<p align="justify"><strong>RG:</strong> <?php echo $pessoaFisica['rg'] ?></p>
+					<p align="justify"><strong>RG/RNE/PASSAPORTE:</strong> <?php echo $pessoaFisica['rg'] ?></p>
 					<p align="justify"><strong>CPF:</strong> <?php echo $pessoaFisica['cpf'] ?></p>
 					<p align="justify"><strong>Telefone:</strong> <?php echo $pessoaFisica['telefone1']." | ".$pessoaFisica['telefone2']." | ".$pessoaFisica['telefone3'] ?></p>
 					<p align="justify"><strong>E-mail:</strong> <?php echo $pessoaFisica['email'] ?></p>

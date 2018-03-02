@@ -110,7 +110,7 @@ $representante1 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
 
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-6"><strong>RG/RNE/PASSAPORTE: *</strong><br/>
-							<input type="text" class="form-control" name="rg" placeholder="RG" value="<?php echo $representante1['rg']; ?>" >
+							<input type="text" class="form-control" name="rg" placeholder="RG/RNE/PASSAPORTE" value="<?php echo $representante1['rg']; ?>" >
 						</div>
 						<div class="col-md-6"><strong>CPF: *</strong><br/>
 							<input type="text" readonly class="form-control" name="cpf" placeholder="CPF" value="<?php echo $representante1['cpf']; ?>" >
