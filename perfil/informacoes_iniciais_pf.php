@@ -210,12 +210,16 @@ $idPf = $_SESSION['idPf'];
 
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
 ?>
-
+<!-- Chamamento Alert-->
+<thead>
+	<script src="js/sweetalert.min.js"></script>
+    <link href="css/sweetalert.css" rel="stylesheet" type="text/css"/>
+  </thead>
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_interno_pf.php'; ?>
 		<div class="form-group">
 			<h4>PASSO 6: Informações Iniciais</h4>
-			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
+				<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
@@ -290,6 +294,14 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
 				<div class="form-group">
 						<div class="col-md-offset-2 col-md-6"><strong>Data Nascimento *:</strong><br/>
+							<script>
+						       swal({   title: "Atenção!", 
+						             text: "Para maiores informaçõe sobre contratação de menores de idade, entrar em contato com o programador do seu evento .",
+						             timer: 10000,   
+						             confirmButtonColor:	"#20B2AA",
+						             showConfirmButton: true });
+						    </script>
+
 							<input type="text" class="form-control" name="dataNascimento" id="datepicker01" placeholder="Data de Nascimento" value = "<?php echo exibirDataBr($pf['dataNascimento']) ?>">
 						</div>
 						<div class="col-md-6"><strong>Estado civil:</strong><br/>
