@@ -127,7 +127,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 					<div class="col-md-offset-2 col-md-8"><strong>Banco:</strong><br/>
 						<select class="form-control" name="codigoBanco" id="codigoBanco">
 							<option></option>
-							<?php geraOpcao("banco",$pf['codigoBanco'],"");	?>
+							<?php geraOpcaoBancos("banco",$pf['codigoBanco'],"");	?>
 						</select>
 					</div>
 				</div>

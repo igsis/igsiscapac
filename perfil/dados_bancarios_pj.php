@@ -49,7 +49,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 					<div class="col-md-offset-2 col-md-8"><strong>Banco:</strong><br/>
 						<select class="form-control" name="codigoBanco" id="codigoBanco">
 							<option></option>
-							<?php geraOpcao("banco",$pj['codigoBanco'],"");	?>
+							<?php geraOpcaoBancos("banco",$pj['codigoBanco'],"");	?>
 						</select>
 					</div>
 				</div>
