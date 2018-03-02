@@ -178,7 +178,7 @@
 	function geraOpcaoBancos($tabela,$select)
 	{
 		//gera os options de um select
-		$sql = "SELECT * FROM $tabela ORDER BY 3";
+		$sql = "SELECT * FROM $tabela ORDER BY codigoBanco ASC";
 
 		$con = bancoMysqli();
 		$query = mysqli_query($con,$sql);
