@@ -1,6 +1,9 @@
 <?php
+
 $con = bancoMysqli();
 $idUser= $_SESSION['idUser'];
+$idPf = $_SESSION['idPf'];
+
 $tipoPessoa = "3";
 
 
@@ -115,7 +118,13 @@ if(isset($_POST['apagar']))
 								<tr>
 									<td width="50%"><td>
 								</tr>
-								<?php
+								<?php							
+									verificaArquivosExistentes($idPf,'2');
+									/*
+										Retorna verdadeiro se encontra algum resultado.
+										Deve ser feito uma condicional que oculta os campos, caso já tenha algo preenchido
+									*/
+
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '23'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))

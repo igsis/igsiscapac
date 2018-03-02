@@ -557,6 +557,16 @@
 		$dados['estado']  = strtoupper($campo01['uf']);
 		return $dados;
 	}
+function verificaArquivosExistentes($idPessoa,$idDocumento)
+{
+	$con = bancoMysqli();
+	$verificacaoArquivo = "SELECT arquivo FROM upload_arquivo WHERE idPessoa = '$idPessoa' AND idUploadListaDocumento = '$idDocumento'";
+	$envio = mysqli_query($con, $verificacaoArquivo);
+
+	if (mysqli_num_rows($envio)>0) {
+		return true;
+	}
+}
 
 function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 {
