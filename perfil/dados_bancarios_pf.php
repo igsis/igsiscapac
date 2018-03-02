@@ -127,7 +127,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 					<div class="col-md-offset-2 col-md-8"><strong>Banco:</strong><br/>
 						<select class="form-control" name="codigoBanco" id="codigoBanco">
 							<option></option>
-							<?php geraOpcao("banco",$pf['codigoBanco'],"");	?>
+							<?php geraOpcaoBancos("banco",$pf['codigoBanco'],"");	?>
 						</select>
 					</div>
 				</div>
@@ -161,11 +161,22 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 				?>
 
 				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<p align="justify">A FACC - Ficha de Atualização de Cadastro de Credores é um documento necessário para recebimento do cachê.</p>
+					</div>
+				</div>
+
+				<div class="form-group">
 					<div class="col-md-offset-2 col-md-5">
-						<p align="left">Após inserir seus dados pessoais e os dados bancários, clique no botão para gerar a FACC</p>
+						<p align="left">Após inserir seus dados pessoais e os dados bancários, clique no botão para gerar a FACC.</p>
 					</div>
 					<div class="col-md-3">
 						<a href='<?php echo $link1 ?>' target='_blank' class="btn btn-theme btn-lg btn-block"><strong>Gerar</strong></a>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<p align="justify"><font color="red"><strong>A FACC deve ser impressa, datada e assinada nos campos indicados no documento. Logo após, deve-se digitaliza-la e então anexa-la ao sistema através do campo abaixo.</strong></font></p>
 					</div>
 				</div>
 				<!--  FIM Gerar FACC -->

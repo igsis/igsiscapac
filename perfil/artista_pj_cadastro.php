@@ -56,7 +56,6 @@ if(isset($_POST['cadastraArtista']))
 		$ultimoPf = mysqli_fetch_array($query_ultimo);
 		$idPf = $ultimoPf['id'];
 
-		
 		$sql_atualiza_evento = "UPDATE evento SET idPf = '$idPf' WHERE id = '$idEvento'";
 		if(mysqli_query($con,$sql_atualiza_evento))
 		{
@@ -197,8 +196,8 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 						<div class="col-md-offset-2 col-md-6"><strong>Telefone #3:</strong><br/>
 							<input type="text" class="form-control" name="telefone3" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $artista['telefone3']; ?>">
 						</div>
-						<div class="col-md-6"><strong>DRT: </strong><br/>
-							<input type="text" class="form-control" name="drt" placeholder="DRT do ator" value="<?php echo $artista['drt']; ?>">
+						<div class="col-md-6"><strong>DRT:</strong> <font size="1"><i>(Somente para artes cênicas)</i></font><br/>
+							<input type="text" class="form-control" name="drt" placeholder="DRT caso for teatro, dança ou circo" value="<?php echo $artista['drt']; ?>">
 						</div>
 					</div>
 

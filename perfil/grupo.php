@@ -3,23 +3,6 @@ $con = bancoMysqli();
 $idEvento = $_SESSION['idEvento'];
 $tipoPessoa = '3';
 
-if(isset($_POST['insereIntegrante']))
-{
-	$nome = $_POST['nome'];
-	$rg = $_POST['rg'];
-	$cpf = $_POST['cpf'];
-
-	$sql_insere = "INSERT INTO `grupo`(`idEvento`, `nome`, `rg`, `cpf`, `publicado`) VALUES ('$idEvento', '$nome', '$rg', '$cpf', '1')";
-	if(mysqli_query($con,$sql_insere))
-	{
-		$mensagem = "<font color='#01DF3A'><strong>Inserido com sucesso!</strong></font>";
-		gravarLog($sql_insere);
-	}
-	else
-	{
-		$mensagem = "<font color='#FF0000'><strong>Erro ao inserir! Tente novamente.</strong></font>";
-	}
-}
 
 if(isset($_POST['apagarIntegrante']))
 {
@@ -117,7 +100,7 @@ $num = mysqli_num_rows($query_grupos);
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<h3>Integrantes do Elenco ou Artista Solo</h3>
+			<h4>PASSO 15: Integrantes do Elenco ou Artista Solo</h4>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
 		<div class="row">

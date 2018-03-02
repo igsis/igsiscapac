@@ -42,13 +42,14 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 
 			<font color="#FF0000"><strong>Realizamos pagamentos de valores acima de R$ 5.000,00 *SOMENTE COM CONTA CORRENTE NO BANCO DO BRASIL*.<br />
 			Não são aceitas: conta fácil, poupança e conjunta.</strong></font><br />
+			<font color="#FF0000"><strong>*A conta deve estar em nome da Pessoa Jurídica que está sendo contratada*</strong></font><br />
 			<p>
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Banco:</strong><br/>
 						<select class="form-control" name="codigoBanco" id="codigoBanco">
 							<option></option>
-							<?php geraOpcao("banco",$pj['codigoBanco'],"");	?>
+							<?php geraOpcaoBancos("banco",$pj['codigoBanco'],"");	?>
 						</select>
 					</div>
 				</div>

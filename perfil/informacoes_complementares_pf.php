@@ -93,7 +93,7 @@ if(isset($_POST['apagar']))
 		gravarLog($sql_apagar_arquivo);
 	}
 	else
-	{		
+	{
 		$mensagem = "<font color='#FF0000'><strong>Erro ao apagar arquivo! Tente novamente.</strong></font>";
 	}
 }
@@ -116,8 +116,8 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 				<form class="form-horizontal" role="form" action="?perfil=informacoes_complementares_pf" method="post">
 
 					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8"><strong>DRT:</strong><br/>
-							<input type="text" class="form-control" name="drt" placeholder="DRT" value="<?php echo $pf['drt']; ?>">
+						<div class="col-md-offset-2 col-md-8"><strong>DRT:</strong> <font size="1"><i>(Somente para artes cênicas)</i></font><br/>
+							<input type="text" class="form-control" name="drt" placeholder="DRT caso for teatro, dança ou circo" value="<?php echo $pf['drt']; ?>">
 						</div>
 					</div>
 

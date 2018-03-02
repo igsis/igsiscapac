@@ -34,7 +34,9 @@
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
 							<label>Ficha técnica completa*</label>
-							<textarea name="fichaTecnica" class="form-control" rows="10" placeholder="Elenco, técnicos, programa do concerto, outros profissionais envolvidos."></textarea>
+							<label>Esse campo deve conter a listagem de pessoas envolvidas no espetáculo, como elenco, técnicos, e outros profissionais envolvidos na realização do mesmo.</i></strong></label>
+							<p align="justify"><font color="gray"><strong><i>Elenco de exemplo:</strong><br/>Ana Cañas (voz e guitarra)<br/>Lúcio Maia (guitarra solo)<br/>Fabá Jimenez (guitarra base)</br> Fabio Sá (baixo) </br> Marco da Costa (bateria)</font></i></p>
+							<textarea name="fichaTecnica" class="form-control" rows="10"></textarea>
 						</div>
 					</div>
 					<div class="form-group">
