@@ -73,8 +73,6 @@ if(isset($_POST['atualizarFisica']))
 	$telefone3 = $_POST['telefone3'];
 	$email = $_POST['email'];
 	$dataNascimento = exibirDataMysql($_POST['dataNascimento']);
-	$idEstadoCivil = $_POST['idEstadoCivil'];
-	$nacionalidade = (string)$_POST['nacionalidade'];
 	$pis = $_POST['pis'];
 	$dataAtualizacao = date("Y-m-d H:i:s");
 	$idPf = $_SESSION['idPf'];
@@ -90,8 +88,6 @@ if(isset($_POST['atualizarFisica']))
 	`telefone3` = '$telefone3',
 	`email` = '$email',
 	`dataNascimento` = '$dataNascimento',
-	`idEstadoCivil` = '$idEstadoCivil',
-	`nacionalidade` = '$nacionalidade',
 	`pis` = '$pis',
 	`dataAtualizacao` = 'dataAtualizacao'
 	WHERE `id` = '$idPf'";
