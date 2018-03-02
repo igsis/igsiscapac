@@ -123,8 +123,8 @@ else
 						<div class="col-md-offset-2 col-md-6"><strong>Telefone #3:</strong><br/>
 							<input type="text" class="form-control" name="telefone3" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321">
 						</div>
-						<div class="col-md-6"><strong>DRT: </strong><br/>
-							<input type="text" class="form-control" name="drt" placeholder="DRT do ator/atriz">
+						<div class="col-md-6"><strong>DRT:</strong> <font size="1"><i>(Somente para artes cênicas)</i></font><br/>
+							<input type="text" class="form-control" name="drt" placeholder="DRT caso for teatro, dança ou circo">
 						</div>
 					</div>
 
