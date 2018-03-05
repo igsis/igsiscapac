@@ -141,8 +141,20 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 								{
 							?>
 									<tr>
+										<?php 
+										$doc = $arq['documento'];
+										$query = "SELECT id FROM upload_lista_documento WHERE documento='$doc' AND publicado='1'";
+										$envio = $con->query($query);
+
+										$row = $envio->fetch_array(MYSQLI_ASSOC);
+
+										if(verificaArquivosExistentesPF($idPf,$row['id'])){
+											echo 'O arquivo ' . $doc . ' já foi enviado.<br><br>';
+										}
+										else{ ?>
 										<td class="list_description"><?php echo $arq['documento']?></td>
 										<td valign="center"><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+										<?php } ?>
 									</tr>
 							<?php
 								}

@@ -354,6 +354,11 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									<td width="50%"><td>
 								</tr>
 								<?php
+								if(verificaArquivosExistentesPF($idPf,'2')) // true
+								{
+									echo 'O arquivo RG/RNE/PASSAPORTE já foi enviado. ';
+								}
+								else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '2'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
@@ -364,6 +369,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 										</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 						</div>
@@ -379,6 +385,11 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									<td width="50%"><td>
 								</tr>
 								<?php
+								if(verificaArquivosExistentesPF($idPf,'3')) // true
+								{
+									echo 'O arquivo RG/RNE/PASSAPORTE já foi enviado. ';
+								}
+								else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '3'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
@@ -389,6 +400,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 										</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 						</div>
@@ -404,6 +416,11 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									<td width="50%"><td>
 								</tr>
 								<?php
+								if(verificaArquivosExistentesPF($idPf,'25')) // true
+								{
+									echo 'O arquivo PIS/PASEP/NIT já foi enviado. ';
+								}
+								else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '25'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
@@ -414,6 +431,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 										</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 						</div>
@@ -429,6 +447,11 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									<td width="50%"><td>
 								</tr>
 								<?php
+									if(verificaArquivosExistentesPF($idPf,'31')) // true
+									{
+										echo 'O arquivo FDC – CCM foi enviado. ';
+									}
+									else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '31'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
@@ -439,6 +462,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 										</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 							<input type="hidden" name="idPessoa" value="<?php echo $idPf; ?>"  />
