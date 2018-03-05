@@ -208,7 +208,17 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 <thead>
 	<script src="js/sweetalert.min.js"></script>
     <link href="css/sweetalert.css" rel="stylesheet" type="text/css"/>
+<script>
+	function alerta()
+	{
+    swal({   title: "Atenção!", 
+	text: "Para maiores informações sobre contratação de artistas com idade inferior a 18 anos, entrar em contato com o programador do seu evento.",
+	timer: 10000,   
+	confirmButtonColor:	"#20B2AA",
+	showConfirmButton: true });}
+</script>
   </thead>
+
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_interno_pf.php'; ?>
 		<div class="form-group">
@@ -288,15 +298,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
 				<div class="form-group">
 						<div class="col-md-offset-2 col-md-6"><strong>Data Nascimento *:</strong><br/>
-							<script>
-						       swal({   title: "Atenção!", 
-						             text: "Para maiores informações sobre contratação de artistas com idade inferior a 18 anos, entrar em contato com o programador do seu evento.",
-						             timer: 10000,   
-						             confirmButtonColor:	"#20B2AA",
-						             showConfirmButton: true });
-						    </script>
-
-							<input type="text" class="form-control" name="dataNascimento" id="datepicker01" placeholder="Data de Nascimento" value = "<?php echo exibirDataBr($pf['dataNascimento']) ?>">
+							<input type="text" class="form-control" name="dataNascimento" id="datepicker01" onclick="alerta()" placeholder="Data de Nascimento" value = "<?php echo exibirDataBr($pf['dataNascimento']) ?>">
 						</div>
 					<div class="col-md-6"><strong>PIS/PASEP/NIT:</strong><br/>
 						<input type="text" class="form-control" name="pis" placeholder="Nº do PIS/PASEP/NIT" value="<?php echo $pf['pis']; ?>">
