@@ -96,7 +96,7 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s) Somente em PDF</h6>
-							<?php listaArquivoCamposMultiplos($artista['id'],$tipoPessoa,"","artista_pj_cadastro",7); ?>
+							<?php listaArquivoCamposMultiplos($artista['id'],$tipoPessoa,"","arquivos_artista_pj",7); ?>
 						</div>
 					</div>
 				</div>
