@@ -364,7 +364,7 @@ if(isset($_POST['enviar']))
 						<?php
 						}
 						?>
-						<p align="left">
+						<p align="center">
 							<?php 
 							if(isset($mensagem)){
 								echo $mensagem;
@@ -375,7 +375,7 @@ if(isset($_POST['enviar']))
 
 				<!-- Início de Detalhes -->
 				<div class="left">
-					<p align="justify"><br><br><br><br><br><strong>Tipo de evento:</strong> <?php echo $tipoEvento['tipoEvento'] ?></p>
+					<p align="justify"><br><br><br><br><br><br><strong>Tipo de evento:</strong> <?php echo $tipoEvento['tipoEvento'] ?></p>
 					<p align="justify"><strong>Nome de Grupo:</strong> <?php echo $evento['nomeGrupo'] ?></p>
 					<p align="justify"><strong>Ficha Técnica:</strong> <?php echo $evento['fichaTecnica'] ?></p>
 					<p align="justify"><strong>Faixa Etária:</strong> <?php echo $faixaEtaria['faixaEtaria'] ?></p>
