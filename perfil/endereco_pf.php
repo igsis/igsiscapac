@@ -192,6 +192,10 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									<td width="50%"><td>
 								</tr>
 								<?php
+									if(verificaArquivosExistentesPF($idPf,'4')){
+										echo 'O arquivo Comprovante de residência foi enviado. ';
+									}
+									else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idCampo'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
@@ -202,6 +206,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 										</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 							<input type="hidden" name="idPessoa" value="<?php echo $idPf; ?>"  />
