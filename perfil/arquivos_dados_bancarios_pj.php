@@ -142,6 +142,10 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 									<td width="50%"><td>
 								</tr>
 								<?php
+								if(verificaArquivosExistentesPF($idPj, $idCampo)){
+									echo 'O arquivo FACC foi enviado. ';
+								}
+								else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idCampo'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
@@ -152,6 +156,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 										</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 							<input type="hidden" name="idPessoa" value="<?php echo $idPj; ?>"  />

@@ -140,11 +140,23 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 									{
 								?>
 										<tr>
+											<?php 
+											$doc = $arq['documento'];
+										$query = "SELECT id FROM upload_lista_documento WHERE documento='$doc' AND publicado='1'";
+										$envio = $con->query($query);
+
+										$row = $envio->fetch_array(MYSQLI_ASSOC);
+
+											if(verificaArquivosExistentesPF($idPj,$row['id'])){
+											echo 'O arquivo ' . $doc . ' já foi enviado.<br><br>';
+										}
+										else{ ?>
 											<td><?php echo $arq['documento']?></td>
 											<td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
 										</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 							<input type="hidden" name="idPessoa" value="<?php echo $idPj; ?>"  />

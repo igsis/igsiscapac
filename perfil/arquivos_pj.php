@@ -137,6 +137,11 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 									<td width="50%"><td>
 								</tr>
 								<?php
+								if(verificaArquivosExistentesPF($idPj, '22'))
+								{
+									echo 'O arquivo Cartão CNPJ foi enviado. ';
+								}
+								else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '22'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
@@ -147,6 +152,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 								</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 						</div>
@@ -163,6 +169,11 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 									<td width="50%"><td>
 								</tr>
 								<?php
+								if(verificaArquivosExistentesPF($idPj, '43'))
+								{
+									echo 'O arquivo FDC CCM foi enviado. ';
+								}
+								else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '43'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
@@ -173,6 +184,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 								</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 						</div>
@@ -188,6 +200,11 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 									<td width="50%"><td>
 								</tr>
 								<?php
+								if(verificaArquivosExistentesPF($idPj, '28'))
+								{
+									echo 'O arquivo CPOM foi enviado. ';
+								}
+								else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '28'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
@@ -198,6 +215,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 										</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 							<input type="hidden" name="idPessoa" value="<?php echo $idPj ?>"  />
