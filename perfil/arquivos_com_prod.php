@@ -99,6 +99,10 @@ $campo = recuperaDados("evento","id",$_SESSION['idEvento']);
 					<br />
 					<div class = "center">
 						<form method='POST' action="?perfil=arquivos_com_prod" enctype='multipart/form-data'>
+							<?php 
+							if(verificaArquivosExistentesComunicacao($_SESSION['idEvento']) >= 5){}
+								else{
+							?>
 							<p><input type='file' name='arquivo[]'></p>
 							<p><input type='file' name='arquivo[]'></p>
 							<p><input type='file' name='arquivo[]'></p>
@@ -107,6 +111,7 @@ $campo = recuperaDados("evento","id",$_SESSION['idEvento']);
 							<br>
 							<input type="submit" class="btn btn-theme btn-lg btn-block" value='Enviar' name='enviar'>
 						</form>
+						<?php } ?>
 					</div>
 			</div>
 		</div>

@@ -557,14 +557,25 @@
 		$dados['estado']  = strtoupper($campo01['uf']);
 		return $dados;
 	}
-function verificaArquivosExistentes($idPessoa,$idDocumento)
+function verificaArquivosExistentesEvento($idEvento,$idDocumento)
 {
 	$con = bancoMysqli();
-	$verificacaoArquivo = "SELECT arquivo FROM upload_arquivo WHERE idPessoa = '$idPessoa' AND idUploadListaDocumento = '$idDocumento'";
+	$verificacaoArquivo = "SELECT arquivo FROM upload_arquivo WHERE idPessoa = '$idEvento' AND idUploadListaDocumento = '$idDocumento' AND publicado = '1'";
 	$envio = mysqli_query($con, $verificacaoArquivo);
 
-	if (mysqli_num_rows($envio)>0) {
+	if (mysqli_num_rows($envio) > 0) {
 		return true;
+	}
+}
+
+function verificaArquivosExistentesComunicacao($idEvento)
+{
+	$con = bancoMysqli();
+	$verificacaoArquivo = "SELECT arquivo FROM upload_arquivo_com_prod WHERE idEvento = '$idEvento' AND publicado = '1'";
+	$envio = $con->query($verificacaoArquivo);
+	$qtd = mysqli_num_rows($envio);
+	if($qtd > 0){
+		return $qtd;
 	}
 }
 

@@ -2,7 +2,6 @@
 
 $con = bancoMysqli();
 $idUser= $_SESSION['idUser'];
-$idPf = $_SESSION['idPf'];
 
 $tipoPessoa = "3";
 
@@ -118,13 +117,16 @@ if(isset($_POST['apagar']))
 								<tr>
 									<td width="50%"><td>
 								</tr>
-								<?php							
-									verificaArquivosExistentes($idPf,'2');
+								<?php						
+									if(verificaArquivosExistentesEvento($idEvento,'23')) //true
+									{
+										echo 'O arquivo repertório já foi enviado. ';
+									}
 									/*
 										Retorna verdadeiro se encontra algum resultado.
 										Deve ser feito uma condicional que oculta os campos, caso já tenha algo preenchido
 									*/
-
+									else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '23'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
@@ -135,6 +137,7 @@ if(isset($_POST['apagar']))
 										</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 						</div>
@@ -150,6 +153,10 @@ if(isset($_POST['apagar']))
 									<td width="50%"><td>
 								</tr>
 								<?php
+									if(verificaArquivosExistentesEvento($idEvento,'65')){
+										echo 'O arquivo Material de imprensa (clipping) já foi enviado.';
+									}
+									else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '65'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
@@ -160,6 +167,7 @@ if(isset($_POST['apagar']))
 										</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 						</div>
@@ -175,6 +183,12 @@ if(isset($_POST['apagar']))
 									<td width="50%"><td>
 								</tr>
 								<?php
+								if(verificaArquivosExistentesEvento($idEvento,'78'))
+								{
+									echo 'O arquivo Autorização SBAT já foi enviado. ';
+								}
+								else
+								{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '78'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
@@ -185,6 +199,7 @@ if(isset($_POST['apagar']))
 										</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 						</div>
@@ -200,6 +215,11 @@ if(isset($_POST['apagar']))
 									<td width="50%"><td>
 								</tr>
 								<?php
+								if(verificaArquivosExistentesEvento($idEvento,'96'))
+								{
+									echo 'O arquivo Currículo do Grupo já foi enviado. ';
+								}
+								else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '96'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
@@ -210,6 +230,7 @@ if(isset($_POST['apagar']))
 										</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 							<input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>
