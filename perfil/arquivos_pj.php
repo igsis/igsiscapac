@@ -77,12 +77,12 @@ if(isset($_POST['apagar']))
 	$sql_apagar_arquivo = "UPDATE upload_arquivo SET publicado = 0 WHERE id = '$idArquivo'";
 	if(mysqli_query($con,$sql_apagar_arquivo))
 	{
-		$mensagem =	"<font color='#FF0000'>Arquivo apagado com sucesso!</strong></font>";
+		$mensagem = "<font color='#01DF3A'><strong>Arquivo apagado com sucesso!</strong></font>";
 		gravarLog($sql_apagar_arquivo);
 	}
 	else
 	{
-		$mensagem = "<font color='#FF0000'><strong>Erro ao apagar o arquivo! Tente novamente.</strong></font>";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao apagar arquivo!</strong></font>";
 	}
 }
 
@@ -122,7 +122,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s) Somente em PDF</h6>
-							<?php listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","informacoes_iniciais_pj",2); ?>
+							<?php listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","arquivos_pj",2); ?>
 						</div>
 					</div>
 				</div>
