@@ -20,7 +20,7 @@ if(isset($_SESSION['idEvento']))
 
 if(isset($_POST["enviar"]))
 {
-	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id IN (23,65,78,96,97,98)";
+	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id IN (23,65,78,96)";
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
 	{
@@ -104,7 +104,7 @@ if(isset($_POST['apagar']))
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s) Somente em PDF</h6>
-							<?php listaArquivoCamposMultiplos($idEvento,$tipoPessoa,"","evento_edicao",10); ?>
+							<?php listaArquivoCamposMultiplos($idEvento,$tipoPessoa,"","arquivos_evento",10); ?>
 						</div>
 					</div>
 				</div>
@@ -212,6 +212,7 @@ if(isset($_POST['apagar']))
 									}
 								?>
 							</table><br>
+							<input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>
 						</div>
 					</div>
 				</div>
