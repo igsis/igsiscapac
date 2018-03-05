@@ -45,7 +45,7 @@ if(isset($_POST["enviar"]))
 						$query = mysqli_query($con,$sql_insere_arquivo);
 						if($query)
 						{
-							$mensagem = "<font color='#FF0000'><strong>Erro ao gravar no banco!</strong></font>";
+							$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 							gravarLog($sql_insere_arquivo);
 						}
 						else
