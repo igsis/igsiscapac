@@ -387,7 +387,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 								<?php
 								if(verificaArquivosExistentesPF($idPf,'3')) // true
 								{
-									echo 'O arquivo RG/RNE/PASSAPORTE já foi enviado. ';
+									echo 'O arquivo CPF já foi enviado. ';
 								}
 								else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '3'";
