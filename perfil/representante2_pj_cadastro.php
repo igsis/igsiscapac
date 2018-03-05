@@ -18,10 +18,9 @@ if(isset($_POST['cadastraRepresentante']))
 		$nome = addslashes($_POST['nome']);
 		$rg = $_POST['rg'];
 		$cpf = $_POST['cpf'];
-		$idEstadoCivil = $_POST['idEstadoCivil'];
-		$nacionalidade = $_POST['nacionalidade'];
 
-		$sql_insere_rep2 = "INSERT INTO `representante_legal` (`nome`, `rg`, `cpf`, `nacionalidade`, `idEstadoCivil`) VALUES ('$nome', '$rg', '$cpf', '$nacionalidade', '$idEstadoCivil')";
+
+		$sql_insere_rep2 = "INSERT INTO `representante_legal` (`nome`, `rg`, `cpf`) VALUES ('$nome', '$rg', '$cpf')";
 
 		if(mysqli_query($con,$sql_insere_rep2))
 		{
@@ -69,15 +68,13 @@ if(isset($_POST['editaRepresentante']))
 		$nome = addslashes($_POST['nome']);
 		$rg = $_POST['rg'];
 		$cpf = $_POST['cpf'];
-		$idEstadoCivil = $_POST['idEstadoCivil'];
-		$nacionalidade = $_POST['nacionalidade'];
+
 
 		$sql_atualiza_rep2 = "UPDATE `representante_legal` SET
 		`nome` = '$nome',
 		`rg` = '$rg',
-		`cpf` = '$cpf',
-		`nacionalidade` = '$nacionalidade',
-		`idEstadoCivil` = '$idEstadoCivil'
+		`cpf` = '$cpf'
+		
 		WHERE `id` = '$idRep2'";
 
 		if(mysqli_query($con,$sql_atualiza_rep2))
