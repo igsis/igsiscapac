@@ -169,6 +169,18 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 						</form>
 					</div>
 				</div>
+				<?php
+					if(isset($_SESSION['idEvento']))
+					{
+					?>
+						<div class="col-md-offset-4 col-md-2">
+							<form class="form-horizontal" role="form" action="?perfil=finalizar" method="post">
+								<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
+							</form>
+						</div>
+					<?php
+					}
+				?>
 			</div>
 		</div>
 	</div>
