@@ -69,7 +69,7 @@ if ($pj['idRepresentanteLegal2'] == 0) // Não possui representante legal cadast
 				<!-- Botão para Voltar e Prosseguir -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=representante2_pj" method="post">
+						<form class="form-horizontal" role="form" action="?perfil=arquivos_representante1" method="post">
 							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>
 					</div>
