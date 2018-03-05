@@ -13,123 +13,174 @@ $idUser= $_SESSION['idUser'];
 					<div class="col-md-offset-2 col-md-8">
 						<div align="justify">
 							<p align="justify">Inicia-se aqui um processo passo-a-passo para o  preenchimento dos dados do evento conforme descrito abaixo. Antes de começar, tenha disponível estas informações para que o cadastro possa ser concluído.</p>
-							<p>PASSSO 1: Informações Gerais do Evento</p>
-							<ul>
-								<li>Nome do evento</li>
-								<li>Tipo de evento</li>
-								<li>Nome do grupo (se houver)</li>
-								<li>Ficha técnica completa</li>
-								<li>Classificação indicativa</li>
-								<li>Sinopse</li>
-								<li>Release</li>
-								<li>Links para divulgação</li>
+							<ul class="list-group">
+								<li class="list-group-item list-group-item-success list-group-item"><b>PASSO 1: Informações Gerais do Evento</b></li>
+								<li class="list-group-item">Nome do evento</li>
+								<li class="list-group-item">Tipo de evento</li>
+								<li class="list-group-item">Nome do grupo (se houver)</li>
+								<li class="list-group-item">Ficha técnica completa</li>
+								<li class="list-group-item">Classificação indicativa</li>
+								<li class="list-group-item">Sinopse</li>
+								<li class="list-group-item">Release</li>
+								<li class="list-group-item">Links para divulgação</li>
 							</ul>
-							<p>PASSSO 2: Arquivos do Evento em PDF</p>
-							<ul>
-								<li>Repertório</li>
-								<li>Material de imprensa (clipping)</li>
-								<li>Autorização SBAT</li>
-								<li>Currículo do Grupo</li>
-								<li>Currículo da Companhia</li>
-								<li>Histórico do Grupo ou Artista</li>
+							<ul class="list-group">
+								<li class="list-group-item list-group-item-success"><b>PASSO 2: Arquivos do Evento em PDF</b></li>
+								<li class="list-group-item">Repertório</li>
+								<li class="list-group-item">Material de imprensa (clipping)</li>
+								<li class="list-group-item">Autorização SBAT</li>
+								<li class="list-group-item">Currículo do Grupo</li>
+								<li class="list-group-item">Currículo da Companhia</li>
+								<li class="list-group-item">Histórico do Grupo ou Artista</li>
 							</ul>
-							<p>PASSSO 3: Dados do Produtor</p>
-							<ul>
-								<li>Nome</li>
-								<li>E-mail</li>
-								<li>Celular</li>
-								<li>Outro telefone (se houver)</li>
+							<ul class="list-group">
+								<li class="list-group-item list-group-item-success"><b>PASSO 3: Dados do Produtor</b></li>
+								<li class="list-group-item">Nome</li>
+								<li class="list-group-item">E-mail</li>
+								<li class="list-group-item">Celular</li>
+								<li class="list-group-item">Outro telefone (se houver)</li>
 							</ul>
-							<p>PASSSO 4: Arquivos Para Comunicação e Produção</p>
-							<ul>
-								<li>Nesta página você envia os arquivos como o rider, mapas de cenas e luz, logos de parceiros, programação de filmes de mostras de cinema, entre outros arquivos destinados à comunicação e produção.</li>
+							<ul class="list-group">
+								<li class="list-group-item list-group-item-success"><b>PASSO 4: Arquivos Para Comunicação e Produção</b></li>
+								<li class="list-group-item">Nesta página você envia os arquivos como o rider, mapas de cenas e luz, logos de parceiros, programação de filmes de mostras de cinema, entre outros arquivos destinados à comunicação e produção.</li>
 							</ul>
-							<p>PASSO 5: Cadastro do Proponente</p>
-							<ul>
-								<li>Informe se haverá pu não haverá representação jurídica</li>
-							</ul>
-							<p>Se houver Pessoa Jurídica</p>
-							<p>PASSO 6: Informações iniciais</p>
-							<ul>
-								<li>Razão Social</li>
-								<li>CNPJ</li>
-								<li>CCM</li>
-								<li>Celular</li>
-								<li>Telefone #2</li>
-								<li>Telefone #3</li>
-								<li>E-mail</li>
-							</ul>
-							<p>PASSO 7: Arquivos da Empresa em PDF</p>
-							<ul>
-								<li><a href="http://www.receita.fazenda.gov.br/pessoajuridica/cnpj/cnpjreva/cnpjreva_solicitacao.asp" target="_blank">Cartão CNPJ</a></li>
-								<li><a href="https://ccm.prefeitura.sp.gov.br/login/contribuinte?tipo=F" target="_blank">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</a></li>
-								<li><a href="https://www3.prefeitura.sp.gov.br/cpom2/Consulta_Tomador.aspx" target="_blank">CPOM - Cadastro de Empresas Fora do Município</a></li>
-							</ul>
-							<p>PASSO 8: Endereço</p>
-							<ul>
-								<li>CEP</li>
-								<li>Número</li>
-								<li>Complemento</li>
-							</ul>
-							<p>PASSO 9: Representante Legal</p>
-							<ul>
-								<li>Nome</li>
-								<li>RG</li>
-								<li>CPF</li>
-							</ul>
-							<p>PASSO 10: Arquivos do Representante Legal em PDF</p>
-							<ul>
-								<li>RG</li>
-								<li>CPF</li>
-							</ul>
-							<p>PASSO 11: Dados Bancários</p>
-							<p><font color="#FF0000"><strong>Realizamos pagamentos de valores acima de R$ 5.000,00 *SOMENTE COM CONTA CORRENTE NO BANCO DO BRASIL*.<br />Não são aceitas: conta fácil, poupança e conjunta.</strong></font></p>
-							<ul>
-								<li>Banco</li>
-								<li>Agência</li>
-								<li>Conta</li>
-							</ul>
-							<p>PASSO 12: Arquivo dos Dados Bancários em PDF</p>
-							<ul>
-								<li>Gerar FACC</li>
-								<li>Anexar a FACC depois de assinada</li>
-							</ul>
-							<p>PASSO 13: ARTISTA - Líder do Grupo ou Artista Solo</p>
-							<ul>
-								<li>Nome</li>
-								<li>Nome Artístico</li>
-								<li>RG</li>
-								<li>CPF</li>
-								<li>E-mail</li>
-								<li>Celular</li>
-								<li>Telefone #2</li>
-								<li>Telefone #3</li>
-								<li>DRT</li>
-							</ul>
-							<p>PASSO 14: Arquivos do Líder do Grupo ou Artista Solo em PDF</p>
-							<ul>
-								<li>RG</li>
-								<li>CPF</li>
-								<li>DRT</li>
-							</ul>
-							<p>PASSO 15: Integrantes do Elenco ou Artista Solo</p>
-							<ul>
-								<li>Cadastrar cada artista</li>
-							</ul>
-							<p>PASSO 16: Arquivos dos Integrantes do Elenco ou Artista Solo</p>
-							<ul>
-								<li>Arquivos cada artista</li>
-							</ul>
-							<p>PASSO 17: Demais Anexos</p>
-							<ul>
-								<li>Demais anexos necessários para a contratação</li>
-							</ul>
-							<p>PASSO 18: Finalizar</p>
-							<ul>
-								<li>Nesta tela haverá um resumo de toda informação inserida neste evento</li>
-								<li>Listará também algum campo pendente de preenchimento.</li>
+							<ul class="list-group">
+								<li class="list-group-item list-group-item-success"><b>PASSO 5: Cadastro do Proponente</b></li>
+								<li class="list-group-item">Informe se haverá ou não haverá representação jurídica</li>
 							</ul>
 
+							<ul class="nav nav-tabs">
+        						<li class="nav active"><a href="#A" data-toggle="tab">Passos Para Pessoa Jurídica</a></li>
+        						<li class="nav"><a href="#B" data-toggle="tab">Passos Para Pessoa Fisica</a></li>
+    						</ul>
+
+    						<div class="tab-content">
+    							<!-- PASSOS PESSOA JURÍDICA -->
+        						<div class="tab-pane fade in active" id="A">
+        							<br>
+									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>PASSO 6: Informações iniciais</b></li>
+										<li class="list-group-item">Razão Social</li>
+										<li class="list-group-item">CNPJ</li>
+										<li class="list-group-item">CCM</li>
+										<li class="list-group-item">Celular</li>
+										<li class="list-group-item">Telefone #2</li>
+										<li class="list-group-item">Telefone #3</li>
+										<li class="list-group-item">E-mail</li>
+									</ul>
+									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>PASSO 7: Arquivos da Empresa em PDF</b></li>
+										<li class="list-group-item"><a href="http://www.receita.fazenda.gov.br/pessoajuridica/cnpj/cnpjreva/cnpjreva_solicitacao.asp" target="_blank">Cartão CNPJ</a></li>
+										<li class="list-group-item"><a href="https://ccm.prefeitura.sp.gov.br/login/contribuinte?tipo=F" target="_blank">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</a></li>
+										<li class="list-group-item"><a href="https://www3.prefeitura.sp.gov.br/cpom2/Consulta_Tomador.aspx" target="_blank">CPOM - Cadastro de Empresas Fora do Município</a></li>
+									</ul>
+									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>PASSO 8: Endereço</b></li>
+										<li class="list-group-item">CEP</li>
+										<li class="list-group-item">Número</li>
+										<li class="list-group-item">Complemento</li>
+									</ul>
+									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>PASSO 9: Representante Legal</b></li>
+										<li class="list-group-item">Nome</li>
+										<li class="list-group-item">RG</li>
+										<li class="list-group-item">CPF</li>
+									</ul>
+									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>PASSO 10: Arquivos do Representante Legal em PDF</b></li>
+										<li class="list-group-item">RG</li>
+										<li class="list-group-item">CPF</li>
+									</ul>
+									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>PASSO 11: Dados Bancários</b></li>
+										<li class="list-group-item list-group-item-danger"><b>Realizamos pagamentos de valores acima de R$ 5.000,00 *SOMENTE COM CONTA CORRENTE NO BANCO DO BRASIL*.<br />Não são aceitas: conta fácil, poupança e conjunta.</b></li>
+										<li class="list-group-item">Banco</li>
+										<li class="list-group-item">Agência</li>
+										<li class="list-group-item">Conta</li>
+									</ul>
+									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>PASSO 12: Arquivo dos Dados Bancários em PDF</b></li>
+										<li class="list-group-item">Gerar FACC</li>
+										<li class="list-group-item">Anexar a FACC depois de assinada</li>
+									</ul>
+									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>PASSO 13: ARTISTA - Líder do Grupo ou Artista Solo</b></li>
+										<li class="list-group-item">Nome</li>
+										<li class="list-group-item">Nome Artístico</li>
+										<li class="list-group-item">RG</li>
+										<li class="list-group-item">CPF</li>
+										<li class="list-group-item">E-mail</li>
+										<li class="list-group-item">Celular</li>
+										<li class="list-group-item">Telefone #2</li>
+										<li class="list-group-item">Telefone #3</li>
+										<li class="list-group-item">DRT</li>
+									</ul>
+									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>PASSO 14: Arquivos do Líder do Grupo ou Artista Solo em PDF</b></li>
+										<li class="list-group-item">RG</li>
+										<li class="list-group-item">CPF</li>
+										<li class="list-group-item">DRT</li>
+									</ul>
+									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>PASSO 15: Integrantes do Elenco ou Artista Solo</b></li>
+										<li class="list-group-item">Cadastrar cada artista</li>
+									</ul>
+									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>PASSO 16: Arquivos dos Integrantes do Elenco ou Artista Solo</b></li>
+										<li class="list-group-item">Arquivos cada artista</li>
+									</ul>
+									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>PASSO 17: Demais Anexos</b></li>
+										<li class="list-group-item">Demais anexos necessários para a contratação</li>
+									</ul>
+									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>PASSO 18: Finalizar</b></li>
+										<li class="list-group-item">Nesta tela haverá um resumo de toda informação inserida neste evento</li>
+										<li class="list-group-item">Listará também algum campo pendente de preenchimento.</li>
+									</ul>
+        						</div>
+
+        						<!-- PASSOS PESSOA FÍSICA -->
+        						<div class="tab-pane fade" id="B">
+        							<br>
+        							<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>PASSO 6: Informações iniciais</b></li>
+										<li class="list-group-item">Nome</li>
+										<li class="list-group-item">Nome Artístico</li>
+										<li class="list-group-item">Tipo de Documento</li>
+										<li class="list-group-item">Nº do documento</li>
+										<li class="list-group-item">CPF</li>
+										<li class="list-group-item">CCM</li>
+										<li class="list-group-item">Celular</li>
+										<li class="list-group-item">Telefone #2</li>
+										<li class="list-group-item">Telefone #3</li>
+										<li class="list-group-item">E-mail</li>
+										<li class="list-group-item">Data de Nascimentos</li>
+										<li class="list-group-item">PIS/PASEP/NIT</li>
+									</ul>
+									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>PASSO 7: Endereço</b></li>
+										<li class="list-group-item">CEP</li>
+										<li class="list-group-item">Número</li>
+										<li class="list-group-item">Complemento</li>
+									</ul>
+									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>PASSO 8: Informações Complementares</b></li>
+										<li class="list-group-item">DRT (Somente para Teatro, Dança ou Circo)</li>
+									</ul>
+									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>PASSO 9: Dados Bancários</b></li>
+										<li class="list-group-item list-group-item-danger"><b>Realizamos pagamentos de valores acima de R$ 5.000,00 *SOMENTE COM CONTA CORRENTE NO BANCO DO BRASIL*.<br />Não são aceitas: conta fácil, poupança e conjunta.</b></li>
+										<li class="list-group-item">Banco</li>
+										<li class="list-group-item">Agência</li>
+										<li class="list-group-item">Conta</li>
+									</ul>
+									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>PASSO 10: Demais Anexos</b></li>
+										<li class="list-group-item">Demais anexos necessários para a contratação</li>
+									</ul>
+        						</div>
+    						</div>
 						</div>
 					</div>
 				</div>
