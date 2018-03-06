@@ -9,6 +9,7 @@ if(isset($_POST['insere']) || isset($_POST['atualizar']))
 	$idTipoEvento = $_POST['idTipoEvento'];
 	$nomeGrupo = addslashes($_POST['nomeGrupo']);
 	$fichaTecnica = addslashes($_POST['fichaTecnica']);
+	$integrantes = addslashes($_POST['integrantes']);
 	$idFaixaEtaria = $_POST['idFaixaEtaria'];
 	$sinopse = addslashes($_POST['sinopse']);
 	$release = addslashes($_POST['release']);
@@ -18,7 +19,7 @@ if(isset($_POST['insere']) || isset($_POST['atualizar']))
 
 if(isset($_POST['insere']))
 {
-	$sql_insere = "INSERT INTO `evento`(`idTipoEvento`, `nomeEvento`, `nomeGrupo`, `fichaTecnica`, `idFaixaEtaria`, `sinopse`, `releaseCom`, `link`, `dataCadastro`, `publicado`, `idUsuario`) VALUES ('$idTipoEvento', '$nomeEvento', '$nomeGrupo', '$fichaTecnica', '$idFaixaEtaria', '$sinopse', '$release', '$link', '$dataCadastro', '1', '$idUser')";
+	$sql_insere = "INSERT INTO `evento`(`idTipoEvento`, `nomeEvento`, `nomeGrupo`, `fichaTecnica`, `integrantes`, `idFaixaEtaria`, `sinopse`, `releaseCom`, `link`, `dataCadastro`, `publicado`, `idUsuario`) VALUES ('$idTipoEvento', '$nomeEvento', '$nomeGrupo', '$fichaTecnica', '$integrantes', '$idFaixaEtaria', '$sinopse', '$release', '$link', '$dataCadastro', '1', '$idUser')";
 	if(mysqli_query($con,$sql_insere))
 	{
 		$mensagem = "<font color='#01DF3A'><strong>Inserido com sucesso!</strong></font>";
@@ -43,6 +44,7 @@ if(isset($_POST['atualizar']))
 		idTipoEvento = '$idTipoEvento',
 		nomeGrupo = '$nomeGrupo',
 		fichaTecnica = '$fichaTecnica',
+		integrantes = '$integrantes',
 		idFaixaEtaria = '$idFaixaEtaria',
 		sinopse = '$sinopse',
 		releaseCom = '$release',
