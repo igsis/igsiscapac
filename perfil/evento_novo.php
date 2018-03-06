@@ -5,7 +5,7 @@
 <section id="inserir" class="home-section bg-white">
     <div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<h4>PASSSO 1: Informações Gerais do Evento</h4>
+			<h4>PASSO 1: Informações Gerais do Evento</h4>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
