@@ -9,6 +9,7 @@ if(isset($_POST['insere']) || isset($_POST['atualizar']))
 	$idTipoEvento = $_POST['idTipoEvento'];
 	$nomeGrupo = addslashes($_POST['nomeGrupo']);
 	$fichaTecnica = addslashes($_POST['fichaTecnica']);
+	$integrantes = addslashes($_POST['integrantes']);
 	$idFaixaEtaria = $_POST['idFaixaEtaria'];
 	$sinopse = addslashes($_POST['sinopse']);
 	$release = addslashes($_POST['release']);
@@ -18,7 +19,7 @@ if(isset($_POST['insere']) || isset($_POST['atualizar']))
 
 if(isset($_POST['insere']))
 {
-	$sql_insere = "INSERT INTO `evento`(`idTipoEvento`, `nomeEvento`, `nomeGrupo`, `fichaTecnica`, `idFaixaEtaria`, `sinopse`, `releaseCom`, `link`, `dataCadastro`, `publicado`, `idUsuario`) VALUES ('$idTipoEvento', '$nomeEvento', '$nomeGrupo', '$fichaTecnica', '$idFaixaEtaria', '$sinopse', '$release', '$link', '$dataCadastro', '1', '$idUser')";
+	$sql_insere = "INSERT INTO `evento`(`idTipoEvento`, `nomeEvento`, `nomeGrupo`, `fichaTecnica`, `integrantes`, `idFaixaEtaria`, `sinopse`, `releaseCom`, `link`, `dataCadastro`, `publicado`, `idUsuario`) VALUES ('$idTipoEvento', '$nomeEvento', '$nomeGrupo', '$fichaTecnica', '$integrantes', '$idFaixaEtaria', '$sinopse', '$release', '$link', '$dataCadastro', '1', '$idUser')";
 	if(mysqli_query($con,$sql_insere))
 	{
 		$mensagem = "<font color='#01DF3A'><strong>Inserido com sucesso!</strong></font>";
@@ -43,6 +44,7 @@ if(isset($_POST['atualizar']))
 		idTipoEvento = '$idTipoEvento',
 		nomeGrupo = '$nomeGrupo',
 		fichaTecnica = '$fichaTecnica',
+		integrantes = '$integrantes',
 		idFaixaEtaria = '$idFaixaEtaria',
 		sinopse = '$sinopse',
 		releaseCom = '$release',
@@ -112,6 +114,13 @@ $evento = recuperaDados("evento","id",$idEvento);
 							<label>Esse campo deve conter a listagem de pessoas envolvidas no espetáculo, como elenco, técnicos, e outros profissionais envolvidos na realização do mesmo.</i></strong></label>
 							<p align="justify"><font color="gray"><strong><i>Elenco de exemplo:</strong><br/>Ana Cañas (voz e guitarra)<br/>Lúcio Maia (guitarra solo)<br/>Fabá Jimenez (guitarra base)</br> Fabio Sá (baixo) </br> Marco da Costa (bateria)</font></i></p>
 							<textarea name="fichaTecnica" class="form-control" rows="10"><?php echo $evento['fichaTecnica'] ?></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8"><strong>Integrantes do grupo:</strong><br/>
+							<label>Esse campo deve conter a listagem de pessoas envolvidas no espetáculo, apenas o nome civil de quem irá se apresentar, excluindo técnicos.</i></strong></label>
+							<p align="justify"><font color="gray"><strong><i>Elenco de exemplo:</strong><br/>José Carlos da Silva<br/>João Gonçalves<br/>Maria Eduarda de Oliveira</br>Fabio Silva Santos</font></i></p>
+							<textarea name="integrantes" class='form-control' cols="40" rows="5"><?php echo $evento['integrantes'] ?></textarea>
 						</div>
 					</div>
 					<div class="form-group">
