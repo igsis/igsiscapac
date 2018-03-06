@@ -1,6 +1,8 @@
 <?php
 	$con = bancoMysqli();
 	$idUser= $_SESSION['idUser'];
+	# Menu progresso
+	include '../visual/SmartWizard.php';
 ?>
 <section id="inserir" class="home-section bg-white">
     <div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>

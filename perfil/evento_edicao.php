@@ -2,6 +2,9 @@
 $con = bancoMysqli();
 $idUser= $_SESSION['idUser'];
 $tipoPessoa = "3";
+# Menu progresso
+include '../visual/SmartWizard.php';
+
 
 if(isset($_POST['insere']) || isset($_POST['atualizar']))
 {
