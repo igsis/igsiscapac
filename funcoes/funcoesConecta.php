@@ -3,7 +3,7 @@
 	// 
 	function bancoMysqli()
 	{
-		$servidor = 'localhost:3307';
+		$servidor = 'localhost';
 		$usuario = 'root';
 		$senha = '';
 		$banco = 'capac';
