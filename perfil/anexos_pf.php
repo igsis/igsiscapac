@@ -2,12 +2,15 @@
 
 $con = bancoMysqli();
 $idPf = $_SESSION['idPf'];
+$contador = 0;
 
 $tipoPessoa = 1;
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
 $server = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/";
 $http = $server."/pdf/";
+
+$campoPreenchido = $_SESSION['avisos'];
 
 
 if(isset($_POST["enviar"]))
@@ -47,6 +50,9 @@ if(isset($_POST["enviar"]))
 						{
 							$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 							gravarLog($sql_insere_arquivo);
+
+							echo '<script>window.location = "?perfil=final_pf"</script>';
+
 						}
 						else
 						{
@@ -145,7 +151,6 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 										$doc = $arq['documento'];
 										$query = "SELECT id FROM upload_lista_documento WHERE documento='$doc' AND publicado='1'";
 										$envio = $con->query($query);
-
 										$row = $envio->fetch_array(MYSQLI_ASSOC);
 
 										if(verificaArquivosExistentesPF($idPf,$row['id'])){
@@ -153,7 +158,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 										}
 										else{ ?>
 										<td class="list_description"><?php echo $arq['documento']?></td>
-										<td valign="center"><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+										<td valign="center"><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]' required></td>
 										<?php } ?>
 									</tr>
 							<?php

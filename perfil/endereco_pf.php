@@ -1,6 +1,8 @@
 ﻿<?php
+
 $con = bancoMysqli();
 $idPf = $_SESSION['idPf'];
+$campoPreenchido = $_SESSION['avisos'];
 
 $idCampo = 4;
 $tipoPessoa = 1;
@@ -121,7 +123,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-			<form class="form-horizontal" role="form" action="?perfil=endereco_pf" method="post">
+			<form name="form1" class="form-horizontal" role="form" action="?perfil=endereco_pf" method="post" onSubmit="return verificaCampos()">
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>CEP *:</strong><br/>
@@ -181,7 +183,6 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 						</div>
 					</div>
 				</div>
-
 				<!-- Upload de arquivo -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
