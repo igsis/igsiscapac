@@ -123,19 +123,11 @@ $idUser= $_SESSION['idUser'];
 										<li class="list-group-item">DRT</li>
 									</ul>
 									<ul class="list-group">
-										<li class="list-group-item list-group-item-success"><b>PASSO 15: Integrantes do Elenco ou Artista Solo</b></li>
-										<li class="list-group-item">Cadastrar cada artista</li>
-									</ul>
-									<ul class="list-group">
-										<li class="list-group-item list-group-item-success"><b>PASSO 16: Arquivos dos Integrantes do Elenco ou Artista Solo</b></li>
-										<li class="list-group-item">Arquivos cada artista</li>
-									</ul>
-									<ul class="list-group">
-										<li class="list-group-item list-group-item-success"><b>PASSO 17: Demais Anexos</b></li>
+										<li class="list-group-item list-group-item-success"><b>PASSO 15: Demais Anexos</b></li>
 										<li class="list-group-item">Demais anexos necessários para a contratação</li>
 									</ul>
 									<ul class="list-group">
-										<li class="list-group-item list-group-item-success"><b>PASSO 18: Finalizar</b></li>
+										<li class="list-group-item list-group-item-success"><b>Finalizar</b></li>
 										<li class="list-group-item">Nesta tela haverá um resumo de toda informação inserida neste evento</li>
 										<li class="list-group-item">Listará também algum campo pendente de preenchimento.</li>
 									</ul>
