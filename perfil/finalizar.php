@@ -344,7 +344,7 @@ if(isset($_POST['enviar']))
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<h4>PASSO 18: Finalizar</h4>
+			<h4>Finalizar</h4>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">

@@ -1,11 +1,13 @@
 <?php
 	$con = bancoMysqli();
 	$idUser= $_SESSION['idUser'];
+	# Menu progresso
+	include '../visual/SmartWizard.php';
 ?>
 <section id="inserir" class="home-section bg-white">
     <div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<h4>PASSSO 1: Informações Gerais do Evento</h4>
+			<h4>PASSO 1: Informações Gerais do Evento</h4>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
@@ -43,7 +45,7 @@
 						<div class="col-md-offset-2 col-md-8"><strong>Integrantes do grupo:</strong><br/>
 							<label>Esse campo deve conter a listagem de pessoas envolvidas no espetáculo, apenas o nome civil de quem irá se apresentar, excluindo técnicos.</i></strong></label>
 							<p align="justify"><font color="gray"><strong><i>Elenco de exemplo:</strong><br/>José Carlos da Silva<br/>João Gonçalves<br/>Maria Eduarda de Oliveira</br>Fabio Silva Santos</font></i></p>
-							<textarea name="integrantes" class='form-control' cols="40" rows="5"><?php echo $evento['integrantes'] ?></textarea>
+							<textarea name="integrantes" class='form-control' cols="40" rows="5"></textarea>
 						</div>
 					</div>
 					<div class="form-group">

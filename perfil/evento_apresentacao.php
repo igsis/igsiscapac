@@ -19,6 +19,7 @@ $idUser= $_SESSION['idUser'];
 								<li class="list-group-item">Tipo de evento</li>
 								<li class="list-group-item">Nome do grupo (se houver)</li>
 								<li class="list-group-item">Ficha técnica completa</li>
+								<li class="list-group-item">Integrantes do Grupo</li>
 								<li class="list-group-item">Classificação indicativa</li>
 								<li class="list-group-item">Sinopse</li>
 								<li class="list-group-item">Release</li>

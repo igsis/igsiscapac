@@ -194,7 +194,7 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 						</form>
 					</div>
 					<div class="col-md-offset-4 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=grupo" method="post">
+						<form class="form-horizontal" role="form" action="?perfil=anexos_pj" method="post">
 							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
 						</form>
 					</div>
