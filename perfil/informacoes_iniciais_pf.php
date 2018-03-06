@@ -4,6 +4,7 @@ $con = bancoMysqli();
 $idUser = $_SESSION['idUser'];
 $tipoPessoa = "1";
 
+$campoPreenchido[50] = 0;
 
 if(isset($_POST['cadastrarFisica']))
 {
@@ -227,7 +228,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-			<form class="form-horizontal" role="form" action="?perfil=informacoes_iniciais_pf" method="post">
+			<form name="form1" class="form-horizontal" role="form" action="?perfil=informacoes_iniciais_pf" onSubmit="return verificaCampos()" method="post">
 			<!-- Botão para inserir pessoa no evento -->
 			<?php
 				if(isset($_SESSION['idEvento']))
@@ -334,7 +335,27 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
 				</div>
+				<script language=JavaScript>
+					function verificaCampos()
+					{
+						if(document.form1.nome.value == "") { document.write("<?php $campoPreenchido[1] = "Nome, localizado no passo 6." ?>"); }
+						else{ document.write("<?php $campoPreenchido[1] = "" ?>"); }
 
+						if(document.form1.nomeArtistico.value == ""){ document.write("<?php $campoPreenchido[2] = "Nome artístico, localizado no passo 6. " ?>"); }
+						else{ document.write("<?php $campoPreenchido[2] = "" ?>"); }
+
+						if(document.form1.telefone1.value == ""){ document.write("<?php $campoPreenchido[3] = "Celular, localizado no passo 6. " ?> "); }
+						else{ document.write("<?php $campoPreenchido[3] = "" ?>"); }
+
+						if(document.form1.email.value == "") { document.write("<?php $campoPreenchido[4] = "Email, localizado no passo 6. " ?>"); }
+						else{ document.write("<?php $campoPreenchido[4] = "" ?>"); }
+
+						if(document.form1.dataNascimento.value == ""){ document.write("<?php $campoPreenchido[5] = "Data de nascimento, localizado no passo 6." ?>"); }
+						else{ document.write("<?php $campoPreenchido[5] = "" ?>"); }
+
+					}
+				</script>
+				<?php $campoPreenchido[1]; $_SESSION['avisos'] = $campoPreenchido; ?>
 				<!-- Exibir arquivos -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
