@@ -88,7 +88,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<h4>PASSO 17: Demais Anexos</h4>
+			<h4>PASSO 15: Demais Anexos</h4>
 			<p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
@@ -179,7 +179,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 						if(isset($_SESSION['idEvento']))
 						{
 						?>
-							<form class="form-horizontal" role="form" action="?perfil=artista_pj" method="post">
+							<form class="form-horizontal" role="form" action="?perfil=arquivos_artista_pj" method="post">
 						<?php
 						}
 						else
