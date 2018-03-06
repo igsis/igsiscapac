@@ -239,6 +239,25 @@ if(isset($_POST['apagar']))
 				</div>
 			</div>
 		</div>
+	<div id="menu_evento_footer" style="display:none;">
 		<?php include '../perfil/includes/menu_evento_footer.php'; ?>
+	</div>	<br>
+		<div class="col-md-offset-2 col-md-8">	
+			<hr/>
+		</div>
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-8">
+			<div class="col-md-offset-1 col-md-2">
+				<form class="form-horizontal" role="form" action="?perfil=evento_edicao" method="post">
+					<input type="submit" value="Voltar" class="btn btn-theme btn-md btn-block">
+				</form>	
+			</div>
+		<div class="col-md-offset-6 col-md-2">
+				<form class="form-horizontal" role="form" action="?perfil=produtor" method="post">
+					<input type="submit" value="Avançar" class="btn btn-theme btn-md btn-block">
+				</form>
+		</div>
+			</div>
+		</div>
 	</div>
 </section>
