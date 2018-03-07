@@ -149,7 +149,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									<tr>
 										<?php 
 										$doc = $arq['documento'];
-										$query = "SELECT id FROM upload_lista_documento WHERE documento='$doc' AND publicado='1'";
+										$query = "SELECT id FROM upload_lista_documento WHERE documento='$doc' AND publicado='1' AND idTipoUpload='1'";
 										$envio = $con->query($query);
 										$row = $envio->fetch_array(MYSQLI_ASSOC);
 

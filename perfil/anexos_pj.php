@@ -166,7 +166,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 										<tr>
 											<?php 
 											$doc = $arq['documento'];
-										$query = "SELECT id FROM upload_lista_documento WHERE documento='$doc' AND publicado='1'";
+										$query = "SELECT id FROM upload_lista_documento WHERE documento='$doc' AND publicado='1' AND idTipoUpload='2'";
 										$envio = $con->query($query);
 
 										$row = $envio->fetch_array(MYSQLI_ASSOC);
