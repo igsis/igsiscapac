@@ -134,10 +134,10 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>Agência</strong><br/>
-						<input type="text" class="form-control" id="agencia" name="agencia" placeholder="" value="<?php echo $pf['agencia']; ?>">
+						<input type="text" class="form-control" id="agencia" name="agencia" placeholder="" maxlength="12" value="<?php echo $pf['agencia']; ?>">
 					</div>
 					<div class=" col-md-6"><strong>Conta:</strong><br/>
-						<input type="text" class="form-control" id="conta" name="conta" placeholder="" value="<?php echo $pf['conta']; ?>">
+						<input type="text" class="form-control" id="conta" name="conta" placeholder="" maxlength="12" value="<?php echo $pf['conta']; ?>">
 					</div>
 				</div>
 
@@ -229,6 +229,25 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 					</div>
 				</div>
 				<!-- Fim Upload de arquivo -->
+				<!-- Confirmação de Exclusão -->
+					<div class="modal fade" id="confirmApagar" role="dialog" aria-labelledby="confirmApagarLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title">Excluir Arquivo?</h4>
+								</div>
+								<div class="modal-body">
+									<p>Confirma?</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+									<button type="button" class="btn btn-danger" id="confirm">Apagar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				<!-- Fim Confirmação de Exclusão -->
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>

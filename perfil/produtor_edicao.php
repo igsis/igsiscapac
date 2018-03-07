@@ -72,13 +72,13 @@ $produtor = recuperaDados("produtor","id",$idProdutor);
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
 							<label>Nome do Produtor*</label>
-							<input type="text" name="nome" placeholder="Nome" class="form-control" value="<?php echo $produtor['nome'] ?>" />
+							<input type="text" name="nome" placeholder="Nome" class="form-control" maxlength="120" value="<?php echo $produtor['nome'] ?>" />
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
 							<label>E-mail*</label>
-							<input type="text" name="email" placeholder="E-mail" class="form-control" value="<?php echo $produtor['email'] ?>" />
+							<input type="text" name="email" placeholder="E-mail" class="form-control" maxlength="60" value="<?php echo $produtor['email'] ?>" />
 						</div>
 					</div>
 					<div class="form-group">

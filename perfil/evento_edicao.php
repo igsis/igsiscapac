@@ -93,7 +93,7 @@ $evento = recuperaDados("evento","id",$idEvento);
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
 							<label>Nome do Evento *</label>
-							<input type="text" name="nomeEvento" class="form-control" value="<?php echo $evento['nomeEvento'] ?>"/>
+							<input type="text" name="nomeEvento" maxlength="240" class="form-control" value="<?php echo $evento['nomeEvento'] ?>"/>
 						</div>
 					</div>
 					<div class="form-group">

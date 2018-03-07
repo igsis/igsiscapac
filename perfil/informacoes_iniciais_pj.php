@@ -142,16 +142,16 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 			?>
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Razão Social *:</strong><br/>
-						<input type="text" class="form-control" name="razaoSocial" placeholder="Razão Social" value="<?php echo $pj['razaoSocial']; ?>" >
+						<input type="text" class="form-control" name="razaoSocial" placeholder="Razão Social" maxlength="100" value="<?php echo $pj['razaoSocial']; ?>" >
 					</div>
 				</div>
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>CNPJ *:</strong><br/>
-						<input type="text" readonly class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ" value="<?php echo $pj['cnpj']; ?>" >
+						<input type="text" readonly class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ" maxlength="18" value="<?php echo $pj['cnpj']; ?>" >
 					</div>
 					<div class="col-md-6"><strong>CCM:</strong><br/>
-						<input type="text" class="form-control" id="ccm" name="ccm" placeholder="CCM" value="<?php echo $pj['ccm']; ?>">
+						<input type="text" class="form-control" id="ccm" name="ccm" placeholder="CCM" maxlength="11" value="<?php echo $pj['ccm']; ?>">
 					</div>
 				</div>
 
@@ -169,7 +169,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 						<input type="text" class="form-control" name="telefone3" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pj['telefone3']; ?>" >
 					</div>
 					<div class="col-md-6"><strong>E-mail *:</strong><br/>
-						<input type="text" class="form-control" name="email" placeholder="E-mail" value="<?php echo $pj['email']; ?>" >
+						<input type="text" class="form-control" name="email" placeholder="E-mail" maxlength="60" value="<?php echo $pj['email']; ?>" >
 					</div>
 				</div>
 

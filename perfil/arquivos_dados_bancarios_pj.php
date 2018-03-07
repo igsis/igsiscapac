@@ -127,7 +127,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
-							<?php listaArquivoCamposMultiplos($idPj,$tipoPessoa,$idCampo,"dados_bancarios_pj",3); ?>
+							<?php listaArquivoCamposMultiplos($idPj,$tipoPessoa,$idCampo,"arquivos_dados_bancarios_pj",3); ?>
 						</div>
 					</div>
 				</div>
@@ -167,6 +167,26 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 					</div>
 				</div>
 				<!-- Fim Upload de arquivo -->
+
+				<!-- Confirmação de Exclusão -->
+					<div class="modal fade" id="confirmApagar" role="dialog" aria-labelledby="confirmApagarLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title">Excluir Arquivo?</h4>
+								</div>
+								<div class="modal-body">
+									<p>Confirma?</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+									<button type="button" class="btn btn-danger" id="confirm">Apagar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				<!-- Fim Confirmação de Exclusão -->
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
