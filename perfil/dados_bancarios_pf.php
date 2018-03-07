@@ -134,10 +134,10 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>Agência</strong><br/>
-						<input type="text" class="form-control" id="agencia" name="agencia" placeholder="" value="<?php echo $pf['agencia']; ?>">
+						<input type="text" class="form-control" id="agencia" name="agencia" placeholder="" maxlength="12" value="<?php echo $pf['agencia']; ?>">
 					</div>
 					<div class=" col-md-6"><strong>Conta:</strong><br/>
-						<input type="text" class="form-control" id="conta" name="conta" placeholder="" value="<?php echo $pf['conta']; ?>">
+						<input type="text" class="form-control" id="conta" name="conta" placeholder="" maxlength="12" value="<?php echo $pf['conta']; ?>">
 					</div>
 				</div>
 
