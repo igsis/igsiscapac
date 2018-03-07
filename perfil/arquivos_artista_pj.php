@@ -85,7 +85,7 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 ?>
 
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
+	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
 			<h4>PASSO 14: Arquivos do Líder do Grupo ou Artista Solo</h4>
 		</div>
