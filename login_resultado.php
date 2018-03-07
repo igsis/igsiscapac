@@ -172,16 +172,16 @@ else
 						<form class="form-horizontal" role="form" action="login_resultado.php" method="post">
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-8"><strong>Nome: *</strong><br/>
-									<input type="text" class="form-control" name="nome" placeholder="Nome completo" required>
+									<input type="text" class="form-control" name="nome" placeholder="Nome completo" maxlength="120" required>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-6"><strong>Senha: *</strong>
-									<input type="password" name="senha01" class="form-control" id="inputName" placeholder="" required>
+									<input type="password" name="senha01" class="form-control" id="inputName" placeholder="" maxlength="60" required>
 								</div>
 								<div class=" col-md-6"><strong>Redigite a senha: *</strong>
-									<input type="password" name="senha02" class="form-control" id="inputEmail" placeholder="" required>
+									<input type="password" name="senha02" class="form-control" id="inputEmail" placeholder="" maxlength="60" required>
 								</div>
 							</div>
 
@@ -190,7 +190,7 @@ else
 									<input type="text" class="form-control" name="telefone" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" required />
 								</div>
 								<div class="col-md-6"><strong>Email: *</strong><br/>
-									<input type="text" readonly class="form-control" name="email" value="<?php echo $busca ?>" placeholder="Email" required>
+									<input type="text" readonly class="form-control" name="email" value="<?php echo $busca ?>" placeholder="Email" maxlength="120" required>
 								</div>
 							</div>
 
