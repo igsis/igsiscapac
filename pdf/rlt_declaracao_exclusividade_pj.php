@@ -25,6 +25,7 @@ class PDF extends FPDF
 
 //CONSULTA
 $idPj = $_SESSION['idPj'];
+$idEvento = $_SESSION['idEvento'];
 
 $pessoa = recuperaDados("pessoa_juridica","id",$idPj);
 
