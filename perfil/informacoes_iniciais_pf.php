@@ -249,13 +249,13 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 			?>
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Nome *:</strong><br/>
-						<input type="text" class="form-control" name="nome" placeholder="Nome" value="<?php echo $pf['nome']; ?>" >
+						<input type="text" class="form-control" name="nome" placeholder="Nome" maxlength="70" value="<?php echo $pf['nome']; ?>" >
 					</div>
 				</div>
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Nome Artístico*:</strong><br/>
-						<input type="text" class="form-control" name="nomeArtistico" placeholder="Nome Artístico" value="<?php echo $pf['nomeArtistico']; ?>" >
+						<input type="text" class="form-control" name="nomeArtistico" placeholder="Nome Artístico" maxlength="70" value="<?php echo $pf['nomeArtistico']; ?>" >
 					</div>
 				</div>
 
@@ -266,16 +266,16 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 						</select>
 					</div>
 					<div class="col-md-6"><strong>Nº do documento *:</strong><br/>
-						<input type="text" class="form-control" name="rg" placeholder="Número do Documento" value="<?php echo $pf['rg']; ?>">
+						<input type="text" class="form-control" name="rg" placeholder="Número do Documento" maxlength="20" value="<?php echo $pf['rg']; ?>">
 					</div>
 				</div>
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>CPF *:</strong><br/>
-						<input type="text" readonly class="form-control" id="cpf" name="cpf" placeholder="CPF" value="<?php echo $pf['cpf']; ?>" >
+						<input type="text" readonly class="form-control" id="cpf" name="cpf" placeholder="CPF" maxlength="14" value="<?php echo $pf['cpf']; ?>" >
 					</div>
 					<div class="col-md-6"><strong>CCM:</strong><br/>
-						<input type="text" class="form-control" id="ccm" name="ccm" placeholder="CCM" value="<?php echo $pf['ccm']; ?>">
+						<input type="text" class="form-control" id="ccm" name="ccm" placeholder="CCM" maxlength="11" value="<?php echo $pf['ccm']; ?>">
 					</div>
 				</div>
 
@@ -293,7 +293,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 						<input type="text" class="form-control" name="telefone3" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pf['telefone3']; ?>" >
 					</div>
 					<div class="col-md-6"><strong>E-mail *:</strong><br/>
-							<input type="text" class="form-control" name="email" placeholder="E-mail" value="<?php echo $pf['email']; ?>">
+							<input type="text" class="form-control" name="email" placeholder="E-mail" maxlength="60" value="<?php echo $pf['email']; ?>">
 						</div>
 				</div>
 
@@ -302,7 +302,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 							<input type="text" class="form-control" name="dataNascimento" id="datepicker01" onclick="alerta()" placeholder="Data de Nascimento" value = "<?php echo exibirDataBr($pf['dataNascimento']) ?>">
 						</div>
 					<div class="col-md-6"><strong>PIS/PASEP/NIT:</strong><br/>
-						<input type="text" class="form-control" name="pis" placeholder="Nº do PIS/PASEP/NIT" value="<?php echo $pf['pis']; ?>">
+						<input type="text" class="form-control" name="pis" placeholder="Nº do PIS/PASEP/NIT" maxlength="50" value="<?php echo $pf['pis']; ?>">
 					</div>
 				</div>
 
