@@ -11,7 +11,7 @@ if(isset($_POST['insereArtista']))
 	$sql_insere = "UPDATE evento SET idPf = '$idPf' WHERE id = '$idEvento'";
 	if(mysqli_query($con,$sql_insere))
 	{
-		$mensagem = "Artista inserido no evento com sucesso!";
+		$mensagem = "<font color='#01DF3A'><strong>Artista inserido no evento com sucesso!</strong></font>";
 		gravarLog($sql_insere);
 		$evento = recuperaDados("evento","id",$idEvento);
 		$artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
@@ -27,7 +27,7 @@ if(isset($_POST['insereArtista']))
 	}
 	else
 	{
-		$mensagem = "Erro ao inserir artista no evento! Tente novamente.";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao inserir artista no evento! Tente novamente.</strong></font>";
 	}
 }
 
@@ -48,7 +48,7 @@ if(isset($_POST['cadastraArtista']))
 	$sql_cadastra = "INSERT INTO `pessoa_fisica`(`nome`, `nomeArtistico`, `rg`, `cpf`,  `telefone1`, `telefone2`, `telefone3`, `email`, `drt`, `idTipoDocumento`, `dataAtualizacao`, `idUsuario`)  VALUES ('$nome', '$nomeArtistico', '$rg', '$cpf', '$telefone1', '$telefone2', '$telefone3', '$email', '$drt', '1', '$dataAtualizacao', '$idUser')";
 	if(mysqli_query($con,$sql_cadastra))
 	{
-		$mensagem = "Cadastrado com sucesso!";
+		$mensagem = "<font color='#01DF3A'><strong>Cadastrado com sucesso!</strong></font>";
 		gravarLog($sql_cadastra);
 		$idEvento = $_SESSION['idEvento'];
 		$sql_ultimo = "SELECT id FROM pessoa_fisica WHERE idUsuario = '$idUser' ORDER BY id DESC LIMIT 0,1";
@@ -75,12 +75,12 @@ if(isset($_POST['cadastraArtista']))
 		}
 		else
 		{
-			$mensagem .= "Erro ao cadastrar no evento";
+			$mensagem = "<font color='#FF0000'><strong>Erro ao cadastrar no evento!</strong></font>";
 		}
 	}
 	else
 	{
-		$mensagem = "Erro ao cadastrar! Tente novamente.";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao cadastrar! Tente novamente.</strong></font>";
 	}
 }
 
@@ -111,12 +111,12 @@ if(isset($_POST['editaArtista']))
 
 	if(mysqli_query($con,$sql_edita))
 	{
-		$mensagem = "Atualizado com sucesso!";
+		$mensagem = "<font color='#01DF3A'><strong>Atualizado com sucesso!</strong></font>";
 		gravarLog ($sql_edita);
 	}
 	else
 	{
-		$mensagem = "Erro ao atualizar! Tente novamente.";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao atualizar! Tente novamente.</strong></font>";
 	}
 }
 
