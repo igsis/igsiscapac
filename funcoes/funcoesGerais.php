@@ -731,11 +731,12 @@ function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 					echo "<td class='list_description'><a href='../uploadsdocs/".$arquivo['arquivo']."' target='_blank'>".$arquivo['arquivo']."</a><br/>(".$arquivo['documento'].")</td>";
 					echo "
 						<td class='list_description'>
-							<form method='POST' action='?perfil=".$pagina."'>
+							<form id='apagarArq' method='POST' action='?perfil=".$pagina."'>
 								<input type='hidden' name='idPessoa' value='".$idPessoa."' />
 								<input type='hidden' name='tipoPessoa' value='".$tipoPessoa."' />
 								<input type='hidden' name='apagar' value='".$arquivo['id']."' />
-								<input type ='submit' class='btn btn-theme  btn-block' value='apagar'></td>
+								<button class='btn btn-theme' type='button' data-toggle='modal' data-target='#confirmApagar' data-message='Desejar realmente excluir o arquivo ".$arquivo['documento']."?'>Apagar
+								</button></td>
 							</form>";
 					echo "</tr>";
 				}
