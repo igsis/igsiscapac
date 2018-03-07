@@ -142,7 +142,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 			?>
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Razão Social *:</strong><br/>
-						<input type="text" class="form-control" name="razaoSocial" placeholder="Razão Social" maxlength="100" value="<?php echo $pj['razaoSocial']; ?>" >
+						<input type="text" class="form-control" name="razaoSocial" placeholder="Razão Social" maxlength="80" value="<?php echo $pj['razaoSocial']; ?>" >
 					</div>
 				</div>
 
