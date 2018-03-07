@@ -32,37 +32,37 @@
         // echo $uri;
         # Endereços das url do menu de Eventos
         $urlMenuEvento = array(
-            '/web/igsiscapac/visual/index.php?perfil=evento_novo',
-            '/web/igsiscapac/visual/index.php?perfil=evento_edicao',
-            '/web/igsiscapac/visual/index.php?perfil=arquivos_evento',
-            '/web/igsiscapac/visual/index.php?perfil=produtor_novo',
-            '/web/igsiscapac/visual/index.php?perfil=produtor_edicao',
-            '/web/igsiscapac/visual/index.php?perfil=arquivos_com_prod',
-            '/web/igsiscapac/visual/index.php?perfil=proponente'
+            '/igsiscapac/visual/index.php?perfil=evento_novo',
+            '/igsiscapac/visual/index.php?perfil=evento_edicao',
+            '/igsiscapac/visual/index.php?perfil=arquivos_evento',
+            '/igsiscapac/visual/index.php?perfil=produtor_novo',
+            '/igsiscapac/visual/index.php?perfil=produtor_edicao',
+            '/igsiscapac/visual/index.php?perfil=arquivos_com_prod',
+            '/igsiscapac/visual/index.php?perfil=proponente'
         );
         # passo 7 ao 10 Pessoa Fisica
         $urlPf = array(
-            '/web/igsiscapac/visual/index.php?perfil=informacoes_iniciais_pf',
-            '/web/igsiscapac/visual/index.php?perfil=endereco_pf',
-            '/web/igsiscapac/visual/index.php?perfil=informacoes_complementares_pf',
-            '/web/igsiscapac/visual/index.php?perfil=dados_bancarios_pf',
-            '/web/igsiscapac/visual/index.php?perfil=anexos_pf'
+            '/igsiscapac/visual/index.php?perfil=informacoes_iniciais_pf',
+            '/igsiscapac/visual/index.php?perfil=endereco_pf',
+            '/igsiscapac/visual/index.php?perfil=informacoes_complementares_pf',
+            '/igsiscapac/visual/index.php?perfil=dados_bancarios_pf',
+            '/igsiscapac/visual/index.php?perfil=anexos_pf'
         );
 
         # passo 7 ao 10 Pessoa Juridica
         $urlPj = array(
-            '/web/igsiscapac/visual/index.php?perfil=proponente_pj_resultado',
-            '/web/igsiscapac/visual/index.php?perfil=informacoes_iniciais_pj',
-            '/web/igsiscapac/visual/index.php?perfil=arquivos_pj',
-            '/web/igsiscapac/visual/index.php?perfil=endereco_pj',
-            '/web/igsiscapac/visual/index.php?perfil=representante1_pj_cadastro',
-            '/web/igsiscapac/visual/index.php?perfil=arquivos_representante1',
-            '/web/igsiscapac/visual/index.php?perfil=dados_bancarios_pj',
-            '/web/igsiscapac/visual/index.php?perfil=arquivos_dados_bancarios_pj',
-            '/web/igsiscapac/visual/index.php?perfil=artista_pj',
-            '/web/igsiscapac/visual/index.php?perfil=artista_pj_resultado_busca',
-            '/web/igsiscapac/visual/index.php?perfil=arquivos_artista_pj',
-            '/web/igsiscapac/visual/index.php?perfil=anexos_pj'
+            '/igsiscapac/visual/index.php?perfil=proponente_pj_resultado',
+            '/igsiscapac/visual/index.php?perfil=informacoes_iniciais_pj',
+            '/igsiscapac/visual/index.php?perfil=arquivos_pj',
+            '/igsiscapac/visual/index.php?perfil=endereco_pj',
+            '/igsiscapac/visual/index.php?perfil=representante1_pj_cadastro',
+            '/igsiscapac/visual/index.php?perfil=arquivos_representante1',
+            '/igsiscapac/visual/index.php?perfil=dados_bancarios_pj',
+            '/igsiscapac/visual/index.php?perfil=arquivos_dados_bancarios_pj',
+            '/igsiscapac/visual/index.php?perfil=artista_pj',
+            '/igsiscapac/visual/index.php?perfil=artista_pj_resultado_busca',
+            '/igsiscapac/visual/index.php?perfil=arquivos_artista_pj',
+            '/igsiscapac/visual/index.php?perfil=anexos_pj'
         );
 
         for ($i = 0; $i < count($urlMenuEvento); $i++) {
