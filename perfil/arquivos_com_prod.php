@@ -69,6 +69,7 @@ $campo = recuperaDados("evento","id",$_SESSION['idEvento']);
 							{
 								$msg[$i] = sprintf('Upload do arquivo %s foi um sucesso!',$i);
 								gravarLog($sql);
+								echo '<script>window.location = "?perfil=arquivos_com_prod"</script>';
 							}
 						}
 					}

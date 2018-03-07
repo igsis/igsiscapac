@@ -44,6 +44,7 @@ if(isset($_POST["enviar"]))
 						{
 							$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 							gravarLog($sql_insere_arquivo);
+							echo '<script>window.location = "?perfil=arquivos_representante1"</script>';
 						}
 						else
 						{
