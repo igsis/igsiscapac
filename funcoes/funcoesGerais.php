@@ -873,9 +873,10 @@ function listaArquivos($idEvento)
 		echo "<td class='list_description'><a href='../uploads/".$campo['arquivo']."' target='_blank'>".$campo['arquivo']."</a></td>";
 		echo "
 			<td class='list_description'>
-				<form method='POST' action='?perfil=arquivos_com_prod'>
+				<form id='apagarArq' method='POST' action='?perfil=arquivos_com_prod'>
 					<input type='hidden' name='apagar' value='".$campo['id']."' />
-					<input type ='submit' class='btn btn-theme  btn-block' value='apagar'></td></form>"	;
+					<button class='btn btn-theme' type='button' data-toggle='modal' data-target='#confirmApagar' data-message='Desejar realmente excluir o arquivo ".$campo['arquivo']."?'>Apagar
+					</button></td></form>"	;
 		echo "</tr>";
 	}
 	echo "
