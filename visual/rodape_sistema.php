@@ -3,9 +3,9 @@
 	<div class="container">
 		<table width="100%">
 			<tr>
-				<td><img src="visual/images/logo_cultura_q.png" align="left"/></td>
+				<td><img src="../visual/images/logo_cultura_q.png" align="left"/></td>
 				<td align="center"><font color="#ccc">2017 @ IGSIS - CAPAC<br/>Secretaria Municipal de Cultura<br/>Prefeitura de São Paulo</font></td>
-				<td><img src="visual/images/logo_igsis_azul.png" align="right"/></td>
+				<td><img src="../visual/images/logo_igsis_azul.png" align="right"/></td>
 			</tr>
 		</table>
 		<div class="row">
