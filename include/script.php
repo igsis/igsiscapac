@@ -117,8 +117,7 @@ function mtel(v){
     });        
 })
  </script>
- 
-	<script>
+ <script>
 	//funções para calendário	
 	  $(function() {
     $( "#datepicker01" ).datepicker({ 

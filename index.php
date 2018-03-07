@@ -92,11 +92,11 @@ if(isset($_POST['login']))
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-6">
 									<label>E-mail</label>
-									<input type="text" name="login" class="form-control" placeholder="E-mail">
+									<input type="text" name="login" class="form-control" placeholder="E-mail" maxlength="120">
 								</div>
 								<div class=" col-md-6">
 									<label>Senha</label>
-									<input type="password" name="senha" class="form-control" placeholder="Senha">
+									<input type="password" name="senha" class="form-control" placeholder="Senha" maxlength="60">
 								</div>
 							</div>
 
@@ -128,7 +128,7 @@ if(isset($_POST['login']))
 					<table width="100%">
 						<tr>
 							<td width="20%"></td>
-							<td align="center"><font color="#ccc">2017 @ IGSIS - Cadastro de Artistas e Profissionais de Arte e Cultura<br/>Secretaria Municipal de Cultura<br/>Prefeitura de São Paulo</font></td>
+							<td align="center"><font color="#ccc">2017 @ IGSIS - CAPAC<br/>Secretaria Municipal de Cultura<br/>Prefeitura de São Paulo</font></td>
 							<td><img src="visual/images/logo_igsis_azul.png" align="right"/></td>
 						</tr>
 					</table>

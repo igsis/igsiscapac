@@ -86,7 +86,7 @@ if($num_busca > 0)
 	<html>
 		<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-			<title>IGSIS - Cadastro de Artistas e Profissionais de Arte e Cultura</title>
+			<title>IGSIS - CAPAC</title>
 			<link href="visual/css/bootstrap.min.css" rel="stylesheet" media="screen">
 			<link href="visual/css/style.css" rel="stylesheet" media="screen">
 			<link href="visual/color/default.css" rel="stylesheet" media="screen">
@@ -149,15 +149,17 @@ else
 	<html>
 		<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-			<title>IGSIS - Cadastro de Artistas e Profissionais de Arte e Cultura</title>
+			<title>IGSIS - CAPAC</title>
 			<link href="visual/css/bootstrap.min.css" rel="stylesheet" media="screen">
 			<link href="visual/css/style.css" rel="stylesheet" media="screen">
 			<link href="visual/color/default.css" rel="stylesheet" media="screen">
+			<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
 			<script src="visual/js/modernizr.custom.js"></script>
 		</head>
 		<body>
 			<div id="bar">
-				<p id="p-bar">&nbsp;IGSIS - CADASTRO DE ARTISTAS E PROFISSIONAIS DE ARTE E CULTURA</p>
+				<p id="p-bar"><img src="visual/images/logo_cultura_h.png" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IGSIS-CAPAC<!--<img src="images/logo_pequeno.png" />-->
+				&nbsp;&nbsp;&nbsp;&nbsp;<i class="fab fa-whatsapp"><br>SUPORTE 9.6912-4884</i>
 			</div>
 			<section id="contact" class="home-section bg-white">
 				<div class="container">
@@ -170,16 +172,16 @@ else
 						<form class="form-horizontal" role="form" action="login_resultado.php" method="post">
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-8"><strong>Nome: *</strong><br/>
-									<input type="text" class="form-control" name="nome" placeholder="Nome completo" required>
+									<input type="text" class="form-control" name="nome" placeholder="Nome completo" maxlength="120" required>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-6"><strong>Senha: *</strong>
-									<input type="password" name="senha01" class="form-control" id="inputName" placeholder="" required>
+									<input type="password" name="senha01" class="form-control" id="inputName" placeholder="" maxlength="60" required>
 								</div>
 								<div class=" col-md-6"><strong>Redigite a senha: *</strong>
-									<input type="password" name="senha02" class="form-control" id="inputEmail" placeholder="" required>
+									<input type="password" name="senha02" class="form-control" id="inputEmail" placeholder="" maxlength="60" required>
 								</div>
 							</div>
 
@@ -188,7 +190,7 @@ else
 									<input type="text" class="form-control" name="telefone" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" required />
 								</div>
 								<div class="col-md-6"><strong>Email: *</strong><br/>
-									<input type="text" readonly class="form-control" name="email" value="<?php echo $busca ?>" placeholder="Email" required>
+									<input type="text" readonly class="form-control" name="email" value="<?php echo $busca ?>" placeholder="Email" maxlength="120" required>
 								</div>
 							</div>
 
