@@ -228,7 +228,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-			<form name="form1" class="form-horizontal" role="form" action="?perfil=informacoes_iniciais_pf" onSubmit="return verificaCampos()" method="post">
+			<form name="form1" class="form-horizontal" role="form" action="?perfil=informacoes_iniciais_pf" method="post">
 			<!-- Botão para inserir pessoa no evento -->
 			<?php
 				if(isset($_SESSION['idEvento']))
@@ -240,7 +240,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-8">
 								<input type="hidden" name="atualizarFisica" value="<?php echo $idPf ?>">
-								<input type="submit" value="Inserir Pessoa no evento" class="btn btn-theme btn-md btn-block">
+								<input type="submit" value="Inserir pessoa no evento" class="btn btn-theme btn-md btn-block">
 							</div>
 						</div>
 			<?php
