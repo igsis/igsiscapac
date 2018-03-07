@@ -158,19 +158,19 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8"><strong>Nome: *</strong><br/>
-							<input type="text" class="form-control" name="nome" placeholder="Nome completo" value="<?php echo $artista['nome']; ?>">
+							<input type="text" class="form-control" name="nome" placeholder="Nome completo" maxlength="70" value="<?php echo $artista['nome']; ?>">
 						</div>
 					</div>
 
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8"><strong>Nome Artístico:</strong><br/>
-							<input type="text" class="form-control" name="nomeArtistico" placeholder="Nome Artístico" value="<?php echo $artista['nomeArtistico']; ?>">
+							<input type="text" class="form-control" name="nomeArtistico" placeholder="Nome Artístico" maxlength="70" value="<?php echo $artista['nomeArtistico']; ?>">
 						</div>
 					</div>
 
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-6"><strong>RG/RNE/PASSAPORTE: *</strong><br/>
-							<input type="text" class="form-control" name="rg" placeholder="RG/RNE/PASSAPORTE" value="<?php echo $artista['rg']; ?>">
+							<input type="text" class="form-control" name="rg" placeholder="RG/RNE/PASSAPORTE" maxlength="20" value="<?php echo $artista['rg']; ?>">
 						</div>
 						<div class="col-md-6"><strong>CPF: *</strong><br/>
 							<input type="text" readonly class="form-control" name="cpf" value="<?php echo $artista['cpf']; ?>" placeholder="CPF">
@@ -179,7 +179,7 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8"><strong>E-mail *:</strong><br/>
-							<input type="text" class="form-control" name="email" placeholder="E-mail" value="<?php echo $artista['email']; ?>">
+							<input type="text" class="form-control" name="email" placeholder="E-mail" maxlength="60" value="<?php echo $artista['email']; ?>">
 						</div>
 					</div>
 
@@ -197,7 +197,7 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 							<input type="text" class="form-control" name="telefone3" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $artista['telefone3']; ?>">
 						</div>
 						<div class="col-md-6"><strong>DRT:</strong> <font size="1"><i>(Somente para artes cênicas)</i></font><br/>
-							<input type="text" class="form-control" name="drt" placeholder="DRT caso for teatro, dança ou circo" value="<?php echo $artista['drt']; ?>">
+							<input type="text" class="form-control" name="drt" placeholder="DRT caso for teatro, dança ou circo" maxlength="15" value="<?php echo $artista['drt']; ?>">
 						</div>
 					</div>
 
