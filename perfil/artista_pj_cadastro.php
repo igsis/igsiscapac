@@ -13,15 +13,6 @@ if(isset($_POST['insereArtista']))
 	{
 		$mensagem = "<font color='#01DF3A'><strong>Artista inserido no evento com sucesso!</strong></font>";
 		gravarLog($sql_insere);
-		$evento = recuperaDados("evento","id",$idEvento);
-		$artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
-		$nome = $artista['nome'];
-		$sql_integrante = "UPDATE evento SET integrantes = '$nome' WHERE id = '$idEvento'";
-		if(mysqli_query($con,$sql_integrante))
-		{
-			$mensagem .= "!!";
-			gravarLog($sql_integrante);
-		}
 	}
 	else
 	{
