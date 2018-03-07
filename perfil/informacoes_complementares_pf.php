@@ -117,7 +117,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8"><strong>DRT:</strong> <font size="1"><i>(Somente para artes cênicas)</i></font><br/>
-							<input type="text" class="form-control" name="drt" placeholder="DRT caso for teatro, dança ou circo" value="<?php echo $pf['drt']; ?>">
+							<input type="text" class="form-control" name="drt" placeholder="DRT caso for teatro, dança ou circo" maxlength="15"> value="<?php echo $pf['drt']; ?>">
 						</div>
 					</div>
 
