@@ -104,16 +104,16 @@ $representante1 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
 				<form class="form-horizontal" role="form" action="?perfil=representante1_pj_cadastro" method="post">
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8"><strong>Nome: *</strong><br/>
-							<input type="text" class="form-control" name="nome" placeholder="Nome completo" maxlength="100" value="<?php echo $representante1['nome']; ?>" >
+							<input type="text" class="form-control" name="nome" placeholder="Nome completo" maxlength="100" value="<?php echo $representante1['nome']; ?>" required>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-6"><strong>RG/RNE/PASSAPORTE: *</strong><br/>
-							<input type="text" class="form-control" name="rg" placeholder="RG/RNE/PASSAPORTE" maxlength="15" value="<?php echo $representante1['rg']; ?>" >
+							<input type="text" class="form-control" name="rg" placeholder="RG/RNE/PASSAPORTE" maxlength="15" value="<?php echo $representante1['rg']; ?>" required>
 						</div>
 						<div class="col-md-6"><strong>CPF: *</strong><br/>
-							<input type="text" readonly class="form-control" name="cpf" placeholder="CPF" maxlength="14" value="<?php echo $representante1['cpf']; ?>" >
+							<input type="text" readonly class="form-control" name="cpf" placeholder="CPF" maxlength="14" value="<?php echo $representante1['cpf']; ?>" required>
 						</div>
 					</div>
 					

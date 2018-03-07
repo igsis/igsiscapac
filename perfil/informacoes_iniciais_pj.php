@@ -3,7 +3,7 @@
 $con = bancoMysqli();
 $idUser = $_SESSION['idUser'];
 $tipoPessoa = 2;
-
+$bool = 0;
 
 if(isset($_POST['cadastrarJuridica']))
 {
@@ -82,6 +82,7 @@ if(isset($_POST['atualizarJuridica']))
 	{
 		$mensagem = "<font color='#01DF3A'><strong>Atualizado com sucesso!</strong></font>";
 		gravarLog($sql_atualiza_pj);
+		$bool = true;
 		if(isset($_SESSION['idEvento']))
 		{
 			$idEvento = $_SESSION['idEvento'];
@@ -185,12 +186,16 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				<div class="form-group">
 					<form class="form-horizontal" role="form" action="?perfil=arquivos_pj" method="post">
 						<div class="col-md-offset-8 col-md-2">
+							<?php if($bool == true) { ?>
 							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
+							<?php } else { ?>
 						</div>
 					</form>
 				</div>
 
 			</div>
 		</div>
+		<div class="alert alert-info">Grave suas informações para prosseguir o formulário.</div>
+		<?php } ?>
 	</div>
 </section>

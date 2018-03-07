@@ -3,6 +3,7 @@
 $con = bancoMysqli();
 $idUser = $_SESSION['idUser'];
 $tipoPessoa = "1";
+$bool = false;
 
 if(isset($_POST['cadastrarFisica']))
 {
@@ -94,6 +95,7 @@ if(isset($_POST['atualizarFisica']))
 	if(mysqli_query($con,$sql_atualiza_pf))
 	{
 		$mensagem = "<font color='#01DF3A'><strong>Atualizado com sucesso!</strong></font>";
+		$bool = true;
 		gravarLog($sql_atualiza_pf);
 		if(isset($_SESSION['idEvento']))
 		{
@@ -499,12 +501,18 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 				<div class="form-group">
 					<form class="form-horizontal" role="form" action="?perfil=endereco_pf" method="post">
 						<div class="col-md-offset-8 col-md-2">
+							<?php if($bool == true)
+							{ ?>
 							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
+							<?php } 
+							else { ?>
 						</div>
 					</form>
 				</div>
-
 			</div>
 		</div>
+		<div class="alert alert-info">Grave suas informações para prosseguir o formulário.</div>
+		<?php } ?>
+
 	</div>
 </section>
