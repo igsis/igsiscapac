@@ -25,6 +25,6 @@ else
 }
 
  //carrega o rodapé
-include "rodape.php"; 
+include "rodape_sistema.php"; 
 
 ?>

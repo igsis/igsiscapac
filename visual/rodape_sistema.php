@@ -3,9 +3,9 @@
 	<div class="container">
 		<table width="100%">
 			<tr>
-				<td><img src="visual/images/logo_cultura_q.png" align="left"/></td>
+				<td><img src="../visual/images/logo_cultura_q.png" align="left"/></td>
 				<td align="center"><font color="#ccc">2017 @ IGSIS - CAPAC<br/>Secretaria Municipal de Cultura<br/>Prefeitura de São Paulo</font></td>
-				<td><img src="visual/images/logo_igsis_azul.png" align="right"/></td>
+				<td><img src="../visual/images/logo_igsis_azul.png" align="right"/></td>
 			</tr>
 		</table>
 		<div class="row">
@@ -29,22 +29,4 @@
 <script src="js/jquery.dlmenu.js"></script>
 <script src="js/wow.min.js"></script>
 <script src="js/custom.js"></script>
-<script type="text/javascript">
-  //Script para confirmação de exclusão de arquivo
-        $('#confirmApagar').on('show.bs.modal', function (e)
-        {
-            $message = $(e.relatedTarget).attr('data-message');
-            $(this).find('.modal-body p').text($message);
-             
-            // Pass form reference to modal for submission on yes/ok
-            var form = $('form[id=apagarArq]');
-            $(this).find('.modal-footer #confirm').data('form[id=apagarArq]', form);
-        });
-         
-        // Form confirm (yes/ok) handler, submits form
-        $('#confirmApagar').find('.modal-footer #confirm').on('click', function()
-        {
-            $(this).data('form[id=apagarArq]').submit();
-        });
-    </script>
 </body>

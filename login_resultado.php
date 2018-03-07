@@ -86,7 +86,7 @@ if($num_busca > 0)
 	<html>
 		<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-			<title>IGSIS - Cadastro de Artistas e Profissionais de Arte e Cultura</title>
+			<title>IGSIS - CAPAC</title>
 			<link href="visual/css/bootstrap.min.css" rel="stylesheet" media="screen">
 			<link href="visual/css/style.css" rel="stylesheet" media="screen">
 			<link href="visual/color/default.css" rel="stylesheet" media="screen">
@@ -149,15 +149,17 @@ else
 	<html>
 		<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-			<title>IGSIS - Cadastro de Artistas e Profissionais de Arte e Cultura</title>
+			<title>IGSIS - CAPAC</title>
 			<link href="visual/css/bootstrap.min.css" rel="stylesheet" media="screen">
 			<link href="visual/css/style.css" rel="stylesheet" media="screen">
 			<link href="visual/color/default.css" rel="stylesheet" media="screen">
+			<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
 			<script src="visual/js/modernizr.custom.js"></script>
 		</head>
 		<body>
 			<div id="bar">
-				<p id="p-bar">&nbsp;IGSIS - CADASTRO DE ARTISTAS E PROFISSIONAIS DE ARTE E CULTURA</p>
+				<p id="p-bar"><img src="visual/images/logo_cultura_h.png" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IGSIS-CAPAC<!--<img src="images/logo_pequeno.png" />-->
+				&nbsp;&nbsp;&nbsp;&nbsp;<i class="fab fa-whatsapp"><br>SUPORTE 9.6912-4884</i>
 			</div>
 			<section id="contact" class="home-section bg-white">
 				<div class="container">
