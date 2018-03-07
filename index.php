@@ -92,11 +92,11 @@ if(isset($_POST['login']))
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-6">
 									<label>E-mail</label>
-									<input type="text" name="login" class="form-control" placeholder="E-mail">
+									<input type="text" name="login" class="form-control" placeholder="E-mail" maxlength="120">
 								</div>
 								<div class=" col-md-6">
 									<label>Senha</label>
-									<input type="password" name="senha" class="form-control" placeholder="Senha">
+									<input type="password" name="senha" class="form-control" placeholder="Senha" maxlength="60">
 								</div>
 							</div>
 
