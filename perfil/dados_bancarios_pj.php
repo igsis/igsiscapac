@@ -56,10 +56,10 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>Agência</strong><br/>
-						<input type="text" class="form-control" id="agencia" name="agencia" placeholder="" value="<?php echo $pj['agencia']; ?>">
+						<input type="text" class="form-control" id="agencia" name="agencia" placeholder="" maxlength="12" value="<?php echo $pj['agencia']; ?>">
 					</div>
 					<div class=" col-md-6"><strong>Conta:</strong><br/>
-						<input type="text" class="form-control" id="conta" name="conta" placeholder="" value="<?php echo $pj['conta']; ?>">
+						<input type="text" class="form-control" id="conta" name="conta" placeholder="" maxlength="12" value="<?php echo $pj['conta']; ?>">
 					</div>
 				</div>
 
