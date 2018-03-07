@@ -22,22 +22,114 @@
         
         <div class="btn-group navbar-btn" role="group">
             <button class="btn btn-default" id="prev-btn" type="button">Retornar</button>
-            <button class="btn btn-theme" id="next-btn" type="button">Avançar</button>
+            <button class="btn btn-theme" id="next-btn" type="button" >Avançar</button>
             <!-- <button class="btn btn-danger" id="reset-btn" type="button">Reset Wizard</button> -->
         </div>
     </form>
+    <?php 
+        #Pega a url da pagina
+        $uri = $_SERVER['REQUEST_URI']; 
+        // echo $uri;
+        # Endereços das url do menu de Eventos
+        $urlMenuEvento = array(
+            '/web/igsiscapac/visual/index.php?perfil=evento_novo',
+            '/web/igsiscapac/visual/index.php?perfil=evento_edicao',
+            '/web/igsiscapac/visual/index.php?perfil=arquivos_evento',
+            '/web/igsiscapac/visual/index.php?perfil=produtor_novo',
+            '/web/igsiscapac/visual/index.php?perfil=produtor_edicao',
+            '/web/igsiscapac/visual/index.php?perfil=arquivos_com_prod',
+            '/web/igsiscapac/visual/index.php?perfil=proponente'
+        );
+        # passo 7 ao 10 Pessoa Fisica
+        $urlPf = array(
+            '/web/igsiscapac/visual/index.php?perfil=informacoes_iniciais_pf',
+            '/web/igsiscapac/visual/index.php?perfil=endereco_pf',
+            '/web/igsiscapac/visual/index.php?perfil=informacoes_complementares_pf',
+            '/web/igsiscapac/visual/index.php?perfil=dados_bancarios_pf',
+            '/web/igsiscapac/visual/index.php?perfil=anexos_pf'
+        );
+
+        # passo 7 ao 10 Pessoa Juridica
+        $urlPj = array(
+            '/web/igsiscapac/visual/index.php?perfil=proponente_pj_resultado',
+            '/web/igsiscapac/visual/index.php?perfil=informacoes_iniciais_pj',
+            '/web/igsiscapac/visual/index.php?perfil=arquivos_pj',
+            '/web/igsiscapac/visual/index.php?perfil=endereco_pj',
+            '/web/igsiscapac/visual/index.php?perfil=representante1_pj_cadastro',
+            '/web/igsiscapac/visual/index.php?perfil=arquivos_representante1',
+            '/web/igsiscapac/visual/index.php?perfil=dados_bancarios_pj',
+            '/web/igsiscapac/visual/index.php?perfil=arquivos_dados_bancarios_pj',
+            '/web/igsiscapac/visual/index.php?perfil=artista_pj',
+            '/web/igsiscapac/visual/index.php?perfil=artista_pj_resultado_busca',
+            '/web/igsiscapac/visual/index.php?perfil=arquivos_artista_pj',
+            '/web/igsiscapac/visual/index.php?perfil=anexos_pj'
+        );
+
+        for ($i = 0; $i < count($urlMenuEvento); $i++) {
+            if ($uri == $urlMenuEvento[$i]) {         
+    ?>
+        <!-- SmartWizard html -->
+        <div id="smartwizard">
+            <ul>
+                <li><a href=""><br /><small>Informações Gerais do Evento</small></a></li> 
+                <li><a href=""><br /><small>Arquivos do Evento</small></a></li>
+                <li><a href="#step-3"><br /><small>Dados do Produtor</small></a></li>
+                <li><a href="#step-4"><br /><small>Arquivos Para Comunicação e Produção</small></a></li>
+                <li><a href="#step-5"><br /><small>Cadastro do Proponente</small></a></li>               
+                <li><a href="#step-6"><br /><small>Informações Iniciais</small></a></li>            
+                <li><a href="#step-5"><br /><small>Informações Iniciais</small></a></li>               
+            </ul>
+       	</div>
+
+    <?php 
+            continue;
+            }
+        }
+        # Verifica se a pagina contem o endereço correspondente ao de pessoa Física
+        for ($i = 0; $i < count($urlPf); $i++) {
+            if ($uri == $urlPf[$i]) {
+    ?>
     
-    <!-- SmartWizard html -->
-    <div id="smartwizard">
-        <ul>
-            <li><a href="#step-1">Passo 1<br /><small>Informações Gerais do Evento</small></a></li> 
-            <li><a href="#step-2">PASSO 2<br /><small>Arquivos do Evento</small></a></li>
-            <li><a href="#step-3">PASSO 3<br /><small>Dados do Produtor</small></a></li>
-            <li><a href="#step-4">PASSO 4<br /><small>Arquivos Para Comunicação e Produção</small></a></li>
-            <li><a href="#step-5">PASSO 5<br /><small>Cadastro do Proponente</small></a></li>               
-            <li><a href="#step-5">PASSO 6<br /><small>Informações Iniciais</small></a></li>               
-        </ul>
-   	</div>
+        <!-- Pessoa Física      -->
+        <div id="smartwizard">
+            <ul>
+                <li><a href=""><br /><small>Informações Iniciais</small></a></li> 
+                <li><a href="#step-7"><br /><small>Arquivos do Evento</small></a></li>
+                <li><a href=""><br /><small>Informações Complementares</small></a></li>
+                <li><a href=""><br /><small>Dados Bancários</small></a></li>
+                <li><a href=""><br /><small>Demais Anexos</small></a></li>          
+            </ul> 
+        </div>
+    <?php 
+            continue;
+            }
+        }
+        # Verifica se a pagina contem o endereço correspondente ao de pessoa Física
+        for ($i = 0; $i < count($urlPf); $i++) {
+            if ($uri == $urlPf[$i]) {
+
+    ?>
+        <!-- Pessoa Jurídica -->
+        <div id="smartwizard">
+            <ul>
+                <li><a href=""><br /><small>Informações Iniciais</small></a></li> 
+                <li><a href=""><br /><small>Arquivos da Empresa</small></a></li>
+                <li><a href=""><br /><small>Endereço</small></a></li>
+                <li><a href=""><br /><small>Representante Legal</small></a></li>
+                <li><a href=""><br /><small>Arquivos do Representante Legal</small></a></li>               
+                <li><a href=""><br /><small>Dados Bancários</small></a></li>
+                <li><a href=""><br /><small>Arquivo dos Dados Bancários</small></a></li>
+                <li><a href=""><br /><small>ARTISTA - Líder do Grupo ou Artista Solo</small></a></li> 
+                <li><a href=""><br /><small>Arquivos do Líder do Grupo ou Artista Solo</small></a></li> 
+                <li><a href=""><br /><small>Demais Anexos</small></a></li> 
+            </ul>
+        </div>
+
+        <?php 
+            continue;
+            }
+        }
+        ?>
 </div>
 <!-- Include jQuery -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
