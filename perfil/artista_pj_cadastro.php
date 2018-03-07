@@ -16,13 +16,11 @@ if(isset($_POST['insereArtista']))
 		$evento = recuperaDados("evento","id",$idEvento);
 		$artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 		$nome = $artista['nome'];
-		$rg = $artista['rg'];
-		$cpf = $artista['cpf'];
-		$sql_grupo = "INSERT INTO `grupo`(`idEvento`, `nome`, `rg`, `cpf`, `publicado`) VALUES ('$idEvento', '$nome', '$rg', '$cpf', '1')";
-		if(mysqli_query($con,$sql_grupo))
+		$sql_integrante = "UPDATE evento SET integrantes = '$nome' WHERE id = '$idEvento'";
+		if(mysqli_query($con,$sql_integrante))
 		{
 			$mensagem .= "!!";
-			gravarLog($sql_grupo);
+			gravarLog($sql_integrante);
 		}
 	}
 	else
