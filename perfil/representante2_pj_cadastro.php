@@ -107,7 +107,7 @@ $representante2 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
 				<form class="form-horizontal" role="form" action="?perfil=representante2_pj_cadastro" method="post">
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8"><strong>Nome: *</strong><br/>
-							<input type="text" class="form-control" name="nome" placeholder="Nome completo" maxlength="100" > value="<?php echo $representante2['nome']; ?>" >
+							<input type="text" class="form-control" name="nome" placeholder="Nome completo" maxlength="100"  value="<?php echo $representante2['nome']; ?>" >
 						</div>
 					</div>
 
