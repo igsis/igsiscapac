@@ -3,18 +3,22 @@
 $con = bancoMysqli();
 $idPf = $_SESSION['idPf'];
 $contador = 0;
-
 $tipoPessoa = 1;
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
 $server = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/";
 $http = $server."/pdf/";
 
-$campoPreenchido = $_SESSION['avisos'];
-
-
+$array = array(33,41,53,67);
 if(isset($_POST["enviar"]))
 {
+	for($i = 0; $i <= 3; $i++)
+		if(verificaArquivosExistentesPF($idPf,$array[$i]))
+			$contador++;
+		
+	if($contador >= 4)
+		echo '<script>window.location = "?perfil=final_pf"</script>';
+
 	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN (2,3,4,25,31,51,60) AND publicado = '1'";
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))

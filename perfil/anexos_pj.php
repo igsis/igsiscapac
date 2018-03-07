@@ -1,12 +1,20 @@
 ﻿<?php
 $con = bancoMysqli();
 $idPj = $_SESSION['idPj'];
-
+$contador = 0;
 $tipoPessoa = 2;
 $pj = recuperaDados("pessoa_juridica","id",$idPj);
 
+$array = array(10,8,42,34,58,95);
 if(isset($_POST["enviar"]))
 {
+	for($i = 0; $i <= 5; $i++)
+		if(verificaArquivosExistentesPF($idPj,$array[$i]))
+			$contador++;
+
+	if($contador >= 6)
+		echo '<script>window.location = "?perfil=final_pj"</script>';
+	
 	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN (20,21,22,28,43,89,103,104) AND publicado = '1'";
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
@@ -44,6 +52,7 @@ if(isset($_POST["enviar"]))
 						{
 							$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 							gravarLog($sql_insere_arquivo);
+							echo '<script>window.location = "?perfil=final_pj"</script>';
 						}
 						else
 						{
@@ -176,7 +185,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 										}
 										else{ ?>
 											<td><?php echo $arq['documento']?></td>
-											<td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+											<td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]' required></td>
 										</tr>
 								<?php
 									}
