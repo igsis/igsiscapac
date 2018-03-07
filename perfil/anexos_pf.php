@@ -106,11 +106,37 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
 		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
+				<div class="col-md-offset-1 col-md-10">
+				<!-- Gerar DECLARAÇÃO DE EXCLUSIVIDADE -->
+				<?php
+					$http = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/pdf/";
+					$link1 = $http."rlt_declaracao_exclusividade_pf.php";
+				?>
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<p align="justify">A Declaração de Exclusividade é um documento necessário para sua contratação, quando se tratar de um grupo de artistas.</p>
+					</div>
+				</div>
 
 				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><hr/></div>
+					<div class="col-md-offset-2 col-md-5">
+						<p align="left">Após inserir os dados pessoais, clique no botão para gerar a Declaração de Exclusividade.</p>
+					</div>
+					<div class="col-md-3">
+						<a href='<?php echo $link1; ?>' target='_blank' class="btn btn-theme btn-lg btn-block"><strong>Gerar</strong></a>
+					</div>
 				</div>
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<p align="justify"><font color="red"><strong>A Declaração de Exclusividade deve ser impressa, datada e assinada nos campos indicados no documento. Logo após, deve-se digitaliza-la e então anexa-la ao sistema através do campo listado abaixo.</strong></font></p>
+					</div>
+				</div>
+
+				<!--  FIM Gerar DECLARAÇÃO DE EXCLUSIVIDADE -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
+				</div>
+
 
 				<!-- Links emissão de documentos -->
 				<div class="form-group">
@@ -223,6 +249,8 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 					}
 				?>
 			</div>
+		</div>
+		</div>	
 		</div>
 	</div>
 </section>

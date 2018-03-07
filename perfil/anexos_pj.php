@@ -102,7 +102,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
 			<div class="row">
-			<div class="col-md-offset-1 col-md-10">
+				<div class="col-md-offset-1 col-md-10">
 				<!-- Gerar DECLARAÇÃO DE EXCLUSIVIDADE -->
 				<?php
 					$http = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/pdf/";

@@ -12,14 +12,47 @@ session_start();
 
 class PDF extends FPDF
 {
-  // Page header
-  function Header()
-  {
-    // Logo
-    $this->Image('../pdf/img/facc_pj.jpg',15,10,180);
-    // Line break
-    $this->Ln(20);
-  }
+
+// Simple table
+function BasicTable($header, $data)
+{
+    // Header
+    foreach($header as $col)
+        $this->Cell(40,7,$col,1);
+    $this->Ln();
+    // Data
+    foreach($data as $row)
+    {
+        foreach($row as $col)
+            $this->Cell(40,6,$col,1);
+        $this->Ln();
+    }
+}
+
+// Simple table
+function Cabecalho($header, $data)
+{
+    // Header
+    foreach($header as $col)
+        $this->Cell(40,7,$col,1);
+    $this->Ln();
+    // Data
+
+}
+
+// Simple table
+function Tabela($header, $data)
+{
+    //Data
+    foreach($data as $col)
+        $this->Cell(40,7,$col,1);
+    $this->Ln();
+    // Data
+
+}
+
+
+
 }
 
 
@@ -29,18 +62,11 @@ $idEvento = $_SESSION['idEvento'];
 
 $pessoa = recuperaDados("pessoa_juridica","id",$idPj);
 
-$enderecoCEP = enderecoCEP($pessoa['cep']);
-$dbBanco = recuperaDados("banco","id",$pessoa['codigoBanco']);
 $rep01 = recuperaDados("representante_legal","id",$pessoa['idRepresentanteLegal1']);
 $rep02 = recuperaDados("representante_legal","id",$pessoa['idRepresentanteLegal2']);
 $evento = recuperaDados("evento","id",$idEvento);
 $executante = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 
-
-$rua = $enderecoCEP["rua"];
-$bairro = $enderecoCEP["bairro"];
-$cidade = $enderecoCEP["cidade"];
-$estado = $enderecoCEP["estado"];
 
 //PessoaJuridica
 $pjRazaoSocial = $pessoa["razaoSocial"];
@@ -71,15 +97,17 @@ $Objeto = $evento["nomeEvento"];
 $ano=date('Y');
 
 
-// GERANDO O PDF:
+//GERANDO O PDF:
 $pdf = new PDF('P','mm','A4'); //CRIA UM NOVO ARQUIVO PDF NO TAMANHO A4
 $pdf->AliasNbPages();
 $pdf->AddPage();
 
+   
 $x=20;
-$l=7; //DEFINE A ALTURA DA LINHA
+$l=6; //DEFINE A ALTURA DA LINHA   
+   
+$pdf->SetXY( $x , 15 );// SetXY - DEFINE O X (largura) E O Y (altura) NA PÁGINA
 
-   $pdf->SetXY( $x , 40 );// SetXY - DEFINE O X (largura) E O Y (altura) NA PÁGINA
 
 
    
