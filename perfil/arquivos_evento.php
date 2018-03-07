@@ -120,7 +120,7 @@ if(isset($_POST['apagar']))
 								<?php						
 									if(verificaArquivosExistentesEvento($idEvento,'23')) //true
 									{
-										echo 'O arquivo repertório já foi enviado. ';
+										echo '<div class="alert alert-success">O arquivo repertório já foi enviado.</div> ';
 									}
 									/*
 										Retorna verdadeiro se encontra algum resultado.
@@ -139,7 +139,7 @@ if(isset($_POST['apagar']))
 									}
 								}
 								?>
-							</table><br>
+							</table>
 						</div>
 					</div>
 				</div>
@@ -154,7 +154,7 @@ if(isset($_POST['apagar']))
 								</tr>
 								<?php
 									if(verificaArquivosExistentesEvento($idEvento,'65')){
-										echo 'O arquivo Material de imprensa (clipping) já foi enviado.';
+										echo '<div class="alert alert-success">O arquivo Material de imprensa (clipping) já foi enviado.</div>';
 									}
 									else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '65'";
@@ -185,7 +185,7 @@ if(isset($_POST['apagar']))
 								<?php
 								if(verificaArquivosExistentesEvento($idEvento,'78'))
 								{
-									echo 'O arquivo Autorização SBAT já foi enviado. ';
+									echo '<div class="alert alert-success">O arquivo Autorização SBAT já foi enviado. </div>';
 								}
 								else
 								{
@@ -217,7 +217,7 @@ if(isset($_POST['apagar']))
 								<?php
 								if(verificaArquivosExistentesEvento($idEvento,'96'))
 								{
-									echo 'O arquivo Currículo do Grupo já foi enviado. ';
+									echo '<div class="alert alert-success">O arquivo Currículo do Grupo já foi enviado.</div> ';
 								}
 								else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '96'";
@@ -247,7 +247,7 @@ if(isset($_POST['apagar']))
 								<?php
 								if(verificaArquivosExistentesEvento($idEvento,'101'))
 								{
-									echo 'O arquivo DRT dos Integrantes já foi enviado. ';
+									echo '<div class="alert alert-success">O arquivo DRT dos Integrantes já foi enviado.</div>';
 								}
 								else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '101'";

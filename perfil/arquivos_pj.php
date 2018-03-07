@@ -139,7 +139,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 								<?php
 								if(verificaArquivosExistentesPF($idPj, '22'))
 								{
-									echo 'O arquivo Cartão CNPJ foi enviado. ';
+									echo '<div class="alert alert-success">O arquivo Cartão CNPJ foi enviado.</div> ';
 								}
 								else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '22'";
@@ -171,7 +171,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 								<?php
 								if(verificaArquivosExistentesPF($idPj, '43'))
 								{
-									echo 'O arquivo FDC CCM foi enviado. ';
+									echo '<div class="alert alert-success">O arquivo FDC CCM foi enviado.</div> ';
 								}
 								else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '43'";
@@ -202,7 +202,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 								<?php
 								if(verificaArquivosExistentesPF($idPj, '28'))
 								{
-									echo 'O arquivo CPOM foi enviado. ';
+									echo '<div class="alert alert-success">O arquivo CPOM foi enviado.</div> ';
 								}
 								else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '28'";

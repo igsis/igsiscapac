@@ -121,7 +121,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-			<form class="form-horizontal" role="form" action="?perfil=informacoes_iniciais_pj" method="post">
+			<form name="form2" class="form-horizontal" role="form" action="?perfil=informacoes_iniciais_pj" method="post">
 			<!-- Botão para inserir empresa no evento -->
 			<?php
 				if(isset($_SESSION['idEvento']))
@@ -142,7 +142,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 			?>
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Razão Social *:</strong><br/>
-						<input type="text" class="form-control" name="razaoSocial" placeholder="Razão Social" maxlength="100" value="<?php echo $pj['razaoSocial']; ?>" >
+						<input type="text" class="form-control" name="razaoSocial" placeholder="Razão Social" maxlength="100" value="<?php echo $pj['razaoSocial']; ?>" required>
 					</div>
 				</div>
 
@@ -157,7 +157,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>Celular *:</strong><br/>
-						<input type="text" class="form-control" name="telefone1" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pj['telefone1']; ?>">
+						<input type="text" class="form-control" name="telefone1" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pj['telefone1']; ?>" required>
 					</div>
 					<div class="col-md-6"><strong>Telefone #2:</strong><br/>
 						<input type="text" class="form-control" name="telefone2" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pj['telefone2']; ?>">
@@ -169,7 +169,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 						<input type="text" class="form-control" name="telefone3" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pj['telefone3']; ?>" >
 					</div>
 					<div class="col-md-6"><strong>E-mail *:</strong><br/>
-						<input type="text" class="form-control" name="email" placeholder="E-mail" maxlength="60" value="<?php echo $pj['email']; ?>" >
+						<input type="text" class="form-control" name="email" placeholder="E-mail" maxlength="60" value="<?php echo $pj['email']; ?>" required>
 					</div>
 				</div>
 

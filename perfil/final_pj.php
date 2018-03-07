@@ -2,8 +2,8 @@
 
 $con = bancoMysqli();
 $campoPreenchido = $_SESSION['avisos'];
-$idPf = $_SESSION['idPf'];
-$pf = recuperaDados("pessoa_fisica","id",$idPf);
+$idUser = $_SESSION['idUser'];
+$pf = recuperaDados("pessoa_fisica","id",$idUser);
 $contador = 0;
 
 ?>
@@ -14,7 +14,7 @@ $contador = 0;
 	<p><strong><font color="green">Todos os campos obrigatórios foram preenchidos corretamente.</font></strong></p><br>
 	<div class="container">
 		 <div class = "page-header"> <h5>Informações Pessoais </h5><br></div>
-			<p align="justify"><strong>Referência:</strong> <?php echo $idPf; ?></p>
+			<p align="justify"><strong>Referência:</strong> <?php echo $idUser; ?></p>
 			<p align="justify"><strong>Nome:</strong> <?php echo $pf['nome']; ?></p>
 			<p align="justify"><strong>Nome artístico:</strong> <?php echo $pf['nomeArtistico']; ?></p>
 			<p align="justify"><strong>Data de Nascimento:</strong> <?php echo $pf['dataNascimento']; ?></p>

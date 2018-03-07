@@ -4,8 +4,6 @@ $con = bancoMysqli();
 $idUser = $_SESSION['idUser'];
 $tipoPessoa = "1";
 
-$campoPreenchido[50] = 0;
-
 if(isset($_POST['cadastrarFisica']))
 {
 	$nome = addslashes($_POST['nome']);
@@ -249,13 +247,13 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 			?>
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Nome *:</strong><br/>
-						<input type="text" class="form-control" name="nome" placeholder="Nome" maxlength="70" value="<?php echo $pf['nome']; ?>" >
+						<input type="text" class="form-control next-step" name="nome" placeholder="Nome" maxlength="70" value="<?php echo $pf['nome']; ?>" required >
 					</div>
 				</div>
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Nome Artístico*:</strong><br/>
-						<input type="text" class="form-control" name="nomeArtistico" placeholder="Nome Artístico" maxlength="70" value="<?php echo $pf['nomeArtistico']; ?>" >
+						<input type="text" class="form-control" name="nomeArtistico" placeholder="Nome Artístico" maxlength="70" value="<?php echo $pf['nomeArtistico']; ?>" required>
 					</div>
 				</div>
 
@@ -266,7 +264,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 						</select>
 					</div>
 					<div class="col-md-6"><strong>Nº do documento *:</strong><br/>
-						<input type="text" class="form-control" name="rg" placeholder="Número do Documento" maxlength="20" value="<?php echo $pf['rg']; ?>">
+						<input type="text" class="form-control" name="rg" placeholder="Número do Documento" maxlength="20" value="<?php echo $pf['rg']; ?>" required>
 					</div>
 				</div>
 
@@ -281,7 +279,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>Celular *:</strong><br/>
-						<input type="text" class="form-control" name="telefone1" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pf['telefone1']; ?>">
+						<input type="text" class="form-control" name="telefone1" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pf['telefone1']; ?>" required>
 					</div>
 					<div class="col-md-6"><strong>Telefone #2:</strong><br/>
 						<input type="text" class="form-control" name="telefone2" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pf['telefone2']; ?>">
@@ -293,13 +291,13 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 						<input type="text" class="form-control" name="telefone3" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" value="<?php echo $pf['telefone3']; ?>" >
 					</div>
 					<div class="col-md-6"><strong>E-mail *:</strong><br/>
-							<input type="text" class="form-control" name="email" placeholder="E-mail" maxlength="60" value="<?php echo $pf['email']; ?>">
+							<input type="text" class="form-control" name="email" placeholder="E-mail" maxlength="60" value="<?php echo $pf['email']; ?>" required>
 						</div>
 				</div>
 
 				<div class="form-group">
 						<div class="col-md-offset-2 col-md-6"><strong>Data Nascimento *:</strong><br/>
-							<input type="text" class="form-control" name="dataNascimento" id="datepicker01" onclick="alerta()" placeholder="Data de Nascimento" value = "<?php echo exibirDataBr($pf['dataNascimento']) ?>">
+							<input type="text" class="form-control" name="dataNascimento" id="datepicker01" onclick="alerta()" placeholder="Data de Nascimento" value = "<?php echo exibirDataBr($pf['dataNascimento']) ?>" required>
 						</div>
 					<div class="col-md-6"><strong>PIS/PASEP/NIT:</strong><br/>
 						<input type="text" class="form-control" name="pis" placeholder="Nº do PIS/PASEP/NIT" maxlength="50" value="<?php echo $pf['pis']; ?>">
@@ -335,27 +333,6 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
 				</div>
-				<script language=JavaScript>
-					function verificaCampos()
-					{
-						if(document.form1.nome.value == "") { document.write("<?php $campoPreenchido[1] = "Nome, localizado no passo 6." ?>"); }
-						else{ document.write("<?php $campoPreenchido[1] = "" ?>"); }
-
-						if(document.form1.nomeArtistico.value == ""){ document.write("<?php $campoPreenchido[2] = "Nome artístico, localizado no passo 6. " ?>"); }
-						else{ document.write("<?php $campoPreenchido[2] = "" ?>"); }
-
-						if(document.form1.telefone1.value == ""){ document.write("<?php $campoPreenchido[3] = "Celular, localizado no passo 6. " ?> "); }
-						else{ document.write("<?php $campoPreenchido[3] = "" ?>"); }
-
-						if(document.form1.email.value == "") { document.write("<?php $campoPreenchido[4] = "Email, localizado no passo 6. " ?>"); }
-						else{ document.write("<?php $campoPreenchido[4] = "" ?>"); }
-
-						if(document.form1.dataNascimento.value == ""){ document.write("<?php $campoPreenchido[5] = "Data de nascimento, localizado no passo 6." ?>"); }
-						else{ document.write("<?php $campoPreenchido[5] = "" ?>"); }
-
-					}
-				</script>
-				<?php $campoPreenchido[1]; $_SESSION['avisos'] = $campoPreenchido; ?>
 				<!-- Exibir arquivos -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
@@ -377,7 +354,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 								<?php
 								if(verificaArquivosExistentesPF($idPf,'2')) // true
 								{
-									echo 'O arquivo RG/RNE/PASSAPORTE já foi enviado. ';
+									echo '<div class="alert alert-success">O arquivo RG/RNE/PASSAPORTE já foi enviado.</div> ';
 								}
 								else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '2'";
@@ -392,7 +369,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									}
 								}
 								?>
-							</table><br>
+							</table>
 						</div>
 					</div>
 				</div>
@@ -408,7 +385,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 								<?php
 								if(verificaArquivosExistentesPF($idPf,'3')) // true
 								{
-									echo 'O arquivo CPF já foi enviado. ';
+									echo '<div class="alert alert-success">O arquivo CPF já foi enviado.</div>';
 								}
 								else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '3'";
@@ -423,7 +400,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									}
 								}
 								?>
-							</table><br>
+							</table>
 						</div>
 					</div>
 				</div>
@@ -439,7 +416,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 								<?php
 								if(verificaArquivosExistentesPF($idPf,'25')) // true
 								{
-									echo 'O arquivo PIS/PASEP/NIT já foi enviado. ';
+									echo '<div class="alert alert-success">O arquivo PIS/PASEP/NIT já foi enviado.</div> ';
 								}
 								else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '25'";
@@ -454,7 +431,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									}
 								}
 								?>
-							</table><br>
+							</table>
 						</div>
 					</div>
 				</div>
@@ -470,7 +447,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 								<?php
 									if(verificaArquivosExistentesPF($idPf,'31')) // true
 									{
-										echo 'O arquivo FDC – CCM foi enviado. ';
+										echo '<div class="alert alert-success">O arquivo FDC – CCM foi enviado.</div> ';
 									}
 									else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '31'";
@@ -485,7 +462,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									}
 								}
 								?>
-							</table><br>
+							</table>
 							<input type="hidden" name="idPessoa" value="<?php echo $idPf; ?>"  />
 							<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
 							<input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>

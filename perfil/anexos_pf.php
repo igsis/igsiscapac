@@ -154,7 +154,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 										$row = $envio->fetch_array(MYSQLI_ASSOC);
 
 										if(verificaArquivosExistentesPF($idPf,$row['id'])){
-											echo 'O arquivo ' . $doc . ' já foi enviado.<br><br>';
+											echo '<div class="alert alert-success">O arquivo ' . $doc . ' já foi enviado.</div>';
 										}
 										else{ ?>
 										<td class="list_description"><?php echo $arq['documento']?></td>

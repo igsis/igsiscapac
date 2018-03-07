@@ -152,7 +152,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 								</tr>
 								<?php
 									if(verificaArquivosExistentesPF($idPf,'60')){
-										echo 'O arquivo DRT foi enviado. ';
+										echo '<div class="alert alert-success">O arquivo DRT foi enviado.</div> ';
 									}
 									else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idCampo'";

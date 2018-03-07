@@ -59,13 +59,13 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><strong>Endereço:</strong><br/>
-						<input type="text" readonly class="form-control" id="Endereco" name="Endereco" placeholder="Endereço" value="<?php echo $pj['logradouro']; ?>">
+						<input type="text" readonly class="form-control" id="Endereco" name="Endereco" placeholder="Endereço" value="<?php echo $pj['logradouro']; ?>" required>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>Número *:</strong><br/>
-						<input type="text" class="form-control" id="Numero" name="Numero" placeholder="Numero" maxlength="11" value="<?php echo $pj['numero']; ?>">
+						<input type="text" class="form-control" id="Numero" name="Numero" placeholder="Numero" maxlength="11" value="<?php echo $pj['numero']; ?>" required>
 					</div>
 					<div class=" col-md-6"><strong>Complemento:</strong><br/>
 						<input type="text" class="form-control" id="Complemento" name="Complemento" placeholder="Complemento" maxlength="20" value="<?php echo $pj['complemento']; ?>">

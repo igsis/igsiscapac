@@ -2,7 +2,6 @@
 
 $con = bancoMysqli();
 $idPf = $_SESSION['idPf'];
-$campoPreenchido = $_SESSION['avisos'];
 
 $idCampo = 4;
 $tipoPessoa = 1;
@@ -141,7 +140,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6"><strong>Número *:</strong><br/>
-						<input type="text" class="form-control" id="Numero" name="Numero" placeholder="Numero" maxlength="5" value="<?php echo $pf['numero']; ?>">
+						<input type="text" class="form-control" id="Numero" name="Numero" placeholder="Numero" maxlength="5" value="<?php echo $pf['numero']; ?>" required>
 					</div>
 					<div class=" col-md-6"><strong>Complemento:</strong><br/>
 						<input type="text" class="form-control" id="Complemento" name="Complemento" placeholder="Complemento" maxlength="20" value="<?php echo $pf['complemento']; ?>">
@@ -194,7 +193,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 								</tr>
 								<?php
 									if(verificaArquivosExistentesPF($idPf,'4')){
-										echo 'O arquivo Comprovante de residência foi enviado. ';
+										echo '<div class="alert alert-success">O arquivo Comprovante de residência foi enviado.</div> ';
 									}
 									else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idCampo'";

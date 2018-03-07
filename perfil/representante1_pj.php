@@ -49,7 +49,7 @@ if ($pj['idRepresentanteLegal1'] == 0) // Não possui representante legal cadast
 						<div class="col-md-offset-2 col-md-8">
 
 							<label>Insira o CPF</label>
-								<input type="text" name="busca" class="form-control" id="cpf" >
+								<input type="text" name="busca" class="form-control" id="cpf" required>
 						</div>
 					</div>
 

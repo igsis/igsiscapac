@@ -205,7 +205,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 								</tr>
 								<?php
 								if(verificaArquivosExistentesPF($idPf,'51')){
-										echo 'O arquivo FACC foi enviado. ';
+										echo '<div class="alert alert-success">O arquivo FACC foi enviado.</div> ';
 									}
 									else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idCampo'";
