@@ -119,7 +119,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<h3>PASSO 10: Demais Anexos</h3>
+			<h3>PASSO 11: Demais Anexos</h3>
 			<p><b>Código de cadastro:</b> <?php echo $idPf; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
@@ -246,7 +246,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
 				</div>
 
-				<!-- Botão para Voltar -->
+				<!-- Botão para Voltar e Prosseguir -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-2">
 						<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pf" method="post">
@@ -264,7 +264,15 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 							</form>
 						</div>
 					<?php
-					}
+					}else{
+				?>
+				<div class="col-md-offset-4 col-md-2">
+					<form class="form-horizontal" role="form" action="?perfil=final_pf" method="post">
+						<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
+					</form>
+				</div>
+				<?php
+				}
 				?>
 			</div>
 		</div>
