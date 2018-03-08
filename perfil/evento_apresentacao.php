@@ -153,25 +153,37 @@ $idUser= $_SESSION['idUser'];
 										<li class="list-group-item">PIS/PASEP/NIT</li>
 									</ul>
 									<ul class="list-group">
-										<li class="list-group-item list-group-item-success"><b>PASSO 7: Endereço</b></li>
+										<li class="list-group-item list-group-item-success"><b>PASSO 7: Arquivos da Pessoa</b></li>
+										<li class="list-group-item">Cartão CPF</li>
+										<li class="list-group-item">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</li>
+										<li class="list-group-item">Declaração CCM</li>
+									</ul>
+									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>PASSO 8: Endereço</b></li>
 										<li class="list-group-item">CEP</li>
 										<li class="list-group-item">Número</li>
 										<li class="list-group-item">Complemento</li>
+										<li class="list-group-item">Comprovante de Residência</li>
 									</ul>
 									<ul class="list-group">
-										<li class="list-group-item list-group-item-success"><b>PASSO 8: Informações Complementares</b></li>
+										<li class="list-group-item list-group-item-success"><b>PASSO 9: Informações Complementares</b></li>
 										<li class="list-group-item">DRT (Somente para Teatro, Dança ou Circo)</li>
 									</ul>
 									<ul class="list-group">
-										<li class="list-group-item list-group-item-success"><b>PASSO 9: Dados Bancários</b></li>
+										<li class="list-group-item list-group-item-success"><b>PASSO 10: Dados Bancários</b></li>
 										<li class="list-group-item list-group-item-danger"><b>Realizamos pagamentos de valores acima de R$ 5.000,00 *SOMENTE COM CONTA CORRENTE NO BANCO DO BRASIL*.<br />Não são aceitas: conta fácil, poupança e conjunta.</b></li>
 										<li class="list-group-item">Banco</li>
 										<li class="list-group-item">Agência</li>
 										<li class="list-group-item">Conta</li>
 									</ul>
 									<ul class="list-group">
-										<li class="list-group-item list-group-item-success"><b>PASSO 10: Demais Anexos</b></li>
+										<li class="list-group-item list-group-item-success"><b>PASSO 11: Demais Anexos</b></li>
 										<li class="list-group-item">Demais anexos necessários para a contratação</li>
+									</ul>
+									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>Finalizar</b></li>
+										<li class="list-group-item">Nesta tela haverá um resumo de toda informação inserida neste evento</li>
+										<li class="list-group-item">Listará também algum campo pendente de preenchimento.</li>
 									</ul>
         						</div>
     						</div>
