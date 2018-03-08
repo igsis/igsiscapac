@@ -68,14 +68,14 @@ if(isset($_POST["enviar"]))
 		  											</div>
 												</div>
 											</div>
-										</div>";*/
-							//gravarLog($sql_insere_arquivo);
+										</div>";
+							gravarLog($sql_insere_arquivo);
 
-							/*echo '<script>
+							echo '<script>
 									setTimeout(function() {
   										window.location = "?perfil=final_pf";
 									}, 3000)
-								</script>';*/
+								</script>'; */
 						}
 						else
 						{
