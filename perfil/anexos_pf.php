@@ -5,6 +5,7 @@ $idPf = $_SESSION['idPf'];
 $contador = 0;
 $tipoPessoa = 1;
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
+$evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 
 $server = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/";
 $http = $server."/pdf/";
@@ -119,7 +120,11 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
+			<?php if($evento == NULL || $evento == ""){ ?>
 			<h3>PASSO 11: Demais Anexos</h3>
+			<?php } else { ?>
+			<h3>PASSO 6: Demais Anexos</h3>
+			<?php } ?>
 			<p><b>Código de cadastro:</b> <?php echo $idPf; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>

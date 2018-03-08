@@ -13,7 +13,7 @@ if(isset($_POST["enviar"]))
 		$idPf = $_POST['idPessoa'];
 		$y = $arq['id'];
 		$x = $arq['sigla'];
-		$nome_arquivo = isset($_FILES['arquivo']['name'][$x]) ? $_FILES['arquivo']['name'][$x] : null;
+		$nome_arquivo = isset($_FILES['arquivo']['name'][$x]) ? $_FILES['arquivo']['name'][$x] : null; // previne undefined index
 		$f_size = isset($_FILES['arquivo']['size'][$x]) ? $_FILES['arquivo']['size'][$x] : null;
 
 		//Extensões permitidas
