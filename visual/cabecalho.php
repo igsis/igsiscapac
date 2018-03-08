@@ -34,3 +34,8 @@ ini_set('session.gc_maxlifetime', 60*60); // 60 minutos
 
 			</p>
 		</div>
+
+<?php 
+	# Menu progresso
+	require_once '../visual/smart_wizard.php';
+?>		

@@ -13,8 +13,8 @@
           <label >Selecione o tema:</label>
           <select id="theme_selector" class="form-control">
                 <option value="dots">dots</option>
-                <!-- <option value="circles">circles</option> -->
                 <!-- <option value="default">default</option> -->
+                <!-- <option value="circles">circles</option> -->
                 <!-- <option value="arrows">arrows</option> -->
           </select>
         </div>           
