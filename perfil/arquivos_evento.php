@@ -25,8 +25,8 @@ if(isset($_POST["enviar"]))
 	{
 		$y = $arq['id'];
 		$x = $arq['sigla'];
-		$nome_arquivo = isset($_FILES['arquivo']['name'][$x]);
-		$f_size = isset($_FILES['arquivo']['size'][$x]);
+		$nome_arquivo = $_FILES['arquivo']['name'][$x];
+		$f_size = $_FILES['arquivo']['size'][$x];
 
 		//Extensões permitidas
 		$ext = array("PDF","pdf");

@@ -13,8 +13,8 @@ if(isset($_POST["enviar"]))
 		$idPf = $_POST['idPessoa'];
 		$y = $arq['id'];
 		$x = $arq['sigla'];
-		$nome_arquivo = $_FILES['arquivo']['name'][$x];
-		$f_size = $_FILES['arquivo']['size'][$x];
+		$nome_arquivo = isset($_FILES['arquivo']['name'][$x]) ? $_FILES['arquivo']['name'][$x] : null;
+		$f_size = isset($_FILES['arquivo']['size'][$x]) ? $_FILES['arquivo']['size'][$x] : null;
 
 		//Extensões permitidas
 		$ext = array("PDF","pdf");
@@ -112,7 +112,8 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 								<?php
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '2'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
-									$idPf = $_POST['idPessoa'];
+									$idPf = isset($_POST['idPessoa']) ? $_POST['idPessoa'] : null;
+
 
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{
