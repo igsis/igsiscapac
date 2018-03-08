@@ -1,7 +1,6 @@
 ﻿<?php
 $con = bancoMysqli();
 $idPj = $_SESSION['idPj'];
-$bool = false;
 
 if(isset($_POST['cadastrarEndereco']))
 {
@@ -28,7 +27,6 @@ if(isset($_POST['cadastrarEndereco']))
 	{
 		$mensagem = "<font color='#01DF3A'><strong>Atualizado com sucesso!</strong></font>";
 		gravarLog($sql_atualiza_endereco_pj);
-		$bool = true;
 
 	}
 	else
@@ -109,16 +107,12 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 					</div>
 					<div class="col-md-offset-4 col-md-2">
 						<form class="form-horizontal" role="form" action="?perfil=representante1_pj" method="post">
-							<?php if($bool == true) { ?>
 							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
-							<?php } else { ?>
 						</form>
 					</div>
 				</div>
 
 			</div>
 		</div>
-		<div class="alert alert-info">Grave suas informações para prosseguir o formulário.</div>
-		<?php } ?>
 	</div>
 </section>

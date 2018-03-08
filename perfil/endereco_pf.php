@@ -2,7 +2,6 @@
 
 $con = bancoMysqli();
 $idPf = $_SESSION['idPf'];
-$bool = false;
 $idCampo = 4;
 $tipoPessoa = 1;
 
@@ -31,7 +30,6 @@ if(isset($_POST['cadastrarEndereco']))
 	{
 		$mensagem = "<font color='#01DF3A'><strong>Atualizado com sucesso!</strong></font>";
 		gravarLog($sql_atualiza_endereco_pf);
-		$bool = true;
 	}
 	else
 	{
@@ -252,18 +250,12 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 					</div>
 					<div class="col-md-offset-4 col-md-2">
 						<form class="form-horizontal" role="form" action="?perfil=informacoes_complementares_pf" method="post">
-							<?php if($bool == true)
-							{ ?>
 							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
-							<?php } 
-							else { ?>
 						</form>
 					</div>
 				</div>
 
 			</div>
 		</div>
-				<div class="alert alert-info">Clique em GRAVAR para prosseguir</div>
-		<?php } ?>
 	</div>
 </section>
