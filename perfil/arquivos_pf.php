@@ -97,8 +97,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<?php if($evento == NULL || $evento == "")
-			{ ?>
+			<?php if($evento == NULL || $evento == ""){ ?>
 			<h4>PASSO 7: Arquivos da Pessoa</h4>
 			<?php } else { ?>
 			<h4>PASSO 2: Arquivos da Pessoa</h4> <?php } ?>

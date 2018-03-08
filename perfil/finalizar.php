@@ -9,6 +9,7 @@ $pessoaJuridica = recuperaDados("pessoa_juridica","id",$evento['idPj']);
 $representante1 = recuperaDados("representante_legal","id",$pessoaJuridica['idRepresentanteLegal1']);
 $representante2 = recuperaDados("representante_legal","id",$pessoaJuridica['idRepresentanteLegal2']);
 $pessoaFisica = recuperaDados("pessoa_fisica","id",$evento['idPf']);
+$bool = false;
 
 function recuperaBanco($campoY)
 {
@@ -338,6 +339,7 @@ if(isset($_POST['enviar']))
 	if(mysqli_query($con,$sql_envia))
 	{
 		$mensagem = "<h4><font color='#01DF3A'>Enviado com sucesso! Entre em contato com o programador do seu evento e informe o código do CAPAC: </font><font color='#FF0000'>".$idEvento."</font></h4>";
+		$bool = true;
 	}
 }
 ?>
@@ -484,24 +486,26 @@ if(isset($_POST['enviar']))
 						<?php listaArquivoCamposMultiplos1($pessoaFisica['id'],1); ?>
 					</div>
 
-					<div class="table-responsive list_info"><h6>Arquivo(s) do Grupo</h6>
-						<?php listaArquivoCamposMultiplos1($idEvento,4); ?>
-					</div>
-
 				</div>
 				<!-- Fim detalhes do evento -->
-				<!-- Botão de enviar -->
+				<!-- Botão para Voltar -->
 				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<?php
+					<div class="col-md-offset-2 col-md-2">
+							<form class="form-horizontal" role="form" action="?perfil=anexos_pj" method="post">
+							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+						</form>
+					</div>
+							<div class="col-md-offset-4 col-md-2">
+								<?php
 						if($i == 0)
 						{
+							if($bool == false){
 						?>
 							<form class="form-horizontal" role="form" action="?perfil=finalizar" method="post">
 								<input type="submit" name="enviar" value="ENVIAR" class="btn btn-theme btn-lg btn-block">
 							</form>
 						<?php
-						}
+						} else {} }
 						else
 						{
 						?>
@@ -510,9 +514,11 @@ if(isset($_POST['enviar']))
 						<?php
 						}
 						?>
-					</div>
+							</div>
 				</div>
 			</div>
+			<!-- Botão para Voltar -->
+
 		</div>
 	</div>
 </section>
