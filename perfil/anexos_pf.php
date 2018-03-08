@@ -53,7 +53,8 @@ if(isset($_POST["enviar"]))
 						$query = mysqli_query($con,$sql_insere_arquivo);
 						if($query)
 						{
-							$mensagem = "<font color='#01DF3A'>
+							echo '<script>window.location = "?perfil=final_pf"</script>';
+							/*$mensagem = "<font color='#01DF3A'>
 											<strong>
 												Arquivo recebido com sucesso!<br>
 												Seguindo ao próximo passo
@@ -67,15 +68,14 @@ if(isset($_POST["enviar"]))
 		  											</div>
 												</div>
 											</div>
-										</div>";
-							gravarLog($sql_insere_arquivo);
+										</div>";*/
+							//gravarLog($sql_insere_arquivo);
 
-							echo '<script>
+							/*echo '<script>
 									setTimeout(function() {
   										window.location = "?perfil=final_pf";
 									}, 3000)
-								</script>';
-
+								</script>';*/
 						}
 						else
 						{

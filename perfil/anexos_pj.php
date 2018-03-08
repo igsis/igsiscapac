@@ -50,7 +50,8 @@ if(isset($_POST["enviar"]))
 						$query = mysqli_query($con,$sql_insere_arquivo);
 						if($query)
 						{
-							$mensagem = "<font color='#01DF3A'>
+							echo '<script>window.location = "?perfil=final_pj"</script>';
+							/*$mensagem = "<font color='#01DF3A'>
 											<strong>
 												Arquivo recebido com sucesso!<br>
 												Seguindo ao próximo passo
@@ -71,7 +72,7 @@ if(isset($_POST["enviar"]))
 									setTimeout(function() {
   										window.location = "?perfil=final_pj";
 									}, 3000)
-								</script>';
+								</script>'; */
 						}
 						else
 						{
