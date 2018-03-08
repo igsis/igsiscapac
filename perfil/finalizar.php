@@ -282,37 +282,37 @@ if($idTipoPessoa == 2)
 $pf = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 if($pf['nome'] == NULL)
 {
-	$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pf'>Nome do artista</a><br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>Nome do artista</a><br/>";
 	$i = 1;
 }
 
 if($pf['nomeArtistico'] == NULL)
 {
-	$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pf'>Nome Artístico</a><br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>Nome Artístico</a><br/>";
 	$i = 1;
 }
 
 if($pf['rg'] == NULL)
 {
-	$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pf'>RG do artista</a><br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>RG do artista</a><br/>";
 	$i = 1;
 }
 
 if($pf['cpf'] == NULL)
 {
-	$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pf'>CPF do artista</a><br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>CPF do artista</a><br/>";
 	$i = 1;
 }
 
 if($pf['telefone1'] == NULL)
 {
-	$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pf'>Telefone do artista</a><br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>Telefone do artista</a><br/>";
 	$i = 1;
 }
 
 if($pf['email'] == NULL)
 {
-	$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pf'>E-mail do artista</a><br/>";
+	$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>E-mail do artista</a><br/>";
 	$i = 1;
 }
 
