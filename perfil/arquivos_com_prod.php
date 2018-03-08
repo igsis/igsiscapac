@@ -98,6 +98,7 @@ $campo = recuperaDados("evento","id",$_SESSION['idEvento']);
 					- tamanho: mínimo de 300dpi”</p>
 					
 					<br />
+					<div class="alert alert-danger"><strong>Atenção:</strong> Os arquivos para upload devem ter nomes diferentes.</div>
 					<div class = "center">
 						<form method='POST' action="?perfil=arquivos_com_prod" enctype='multipart/form-data'>
 							<?php 

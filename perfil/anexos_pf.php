@@ -52,10 +52,28 @@ if(isset($_POST["enviar"]))
 						$query = mysqli_query($con,$sql_insere_arquivo);
 						if($query)
 						{
-							$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
+							$mensagem = "<font color='#01DF3A'>
+											<strong>
+												Arquivo recebido com sucesso!<br>
+												Seguindo ao próximo passo
+											</strong>
+										</font>
+										<div class='row' style='margin-top: 15px;'>
+											<div class='col-md-offset-4 col-md-6'>
+												<div class='progress progress-striped active'>
+		  											<div id='dynamic' class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='width: 0%'>
+		    											<span id='current-progress'></span>
+		  											</div>
+												</div>
+											</div>
+										</div>";
 							gravarLog($sql_insere_arquivo);
 
-							echo '<script>window.location = "?perfil=final_pf"</script>';
+							echo '<script>
+									setTimeout(function() {
+  										window.location = "?perfil=final_pf";
+									}, 3000)
+								</script>';
 
 						}
 						else
