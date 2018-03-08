@@ -316,191 +316,10 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 				</div>
 			</form>
 
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><hr/></div>
-				</div>
-
-				<!-- Links emissão de documentos -->
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<h6>Gerar Arquivo(s)</h6>
-						<p>Para gerar alguns dos arquivos online, utilize os links abaixo:</p>
-						<p align="justify">
-							<a href="https://www.receita.fazenda.gov.br/Aplicacoes/SSL/ATCTA/cpf/ImpressaoComprovante/ConsultaImpressao.asp" target="_blank">Cartão CPF</a><br/>
-							<a href="https://ccm.prefeitura.sp.gov.br/login/contribuinte?tipo=F" target="_blank">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</a><br/>
-							<a href='<?php echo $link1 ?>' target="_blank">Declaração CCM</a>
-						</p>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
-				</div>
-				<!-- Exibir arquivos -->
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s) Somente em PDF</h6>
-							<?php listaArquivoCamposMultiplos($idPf,$tipoPessoa,"","informacoes_iniciais_pf",1); ?>
-						</div>
-					</div>
-				</div>
-
-				<!-- Upload de arquivo 1 -->
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<div class = "center">
-						<form method="POST" action="?perfil=informacoes_iniciais_pf" enctype="multipart/form-data">
-							<table>
-								<tr>
-									<td width="50%"><td>
-								</tr>
-								<?php
-								if(verificaArquivosExistentesPF($idPf,'2')) // true
-								{
-									echo '<div class="alert alert-success">O arquivo RG/RNE/PASSAPORTE já foi enviado.</div> ';
-								}
-								else{
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '2'";
-									$query_arquivos = mysqli_query($con,$sql_arquivos);
-									while($arq = mysqli_fetch_array($query_arquivos))
-									{
-								?>
-										<tr>
-											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
-										</tr>
-								<?php
-									}
-								}
-								?>
-							</table>
-						</div>
-					</div>
-				</div>
-
-				<!-- Upload de arquivo 2 -->
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<div class = "center">
-							<table>
-								<tr>
-									<td width="50%"><td>
-								</tr>
-								<?php
-								if(verificaArquivosExistentesPF($idPf,'3')) // true
-								{
-									echo '<div class="alert alert-success">O arquivo CPF já foi enviado.</div>';
-								}
-								else{
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '3'";
-									$query_arquivos = mysqli_query($con,$sql_arquivos);
-									while($arq = mysqli_fetch_array($query_arquivos))
-									{
-								?>
-										<tr>
-											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
-										</tr>
-								<?php
-									}
-								}
-								?>
-							</table>
-						</div>
-					</div>
-				</div>
-
-				<!-- Upload de arquivo 3 -->
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<div class = "center">
-							<table>
-								<tr>
-									<td width="50%"><td>
-								</tr>
-								<?php
-								if(verificaArquivosExistentesPF($idPf,'25')) // true
-								{
-									echo '<div class="alert alert-success">O arquivo PIS/PASEP/NIT já foi enviado.</div> ';
-								}
-								else{
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '25'";
-									$query_arquivos = mysqli_query($con,$sql_arquivos);
-									while($arq = mysqli_fetch_array($query_arquivos))
-									{
-								?>
-										<tr>
-											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
-										</tr>
-								<?php
-									}
-								}
-								?>
-							</table>
-						</div>
-					</div>
-				</div>
-
-				<!-- Upload de arquivo 4 -->
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<div class = "center">
-							<table>
-								<tr>
-									<td width="50%"><td>
-								</tr>
-								<?php
-									if(verificaArquivosExistentesPF($idPf,'31')) // true
-									{
-										echo '<div class="alert alert-success">O arquivo FDC – CCM foi enviado.</div> ';
-									}
-									else{
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '31'";
-									$query_arquivos = mysqli_query($con,$sql_arquivos);
-									while($arq = mysqli_fetch_array($query_arquivos))
-									{
-								?>
-										<tr>
-											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
-										</tr>
-								<?php
-									}
-								}
-								?>
-							</table>
-							<input type="hidden" name="idPessoa" value="<?php echo $idPf; ?>"  />
-							<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
-							<input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>
-						</form>
-						</div>
-					</div>
-				</div>
-				<!-- Fim Upload de arquivo -->
-				<!-- Confirmação de Exclusão -->
-					<div class="modal fade" id="confirmApagar" role="dialog" aria-labelledby="confirmApagarLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<h4 class="modal-title">Excluir Arquivo?</h4>
-								</div>
-								<div class="modal-body">
-									<p>Confirma?</p>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-									<button type="button" class="btn btn-danger" id="confirm">Apagar</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				<!-- Fim Confirmação de Exclusão -->
-
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
-				</div>
 
 				<!-- Botão para Prosseguir -->
 				<div class="form-group">
-					<form class="form-horizontal" role="form" action="?perfil=endereco_pf" method="post">
+					<form class="form-horizontal" role="form" action="?perfil=arquivos_pf" method="post">
 						<div class="col-md-offset-8 col-md-2">
 							<?php if($bool == true)
 							{ ?>
@@ -514,6 +333,11 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 		</div>
 		<div class="alert alert-info">Grave suas informações para prosseguir o formulário.</div>
 		<?php } ?>
+
+
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8"></div>
+				</div>
 
 	</div>
 </section>
