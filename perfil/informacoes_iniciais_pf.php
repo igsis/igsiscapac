@@ -4,6 +4,7 @@ $con = bancoMysqli();
 $idUser = $_SESSION['idUser'];
 $tipoPessoa = "1";
 $bool = false;
+$evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 
 if(isset($_POST['cadastrarFisica']))
 {
@@ -224,8 +225,9 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<h4>PASSO 6: Informações Iniciais</h4>
-				<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
+			<?php if($evento == NULL || $evento == ""){ ?>
+			<h4>PASSO 6: Informações Iniciais</h4><?php } else {?>
+			<h4>PASSO 1: Informações Iniciais</h4><?php } ?>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">

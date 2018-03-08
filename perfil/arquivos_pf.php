@@ -4,7 +4,7 @@
 $con = bancoMysqli();
 $idUser = $_SESSION['idUser'];
 $tipoPessoa = 1;
-
+$evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 
 if(isset($_POST['carregar']))
 {
@@ -97,7 +97,11 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
+			<?php if($evento == NULL || $evento == "")
+			{ ?>
 			<h4>PASSO 7: Arquivos da Pessoa</h4>
+			<?php } else { ?>
+			<h4>PASSO 2: Arquivos da Pessoa</h4> <?php } ?>
 			<p><b>Nome:</b> <?php echo $pf['nome']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>

@@ -4,6 +4,7 @@ $con = bancoMysqli();
 $idPf = $_SESSION['idPf'];
 $idCampo = 4;
 $tipoPessoa = 1;
+$evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 
 if(isset($_POST['cadastrarEndereco']))
 {
@@ -116,7 +117,12 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
 		<div class="form-group">
+			
+			<?php if($evento == NULL || $evento == ""){ ?>
 			<h3>PASSO 8: Endereço</h3>
+			<?php } else { ?>
+			<h3>Passo 3: Endereço</h3>
+			<?php } ?>
 			<p><b>Código de cadastro:</b> <?php echo $idPf; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
