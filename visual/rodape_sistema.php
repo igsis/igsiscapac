@@ -37,14 +37,14 @@
             $(this).find('.modal-body p').text($message);
              
             // Pass form reference to modal for submission on yes/ok
-            var form = $('form[id=apagarArq]');
-            $(this).find('.modal-footer #confirm').data('form[id=apagarArq]', form);
+            var form = $(e.relatedTarget).closest('form');
+            $(this).find('.modal-footer #confirm').data('form', form);
         });
          
         // Form confirm (yes/ok) handler, submits form
         $('#confirmApagar').find('.modal-footer #confirm').on('click', function()
         {
-            $(this).data('form[id=apagarArq]').submit();
+            $(this).data('form').submit();
         });
     </script>
 </body>

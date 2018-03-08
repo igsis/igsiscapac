@@ -735,7 +735,8 @@ function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 								<input type='hidden' name='idPessoa' value='".$idPessoa."' />
 								<input type='hidden' name='tipoPessoa' value='".$tipoPessoa."' />
 								<input type='hidden' name='apagar' value='".$arquivo['id']."' />
-								<input type='submit' class='btn btn-theme' value='Apagar' /></td>
+								<button class='btn btn-theme' type='button' data-toggle='modal' data-target='#confirmApagar' data-title='Excluir Arquivo?' data-message='Desejar realmente excluir o arquivo ".$arquivo['documento']."?'>Apagar
+								</button></td>
 							</form>";
 					echo "</tr>";
 				}
@@ -874,7 +875,8 @@ function listaArquivos($idEvento)
 			<td class='list_description'>
 				<form id='apagarArq' method='POST' action='?perfil=arquivos_com_prod'>
 					<input type='hidden' name='apagar' value='".$campo['id']."' />
-					<input type='submit' class='btn btn-theme' value='Apagar' /></td></form>"	;
+					<button class='btn btn-theme' type='button' data-toggle='modal' data-target='#confirmApagar' data-title='Excluir Arquivo?' data-message='Desejar realmente excluir o arquivo ".$campo['arquivo']."?'>Apagar
+					</button></td></form>"	;
 		echo "</tr>";
 	}
 	echo "
