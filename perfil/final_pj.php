@@ -1,7 +1,6 @@
 <?php
 
 $con = bancoMysqli();
-$campoPreenchido = $_SESSION['avisos'];
 $idPj = $_SESSION['idPj'];
 $pj = recuperaDados("pessoa_juridica","id",$idPj);
 $contador = 0;

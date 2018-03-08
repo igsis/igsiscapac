@@ -4,7 +4,6 @@ $idUser = $_SESSION['idUser'];
 $idEvento = $_SESSION['idEvento'];
 $tipoPessoa = '1';
 
-
 if(isset($_POST["enviar"]))
 {
 	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id IN (2,3,60)";
@@ -113,14 +112,26 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 								<?php
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '2'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
+									$idPf = $_POST['idPessoa'];
+
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{
+										$doc = $arq['documento'];
+										$query = "SELECT id FROM upload_lista_documento WHERE documento='$doc' AND publicado='1' AND idTipoUpload='1'";
+										$envio = $con->query($query);
+										$row = $envio->fetch_array(MYSQLI_ASSOC);
+										
+										if(verificaArquivosExistentesPF($idPf,$row['id'])){
+											echo '<div class="alert alert-success">O arquivo ' . $doc . ' já foi enviado.</div>';
+										}
+										else{ 
 								?>
 										<tr>
 											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
 										</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 						</div>
@@ -140,12 +151,22 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{
+										$doc = $arq['documento'];
+										$query = "SELECT id FROM upload_lista_documento WHERE documento='$doc' AND publicado='1' AND idTipoUpload='1'";
+										$envio = $con->query($query);
+										$row = $envio->fetch_array(MYSQLI_ASSOC);
+										
+										if(verificaArquivosExistentesPF($idPf,$row['id'])){
+											echo '<div class="alert alert-success">O arquivo ' . $doc . ' já foi enviado.</div>';
+										}
+										else{ 
 								?>
 										<tr>
 											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
 										</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 						</div>
@@ -165,12 +186,22 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{
+										$doc = $arq['documento'];
+										$query = "SELECT id FROM upload_lista_documento WHERE documento='$doc' AND publicado='1' AND idTipoUpload='1'";
+										$envio = $con->query($query);
+										$row = $envio->fetch_array(MYSQLI_ASSOC);
+										
+										if(verificaArquivosExistentesPF($idPf,$row['id'])){
+											echo '<div class="alert alert-success">O arquivo ' . $doc . ' já foi enviado.</div>';
+										}
+										else{ 
 								?>
 										<tr>
 											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
 										</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 							<input type="hidden" name="idPessoa" value="<?php echo $artista['id']; ?>"  />
