@@ -31,8 +31,7 @@ $idUser= $_SESSION['idUser'];
 								<li class="list-group-item">Material de imprensa (clipping)</li>
 								<li class="list-group-item">Autorização SBAT</li>
 								<li class="list-group-item">Currículo do Grupo</li>
-								<li class="list-group-item">Currículo da Companhia</li>
-								<li class="list-group-item">Histórico do Grupo ou Artista</li>
+								<li class="list-group-item">DRT dos Integrantes do Grupo</li>
 							</ul>
 							<ul class="list-group">
 								<li class="list-group-item list-group-item-success"><b>PASSO 3: Dados do Produtor</b></li>
@@ -84,12 +83,12 @@ $idUser= $_SESSION['idUser'];
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>PASSO 9: Representante Legal</b></li>
 										<li class="list-group-item">Nome</li>
-										<li class="list-group-item">RG</li>
+										<li class="list-group-item">RG/RNE/PASSAPORTE</li>
 										<li class="list-group-item">CPF</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>PASSO 10: Arquivos do Representante Legal em PDF</b></li>
-										<li class="list-group-item">RG</li>
+										<li class="list-group-item">RG/RNE/PASSAPORTE</li>
 										<li class="list-group-item">CPF</li>
 									</ul>
 									<ul class="list-group">
@@ -108,7 +107,7 @@ $idUser= $_SESSION['idUser'];
 										<li class="list-group-item list-group-item-success"><b>PASSO 13: ARTISTA - Líder do Grupo ou Artista Solo</b></li>
 										<li class="list-group-item">Nome</li>
 										<li class="list-group-item">Nome Artístico</li>
-										<li class="list-group-item">RG</li>
+										<li class="list-group-item">RG/RNE/PASSAPORTE</li>
 										<li class="list-group-item">CPF</li>
 										<li class="list-group-item">E-mail</li>
 										<li class="list-group-item">Celular</li>
@@ -118,13 +117,15 @@ $idUser= $_SESSION['idUser'];
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>PASSO 14: Arquivos do Líder do Grupo ou Artista Solo em PDF</b></li>
-										<li class="list-group-item">RG</li>
+										<li class="list-group-item">RG/RNE/PASSAPORTE</li>
 										<li class="list-group-item">CPF</li>
 										<li class="list-group-item">DRT</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>PASSO 15: Demais Anexos</b></li>
 										<li class="list-group-item">Demais anexos necessários para a contratação</li>
+										<li class="list-group-item">Gerar Declaração de Exclusividade</li>
+										<li class="list-group-item">Anexar a Declaração de Exclusividade depois de assinada</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Finalizar</b></li>
