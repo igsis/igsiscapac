@@ -257,11 +257,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 								}
 								?>
 							</table><br>
-						</div>
-					</div>
-				</div>
-				<!-- Fim Upload de arquivo -->
-
+							<!-- Fim Upload de arquivo -->
 							<input type="hidden" name="idPessoa" value="<?php echo $idPf ?>"  />
 							<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
 							<input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>
