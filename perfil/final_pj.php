@@ -60,7 +60,7 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf)
 			$arq3 = "list.id = '78' OR";
 			$arq4 = "list.id = '96' OR";
 			$arq5 = "list.id = '97' OR";
-			$arq6 = "list.id = '98')";
+			$arq6 = "list.id = '101')";
 			$sql = "SELECT *
 				FROM upload_lista_documento as list
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
