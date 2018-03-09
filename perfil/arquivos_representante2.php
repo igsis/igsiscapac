@@ -124,7 +124,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 										}
 										else{ 
 								?>
-								?>
+								
 								<tr>
 									<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
 								</tr>
@@ -159,7 +159,6 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 											echo '<div class="alert alert-success">O arquivo ' . $doc . ' já foi enviado.</div>';
 										}
 										else{ 
-								?>
 								?>
 										<tr>
 											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
