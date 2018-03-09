@@ -41,7 +41,9 @@
         );
         # passo 7 ao 10 Pessoa Fisica
         $urlPf = array(
+             '/igsiscapac/visual/index.php?perfil=proponente_pf_resultado',
             '/igsiscapac/visual/index.php?perfil=informacoes_iniciais_pf',
+            '/igsiscapac/visual/index.php?perfil=arquivos_pf',
             '/igsiscapac/visual/index.php?perfil=endereco_pf',
             '/igsiscapac/visual/index.php?perfil=informacoes_complementares_pf',
             '/igsiscapac/visual/index.php?perfil=dados_bancarios_pf',
@@ -53,7 +55,7 @@
             '/igsiscapac/visual/index.php?perfil=informacoes_iniciais_pj',
             '/igsiscapac/visual/index.php?perfil=arquivos_pj',
             '/igsiscapac/visual/index.php?perfil=endereco_pj',
-            '/igsiscapac/visual/index.php?perfil=representante1_pj_cadastro',
+            '/igsiscapac/visual/index.php?perfil=representante1_pj_cadastro', // contem erro na web
             '/igsiscapac/visual/index.php?perfil=arquivos_representante1',
             '/igsiscapac/visual/index.php?perfil=dados_bancarios_pj',
             '/igsiscapac/visual/index.php?perfil=arquivos_dados_bancarios_pj',
@@ -107,17 +109,47 @@
         # Verifica se a pagina contem o endereço correspondente ao de pessoa Física
         for ($i = 0; $i < count($urlPf); $i++) {
             if ($uri == $urlPf[$i]) {
+                if ($i == 0 || $i == 1){
+                    $ativ_1 = 'done loading';
+                }elseif ($i == 2) {                
+                    $ativ_2 = 'done loading';
+                }elseif ($i == 3) {    
+                    $ativ_3 = 'done loading';
+                }elseif ($i == 4) {                
+                    $ativ_4 = 'done loading';
+                }elseif ($i == 5) {                
+                    $ativ_5 = 'done loading';
+                }elseif ($i == 6) {                
+                    $ativ_6 = 'done loading';
+                }elseif ($i == 7) {                
+                    $ativ_7 = 'done loading';
+                }
     ?>
-    
+        
         <!-- Pessoa Física      -->
         <div id="smartwizard">
             <ul>
-                <li><a href=""><br /><small>Informações Iniciais</small></a></li> 
-                <li><a href=""><br /><small>Arquivos do Evento</small></a></li>
-                <li><a href=""><br /><small>Informações Complementares</small></a></li>
-                <li><a href=""><br /><small>Dados Bancários</small></a></li>
-                <li><a href=""><br /><small>Demais Anexos</small></a></li>          
-                <li><a href=""><br /><small>Finalizar</small></a></li>          
+                <li class="<?php echo $ativ_1 ?? 'clickable'; ?>">
+                    <a onclick="location.href='index.php?perfil=informacoes_iniciais_pf'" href=""><br /><small>Informações Iniciais</small></a>
+                </li> 
+                <li class="<?php echo $ativ_2 ?? 'clickable'; ?>">
+                    <a onclick="location.href='index.php?perfil=arquivos_pf'" href=""><br /><small>Arquivos do Evento</small></a>
+                </li> 
+                <li class="<?php echo $ativ_3 ?? 'clickable'; ?>">
+                    <a onclick="location.href='index.php?perfil=endereco_pf'" href=""><br /><small>Endereço</small></a>
+                </li>
+                <li class="<?php echo $ativ_4 ?? 'clickable'; ?>">
+                    <a onclick="location.href='index.php?perfil=informacoes_complementares_pf'" href=""><br /><small>Informações Complementares</small></a>
+                </li>
+                <li class="<?php echo $ativ_5 ?? 'clickable'; ?>">
+                    <a onclick="location.href='index.php?perfil=dados_bancarios_pf'" href=""><br /><small>Dados Bancários</small></a>
+                </li>
+                <li class="<?php echo $ativ_6 ?? 'clickable'; ?>">
+                    <a onclick="location.href='index.php?perfil=anexos_pf'" href=""><br /><small>Demais Anexos</small></a>
+                </li>          
+                <li class="<?php echo $ativ_7 ?? 'clickable'; ?>">
+                    <a onclick="location.href='index.php?perfil=final_pf'" href=""><br /><small>Finalizar</small></a>
+                </li>          
             </ul> 
         </div>
     <?php 
@@ -132,32 +164,33 @@
         <!-- Pessoa Jurídica -->
         <div id="smartwizard">
             <ul>
-                <li><a href=""><br /><small>Informações Iniciais</small></a></li> 
-                <li>
+                <li class="<?php ?>">
+                    <a href=""><br /><small>Informações Iniciais</small></a></li> 
+                <li class="<?php ?>">
                     <a href=""><br /><small>Arquivos da Empresa</small></a>
                 </li>
-                <li>
+                <li class="<?php ?>">
                     <a href=""><br /><small>Endereço</small></a>
                 </li>
-                <li>
+                <li class="<?php ?>">
                     <a href=""><br /><small>Representante Legal</small></a>
                 </li>
-                <li>
+                <li class="<?php ?>">
                     <a href=""><br /><small>Arquivos Representante Legal</small></a>
                 </li>               
-                <li>
+                <li class="<?php ?>">
                     <a href=""><br /><small>Dados Bancários</small></a>
                 </li>
-                <li>
+                <li class="<?php ?>">
                     <a href=""><br /><small>Arquivos Bancários</small></a>
                 </li>
-                <li>
+                <li class="<?php ?>">
                     <a href=""><br /><small>Líder do Grupo/Artista</small></a>
                 </li> 
-                <li>
+                <li class="<?php ?>">
                     <a href=""><br /><small>Arquivos Líder do Grupo/Artista</small></a>
                 </li> 
-                <li>
+                <li class="<?php ?>">
                     <a href=""><br /><small>Demais Anexos</small></a>
                 </li> 
             </ul>
