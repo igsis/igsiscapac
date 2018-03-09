@@ -4,6 +4,8 @@ $idPj = $_SESSION['idPj'];
 $contador = 0;
 $tipoPessoa = 2;
 $pj = recuperaDados("pessoa_juridica","id",$idPj);
+$evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
+
 
 $array = array(10,8,42,34,58,95);
 if(isset($_POST["enviar"]))
@@ -123,6 +125,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 		</div>
 			<div class="row">
 				<div class="col-md-offset-1 col-md-10">
+				<?php if($evento != NULL || $evento != ""){ ?>
 				<!-- Gerar DECLARAÇÃO DE EXCLUSIVIDADE -->
 				<?php
 					$http = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/pdf/";
@@ -147,6 +150,10 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 						<p align="justify"><font color="red"><strong>A Declaração de Exclusividade deve ser impressa, datada e assinada nos campos indicados no documento. Logo após, deve-se digitaliza-la e então anexa-la ao sistema através do campo listado abaixo.</strong></font></p>
 					</div>
 				</div>
+				<?php
+
+			}
+				?>
 				<!--  FIM Gerar DECLARAÇÃO DE EXCLUSIVIDADE -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
