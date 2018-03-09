@@ -6,7 +6,7 @@ $idUser= $_SESSION['idUser'];
 $tipoPessoa = "3";
 
 
-if(isset($_POST['carregar']))
+if(isset($_POST['carregar'])) 
 {
 	$_SESSION['idEvento'] = $_POST['carregar'];
 	$idEvento = $_SESSION['idEvento'];
@@ -25,8 +25,8 @@ if(isset($_POST["enviar"]))
 	{
 		$y = $arq['id'];
 		$x = $arq['sigla'];
-		$nome_arquivo = $_FILES['arquivo']['name'][$x];
-		$f_size = $_FILES['arquivo']['size'][$x];
+		$nome_arquivo = isset($_FILES['arquivo']['name'][$x]) ? $_FILES['arquivo']['name'][$x] : null;
+		$f_size = isset($_FILES['arquivo']['size'][$x]) ? $_FILES['arquivo']['size'][$x] : null;
 
 		//Extensões permitidas
 		$ext = array("PDF","pdf");
