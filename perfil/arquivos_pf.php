@@ -142,7 +142,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									<td width="50%"><td>
 								</tr>
 								<?php
-								if(verificaArquivosExistentesPF($idPf, '1'))
+								if(verificaArquivosExistentesPF($idPf, '2'))
 								{
 									echo '<div class="alert alert-success">O arquivo RG/RNE/PASSAPORTE já foi enviado.</div> ';
 								}
