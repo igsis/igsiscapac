@@ -1,0 +1,66 @@
+<?php  
+$urlPf = array(
+    '/igsiscapac/visual/index.php?perfil=proponente_pf_resultado',
+    '/igsiscapac/visual/index.php?perfil=informacoes_iniciais_pf',
+    '/igsiscapac/visual/index.php?perfil=arquivos_pf', // 02 arquivo Evento
+    '/igsiscapac/visual/index.php?perfil=endereco_pf', // 03 endereço
+    '/igsiscapac/visual/index.php?perfil=informacoes_complementares_pf', // 04 info complem
+    '/igsiscapac/visual/index.php?perfil=dados_bancarios_pf', // 05 dados bancarios
+    '/igsiscapac/visual/index.php?perfil=anexos_pf', // 06 demais anexos
+    '/igsiscapac/visual/index.php?perfil=final_pf' // 07 final pf
+);
+for ($i = 0; $i < count($urlPf); $i++) {
+    if ($uri == $urlPf[$i]) {
+        if ($i == 0 || $i == 1){
+            $active1 = 'done loading';
+        }elseif ($i == 2){
+            $active2 = 'done loading';
+        }elseif ($i == 3){ // endereco
+            $active3 = 'done loading';
+        }elseif ($i == 4){ // info complem
+            $active4 = 'done loading';
+        }elseif ($i == 5){ // dados bancarios
+            $active5 = 'done loading';
+        }elseif ($i == 6){ // demais anexos
+            $active6 = 'done loading';
+        }elseif ($i == 7){ // Finalizar
+            $active7 = 'done loading';
+        }
+        if(!(isset($_SESSION['idEvento']))){
+        
+      
+?>
+ <!-- Pessoa Física      -->
+        <div id="smartwizard">
+            <ul>
+                <li class="hidden">
+                    <a href=""><br /></a>
+                </li>
+                <li class="<?php echo $active1 ?? 'clickable'; ?>">
+                    <a onclick="location.href='index.php?perfil=informacoes_iniciais_pf'" href=""><br /><small>Informações Iniciais</small></a>
+                </li> 
+                <li class="<?php echo $active2 ?? 'clickable'; ?>">
+                    <a onclick="location.href='index.php?perfil=arquivos_pf'" href=""><br /><small>Arquivos da Pessoa</small></a>
+                </li> 
+                <li class="<?php echo $active3 ?? 'clickable'; ?>">
+                    <a onclick="location.href='index.php?perfil=endereco_pf'" href=""><br /><small>Endereço</small></a>
+                </li>
+                <li class="<?php echo $active4 ?? 'clickable'; ?>">
+                    <a onclick="location.href='index.php?perfil=informacoes_complementares_pf'" href=""><br /><small>Informações Complementares</small></a>
+                </li>
+               <li class="<?php echo $active5 ?? 'clickable'; ?>">
+                    <a onclick="location.href='index.php?perfil=dados_bancarios_pf'" href=""><br /><small>Dados Bancários</small></a>
+                </li>
+                <li class="<?php echo $active6 ?? 'clickable'; ?>">
+                    <a onclick="location.href='index.php?perfil=anexos_pf'" href=""><br /><small>Demais Anexos</small></a>
+                </li>          
+                <li class="<?php echo $active7 ?? 'clickable'; ?>">
+                    <a onclick="location.href='index.php?perfil=final_pf'" href=""><br /><small>Finalizar</small></a>
+                </li>          
+            </ul> 
+        </div>
+<?php 
+          }
+    }
+}    
+?>        

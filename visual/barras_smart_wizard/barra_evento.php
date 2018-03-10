@@ -1,3 +1,30 @@
+<?php 
+# Endereços das urls do menu de Eventos
+$urlMenuEvento = array(
+    '/igsiscapac/visual/index.php?perfil=evento_novo',
+    '/igsiscapac/visual/index.php?perfil=evento_edicao',
+    '/igsiscapac/visual/index.php?perfil=arquivos_evento',
+    '/igsiscapac/visual/index.php?perfil=produtor_novo',
+    '/igsiscapac/visual/index.php?perfil=produtor_edicao',
+    '/igsiscapac/visual/index.php?perfil=arquivos_com_prod',
+    '/igsiscapac/visual/index.php?perfil=proponente'
+);
+for ($i = 0; $i < count($urlMenuEvento); $i++) {
+    if ($uri == $urlMenuEvento[$i]) { 
+        if ($i == 0 || $i == 1){
+            $ativ_1 = 'active loading';
+        }elseif ($i == 2) {                
+            $ativ_2 = 'active loading';
+        }elseif ($i == 3 || $i == 4) {    
+            $ativ_3 = 'active loading';
+        }elseif ($i == 5) {                
+            $ativ_4 = 'active loading';
+        }elseif ($i == 6) {                
+            $ativ_5 = 'active loading';
+        }
+        // if(isset($_SESSION['idEvento'])){
+
+?>
         <!-- SmartWizard html -->
         <div id="smartwizard">
             <ul>
@@ -22,3 +49,8 @@
                 <!-- <li class=""><a href="#step-6"><br /><small>Informações Iniciais</small></a></li>    -->                                  
             </ul>
        	</div>
+<?php 
+        // }
+    }
+}    
+?>
