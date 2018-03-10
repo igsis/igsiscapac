@@ -95,7 +95,7 @@ $representante1 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<h4>PASSO 9: Representante Legal #1</h4>
+			<h4>Representante Legal #1</h4>
 			<p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>

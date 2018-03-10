@@ -117,7 +117,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<h4>PASSO 6: Informações Iniciais</h4>
+			<h4>Informações Iniciais</h4>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>
 		<div class="row">

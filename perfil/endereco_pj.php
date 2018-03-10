@@ -41,7 +41,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 <section id="contact" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<h4>PASSO 8: Endereço</h4>
+			<h4>Endereço</h4>
 			<p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>

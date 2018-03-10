@@ -50,7 +50,7 @@ if(isset($_POST["enviar"]))
 						$query = mysqli_query($con,$sql_insere_arquivo);
 						if($query)
 						{
-							$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
+						$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 							gravarLog($sql_insere_arquivo);
 							echo '<script>window.location = "?perfil=arquivos_pf"</script>';
 						}
@@ -97,10 +97,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<?php if($evento == NULL || $evento == ""){ ?>
-			<h4>PASSO 7: Arquivos da Pessoa</h4>
-			<?php } else { ?>
-			<h4>PASSO 2: Arquivos da Pessoa</h4> <?php } ?>
+			<h4>Arquivos da Pessoa</h4>
 			<p><b>Nome:</b> <?php echo $pf['nome']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>

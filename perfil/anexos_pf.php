@@ -120,11 +120,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<?php if($evento == NULL || $evento == ""){ ?>
-			<h3>PASSO 11: Demais Anexos</h3>
-			<?php } else { ?>
-			<h3>PASSO 6: Demais Anexos</h3>
-			<?php } ?>
+			<h3>Demais Anexos</h3>
 			<p><b>Código de cadastro:</b> <?php echo $idPf; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
