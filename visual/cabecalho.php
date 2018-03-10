@@ -36,5 +36,5 @@ else
 
 <?php 
 	# Menu progresso
-	require_once '../visual/smart_wizard.php';
+	include_once '../visual/smart_wizard.php';
 ?>		
