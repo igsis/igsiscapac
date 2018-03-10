@@ -109,7 +109,7 @@ if(isset($_POST['carregar']))
 	$_SESSION['idPj'] = $_POST['carregar'];
 }
 
-$idPj = $_SESSION['idPj'];
+   $idPj = isset($_SESSION['idPj']) ? $_SESSION['$idPj'] : null;
 
 $pj = recuperaDados("pessoa_juridica","id",$idPj);
 ?>
@@ -195,7 +195,12 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 
 			</div>
 		</div>
-		<div class="alert alert-info">Grave suas informações para prosseguir o formulário.</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-8">
+				<div class="alert alert-info">Grave suas informações para prosseguir o formulário.</div>
+				</div>
+			</div>	
+		</div>	
 		<?php } ?>
 	</div>
 </section>

@@ -333,7 +333,13 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 				</div>
 			</div>
 		</div>
-		<div class="alert alert-info">Grave suas informações para prosseguir o formulário.</div>
+		<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+			<div class="alert alert-info">
+    	Grave suas informações para prosseguir o formulário.</div>
+		</div>
+		</div>
+		</div>
 		<?php } ?>
 
 
