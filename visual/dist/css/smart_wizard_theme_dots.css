@@ -209,7 +209,7 @@
 }
 
 .sw-theme-dots > ul.step-anchor > li.loading > a:after {
-    background-color: #ccc;
+    background-color: #0090FF;
     opacity: 1;
     -webkit-animation: help-bubble-pulse 1.5s linear infinite;
     animation: help-bubble-pulse 1.5s linear infinite;
