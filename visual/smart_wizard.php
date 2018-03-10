@@ -6,7 +6,7 @@
     <link href="../visual/dist/css/smart_wizard_theme_arrows.css" rel="stylesheet" type="text/css" />
     <link href="../visual/dist/css/smart_wizard_theme_dots.css" rel="stylesheet" type="text/css" />
 </head>
-<div class="container-fluid">      
+<div class="container">      
     <form class="form-inline">
          <div class="form-group hidden">
           <label >Selecione o tema:</label>
@@ -68,6 +68,9 @@
         <!-- SmartWizard html -->
         <div id="smartwizard">
             <ul>
+                <li class="hidden">
+                    <a href=""><br /></a>
+                </li>
                 <li class="<?php echo $ativ_1 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=evento_edicao'" href=""><br /> Informações Gerais do Evento</a>
                 </li> 
@@ -116,6 +119,9 @@
         <!-- Pessoa Física      -->
         <div id="smartwizard">
             <ul>
+                <li class="hidden">
+                    <a href=""><br /></a>
+                </li>
                 <li class="<?php echo $ativ_1 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=informacoes_iniciais_pf'" href=""><br /><small>Informações Iniciais</small></a>
                 </li> 
@@ -196,6 +202,9 @@
         <!-- Pessoa Jurídica id evento -->
         <div id="smartwizard">
             <ul>
+                <li class="hidden">
+                    <a href=""><br /></a>
+                </li>
                 <li class="<?php echo $ativ_1 ?? 'clickable'; ?>">
                     <a href=""><br /><small>Informações Iniciais</small></a>
                 </li> <!-- Ok -->
@@ -210,13 +219,15 @@
                 </li>
                 <li class="<?php echo $ativ_5 ?? 'clickable'; ?>">
                     <a href=""><br /><small>Arquivos Representante Legal</small></a>
-                </li>               
+                </li>                           
                 <li class="<?php echo $ativ_6 ?? 'clickable'; ?>">
-                    <a href=""><br /><small>Dados Bancários</small></a>
+                    <a href=""><br />Dados Bancários</a>
                 </li>
                 <li class="<?php echo $ativ_7 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=arquivos_dados_bancarios_pj'" href=""><br /><small>Arquivos Bancários</small></a>
                 </li>
+            </ul>
+            <ul>
                 <li class="<?php echo $ativ_8 ?? 'clickable'; ?>">
                     <a href=""><br /><small>Líder do Grupo/Artista</small></a>
                 </li> 
