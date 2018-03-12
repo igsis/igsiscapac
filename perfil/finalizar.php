@@ -490,12 +490,27 @@ if(isset($_POST['enviar']))
 				<!-- Fim detalhes do evento -->
 				<!-- Botão para Voltar -->
 				<div class="form-group">
+					<?php
+					if ($evento['idTipoPessoa'] == 1) {
+					?>	
 					<div class="col-md-offset-2 col-md-2">
-							<form class="form-horizontal" role="form" action="?perfil=anexos_pj" method="post">
-							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+							<form class="form-horizontal" role="form" action="?perfil=anexos_pf" method="post">
+							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaFisica ?>">
 						</form>
 					</div>
-							<div class="col-md-offset-4 col-md-2">
+					<?php
+				}else{
+				?>	
+				<div class="col-md-offset-2 col-md-2">
+					<form class="form-horizontal" role="form" action="?perfil=anexos_pj" method="post">
+						<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+					</form>
+				</div>	
+				<?php
+				 }
+				?>
+				<!-- FIM Botão para Voltar -->
+						<div class="col-md-offset-4 col-md-2">
 								<?php
 						if($i == 0)
 						{
@@ -517,8 +532,6 @@ if(isset($_POST['enviar']))
 							</div>
 				</div>
 			</div>
-			<!-- Botão para Voltar -->
-
 		</div>
 	</div>
 </section>
