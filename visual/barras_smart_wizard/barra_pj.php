@@ -1,6 +1,6 @@
 <?php 
 $con = bancoMysqli();
-$idPj = $_SESSION['idPj'];
+$idPj = $_SESSION['idPj'] ?? '' ;
 $urlPj = array(
 	'/igsiscapac/visual/index.php?perfil=proponente_pj_resultado', // 00
 	'/igsiscapac/visual/index.php?perfil=informacoes_iniciais_pj', // 01 info iniciais
