@@ -13,7 +13,7 @@ $urlPj = array(
 	'/igsiscapac/visual/index.php?perfil=representante2_pj', // 08 ---------------- representante 2
 	'/igsiscapac/visual/index.php?perfil=representante2_pj_resultado_busca', // 09  representante 2
 	'/igsiscapac/visual/index.php?perfil=representante2_pj_cadastro', // 10 representante 2
-	'/igsiscapac/visual/index.php?perfil=arquivos_representante2', // 11  representante 2
+	'/igsiscapac/visual/index.php?perfil=arquivos_representante2', // 11 ARQ representante 2
 	'/igsiscapac/visual/index.php?perfil=dados_bancarios_pj', // 12 dados bancarios
 	'/igsiscapac/visual/index.php?perfil=arquivos_dados_bancarios_pj', //13 Arquivo dos Dados Bancários
 	'/igsiscapac/visual/index.php?perfil=anexos_pj', // 14 anexos
@@ -32,7 +32,7 @@ for ($i = 0; $i < count($urlPj); $i++) {
         	$ativ3 = 'active loading';
         }elseif ($i == 4 || $i == 5 || $i == 6 || $i == 16){ // representante
         	$ativ4 = 'active loading';
-        }elseif ($i == 7){ // 
+        }elseif ($i == 7){ // ARQ representante 1
         	$ativ5 = 'active loading';
         }elseif ($i == 8 || $i == 9 || $i == 10 || $i == 17){ // representante 2 
         	$ativ6 = 'active loading';
