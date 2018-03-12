@@ -32,7 +32,7 @@ for ($i = 0; $i < count($urlPj); $i++) {
         	$ativ3 = 'active loading';
         }elseif ($i == 4 || $i == 5 || $i == 6 || $i == 16){ // representante
         	$ativ4 = 'active loading';
-        }elseif ($i == 7){ // ARQ representante 1
+        }elseif ($i == 7){ // ARQ representante
         	$ativ5 = 'active loading';
         }elseif ($i == 8 || $i == 9 || $i == 10 || $i == 17){ // representante 2 
         	$ativ6 = 'active loading';

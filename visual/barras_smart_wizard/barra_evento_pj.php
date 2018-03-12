@@ -101,7 +101,11 @@ for ($i = 0; $i < count($urlEventoPj); $i++) {
                     </li> 
                     <li class="<?php echo $ativ_10 ?? 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=anexos_pj'" href=""><br /><small>Demais Anexos</small></a>
-                    </li> 
+                    </li>
+                    <li class="<?php echo 'clickable'; ?>">
+                        <a onclick="location.href='index.php?perfil=finalizar'" href=""><br /><small>Finalizar</small></a>
+                    </li>
+
                 </ul>
             </div>
 <?php 
