@@ -1,4 +1,6 @@
 <?php 
+$con = bancoMysqli();
+$idPj = $_SESSION['idPj'];
 $urlPj = array(
 	'/igsiscapac/visual/index.php?perfil=proponente_pj_resultado', // 00
 	'/igsiscapac/visual/index.php?perfil=informacoes_iniciais_pj', // 01 info iniciais
@@ -15,7 +17,10 @@ $urlPj = array(
 	'/igsiscapac/visual/index.php?perfil=dados_bancarios_pj', // 12 dados bancarios
 	'/igsiscapac/visual/index.php?perfil=arquivos_dados_bancarios_pj', //13 Arquivo dos Dados Bancários
 	'/igsiscapac/visual/index.php?perfil=anexos_pj', // 14 anexos
-	'/igsiscapac/visual/index.php?perfil=final_pj' // finalizar
+	'/igsiscapac/visual/index.php?perfil=final_pj', // finalizar
+    '/igsiscapac/visual/index.php?perfil=representante1_pj_cadastro&id_pj='.$idPj,// 16 representante 1
+    '/igsiscapac/visual/index.php?perfil=representante2_pj_cadastro&id_pj='.$idPj // 17 representante 2
+
 );
 for ($i = 0; $i < count($urlPj); $i++) {
     if ($uri == $urlPj[$i]) {
@@ -25,11 +30,11 @@ for ($i = 0; $i < count($urlPj); $i++) {
         	$ativ2 = 'active loading';
         }elseif ($i == 3){ // enderco
         	$ativ3 = 'active loading';
-        }elseif ($i == 4 || $i == 5 || $i == 6){ // representante
+        }elseif ($i == 4 || $i == 5 || $i == 6 || $i == 16){ // representante
         	$ativ4 = 'active loading';
         }elseif ($i == 7){ // 
         	$ativ5 = 'active loading';
-        }elseif ($i == 8 || $i == 9 || $i == 10){ // representante 2 
+        }elseif ($i == 8 || $i == 9 || $i == 10 || $i == 17){ // representante 2 
         	$ativ6 = 'active loading';
         }elseif ($i == 11){ // arq representante 2 
         	$ativ7 = 'active loading';
