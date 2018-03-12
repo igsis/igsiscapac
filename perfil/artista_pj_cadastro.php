@@ -127,7 +127,7 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<h4>PASSO 13: ARTISTA - Líder do Grupo ou Artista Solo</h4>
+			<h4>ARTISTA - Líder do Grupo ou Artista Solo</h4>
 			<div class="col-md-offset-3 col-md-3">
 				<form class="form-horizontal" role="form" action="?perfil=artista_pj_cadastro" method="post">
 					<input type="submit" name="remover" value="Trocar o artista" class="btn btn-theme btn-md btn-block">

@@ -82,7 +82,7 @@ $evento = recuperaDados("evento","id",$idEvento);
 <section id="list_items" class="home-section bg-white">
     <div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<h4>PASSO 1: Informações Gerais do Evento</h4>
+			<h4>Informações Gerais do Evento</h4>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
 		<div class="row">

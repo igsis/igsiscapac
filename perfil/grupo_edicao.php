@@ -64,7 +64,7 @@ $integrante = recuperaDados("integrante","idIntegrante",$idIntegrante);
 	<div class="container">
 		<?php include 'includes/menu_interno_pj.php'; ?>
 		<div class="form-group">
-			<h4>PASSO 15: Integrantes do Elenco ou Artista Solo</h4>
+			<h4>Integrantes do Elenco ou Artista Solo</h4>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>
 		<div class="row">

@@ -100,7 +100,7 @@ $num = mysqli_num_rows($query_grupos);
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<h4>PASSO 15: Integrantes do Elenco ou Artista Solo</h4>
+			<h4>Integrantes do Elenco ou Artista Solo</h4>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
 		<div class="row">
