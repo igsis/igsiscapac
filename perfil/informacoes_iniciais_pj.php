@@ -109,7 +109,7 @@ if(isset($_POST['carregar']))
 	$_SESSION['idPj'] = $_POST['carregar'];
 }
 
-	$idPj = $_SESSION['idPj'] ??  null;
+	$idPj = isset($_SESSION['idPj']) ? $_SESSION['idPj'] : null;
 
 $pj = recuperaDados("pessoa_juridica","id",$idPj);
 ?>

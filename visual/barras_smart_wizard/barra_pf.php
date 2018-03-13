@@ -36,25 +36,25 @@ for ($i = 0; $i < count($urlPf); $i++) {
                 <li class="hidden">
                     <a href=""><br /></a>
                 </li>
-                <li class="<?php echo $active1 ?? 'clickable'; ?>">
+                <li class="<?php echo isset($active1) ? $active1 : 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=informacoes_iniciais_pf'" href=""><br /><small>Informações Iniciais</small></a>
                 </li> 
-                <li class="<?php echo $active2 ?? 'clickable'; ?>">
+                <li class="<?php echo isset($active2) ? $active2 : 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=arquivos_pf'" href=""><br /><small>Arquivos da Pessoa</small></a>
                 </li> 
-                <li class="<?php echo $active3 ?? 'clickable'; ?>">
+                <li class="<?php echo isset($active3) ? $active3 : 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=endereco_pf'" href=""><br /><small>Endereço</small></a>
                 </li>
-                <li class="<?php echo $active4 ?? 'clickable'; ?>">
+                <li class="<?php echo isset($active4) ? $active4 : 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=informacoes_complementares_pf'" href=""><br /><small>Informações Complementares</small></a>
                 </li>
-               <li class="<?php echo $active5 ?? 'clickable'; ?>">
+                <li class="<?php echo isset($active5) ? $active5 : 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=dados_bancarios_pf'" href=""><br /><small>Dados Bancários</small></a>
                 </li>
-                <li class="<?php echo $active6 ?? 'clickable'; ?>">
+                <li class="<?php echo isset($active6) ? $active6 : 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=anexos_pf'" href=""><br /><small>Demais Anexos</small></a>
                 </li>          
-                <li class="<?php echo $active7 ?? 'clickable'; ?>">
+                <li class="<?php echo isset($active7) ? $active7 : 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=final_pf'" href=""><br /><small>Finalizar</small></a>
                 </li>          
             </ul> 

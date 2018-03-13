@@ -1,6 +1,6 @@
 <?php 
 $con = bancoMysqli();
-$idPj = $_SESSION['idPj'] ?? '' ;
+$idPj = isset($_SESSION['idPj']) ? $_SESSION['idPj'] : '';
 $urlEventoPj = array(
     '/igsiscapac/visual/index.php?perfil=proponente_pj_resultado', // atv 1
     '/igsiscapac/visual/index.php?perfil=informacoes_iniciais_pj', // atv 1 onclick
@@ -63,43 +63,43 @@ for ($i = 0; $i < count($urlEventoPj); $i++) {
                     <li class="hidden">
                         <a href=""><br /></a>
                     </li>
-                    <li class="<?php echo $ativ_1 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ_1) ? $ativ_1 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=informacoes_iniciais_pj'" href=""><br /><small>Informações Iniciais</small></a>
                     </li> <!-- Ok -->
-                    <li class="<?php echo $ativ_2 ?? 'clickable'; ?>">
+                    <li class="<?php isset($ativ_2) ? $ativ_2 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=arquivos_pj'" href=""><br /><small>Arquivos da Empresa</small></a>
                     </li>
-                    <li class="<?php echo $ativ_3 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ_3) ? $ativ_3 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=endereco_pj'" href=""><br /><small>Endereço</small></a>
                     </li>
-                    <li class="<?php echo $ativ_4 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ_4) ? $ativ_4 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=representante1_pj'" href=""><br /><small>Representante 1</small></a>
                     </li>
-                    <li class="<?php echo $ativ_5 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ_5) ? $ativ_5 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=arquivos_representante1'" href=""><br /><small>Arquivos Representante 1</small></a>
                     </li>
-                    <li class="<?php echo $ativ_11 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ_11) ? $ativ_11 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=representante2_pj'" href=""><br /><small>Representante 2</small></a>
                     </li>
                     
-                    <li class="<?php echo $ativ_12 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ_12) ? $ativ_12 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=arquivos_representante2'" href=""><br /><small>Arquivos Representante 2</small></a>
                     </li>
                 </ul>
                 <ul>                                                 
-                    <li class="<?php echo $ativ_6 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ_6) ? $ativ_6 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=dados_bancarios_pj'" href=""><br />Dados Bancários</a>
                     </li>
-                    <li class="<?php echo $ativ_7 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ_7) ? $ativ_7 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=arquivos_dados_bancarios_pj'" href=""><br /><small>Arquivos Bancários</small></a>
                     </li>
-                    <li class="<?php echo $ativ_8 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ_8) ? $ativ_8 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=artista_pj'" href=""><br /><small>Líder do Grupo/Artista</small></a>
                     </li> 
-                    <li class="<?php echo $ativ_9 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ_9) ? $ativ_9 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=arquivos_artista_pj'" href=""><br /><small>Arquivos Líder do Grupo/Artista</small></a>
                     </li> 
-                    <li class="<?php echo $ativ_10 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ_10) ? $ativ_10 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=anexos_pj'" href=""><br /><small>Demais Anexos</small></a>
                     </li>
                     <li class="<?php echo 'clickable'; ?>">

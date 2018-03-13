@@ -39,25 +39,25 @@ for ($i = 0; $i < count($urlEventoPf); $i++) {
                 <li class="hidden">
                     <a href=""><br /></a>
                 </li>
-                <li class="<?php echo $ativa1 ?? 'clickable'; ?>">
+                <li class="<?php echo isset($ativa1) ? $ativa1 : 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=informacoes_iniciais_pf'" href=""><br /><small>Informações Iniciais</small></a>
                 </li> 
-                <li class="<?php echo $ativa2 ?? 'clickable'; ?>">
+                <li class="<?php echo isset($ativa2) ? $ativa2 : 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=arquivos_pf'" href=""><br /><small>Arquivos da Pessoa</small></a>
                 </li> 
-                <li class="<?php echo $ativa3 ?? 'clickable'; ?>">
+                <li class="<?php echo isset($ativa3) ? $ativa3 : 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=endereco_pf'" href=""><br /><small>Endereço</small></a>
                 </li>
-                <li class="<?php echo $ativa4 ?? 'clickable'; ?>">
+                <li class="<?php echo isset($ativa4) ? $ativa4 : 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=informacoes_complementares_pf'" href=""><br /><small>Informações Complementares</small></a>
                 </li>
-               <li class="<?php echo $ativa5 ?? 'clickable'; ?>">
+                <li class="<?php echo isset($ativa5) ? $ativa5 : 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=dados_bancarios_pf'" href=""><br /><small>Dados Bancários</small></a>
                 </li>
-                <li class="<?php echo $ativa6 ?? 'clickable'; ?>">
+                <li class="<?php echo isset($ativa6) ? $ativa6 : 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=anexos_pf'" href=""><br /><small>Demais Anexos</small></a>
                 </li>          
-                <li class="<?php echo $ativa7 ?? 'clickable'; ?>">
+                <li class="<?php echo isset($ativa7) ? $ativa7 : 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=finalizar'" href=""><br /><small>Finalizar</small></a>
                 </li>          
             </ul> 

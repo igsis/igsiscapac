@@ -19,6 +19,7 @@
         </div>           
     </form>
     <?php 
+
         #Pega a url da pagina
         $uri = $_SERVER['REQUEST_URI']; 
         // echo $uri;

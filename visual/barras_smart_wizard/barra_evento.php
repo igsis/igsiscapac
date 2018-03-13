@@ -22,7 +22,6 @@ for ($i = 0; $i < count($urlMenuEvento); $i++) {
         }elseif ($i == 6) {                
             $acionar5 = 'active loading';
         }
-        if(isset($_SESSION['idEvento'])){
 
 ?>
         <!-- SmartWizard html -->
@@ -31,26 +30,25 @@ for ($i = 0; $i < count($urlMenuEvento); $i++) {
                 <li class="hidden">
                     <a href=""><br /></a>
                 </li>
-                <li class="<?php echo $acionar1 ?? 'clickable'; ?>">
+                <li class="<?php echo isset($acionar1) ? $acionar1 : 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=evento_edicao'" href=""><br /> Informações Gerais do Evento</a>
                 </li> 
-                <li class="<?php echo $acionar2 ?? 'clickable'; ?>">
+                <li class="<?php echo isset($acionar2) ? $acionar2 : 'clickable'; ?>">
                    <a onclick="location.href='index.php?perfil=arquivos_evento'" href=""><br />Arquivos do Evento</a>
                 </li>
-                <li class="<?php echo $acionar3 ?? 'clickable'; ?>">
+                <li class="<?php echo isset($acionar3) ? $acionar3 : 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=produtor_edicao'" href=""><br />Dados do Produtor</a>
                 </li>
-                <li class="<?php echo $acionar4 ?? 'clickable'; ?>">
+                <li class="<?php echo isset($acionar4) ? $acionar4 : 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=arquivos_com_prod'" href=""><br />Arquivos Para Comunicação e Produção</a>
                 </li>
-                <li class="<?php echo $acionar5 ?? 'clickable'; ?>">
+                <li class="<?php echo isset($acionar5) ? $acionar5 : 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=proponente'" href=""><br />Cadastro do Proponente</a>
                 </li>               
                 <!-- <li class=""><a href="#step-6"><br /><small>Informações Iniciais</small></a></li>    -->                                  
             </ul>
        	</div>
 <?php 
-        }
     }
 }    
 ?>

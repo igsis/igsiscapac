@@ -1,6 +1,6 @@
 <?php 
 $con = bancoMysqli();
-$idPj = $_SESSION['idPj'] ?? '' ;
+$idPj = isset($_SESSION['idPj']) ? $_SESSION['idPj'] : '';
 $urlPj = array(
 	'/igsiscapac/visual/index.php?perfil=proponente_pj_resultado', // 00
 	'/igsiscapac/visual/index.php?perfil=informacoes_iniciais_pj', // 01 info iniciais
@@ -55,39 +55,39 @@ for ($i = 0; $i < count($urlPj); $i++) {
                     <li class="hidden">
                         <a href=""><br /></a>
                     </li>
-                    <li class="<?php echo $ativ1 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ1) ? $ativ1 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=informacoes_iniciais_pj'" href=""><br /><small>Informações Iniciais</small></a>
                     </li> <!-- Ok -->
-                    <li class="<?php echo $ativ2 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ2) ? $ativ2 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=arquivos_pj'" href=""><br /><small>Arquivos da Empresa</small></a>
                     </li>
-                    <li class="<?php echo $ativ3 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ3) ? $ativ3 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=endereco_pj'" href=""><br /><small>Endereço</small></a>
                     </li>
-                    <li class="<?php echo $ativ4 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ4) ? $ativ4 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=representante1_pj'" href=""><br /><small>Representante Legal 1</small></a>
                     </li>
-                    <li class="<?php echo $ativ5 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ5) ? $ativ5 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=arquivos_representante1'" href=""><br /><small>Arquivos Representante Legal 1</small></a>
                     </li>
                 </ul>
                 <ul>                     
-                    <li class="<?php echo $ativ6 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ6) ? $ativ6 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=representante2_pj'" href=""><br /><small>Representante Legal 2</small></a>
                     </li>
-                    <li class="<?php echo $ativ7 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ7) ? $ativ7 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=arquivos_representante2'" href=""><br /><small>Arquivos Representante Legal 2</small></a>
                     </li>                                                  
-                    <li class="<?php echo $ativ8 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ8) ? $ativ8 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=dados_bancarios_pj'" href=""><br />Dados Bancários</a>
                     </li>
-                    <li class="<?php echo $ativ9 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ9) ? $ativ9 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=arquivos_dados_bancarios_pj'" href=""><br /><small>Arquivos Dados Bancários</small></a>
                     </li>          
-                    <li class="<?php echo $ativ10 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ10) ? $ativ10 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=anexos_pj'" href=""><br /><small>Demais Anexos</small></a>
                     </li> 
-                    <li class="<?php echo $ativ11 ?? 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ11) ? $ativ11 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=final_pj'" href=""><br /><small>Finalizar</small></a>
                     </li> 
                 </ul>
