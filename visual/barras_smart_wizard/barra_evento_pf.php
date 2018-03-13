@@ -14,19 +14,19 @@ $urlEventoPf = array(
 for ($i = 0; $i < count($urlEventoPf); $i++) {
     if ($uri == $urlEventoPf[$i]) {
         if ($i == 0 || $i == 1){
-            $ativ_1 = 'active loading';
+            $ativa1 = 'active loading';
         }elseif ($i == 2) {                
-            $ativ_2 = 'active loading';
+            $ativa2 = 'active loading';
         }elseif ($i == 3) {    
-            $ativ_3 = 'active loading';
+            $ativa3 = 'active loading';
         }elseif ($i == 4) {                
-            $ativ_4 = 'active loading';
+            $ativa4 = 'active loading';
         }elseif ($i == 5) {                
-            $ativ_5 = 'active loading';
+            $ativa5 = 'active loading';
         }elseif ($i == 6) {                
-            $ativ_6 = 'active loading';
+            $ativa6 = 'active loading';
         }elseif ($i == 7) {                
-            $ativ_7 = 'active loading';
+            $ativa7 = 'active loading';
         }
         if(isset($_SESSION['idEvento'])){
             // Se estiver em evento Pf Exibir barra 
@@ -39,25 +39,25 @@ for ($i = 0; $i < count($urlEventoPf); $i++) {
                 <li class="hidden">
                     <a href=""><br /></a>
                 </li>
-                <li class="<?php echo $ativ_1 ?? 'clickable'; ?>">
+                <li class="<?php echo $ativa1 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=informacoes_iniciais_pf'" href=""><br /><small>Informações Iniciais</small></a>
                 </li> 
-                <li class="<?php echo $ativ_2 ?? 'clickable'; ?>">
+                <li class="<?php echo $ativa2 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=arquivos_pf'" href=""><br /><small>Arquivos da Pessoa</small></a>
                 </li> 
-                <li class="<?php echo $ativ_3 ?? 'clickable'; ?>">
+                <li class="<?php echo $ativa3 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=endereco_pf'" href=""><br /><small>Endereço</small></a>
                 </li>
-                <li class="<?php echo $ativ_4 ?? 'clickable'; ?>">
+                <li class="<?php echo $ativa4 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=informacoes_complementares_pf'" href=""><br /><small>Informações Complementares</small></a>
                 </li>
-               <li class="<?php echo $ativ_5 ?? 'clickable'; ?>">
+               <li class="<?php echo $ativa5 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=dados_bancarios_pf'" href=""><br /><small>Dados Bancários</small></a>
                 </li>
-                <li class="<?php echo $ativ_6 ?? 'clickable'; ?>">
+                <li class="<?php echo $ativa6 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=anexos_pf'" href=""><br /><small>Demais Anexos</small></a>
                 </li>          
-                <li class="<?php echo $ativ_7 ?? 'clickable'; ?>">
+                <li class="<?php echo $ativa7 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=finalizar'" href=""><br /><small>Finalizar</small></a>
                 </li>          
             </ul> 
