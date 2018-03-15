@@ -4,19 +4,11 @@ $idPj = $_SESSION['idPj'];
 $contador = 0;
 $tipoPessoa = 2;
 $pj = recuperaDados("pessoa_juridica","id",$idPj);
-$evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
-
 
 $array = array(10,8,42,34,58,95);
 if(isset($_POST["enviar"]))
 {
-	for($i = 0; $i <= 5; $i++)
-		if(verificaArquivosExistentesPF($idPj,$array[$i]))
-			$contador++;
 
-	if($contador >= 6)
-		echo '<script>window.location = "?perfil=final_pj"</script>';
-	
 	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN (20,21,22,28,43,89,103,104) AND publicado = '1'";
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
@@ -52,7 +44,6 @@ if(isset($_POST["enviar"]))
 						$query = mysqli_query($con,$sql_insere_arquivo);
 						if($query)
 						{
-							echo '<script>window.location = "?perfil=final_pj"</script>';
 							/*$mensagem = "<font color='#01DF3A'>
 											<strong>
 												Arquivo recebido com sucesso!<br>
@@ -69,7 +60,7 @@ if(isset($_POST["enviar"]))
 											</div>
 										</div>";
 							gravarLog($sql_insere_arquivo);
-							
+
 							echo '<script>
 									setTimeout(function() {
   										window.location = "?perfil=final_pj";
@@ -119,13 +110,12 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<h4>Demais Anexos</h4>
+			<h4>PASSO 15: Demais Anexos</h4>
 			<p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
 			<div class="row">
 				<div class="col-md-offset-1 col-md-10">
-				<?php if($evento != NULL || $evento != ""){ ?>
 				<!-- Gerar DECLARAÇÃO DE EXCLUSIVIDADE -->
 				<?php
 					$http = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/pdf/";
@@ -150,10 +140,6 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 						<p align="justify"><font color="red"><strong>A Declaração de Exclusividade deve ser impressa, datada e assinada nos campos indicados no documento. Logo após, deve-se digitaliza-la e então anexa-la ao sistema através do campo listado abaixo.</strong></font></p>
 					</div>
 				</div>
-				<?php
-
-			}
-				?>
 				<!--  FIM Gerar DECLARAÇÃO DE EXCLUSIVIDADE -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
@@ -200,7 +186,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 									{
 								?>
 										<tr>
-											<?php 
+											<?php
 											$doc = $arq['documento'];
 										$query = "SELECT id FROM upload_lista_documento WHERE documento='$doc' AND publicado='1' AND idTipoUpload='2'";
 										$envio = $con->query($query);
