@@ -66,7 +66,7 @@ for ($i = 0; $i < count($urlEventoPj); $i++) {
                     <li class="<?php echo isset($ativ_1) ? $ativ_1 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=informacoes_iniciais_pj'" href=""><br /><small>Informações Iniciais</small></a>
                     </li> <!-- Ok -->
-                    <li class="<?php isset($ativ_2) ? $ativ_2 : 'clickable'; ?>">
+                    <li class="<?php echo isset($ativ_2) ? $ativ_2 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=arquivos_pj'" href=""><br /><small>Arquivos da Empresa</small></a>
                     </li>
                     <li class="<?php echo isset($ativ_3) ? $ativ_3 : 'clickable'; ?>">
