@@ -42,7 +42,7 @@ if(isset($_POST["enviar"]))
 						{
 							$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 							gravarLog($sql_insere_arquivo);
-							echo '<script>window.location = "?perfil=dados_bancarios_pf"</script>';
+							echo '<script>window.location = "?perfil=arquivos_dados_bancarios_pf"</script>';
 						}
 						else
 						{
@@ -129,7 +129,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
-							<?php listaArquivoCamposMultiplos($idPf,$tipoPessoa,$idCampo,"dados_bancarios_pf",3); ?>
+							<?php listaArquivoCamposMultiplos($idPf,$tipoPessoa,$idCampo,"arquivos_dados_bancarios_pf",3); ?>
 						</div>
 					</div>
 				</div>
@@ -138,7 +138,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class = "center">
-						<form method="POST" action="?perfil=dados_bancarios_pf" enctype="multipart/form-data">
+						<form method="POST" action="?perfil=arquivos_dados_bancarios_pf" enctype="multipart/form-data">
 							<table>
 								<tr>
 									<td width="50%"><td>
