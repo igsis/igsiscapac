@@ -91,7 +91,8 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 			<p><b>Código de cadastro:</b> <?php echo $idPf; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>
-
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
 				<!-- Gerar FACC -->
 				<?php
 					$server = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/";
@@ -205,5 +206,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 						</form>
 					</div>
 				</div>
+			</div>	
+		</div>
 	</div>
 </section>	
