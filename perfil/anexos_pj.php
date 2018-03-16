@@ -114,6 +114,10 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 			<p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
+
+		<?php
+		if(isset($_SESSION['idEvento'])) {
+		?>
 			<div class="row">
 				<div class="col-md-offset-1 col-md-10">
 				<!-- Gerar DECLARAÇÃO DE EXCLUSIVIDADE -->
@@ -144,6 +148,9 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8"><hr/><br/></div>
 				</div>
+		<?php
+		}
+		?>				
 
 				<!-- Links emissão de documentos -->
 				<div class="form-group">
