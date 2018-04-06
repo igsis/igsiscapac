@@ -122,7 +122,7 @@ $evento = recuperaDados("evento","id",$idEvento);
 								<label>Esse campo deve conter a listagem de pessoas envolvidas no espetáculo <font color='#FF0000'>incluindo o líder do grupo</font>.<br/>Apenas o <font color='#FF0000'>nome civil, RG e CPF</font> de quem irá se apresentar, excluindo técnicos.<br/>
 								<font color='#FF0000'>ATENÇÃO! </font>Essas informações são de preenchimento <u>obrigatório</u>.</strong></label>
 								<p align="justify"><font color="gray"><strong><i>Elenco de exemplo:</strong><br/>José Carlos da Silva RG 00000000-0 CPF 000.000.000-00<br/>João Gonçalves RG 00000000-0 CPF 000.000.000-00<br/>Maria Eduarda de Oliveira RG 00000000-0 CPF 000.000.000-00</br>Fabio Silva Santos RG 00000000-0 CPF 000.000.000-00</font></i></p>
-							<textarea name="integrantes" class='form-control' cols="40" rows="5"><?php echo $evento['integrantes'] ?></textarea>
+							<textarea name="integrantes" class='form-control' cols="40" rows="5" required><?php echo $evento['integrantes'] ?></textarea>
 						</div>
 					</div>
 					<div class="form-group">
