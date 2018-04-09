@@ -22,7 +22,8 @@ $urlEventoPj = array(
     '/igsiscapac/visual/index.php?perfil=arquivos_artista_pj', // 17
     '/igsiscapac/visual/index.php?perfil=anexos_pj', // 18
     '/igsiscapac/visual/index.php?perfil=representante1_pj_cadastro&id_pj='.$idPj,// 19 representante 1
-    '/igsiscapac/visual/index.php?perfil=representante2_pj_cadastro&id_pj='.$idPj // 20 representante 2
+    '/igsiscapac/visual/index.php?perfil=representante2_pj_cadastro&id_pj='.$idPj, // 20 representante 2
+    '/igsiscapac/visual/index.php?perfil=declaracao_exclusividade_pj' // 21 declaração exclusividade
 );
 
 # Verifica se a pagina contem o endereço correspondente ao de pessoa Juridica
@@ -52,8 +53,9 @@ for ($i = 0; $i < count($urlEventoPj); $i++) {
              $ativ_11 = 'active loading'; 
         }elseif ($i == 11) { // arquivo representante 2
              $ativ_12 = 'active loading'; 
+        }elseif ($i == 21) { // arquivo representante 2
+             $ativ_13 = 'active loading';
         }
-
 
         if(isset($_SESSION['idEvento'])){
 ?>
@@ -99,6 +101,9 @@ for ($i = 0; $i < count($urlEventoPj); $i++) {
                     <li class="<?php echo isset($ativ_9) ? $ativ_9 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=arquivos_artista_pj'" href=""><br /><small>Arquivos Líder do Grupo/Artista</small></a>
                     </li> 
+                    <li class="<?php echo isset($ativ_13) ? $ativ_13 : 'clickable'; ?>">
+                        <a onclick="location.href='index.php?perfil=declaracao_exclusividade_pj'" href=""><br /><small>Declaração de Exclusividade</small></a>
+                    </li>
                     <li class="<?php echo isset($ativ_10) ? $ativ_10 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=anexos_pj'" href=""><br /><small>Demais Anexos</small></a>
                     </li>
