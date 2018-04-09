@@ -41,7 +41,6 @@ $usuario = recuperaDados("usuario","id",$idUser);
 	<div class="container"><?php include 'includes/menu_minhaconta.php'; ?>
 		<div class="form-group">
 			<h3>MEUS DADOS</h3>
-			<p><b>Código de cadastro:</b> <?php echo $idUser; ?> | <b>Nome:</b> <?php echo $usuario['nome']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>
 		<div class="row">
