@@ -112,7 +112,6 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf)
 	<div class="container">
 		 <div class = "page-header"> <h5>Informações Pessoais </h5><br></div>
 		 <div class="well">
-			<p align="justify"><strong>Referência:</strong> <?php echo $pj['id']; ?></p>
 			<p align="justify"><strong>Razão Social:</strong> <?php echo $pj['razaoSocial']; ?></p>
 			<p align="justify"><strong>CNPJ:</strong> <?php echo $pj['cnpj']; ?></p>
 			<p align="justify"><strong>CCM:</strong> <?php echo $pj['ccm']; ?></p>

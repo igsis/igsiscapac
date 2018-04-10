@@ -119,7 +119,6 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf)
 	<div class="container">
 		 <div class = "page-header"> <h5>Informações Pessoais </h5><br></div>
 		 <div class="well">
-			<p align="justify"><strong>Referência:</strong> <?php echo $idPf; ?></p>
 			<p align="justify"><strong>Nome:</strong> <?php echo $pf['nome']; ?></p>
 			<p align="justify"><strong>Nome artístico:</strong> <?php echo $pf['nomeArtistico']; ?></p>
 			<p align="justify"><strong>Data de Nascimento:</strong> <?php echo $pf['dataNascimento']; ?></p>
