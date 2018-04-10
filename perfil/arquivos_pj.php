@@ -110,7 +110,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 						<p align="justify">
 							<a href="http://www.receita.fazenda.gov.br/pessoajuridica/cnpj/cnpjreva/cnpjreva_solicitacao.asp" target="_blank">Cartão CNPJ</a><br />
 							<a href="https://ccm.prefeitura.sp.gov.br/login/contribuinte?tipo=F" target="_blank">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</a><br />
-							<a href="https://www3.prefeitura.sp.gov.br/cpom2/Consulta_Tomador.aspx" target="_blank">CPOM - Cadastro de Empresas Fora do Município</a>
+							<a href="https://cpom.prefeitura.sp.gov.br/prestador/SituacaoCadastral" target="_blank">CPOM - Cadastro de Empresas Fora do Município</a>
 						</p>
 					</div>
 				</div>
