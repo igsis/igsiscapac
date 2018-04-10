@@ -8,12 +8,14 @@ $urlEventoPf = array(
     '/igsiscapac/visual/index.php?perfil=informacoes_complementares_pf',
     '/igsiscapac/visual/index.php?perfil=dados_bancarios_pf',
     '/igsiscapac/visual/index.php?perfil=anexos_pf',
-    '/igsiscapac/visual/index.php?perfil=arquivos_dados_bancarios_pf' // 07
-    // '/igsiscapac/visual/index.php?perfil=finalizar'
+    '/igsiscapac/visual/index.php?perfil=arquivos_dados_bancarios_pf', // 07
+    '/igsiscapac/visual/index.php?perfil=finalizar'
 );
 # Verifica se a pagina contem o endereço correspondente ao de pessoa Física
-for ($i = 0; $i < count($urlEventoPf); $i++) {
-    if ($uri == $urlEventoPf[$i]) {
+for ($i = 0; $i < count($urlEventoPf); $i++) 
+{
+    if ($uri == $urlEventoPf[$i]) 
+    {
         if ($i == 0 || $i == 1){
             $ativa1 = 'active loading';
         }elseif ($i == 2) {                
@@ -28,10 +30,14 @@ for ($i = 0; $i < count($urlEventoPf); $i++) {
             $ativa6 = 'active loading';
         }elseif ($i == 7) {                
             $ativa7 = 'active loading';
+        }elseif ($i == 8) {                
+            $ativa8 = 'active loading';
         }
-        if(isset($_SESSION['idEvento'])){
-            // Se estiver em evento Pf Exibir barra 
-            // include_once 'barras_smart_wizard/barra_evento_pf.php';
+
+        if(isset($_SESSION['idEvento']))
+        {
+            if (isset($_SESSION['idPf'])) 
+            {
 ?>
 
  <!-- Pessoa Física      -->
@@ -40,33 +46,34 @@ for ($i = 0; $i < count($urlEventoPf); $i++) {
                 <li class="hidden">
                     <a href=""><br /></a>
                 </li>
-                <li class="<?php echo isset($ativa1) ? $ativa1 : 'clickable'; ?>">
+                <li class="<?php echo $ativa1 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=informacoes_iniciais_pf'" href=""><br /><small>Informações Iniciais</small></a>
                 </li> 
-                <li class="<?php echo isset($ativa2) ? $ativa2 : 'clickable'; ?>">
+                <li class="<?php echo $ativa2 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=arquivos_pf'" href=""><br /><small>Arquivos da Pessoa</small></a>
                 </li> 
-                <li class="<?php echo isset($ativa3) ? $ativa3 : 'clickable'; ?>">
+                <li class="<?php echo $ativa3 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=endereco_pf'" href=""><br /><small>Endereço</small></a>
                 </li>
-                <li class="<?php echo isset($ativa4) ? $ativa4 : 'clickable'; ?>">
+                <li class="<?php echo $ativa4 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=informacoes_complementares_pf'" href=""><br /><small>Informações Complementares</small></a>
                 </li>
-                <li class="<?php echo isset($ativa5) ? $ativa5 : 'clickable'; ?>">
+                <li class="<?php echo $ativa5 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=dados_bancarios_pf'" href=""><br /><small>Dados Bancários</small></a>
                 </li>
-                <li class="<?php echo isset($ativa7) ? $ativa7 : 'clickable'; ?>">
+                <li class="<?php echo $ativa7 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=arquivos_dados_bancarios_pf'" href=""><br /><small>Arquivos Dados Bancários</small></a>
                 </li>
-                <li class="<?php echo isset($ativa6) ? $ativa6 : 'clickable'; ?>">
+                <li class="<?php echo $ativa6 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=anexos_pf'" href=""><br /><small>Demais Anexos</small></a>
                 </li>          
-                <li class="<?php echo 'clickable'; ?>">
+                <li class="<?php echo $ativa8 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=finalizar'" href=""><br /><small>Finalizar</small></a>
                 </li>          
             </ul> 
         </div>
 <?php  
+            }
         }
     
     }
