@@ -1,6 +1,6 @@
 ﻿<?php
 $con = bancoMysqli();
-$idPj = $_SESSION['idPj'];
+$idPj = isset($_SESSION['idPj']) ? $_SESSION['idPj'] : null;
 $contador = 0;
 $tipoPessoa = 2;
 $pj = recuperaDados("pessoa_juridica","id",$idPj);
@@ -12,10 +12,10 @@ if(isset($_POST["enviar"]))
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
 	{
-		$y = $arq['id'];
-		$x = $arq['sigla'];
-		$nome_arquivo = $_FILES['arquivo']['name'][$x];
-		$f_size = $_FILES['arquivo']['size'][$x];
+		$y = isset($arq['id']) ? $arq['id'] : null;
+		$x = isset($arq['sigla']) ? $arq['sigla'] : null;
+		$nome_arquivo = isset($_FILES['arquivo']['name'][$x]) ? $_FILES['arquivo']['name'][$x] : null;
+		$f_size = isset($_FILES['arquivo']['size'][$x]) ? $_FILES['arquivo']['size'][$x] : null; 
 
 		//Extensões permitidas
 		$ext = array("PDF","pdf");
@@ -109,7 +109,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<h4>PASSO 15: Demais Anexos</h4>
+			<h4>PASSO 15: Demais Anexosss</h4>
 			<p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
