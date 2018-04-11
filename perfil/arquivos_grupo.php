@@ -19,7 +19,7 @@ if(isset($_POST["enviar"]))
 		$ext = array("PDF","pdf");
 		if($f_size > 5242880) // 5MB em bytes
 		{
-			$mensagem = "<font color='#FF0000'><strong>Erro! Tamanho de arquivo excedido! Tamanho máximo permitido: 05 MB.</strong></font>";
+			$mensagem = "<font color='#FF0000'><strong>Erro! Tamanho de arquivo excedido! Tamanho máximo permitido: 05 MB.</strong></font>"; 
 		}
 		else
 		{
@@ -131,6 +131,15 @@ $num = mysqli_num_rows($query_grupos);
 									<td width="50%"><td>
 								</tr>
 								<?php
+									if(verificaArquivosExistentesEvento($idEvento,'99')) //true
+									{
+										echo '<div class="alert alert-success">O arquivo RG do Integrante já foi enviado.</div> ';
+									}
+									/*
+										Retorna verdadeiro se encontra algum resultado.
+										Deve ser feito uma condicional que oculta os campos, caso já tenha algo preenchido
+									*/
+									else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '99'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
@@ -141,6 +150,7 @@ $num = mysqli_num_rows($query_grupos);
 										</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 						</div>
@@ -156,6 +166,15 @@ $num = mysqli_num_rows($query_grupos);
 									<td width="50%"><td>
 								</tr>
 								<?php
+									if(verificaArquivosExistentesEvento($idEvento,'100')) //true
+									{
+										echo '<div class="alert alert-success">O arquivo CPF do Integrante já foi enviado.</div> ';
+									}
+									/*
+										Retorna verdadeiro se encontra algum resultado.
+										Deve ser feito uma condicional que oculta os campos, caso já tenha algo preenchido
+									*/
+									else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '100'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
@@ -166,6 +185,7 @@ $num = mysqli_num_rows($query_grupos);
 										</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 						</div>
@@ -181,6 +201,15 @@ $num = mysqli_num_rows($query_grupos);
 									<td width="50%"><td>
 								</tr>
 								<?php
+									if(verificaArquivosExistentesEvento($idEvento,'101')) //true
+									{
+										echo '<div class="alert alert-success">O arquivo DRT do Integrante já foi enviado.</div> ';
+									}
+									/*
+										Retorna verdadeiro se encontra algum resultado.
+										Deve ser feito uma condicional que oculta os campos, caso já tenha algo preenchido
+									*/
+									else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '101'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
@@ -191,6 +220,7 @@ $num = mysqli_num_rows($query_grupos);
 										</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 						</div>
@@ -206,6 +236,15 @@ $num = mysqli_num_rows($query_grupos);
 									<td width="50%"><td>
 								</tr>
 								<?php
+									if(verificaArquivosExistentesEvento($idEvento,'102')) //true
+									{
+										echo '<div class="alert alert-success">O arquivo Currículo do Integrante já foi enviado.</div> ';
+									}
+									/*
+										Retorna verdadeiro se encontra algum resultado.
+										Deve ser feito uma condicional que oculta os campos, caso já tenha algo preenchido
+									*/
+									else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '102'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
@@ -216,6 +255,7 @@ $num = mysqli_num_rows($query_grupos);
 										</tr>
 								<?php
 									}
+								}
 								?>
 							</table><br>
 							<input type="hidden" name="idPessoa" value="<?php echo $idEvento; ?>"  />
