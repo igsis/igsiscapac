@@ -25,12 +25,14 @@ unset($_SESSION['idPf']);
 						<p>Aqui são inseridas as informações sobre o seu evento, incluindo pessoa jurídica e/ou física.</p>
 						<a href="?perfil=evento_apresentacao" class="btn btn-theme btn-lg btn-block">EVENTO</a>
 						<br />
+						<!--
 						<p>Aqui você atualiza o cadastro do artista.</p>
 						<a href="?perfil=proponente_pf" class="btn btn-theme btn-lg btn-block">PESSOA FÍSICA</a>
 						<br />
 						<p>Aqui você atualiza os dados cadastrais da empresa.</p>
 						<a href="?perfil=proponente_pj" class="btn btn-theme btn-lg btn-block">PESSOA JURÍDICA</a>
 						<br />
+						-->
 						<p>Aqui você altera os seus dados de login e senha.</p>
 						<a href="?perfil=minha_conta" class="btn btn-theme btn-lg btn-block" target="_blank" >MINHA CONTA</a>
 						<br />
