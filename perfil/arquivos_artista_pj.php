@@ -1,9 +1,26 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Explore
+ @LoreleiGab
+Sign out
+7
+0 1 igsis/igsiscapac
+ Code  Issues 0  Pull requests 1  Projects 0  Wiki  Insights
+igsiscapac/perfil/arquivos_artista_pj.php
+753d7d4  a day ago
+@DiegoVSantos DiegoVSantos Limite de upload aumentado para 5Mb
+@grayce1220 @Monotox @LoreleiGab @DiegoVSantos @isaiaszmendes
+      
+258 lines (239 sloc)  9.01 KB
 <?php
 $con = bancoMysqli();
 $idUser = $_SESSION['idUser'];
 $idEvento = $_SESSION['idEvento'];
 $tipoPessoa = '1';
-
 if(isset($_POST["enviar"]))
 {
 	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id IN (2,3,60)";
@@ -15,10 +32,8 @@ if(isset($_POST["enviar"]))
 		$x = $arq['sigla'];
 		$nome_arquivo = isset($_FILES['arquivo']['name'][$x]) ? $_FILES['arquivo']['name'][$x] : null; // previne undefined index
 		$f_size = isset($_FILES['arquivo']['size'][$x]) ? $_FILES['arquivo']['size'][$x] : null;
-
 		//Extensões permitidas
 		$ext = array("PDF","pdf");
-
 		if($f_size > 5242880) // 5MB em bytes
 		{
 			$mensagem = "<font color='#FF0000'><strong>Erro! Tamanho de arquivo excedido! Tamanho máximo permitido: 05 MB.!</strong></font>";
@@ -33,7 +48,6 @@ if(isset($_POST["enviar"]))
 				$dir = '../uploadsdocs/'; //Diretório para uploads
 				$allowedExts = array(".pdf", ".PDF"); //Extensões permitidas
 				$ext = strtolower(substr($nome_arquivo,-4));
-
 				if(in_array($ext, $allowedExts)) //Pergunta se a extensão do arquivo, está presente no array das extensões permitidas
 				{
 					if(move_uploaded_file($nome_temporario, $dir.$new_name))
@@ -42,30 +56,8 @@ if(isset($_POST["enviar"]))
 						$query = mysqli_query($con,$sql_insere_arquivo);
 						if($query)
 						{
-							if(file_exists($dir.$newname))
-							{
-								$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
-								gravarLog($sql_insere_arquivo);
-								echo '<script>window.location = "?perfil=arquivos_artista_pj"</script>';
-							}
-							else
-							{
-								$sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idEvento', '$y', '$new_name', '$hoje', '1'); ";
-								$query = mysqli_query($con,$sql_insere_arquivo);
-
-								if($query)
-								{
-									if(file_exists($dir.$newname))
-									{
-										$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
-										gravarLog($sql_insere_arquivo);
-										echo '<script>window.location = "?perfil=arquivos_artista_pj"</script>';
-									}
-									else{
-										echo "<script>alert('Houve um erro durante o processamento do arquivo, entre em contato com os administradores do sistema')</script>";
-									}
-								}
-							}
+							$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
+							gravarLog ($sql_insere_arquivo);
 						}
 						else
 						{
@@ -85,7 +77,6 @@ if(isset($_POST["enviar"]))
 		}
 	}
 }
-
 if(isset($_POST['apagar']))
 {
 	$idArquivo = $_POST['apagar'];
@@ -100,7 +91,6 @@ if(isset($_POST['apagar']))
 		$mensagem = "<font color='#FF0000'><strong>Erro ao apagar arquivo! Tente novamente.</strong></font>";
 	}
 }
-
 $evento = recuperaDados("evento","id",$idEvento);
 $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 ?>
@@ -135,8 +125,6 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '2'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									$idPf = isset($_POST['idPessoa']) ? $_POST['idPessoa'] : null;
-
-
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{
 										$doc = $arq['documento'];
@@ -278,3 +266,16 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 		</div>
 	</div>
 </section>
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+API
+Training
+Shop
+Blog
+About
+Press h to open a hovercard with more details.
