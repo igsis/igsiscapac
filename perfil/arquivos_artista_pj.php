@@ -1,21 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Marketplace
-Explore
- @LoreleiGab
-Sign out
-7
-0 1 igsis/igsiscapac
- Code  Issues 0  Pull requests 1  Projects 0  Wiki  Insights
-igsiscapac/perfil/arquivos_artista_pj.php
-753d7d4  a day ago
-@DiegoVSantos DiegoVSantos Limite de upload aumentado para 5Mb
-@grayce1220 @Monotox @LoreleiGab @DiegoVSantos @isaiaszmendes
-      
-258 lines (239 sloc)  9.01 KB
 <?php
 $con = bancoMysqli();
 $idUser = $_SESSION['idUser'];
@@ -132,17 +114,14 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 										$envio = $con->query($query);
 										$row = $envio->fetch_array(MYSQLI_ASSOC);
 										
-										if(verificaArquivosExistentesPF($idPf,$row['id'])){
-											echo '<div class="alert alert-success">O arquivo ' . $doc . ' já foi enviado.</div>';
-										}
-										else{ 
+										
 								?>
 										<tr>
 											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
 										</tr>
 								<?php
+									
 									}
-								}
 								?>
 							</table><br>
 						</div>
@@ -266,16 +245,3 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 		</div>
 	</div>
 </section>
-© 2018 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-API
-Training
-Shop
-Blog
-About
-Press h to open a hovercard with more details.
