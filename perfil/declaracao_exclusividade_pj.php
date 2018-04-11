@@ -120,7 +120,8 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				<!-- Gerar DECLARAÇÃO DE EXCLUSIVIDADE -->
 				<?php
 					$http = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/pdf/";
-					$link1 = $http."rlt_declaracao_exclusividade_pj.php";
+					$link1 = $http."rlt_declaracao_exclusividade_grupo_pj.php";
+					$link2 = $http."rlt_declaracao_exclusividade_1pessoa_pj.php";
 				?>
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
@@ -129,11 +130,16 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				</div>
 
 				<div class="form-group">
-					<div class="col-md-offset-2 col-md-5">
-						<p align="left">Após inserir os dados pessoais, clique no botão para gerar a Declaração de Exclusividade.</p>
+					<div class="col-md-offset-2 col-md-8">
+						<p align="left">Após inserir os dados pessoais, clique no botão para gerar a Declaração de Exclusividade. Escolha entre um dos dois modelos abaixo:</p>
 					</div>
-					<div class="col-md-3">
-						<a href='<?php echo $link1; ?>' target='_blank' class="btn btn-theme btn-lg btn-block"><strong>Gerar</strong></a>
+				</div>
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-6">
+						<a href='<?php echo $link1; ?>' target='_blank' class="btn btn-theme btn-md btn-block"><strong>Grupo</strong></a>
+					</div>
+					<div class="col-md-6">
+						<a href='<?php echo $link2; ?>' target='_blank' class="btn btn-theme btn-md btn-block"><strong>Artista Solo</strong></a>
 					</div>
 				</div>
 				<div class="form-group">
