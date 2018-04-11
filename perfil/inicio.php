@@ -12,6 +12,13 @@ unset($_SESSION['idPf']);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<br />
+						<?php
+							$usr = $_SESSION['idUser'];
+							if($usr == 18 || $usr == 19 || $usr = 54 || $usr = 55 || $usr = 204)
+							{
+								echo "<a href='?perfil=busca_reset' class='btn btn-theme btn-lg btn-block'>Reiniciar Senha</a><br/>";
+							}
+						?>
 						<p>Aqui são inseridas as informações sobre o seu evento.</p>
 						<a href="?perfil=evento_apresentacao" class="btn btn-theme btn-lg btn-block">EVENTO</a>
 						<br />
