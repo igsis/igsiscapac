@@ -49,9 +49,30 @@ if(isset($_POST["enviar"]))
 						$query = mysqli_query($con,$sql_insere_arquivo);
 						if($query)
 						{
-							$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
-							gravarLog($sql_insere_arquivo);
-							echo '<script>window.location = "?perfil=arquivos_pj"</script>';
+							if(file_exists($dir.$newname))
+							{
+								$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
+								gravarLog($sql_insere_arquivo);
+								echo '<script>window.location = "?perfil=arquivos_pj"</script>';
+							}
+							else
+							{
+								$sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idEvento', '$y', '$new_name', '$hoje', '1'); ";
+								$query = mysqli_query($con,$sql_insere_arquivo);
+
+								if($query)
+								{
+									if(file_exists($dir.$newname))
+									{
+										$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
+										gravarLog($sql_insere_arquivo);
+										echo '<script>window.location = "?perfil=arquivos_pj"</script>';
+									}
+									else{
+										echo "<script>alert('Houve um erro durante o processamento do arquivo, entre em contato com os administradores do sistema')</script>";
+									}
+								}
+							}
 						}
 						else
 						{

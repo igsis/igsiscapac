@@ -54,9 +54,30 @@ if(isset($_POST["enviar"]))
 						$query = mysqli_query($con,$sql_insere_arquivo);
 						if($query)
 						{
-							$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
-							gravarLog($sql_insere_arquivo);
-							echo '<script>window.location = "?perfil=arquivos_evento"</script>';
+							if(file_exists($dir.$newname))
+							{
+								$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
+								gravarLog($sql_insere_arquivo);
+								echo '<script>window.location = "?perfil=arquivos_evento"</script>';
+							}
+							else
+							{
+								$sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idEvento', '$y', '$new_name', '$hoje', '1'); ";
+								$query = mysqli_query($con,$sql_insere_arquivo);
+
+								if($query)
+								{
+									if(file_exists($dir.$newname))
+									{
+										$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
+										gravarLog($sql_insere_arquivo);
+										echo '<script>window.location = "?perfil=arquivos_evento"</script>';
+									}
+									else{
+										echo "<script>alert('Houve um erro durante o processamento do arquivo, entre em contato com os administradores do sistema')</script>";
+									}
+								}
+							}
 						}
 						else
 						{
@@ -98,6 +119,7 @@ if(isset($_POST['apagar']))
 			<h4>Arquivos do Evento</h4>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
+		<div class="alert alert-danger col-md-offset-3 col-sm-6" role="alert"><br><h4><strong>AVISO</strong></h2>Clique nos arquivos após efetuar o upload e confira a exibição do documento!<br><br></div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 				<!-- Exibir arquivos -->
