@@ -71,6 +71,7 @@ $exCPF = $executante["cpf"];
 
 $grupo = $evento["nomeGrupo"];
 $Objeto = $evento["nomeEvento"];
+$integrantes = $evento["integrantes"];
 
 
 $ano=date('Y');
@@ -87,31 +88,35 @@ $l=6; //DEFINE A ALTURA DA LINHA
    
 $pdf->SetXY( $x , 15 );// SetXY - DEFINE O X (largura) E O Y (altura) NA PÁGINA
 
-
-   
-   $pdf->SetX($x);
+ $pdf->SetX($x);
    $pdf->SetFont('Arial','B', 14);
    $pdf->Cell(180,5,utf8_decode("DECLARAÇÃO DE EXCLUSIVIDADE"),0,1,'C');
    
    $pdf->Ln();
    $pdf->Ln();
    
-  
-	   $pdf->SetX($x);
+   $pdf->SetX($x);
    $pdf->SetFont('Arial','', 11);
-   $pdf->MultiCell(170,$l,utf8_decode("Eu, "."$exNome".", RG "."$exRG".", CPF "."$exCPF".", sob penas da lei, declaro que sou líder do grupo "."$grupo"." e que o mesmo é representado exclusivamente por mim."));
+   $pdf->MultiCell(170,$l,utf8_decode("Eu, "."$exNome".", RG "."$exRG".", CPF "."$exCPF".", sob penas da lei, declaro que sou líder do grupo "."$grupo".", que possui os integrantes abaixo listados, e que o mesmo é representado exclusivamente por mim. "));
 
    $pdf->Ln();
 
    $pdf->SetX($x);
    $pdf->SetFont('Arial','', 11);
-   $pdf->MultiCell(170,$l,utf8_decode("Declaro sob as penas da Lei que não sou servidor público municipal e que não me encontro em impedimento para contratar com a Prefeitura do Município de São Paulo / Secretaria Municipal de Cultura, mediante recebimento de cachê e/ou bilheteria, quando for o caso."));
+   $pdf->MultiCell(170,$l,utf8_decode("Declaro, sob as penas da Lei, que não sou servidor público municipal e que não me encontro em impedimento para contratar com a Prefeitura do Município de São Paulo / Secretaria Municipal de Cultura, mediante recebimento de cachê e/ou bilheteria, quando for o caso. "));
+
+    $pdf->Ln();
+
+   $pdf->SetX($x);
+   $pdf->SetFont('Arial','', 11);
+   $pdf->MultiCell(170,$l,utf8_decode("Declaro, sob as penas da lei, dentre os integrantes abaixo listados não há crianças e adolescentes. Quando houver, estamos cientes que é de nossa responsabilidade a adoção das providências de obtenção  de  decisão judicial  junto à Vara da Infância e Juventude."));
+
 
    $pdf->Ln();
 
    $pdf->SetX($x);
    $pdf->SetFont('Arial','', 11);
-   $pdf->MultiCell(170,$l,utf8_decode("Declaro, ainda, neste ato, que autorizo, a título gratuito, por prazo indeterminado, a Municipalidade de São Paulo, através da SMC, o uso da nossa imagem, nas suas publicações em papel e qualquer mídia digital ou internet existentes ou que venha a existir como também para os fins de arquivo e material de pesquisa e consulta."));
+   $pdf->MultiCell(170,$l,utf8_decode("Declaro, ainda, neste ato, que autorizo, a título gratuito, por prazo indeterminado, a Municipalidade de São Paulo, através da SMC, o uso da nossa imagem, nas suas publicações em papel e qualquer mídia digital ou internet existentes ou que venha a existir como também para os fins de arquivo e material de pesquisa e consulta. "));
 
     $pdf->Ln();
 
@@ -120,15 +125,18 @@ $pdf->SetXY( $x , 15 );// SetXY - DEFINE O X (largura) E O Y (altura) NA PÁGINA
    $pdf->MultiCell(170,$l,utf8_decode("Fico autorizado a celebrar contrato, inclusive receber cachê e/ou bilheteria quando for o caso, outorgando quitação."));
 
 
-   $pdf->Ln();
+    $pdf->Ln();
 
    $pdf->SetX($x);
    $pdf->SetFont('Arial','', 11);
-   $pdf->Cell(128,$l,utf8_decode("São Paulo, _______ / _______ / " .$ano."."),0,1,'L');
+   $pdf->MultiCell(170,$l,utf8_decode("Estou ciente de que o pagamento dos valores decorrentes dos serviços é de minha responsabilidade, não cabendo pleitear à Prefeitura quaisquer valores eventualmente não repassados."));
 
     $pdf->Ln();
-   $pdf->Ln();
-   $pdf->Ln();
+
+   $pdf->SetX($x);
+   $pdf->SetFont('Arial','', 11);
+   $pdf->MultiCell(170,$l,utf8_decode("Integrantes do grupo: "."$integrantes".""));
+
    $pdf->Ln();
 
 
@@ -136,12 +144,9 @@ $pdf->SetXY( $x , 15 );// SetXY - DEFINE O X (largura) E O Y (altura) NA PÁGINA
    $pdf->SetFont('Arial','', 11);
    $pdf->Cell(128,$l,utf8_decode("São Paulo, _______ / _______ / " .$ano."."),0,1,'L');
 
-   $pdf->Ln();
-   $pdf->Ln();
-   $pdf->Ln();
-   
+   $pdf->Ln();   
 
-   $pdf->SetX($x);
+    $pdf->SetX($x);
    $pdf->SetFont('Arial','', 11);
    $pdf->SetX($x);
    $pdf->SetFont('Arial','', 11);
@@ -157,9 +162,6 @@ $pdf->SetXY( $x , 15 );// SetXY - DEFINE O X (largura) E O Y (altura) NA PÁGINA
    $pdf->Cell(128,$l,utf8_decode("CPF: "."$exCPF".""),0,1,'L');
 
    $pdf->Ln();
-   $pdf->Ln();
-   $pdf->Ln();
-
 
 $pdf->Output();
 
