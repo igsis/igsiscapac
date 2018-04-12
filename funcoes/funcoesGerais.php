@@ -678,13 +678,14 @@ function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 		case 7: //artista_pj_cadastro
 			$arq1 = "AND (list.id = '2' OR ";
 			$arq2 = "list.id = '3' OR";
-			$arq3 = "list.id = '60')";
+			$arq3 = "list.id = '60' OR";
+			$arq4 = "list.id = '107')";
 			$sql = "SELECT *
 				FROM upload_lista_documento as list
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
 				AND arq.idTipoPessoa = '$tipoPessoa'
-				$arq1 $arq2 $arq3
+				$arq1 $arq2 $arq3 $arq4
 				AND arq.publicado = '1'";
 		break;
 		case 8: //anexos_pj
