@@ -26,6 +26,23 @@
 			return "Bom dia";
 		}
 	}
+
+	function retornaCamposObrigatoriosPF($idPF)
+	{
+		$campos = [];
+
+		$conexao = bancoMysqli();
+
+		$consultaArquivos = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento = '65' AND idPessoa = '$idPf' AND publicado = '1'"; // clipping
+		$envio = mysqli_query($conexao, $consultaArquivos);
+		$retornoClipping = mysqli_num_rows($envio);
+
+		$consultaArquivos = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento = '96' AND idPessoa = '$idPf' AND publicado = '1'"; // currículo
+		$envio = mysqli_query($conexao, $consultaArquivos);
+		$retornoCV = mysqli_num_rows($envio);
+
+		$consultaCampos = "SELECT ";
+	}	
 	// Formatação de datas, valores
 	// Retira acentos das strings
 	function semAcento($string)

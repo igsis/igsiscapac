@@ -46,6 +46,9 @@ for ($i = 0; $i < count($urlEventoPf); $i++)
                 <li class="hidden">
                     <a href=""><br /></a>
                 </li>
+                <li class="<?php echo 'done'; ?>">
+                    <a onclick="location.href='index.php?perfil=evento_edicao'" href=""><br /><small>Voltar para evento</small></a>
+                </li> 
                 <li class="<?php echo $ativa1 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=informacoes_iniciais_pf'" href=""><br /><small>Informações Iniciais</small></a>
                 </li> 
@@ -61,6 +64,8 @@ for ($i = 0; $i < count($urlEventoPf); $i++)
                 <li class="<?php echo $ativa5 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=dados_bancarios_pf'" href=""><br /><small>Dados Bancários</small></a>
                 </li>
+            </ul>
+            <ul>                
                 <li class="<?php echo $ativa7 ?? 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=arquivos_dados_bancarios_pf'" href=""><br /><small>Arquivos Dados Bancários</small></a>
                 </li>

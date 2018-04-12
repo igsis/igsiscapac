@@ -70,6 +70,9 @@ for ($i = 0; $i < count($urlEventoPj); $i++) {
                     <li class="hidden">
                         <a href=""><br /></a>
                     </li>
+                    <li class="<?php echo 'done'; ?>">
+                        <a onclick="location.href='index.php?perfil=evento_edicao'" href=""><br /><small>Voltar para evento</small></a>
+                    </li> 
                     <li class="<?php echo $ativ_1 ?? 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=informacoes_iniciais_pj'" href=""><br /><small>Informações Iniciais</small></a>
                     </li> <!-- Ok -->
@@ -88,14 +91,14 @@ for ($i = 0; $i < count($urlEventoPj); $i++) {
                     <li class="<?php echo $ativ_11 ?? 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=representante2_pj'" href=""><br /><small>Representante 2</small></a>
                     </li>
+                </ul>
+                <ul>                                                
                     
                     <li class="<?php echo $ativ_12 ?? 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=arquivos_representante2'" href=""><br /><small>Arquivos Representante 2</small></a>
                     </li>
-                </ul>
-                <ul>                                                 
                     <li class="<?php echo $ativ_6 ?? 'clickable'; ?>">
-                        <a onclick="location.href='index.php?perfil=dados_bancarios_pj'" href=""><br />Dados Bancários</a>
+                        <a onclick="location.href='index.php?perfil=dados_bancarios_pj'" href=""><br /><small>Dados Bancários</small></a>
                     </li>
                     <li class="<?php echo $ativ_7 ?? 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=arquivos_dados_bancarios_pj'" href=""><br /><small>Arquivos Bancários</small></a>
@@ -105,7 +108,9 @@ for ($i = 0; $i < count($urlEventoPj); $i++) {
                     </li> 
                     <li class="<?php echo $ativ_9 ?? 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=arquivos_artista_pj'" href=""><br /><small>Arquivos Líder do Grupo/Artista</small></a>
-                    </li> 
+                    </li>
+                </ul>
+                <ul>   
                     <li class="<?php echo $ativ_13 ?? 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=declaracao_exclusividade_pj'" href=""><br /><small>Declaração de Exclusividade</small></a>
                     </li>
