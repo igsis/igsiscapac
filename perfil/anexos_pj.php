@@ -47,7 +47,7 @@ if(isset($_POST["enviar"]))
 							{
 								$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 								gravarLog($sql_insere_arquivo);
-								echo '<script>window.location = "?perfil=arquivos_evento"</script>';
+								echo '<script>window.location = "?perfil=anexos_pj"</script>';
 							}
 							else
 							{
@@ -191,7 +191,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 										}
 										else{ ?>
 											<td><?php echo $arq['documento']?></td>
-											<td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]' required></td>
+											<td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
 										</tr>
 								<?php
 									}
