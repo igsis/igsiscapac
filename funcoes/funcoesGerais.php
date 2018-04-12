@@ -27,22 +27,78 @@
 		}
 	}
 
-	function retornaCamposObrigatoriosPF($idPF)
+	function retornaCamposObrigatorios($idPessoa, $tipoPessoa, $idEvento)
 	{
-		$campos = [];
-
+		$vetor = [];
 		$conexao = bancoMysqli();
 
-		$consultaArquivos = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento = '65' AND idPessoa = '$idPf' AND publicado = '1'"; // clipping
-		$envio = mysqli_query($conexao, $consultaArquivos);
-		$retornoClipping = mysqli_num_rows($envio);
+		if($tipoPessoa == 2)
+		{
+			$consultaC = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento = '22' AND idPessoa = '$idPj' AND publicado = '1'"; // CNPJ
+			$envioC = mysqli_query($conexao, $consultaC);
+			$retornoCNPJ = mysqli_num_rows($envioC);
+			$retornoCNPJ != 0 && $retornoCNPJ != NULL ? "" : $vetor += "CNPJ";
 
-		$consultaArquivos = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento = '96' AND idPessoa = '$idPf' AND publicado = '1'"; // currículo
-		$envio = mysqli_query($conexao, $consultaArquivos);
-		$retornoCV = mysqli_num_rows($envio);
 
-		$consultaCampos = "SELECT ";
-	}	
+			$consultaFC = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento = '31' AND idPessoa = '$idPj' AND publicado = '1'"; // fdc ccm
+			$envioFC = mysqli_query($conexao, $consultaFC);
+			$retornoFC = mysqli_num_rows($envioFC);
+
+			$consultaCP = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento = '28' AND idPessoa = '$idPj' AND publicado = '1'"; // CPOM cad
+			$envioCP = mysqli_query($conexao, $consultaCP);
+			$retornoCP = mysqli_num_rows($envioCP);
+
+			$consultaRGR = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento = '103' AND idPessoa = '$idPj' AND publicado = '1'"; // rg do representante
+			$envioRGR = mysqli_query($conexao, $consultaRGR);
+			$retornoRGR = mysqli_num_rows($envioRGR);
+
+			$consultaCPFR = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento = '104' AND idPessoa = '$idPj' AND publicado = '1'"; // cpf do representante
+			$envioCPFR = mysqli_query($conexao, $consultaCPFR);
+			$retornoCPFR = mysqli_num_rows($envioRGR);
+
+			$consultaDECE = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento = '105' AND idPessoa = '$idPj' AND publicado = '1'"; // declaração de exclusividade PJ
+			$envioDECE= mysqli_query($conexao, $consultaDECE);
+			$retornoDECE = mysqli_num_rows($envioDECE);
+		} else //pf
+		{
+
+			$consultaRG = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento = '2' AND idPessoa = '$idPj' AND publicado = '1'"; // CNPJ
+			$envioRG = mysqli_query($conexao, $consultaRG);
+			$retornoRG = mysqli_num_rows($envioRG);
+
+			$consultaCPF = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento = '3' AND idPessoa = '$idPj' AND publicado = '1'"; // CPF
+			$envioCPF = mysqli_query($conexao, $consultaCPF);
+			$retornoCPF = mysqli_num_rows($envioCPF);
+
+			$consultaCVI = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento = '102' AND idPessoa = '$idPj' AND publicado = '1'"; // CV integrante
+			$envioCVI = mysqli_query($conexao, $consultaCVI);
+			$retornoCVI = mysqli_num_rows($envioCVI);
+
+			$consultaDECEF = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento = '106' AND idPessoa = '$idPj' AND publicado = '1'"; // declaração de exclusividade PF
+			$envioDECEF= mysqli_query($conexao, $consultaDECEF);
+			$retornoDECEF = mysqli_num_rows($envioDECEF);
+		}
+		//evento
+		$consultaCRF = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento = '8' AND idPessoa = '$idPj' AND publicado = '1'"; // CRF
+		$envioCRF= mysqli_query($conexao, $consultaCRF);
+		$retornoCRF = mysqli_num_rows($envioCRF);
+
+		$consultaConst = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento in (10,58,91) AND idPessoa = '$idPj' AND publicado = '1'"; // documentos de constituição da empresa
+		$envioConst = mysqli_query($conexao, $consultaConst);
+		$retornoConst = mysqli_num_rows($envioConst);
+
+		$consultaCTM = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento = '34' AND idPessoa = '$idPj' AND publicado = '1'"; // CTM
+		$envioCTM = mysqli_query($conexao, $consultaCTM);
+		$retornoCTM = mysqli_num_rows($envioCTM);
+
+		$consultaCDN = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento = '95' AND idPessoa = '$idPj' AND publicado = '1'"; // CND
+		$envioCDN = mysqli_query($conexao, $consultaCDN);
+		$retornoCDN = mysqli_num_rows($envioCDN);
+
+		$consultaCCM = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento = '9' AND idPessoa = '$idPj' AND publicado = '1'"; // CCM
+		$envioCCM = mysqli_query($conexao, $consultaCCM);
+		$retornoCCM = mysqli_num_rows($envioCCM);
+	}
 	// Formatação de datas, valores
 	// Retira acentos das strings
 	function semAcento($string)
