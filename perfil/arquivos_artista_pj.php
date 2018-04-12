@@ -114,13 +114,17 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 										$envio = $con->query($query);
 										$row = $envio->fetch_array(MYSQLI_ASSOC);
 										
+										if(verificaArquivosExistentesPF($idPf,$row['id'])){
+											echo '<div class="alert alert-success">O arquivo ' . $doc . ' já foi enviado.</div>';
+										}
+										else{
 										
 								?>
 										<tr>
 											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
 										</tr>
 								<?php
-									
+										}
 									}
 								?>
 							</table><br>

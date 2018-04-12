@@ -4,7 +4,7 @@ $idUser= $_SESSION['idUser'];
 <section id="list_items" class="home-section bg-white">
 	<div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
 		<div class="form-group">
-			<h3>EVENTOS</h3>
+			<h3>Informações para preenchimento do evento</h3>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
 		<div class="row">
