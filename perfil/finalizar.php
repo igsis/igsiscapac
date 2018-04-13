@@ -318,6 +318,15 @@ if($pf['email'] == NULL)
 	$i = 1;
 }
 
+$var = retornaCamposObrigatorios($idEvento);
+if(!empty($var))
+{
+	$y = 1;
+} else
+{
+	$y = 0;
+}
+
 if($tipoPessoa == 1)
 {
 	if($pf['cep'] == NULL)
@@ -365,6 +374,17 @@ if(isset($_POST['enviar']))
 						?>
 							<p><strong><font color="red">O(s) seguinte(s) campo(s) obrigatório(s) não foram preenchidos:</font></strong></p>
 						<?php
+						}
+						if($y == 1)
+						{
+							?>
+							<p><strong><font color="red">O(s) seguinte(s) arquivo(s) obrigatório(s) não foram enviados:</font></strong></p>
+							<?php
+								$var = retornaCamposObrigatorios($idEvento);
+								for($i = 0; $i < count($var); $i++)
+								{
+									echo $var[$i] . "<br>";
+								}
 						}
 						?>
 						<p align="center">
