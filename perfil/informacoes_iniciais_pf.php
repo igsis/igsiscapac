@@ -75,6 +75,7 @@ if(isset($_POST['atualizarFisica']))
 	$email = $_POST['email'];
 	$dataNascimento = exibirDataMysql($_POST['dataNascimento']);
 	$pis = $_POST['pis'];
+	date_default_timezone_set('America/Sao_Paulo');
 	$dataAtualizacao = date("Y-m-d H:i:s");
 	$idPf = $_SESSION['idPf'];
 
