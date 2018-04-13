@@ -107,6 +107,11 @@
 		$retornoClipping = mysqli_num_rows($envioClipping);
 		$retornoClipping == 0 || $retornoClipping == NULL ? array_push($vetor,"Clipping") : "";
 
+		$consultaCurLider = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento = '107' AND idPessoa = '$idEvento' AND publicado = '1'"; // currículo do líder
+		$envioCurLider = mysqli_query($con, $consultaCurLider);
+		$retornoCurLider = mysqli_num_rows($envioCurLider);
+		$retornoCurLider == 0 || $retornoCurLider == NULL ? array_push($vetor,"Currículo do líder") : "";
+
 		$consultaCRF = "SELECT id FROM upload_arquivo WHERE idUploadListaDocumento = '8' AND idPessoa = '$idEvento' AND publicado = '1'"; // CRF
 		$envioCRF= mysqli_query($con, $consultaCRF);
 		$retornoCRF = mysqli_num_rows($envioCRF);
