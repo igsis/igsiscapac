@@ -1,5 +1,4 @@
 <?php
-
 $idEvento = $_SESSION['idEvento'];
 $evento = recuperaDados("evento","id",$idEvento);
 $tipoEvento = recuperaDados("tipo_evento","id",$evento['idTipoEvento']);
@@ -10,14 +9,12 @@ $representante1 = recuperaDados("representante_legal","id",$pessoaJuridica['idRe
 $representante2 = recuperaDados("representante_legal","id",$pessoaJuridica['idRepresentanteLegal2']);
 $pessoaFisica = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 $bool = false;
-
 function recuperaBanco($campoY)
 {
 	$banco = recuperaDados("banco","id",$campoY);
 	$nomeBanco = $banco['banco'];
 	return $nomeBanco;
 }
-
 function listaArquivoCamposMultiplos1($idPessoa,$pf)
 {
 	$con = bancoMysqli();
@@ -68,20 +65,26 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf)
 				AND arq.publicado = '1'";
 		break;
 		case 5: //evento
+			$arq1 = "AND (list.id = '23' OR ";
+			$arq2 = "list.id = '65' OR";
+			$arq3 = "list.id = '78' OR";
+			$arq4 = "list.id = '96' OR";
+			$arq5 = "list.id = '97' OR";
+			$arq6 = "list.id = '98' OR";
+			$arq7 = "list.id = '105')";
 			$sql = "SELECT *
 				FROM upload_lista_documento as list
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
 				AND arq.idTipoPessoa = '3'
-				AND arq.publicado = '1'
-				ORDER BY documento";
+				$arq1 $arq2 $arq3 $arq4 $arq5 $arq6 $arq7
+				AND arq.publicado = '1'";
 		break;
 		default:
 		break;
 	}
 	$query = mysqli_query($con,$sql);
 	$linhas = mysqli_num_rows($query);
-
 	if ($linhas > 0)
 	{
 	echo "
@@ -109,7 +112,6 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf)
 		echo "<p>Não há arquivo(s) inserido(s).<p/><br/>";
 	}
 }
-
 function listaArquivosComProd($idEvento)
 {
 	//lista arquivos de determinado evento
@@ -135,144 +137,119 @@ function listaArquivosComProd($idEvento)
 		</tbody>
 		</table>";
 }
-
 $i = 0;
-
 if($evento['nomeEvento'] == NULL)
 {
 	$mensagem = "<a href='index.php?perfil=evento_edicao'>Nome do evento</a><br/>";
 	$i = 1;
 }
-
 if($evento['idTipoEvento'] == NULL)
 {
 	$mensagem = $mensagem."<a href='index.php?perfil=evento_edicao'>Tipo de evento</a><br/>";
 	$i = 1;
 }
-
 if($evento['fichaTecnica'] == NULL)
 {
 	$mensagem = $mensagem."<a href='index.php?perfil=evento_edicao'>Ficha técnica</a><br/>";
 	$i = 1;
 }
-
 if($evento['idFaixaEtaria'] == NULL OR $evento['idFaixaEtaria'] == 0)
 {
 	$mensagem = $mensagem."<a href='index.php?perfil=evento_edicao'>Faixa Etária</a><br/>";
 	$i = 1;
 }
-
 if($evento['sinopse'] == NULL)
 {
 	$mensagem = $mensagem."<a href='index.php?perfil=evento_edicao'>Sinopse</a><br/>";
 	$i = 1;
 }
-
 if($evento['releaseCom'] == NULL)
 {
 	$mensagem = $mensagem."<a href='index.php?perfil=evento_edicao'>Realease</a><br/>";
 	$i = 1;
 }
-
 if($evento['idProdutor'] == NULL)
 {
 	$mensagem = $mensagem."<a href='index.php?perfil='>Dados do produtor</a><br/>";
 	$i = 1;
 }
-
 if($evento['idPf'] == NULL)
 {
 	$mensagem = $mensagem."<a href='index.php?perfil='>Dados do artista</a><br/>";
 	$i = 1;
 }
-
 $produtor = recuperaDados("produtor","id",$evento['idProdutor']);
-
 if($produtor['nome'] == NULL)
 {
 	$mensagem = $mensagem."<center><a href='index.php?perfil=produtor_edicao'> Nome do produtor</a><br/>";
 	$i = 1;
 }
-
 if($produtor['email'] == NULL)
 {
 	$mensagem = $mensagem."<a href='index.php?perfil=produtor_edicao'>E-mail do produtor</a><br/>";
 	$i = 1;
 }
-
 if($produtor['telefone1'] == NULL)
 {
 	$mensagem = $mensagem."<a href='index.php?perfil=produtor_edicao'>Celular do produtor</a><br/></center>";
 	$i = 1;
 }
-
 $idTipoPessoa = $evento['idTipoPessoa'];
 if($idTipoPessoa == 2)
 {
 	$pj = recuperaDados("pessoa_juridica","id",$evento['idPj']);
-
 	if($pj['razaoSocial'] == NULL)
 	{
 		$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pj'>Razão Social</a><br/>";
 		$i = 1;
 	}
-
 	if($pj['cnpj'] == NULL)
 	{
 		$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pj'>CNPJ</a><br/>";
 		$i = 1;
 	}
-
 	if($pj['telefone1'] == NULL)
 	{
 		$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pj'>Celular da empresa</a><br/>";
 		$i = 1;
 	}
-
 	if($pj['email'] == NULL)
 	{
 		$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pj'>E-mail da empresa</a><br/>";
 		$i = 1;
 	}
-
 	if($pj['cep'] == NULL)
 	{
 		$mensagem = $mensagem."<a href='index.php?perfil=endereco_pj'>CEP da empresa</a><br/>";
 		$i = 1;
 	}
-
 	if($pj['numero'] == NULL)
 	{
 		$mensagem = $mensagem."<a href='index.php?perfil=endereco_pj'>Número do endereço da empresa</a><br/>";
 		$i = 1;
 	}
-
 	if($pj['idRepresentanteLegal1'] == NULL)
 	{
 		$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj_cadastro&id_pj=21'>Dados do representante legal</a><br/>";
 		$i = 1;
 	}
-
 	$representante = recuperaDados("representante_legal","id",$pj['idRepresentanteLegal1']);
 	if($representante['nome'] == NULL)
 	{
 		$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj_cadastro&id_pj=21'>Nome do artista</a><br/>";
 		$i = 1;
 	}
-
 	if($representante['rg'] == NULL)
 	{
 		$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj_cadastro&id_pj=21'>RG do artista</a><br/>";
 		$i = 1;
 	}
-
 	if($representante['cpf'] == NULL)
 	{
 		$mensagem = $mensagem."<a href='index.php?perfil='>CPF do artista</a><br/>";
 		$i = 1;
 	}
 }
-
 # Pessoa fica
 $pf = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 if($pf['nome'] == NULL)
@@ -280,46 +257,31 @@ if($pf['nome'] == NULL)
 	$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>Nome do artista</a><br/>";
 	$i = 1;
 }
-
 if($pf['nomeArtistico'] == NULL)
 {
 	$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>Nome Artístico</a><br/>";
 	$i = 1;
 }
-
 if($pf['rg'] == NULL)
 {
 	$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>RG do artista</a><br/>";
 	$i = 1;
 }
-
 if($pf['cpf'] == NULL)
 {
 	$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>CPF do artista</a><br/>";
 	$i = 1;
 }
-
 if($pf['telefone1'] == NULL)
 {
 	$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>Telefone do artista</a><br/>";
 	$i = 1;
 }
-
 if($pf['email'] == NULL)
 {
 	$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>E-mail do artista</a><br/>";
 	$i = 1;
 }
-
-$var = retornaCamposObrigatorios($idEvento);
-if(!empty($var))
-{
-	$y = 1;
-} else
-{
-	$y = 0;
-}
-
 if($tipoPessoa == 1)
 {
 	if($pf['cep'] == NULL)
@@ -327,14 +289,12 @@ if($tipoPessoa == 1)
 		$mensagem = $mensagem."<a href='index.php?perfil=endereco_pf'>CEP do artista</a><br/>";
 		$i = 1;
 	}
-
 	if($pf['numero'] == NULL)
 	{
 		$mensagem = $mensagem."<a href='index.php?perfil=endereco_pf'>Número do endereço do artista</a><br/>";
 		$i = 1;
 	}
 }
-
 if(isset($_POST['enviar']))
 {
 	$sql_envia = "UPDATE `evento` SET `publicado`= 2 WHERE `id` = '$idEvento'";
@@ -367,17 +327,6 @@ if(isset($_POST['enviar']))
 						?>
 							<p><strong><font color="red">O(s) seguinte(s) campo(s) obrigatório(s) não foram preenchidos:</font></strong></p>
 						<?php
-						}
-						if($y == 1)
-						{
-							?>
-							<p><strong><font color="red">O(s) seguinte(s) arquivo(s) obrigatório(s) não foram enviados:</font></strong></p>
-							<?php
-								$var = retornaCamposObrigatorios($idEvento);
-								for($i = 0; $i < count($var); $i++)
-								{
-									echo $var[$i] . "<br>";
-								}
 						}
 						?>
 						<p align="center">
