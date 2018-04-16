@@ -77,7 +77,6 @@ if(isset($_POST['atualizarFisica']))
 	$pis = $_POST['pis'];
 	date_default_timezone_set('America/Sao_Paulo');
 	$dataAtualizacao = date("Y-m-d");
-	echo $dataAtualizacao;
 	$idPf = $_SESSION['idPf'];
 
 	$sql_atualiza_pf = "UPDATE pessoa_fisica SET
