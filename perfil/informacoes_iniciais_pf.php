@@ -76,7 +76,8 @@ if(isset($_POST['atualizarFisica']))
 	$dataNascimento = exibirDataMysql($_POST['dataNascimento']);
 	$pis = $_POST['pis'];
 	date_default_timezone_set('America/Sao_Paulo');
-	$dataAtualizacao = date("Y-m-d H:i:s");
+	$dataAtualizacao = date("Y-m-d");
+	echo $dataAtualizacao;
 	$idPf = $_SESSION['idPf'];
 
 	$sql_atualiza_pf = "UPDATE pessoa_fisica SET
@@ -91,7 +92,7 @@ if(isset($_POST['atualizarFisica']))
 	`email` = '$email',
 	`dataNascimento` = '$dataNascimento',
 	`pis` = '$pis',
-	`dataAtualizacao` = 'dataAtualizacao'
+	`dataAtualizacao` = '$dataAtualizacao'
 	WHERE `id` = '$idPf'";
 
 	if(mysqli_query($con,$sql_atualiza_pf))
