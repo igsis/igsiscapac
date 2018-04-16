@@ -199,7 +199,7 @@ $idUser= $_SESSION['idUser'];
 			<div class="form-group">
 				<div class="col-md-offset-2 col-md-8">
 					<form class="form-horizontal" role="form" action="?perfil=evento" method="post">
-						<input type="submit" value="Prosseguir" class="btn btn-theme btn-lg btn-block" />
+						<input type="submit" value="Iniciar Evento" class="btn btn-theme btn-lg btn-block" />
 					</form>
 				</div>
 			</div>
