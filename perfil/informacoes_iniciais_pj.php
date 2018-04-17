@@ -71,6 +71,7 @@ if(isset($_POST['atualizarJuridica']))
 
 	$sql_atualiza_pj = "UPDATE pessoa_juridica SET
 	`razaoSocial` = '$razaoSocial',
+	`ccm` = '$ccm',
 	`telefone1` = '$telefone1',
 	`telefone2` = '$telefone2',
 	`telefone3` = '$telefone3',
