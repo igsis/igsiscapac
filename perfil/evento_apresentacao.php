@@ -31,6 +31,7 @@ $idUser= $_SESSION['idUser'];
 								<li class="list-group-item">Material de imprensa (clipping)</li>
 								<li class="list-group-item">Autorização SBAT</li>
 								<li class="list-group-item">Currículo do Grupo</li>
+								<li class="list-group-item">Documentos Comprobatórios de Valor</li>
 								<li class="list-group-item">DRT dos Integrantes do Grupo</li>
 							</ul>
 							<ul class="list-group">
@@ -93,7 +94,7 @@ $idUser= $_SESSION['idUser'];
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Dados Bancários</b></li>
-										<li class="list-group-item list-group-item-danger"><b>Realizamos pagamentos de valores acima de R$ 5.000,00 *SOMENTE COM CONTA CORRENTE NO BANCO DO BRASIL*.<br />Não são aceitas: conta fácil, poupança e conjunta.</b></li>
+										<li class="list-group-item list-group-item-danger"><b>Realizamos pagamentos de valores acima de R$ 5.000,00 *SOMENTE COM CONTA CORRENTE NO BANCO DO BRASIL*.<br/> Não são aceitas: conta fácil, poupança e conjunta. <br/> *A conta deve estar em nome da Pessoa Jurídica que está sendo contratada*</b></li>
 										<li class="list-group-item">Banco</li>
 										<li class="list-group-item">Agência</li>
 										<li class="list-group-item">Conta</li>
@@ -120,17 +121,28 @@ $idUser= $_SESSION['idUser'];
 										<li class="list-group-item">RG/RNE/PASSAPORTE</li>
 										<li class="list-group-item">CPF</li>
 										<li class="list-group-item">DRT</li>
+										<li class="list-group-item">Currículo Artístico do Líder do Grupo</li>
+									</ul>
+									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>Declaração de Exclusividade</b></li>
+										<li class="list-group-item">Gerar a Declaração de Exclusividade</li>
+										<li class="list-group-item">Anexar a Declaração de Exclusividade depois de assinada</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Demais Anexos</b></li>
 										<li class="list-group-item">Demais anexos necessários para a contratação</li>
-										<li class="list-group-item">Gerar Declaração de Exclusividade</li>
-										<li class="list-group-item">Anexar a Declaração de Exclusividade depois de assinada</li>
+										<li class="list-group-item"><a href="https://www.sifge.caixa.gov.br/Cidadao/Crf/FgeCfSCriteriosPesquisa.asp" target="_blank">CRF do FGTS</a></li>
+										<li class="list-group-item">Contrato Social</li>
+										<li class="list-group-item"><a href="https://duc.prefeitura.sp.gov.br/certidoes/forms_anonimo/frmConsultaEmissaoCertificado.aspx" target="_blank">CTM - Certidão Negativa de Débitos Tributários Mobiliários Municipais</a></li>
+										<li class="list-group-item"><a href="http://www3.prefeitura.sp.gov.br/cadin/Pesq_Deb.aspx">CADIN Municipal</a></li>
+										<li class="list-group-item">Estatuto Social</li>
+										<li class="list-group-item"><a href="http://www.receita.fazenda.gov.br/Aplicacoes/ATSPO/Certidao/CNDConjuntaSegVia/NICertidaoSegVia.asp?Tipo=1" target="_blank">CND</a></li>
+
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Finalizar</b></li>
-										<li class="list-group-item">Nesta tela haverá um resumo de toda informação inserida neste evento</li>
-										<li class="list-group-item">Listará também algum campo pendente de preenchimento.</li>
+										<li class="list-group-item">Nesta tela haverá um resumo com todas as informações inseridas neste evento</li>
+										<li class="list-group-item">Listará também, quando existirem, os campos pendente para preenchimento.</li>
 									</ul>
         						</div>
 
@@ -149,14 +161,15 @@ $idUser= $_SESSION['idUser'];
 										<li class="list-group-item">Telefone #2</li>
 										<li class="list-group-item">Telefone #3</li>
 										<li class="list-group-item">E-mail</li>
-										<li class="list-group-item">Data de Nascimentos</li>
+										<li class="list-group-item">Data de Nascimento</li>
 										<li class="list-group-item">PIS/PASEP/NIT</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Arquivos da Pessoa</b></li>
-										<li class="list-group-item">Cartão CPF</li>
-										<li class="list-group-item">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</li>
-										<li class="list-group-item">Declaração CCM</li>
+										<li class="list-group-item">RG/RNE/PASSAPORTE</li>
+										<li class="list-group-item">CPF</li>
+										<li class="list-group-item">PIS/PASEP/NIT</li>
+										<li class="list-group-item">FDC – CCM (Ficha de Dados Cadastrais de Contribuintes Mobiliários)</li>	
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Endereço</b></li>
@@ -177,13 +190,25 @@ $idUser= $_SESSION['idUser'];
 										<li class="list-group-item">Conta</li>
 									</ul>
 									<ul class="list-group">
+										<li class="list-group-item list-group-item-success"><b>Arquivo dos Dados Bancários em PDF</b></li>
+										<li class="list-group-item">Gerar FACC</li>
+										<li class="list-group-item">Anexar a FACC depois de assinada</li>
+									</ul>
+									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Demais Anexos</b></li>
 										<li class="list-group-item">Demais anexos necessários para a contratação</li>
+										<li class="list-group-item"><a href="https://duc.prefeitura.sp.gov.br/certidoes/forms_anonimo/frmConsultaEmissaoCertificado.aspx" target="_blank">CTM - Certidão Negativa de Débitos Tributários Mobiliários Municipais</a></li>
+										<li class="list-group-item"><a href="http://www3.prefeitura.sp.gov.br/cadin/Pesq_Deb.aspx">CADIN Municipal</a></li>
+										<li class="list-group-item">Currículo</li>
+										<li class="list-group-item">CND Federal - (Certidão Negativa de Débitos de Tributos Federais)</li>
+										<li class="list-group-item">Gerar a Declaração de Exclusividade</li>
+										<li class="list-group-item">Anexar a Declaração de Exclusividade depois de assinada</li>
+										<li class="list-group-item">Currículo Artístico do Líder do Grupo</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Finalizar</b></li>
-										<li class="list-group-item">Nesta tela haverá um resumo de toda informação inserida neste evento</li>
-										<li class="list-group-item">Listará também algum campo pendente de preenchimento.</li>
+										<li class="list-group-item">Nesta tela haverá um resumo com todas as informações inseridas neste evento</li>
+										<li class="list-group-item">Listará também, quando existirem, os campos pendente para preenchimento.</li>
 									</ul>
         						</div>
     						</div>
