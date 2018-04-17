@@ -55,7 +55,6 @@ $usuario = recuperaDados("usuario","id",$idUser);
 							<table class='table table-condensed'>
 								<thead>
 									<tr class='list_menu'>
-										<td width='10%'>ID evento</td>
 										<td>Nome do evento</td>
 										<td>Tipo de evento</td>
 										<td>Data cadastro</td>
@@ -68,7 +67,6 @@ $usuario = recuperaDados("usuario","id",$idUser);
 								while($campo = mysqli_fetch_array($query))
 								{
 									echo "<tr>";
-									echo "<td class='list_description'>".$campo['id']."</td>";
 									echo "<td class='list_description'>".$campo['nomeEvento']."</td>";
 									echo "<td class='list_description'>".retornaTipo($campo['idTipoEvento'])."</td>";
 									echo "<td class='list_description'>".exibirDataHoraBr($campo['dataCadastro'])."</td>";
