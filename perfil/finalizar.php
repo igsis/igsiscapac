@@ -302,6 +302,7 @@ if(isset($_POST['enviar']))
 	if(mysqli_query($con,$sql_envia))
 	{
 		$mensagem = "<h4><font color='#01DF3A'>Enviado com sucesso! Entre em contato com o programador do seu evento e informe o código do CAPAC: </font><font color='#FF0000'>".$idEvento."</font></h4>";
+		gravarLog($sql_envia);
 		$bool = true;
 	}
 }

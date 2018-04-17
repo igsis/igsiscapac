@@ -45,6 +45,7 @@ if(isset($_POST['editaIntegrante']))
 		if(mysqli_query($con,$sql_edita_grupo))
 		{
 			$mensagem = "<font color='#01DF3A'><strong>Editado com sucesso!</strong></font>";
+			gravarLog($sql_edita_integrante);
 		}
 		else
 		{
