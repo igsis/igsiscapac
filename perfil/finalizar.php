@@ -9,6 +9,7 @@ $representante1 = recuperaDados("representante_legal","id",$pessoaJuridica['idRe
 $representante2 = recuperaDados("representante_legal","id",$pessoaJuridica['idRepresentanteLegal2']);
 $pessoaFisica = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 $bool = false;
+$mensagem = "";
 function recuperaBanco($campoY)
 {
 	$banco = recuperaDados("banco","id",$campoY);
@@ -295,7 +296,6 @@ if($tipoPessoa == 1)
 		$i = 1;
 	}
 }
-isset($mensagem) ? $mensagem : null;
 if(isset($_POST['enviar']))
 {
 	$sql_envia = "UPDATE `evento` SET `publicado`= 2 WHERE `id` = '$idEvento'";
