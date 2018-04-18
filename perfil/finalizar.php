@@ -169,16 +169,6 @@ if($evento['releaseCom'] == NULL)
 	$mensagem = $mensagem."<a href='index.php?perfil=evento_edicao'>Realease</a><br/>";
 	$i = 1;
 }
-if($evento['idProdutor'] == NULL)
-{
-	$mensagem = $mensagem."<a href='index.php?perfil='>Dados do produtor</a><br/>";
-	$i = 1;
-}
-if($evento['idPf'] == NULL)
-{
-	$mensagem = $mensagem."<a href='index.php?perfil='>Dados do artista</a><br/>";
-	$i = 1;
-}
 $produtor = recuperaDados("produtor","id",$evento['idProdutor']);
 if($produtor['nome'] == NULL)
 {
