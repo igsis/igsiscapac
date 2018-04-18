@@ -295,6 +295,7 @@ if($tipoPessoa == 1)
 		$i = 1;
 	}
 }
+isset($mensagem) ? $mensagem : null;
 if(isset($_POST['enviar']))
 {
 	$sql_envia = "UPDATE `evento` SET `publicado`= 2 WHERE `id` = '$idEvento'";
