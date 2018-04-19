@@ -143,6 +143,18 @@ $representante2 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
 						</div>
 					</div>
 
+				<br/>
+
+				<!-- Botão para Remover o Representante -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<form method='POST' action='?perfil=representante2_pj'>
+							<input type="hidden" name="apagaRepresentante" value="<?php echo $idPj ?>">
+							<input type="submit" value="Remover o Representante" class="btn btn-theme btn-lg btn-block">
+						</form>
+					</div>
+				</div>
+
 				<!-- Botão para Voltar e Prosseguir -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-2">
