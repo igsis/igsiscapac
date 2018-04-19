@@ -55,6 +55,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
 							<table class='table table-condensed'>
 								<thead>
 									<tr class='list_menu'>
+										<td>Id do evento</td>
 										<td>Nome do evento</td>
 										<td>Tipo de evento</td>
 										<td>Data cadastro</td>
@@ -66,7 +67,12 @@ $usuario = recuperaDados("usuario","id",$idUser);
 								<tbody>";
 								while($campo = mysqli_fetch_array($query))
 								{
-									echo "<tr>";
+									if($campo['publicado'] ==2)
+									{
+									echo "<td class='list_description'>".$campo['id']."</td>";
+									} else{
+									echo "<td class='list_description'>"."</td>";
+									}
 									echo "<td class='list_description'>".$campo['nomeEvento']."</td>";
 									echo "<td class='list_description'>".retornaTipo($campo['idTipoEvento'])."</td>";
 									echo "<td class='list_description'>".exibirDataHoraBr($campo['dataCadastro'])."</td>";
