@@ -5,7 +5,7 @@
 			| <a href="?perfil=minha_conta">Meus Dados</a>
 			| <a href="?perfil=senha">Alterar Senha</a>
 			| <a href="?secao=perfil">Início</a>
-			| <a href="../manual" target="_blank">Ajuda</a>
+			| <a href="http://smcsistemas.prefeitura.sp.gov.br/igsiscapac/manual/" target="_blank">Ajuda</a>
 			| <a href="../include/logoff.php">Sair</a> |</strong><br/>
 		</div>
 	</div>
