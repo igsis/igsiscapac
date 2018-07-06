@@ -46,7 +46,7 @@ for ($i = 0; $i < count($urlMenuEvento); $i++) {
                     <a onclick="location.href='index.php?perfil=arquivos_com_prod'" href=""><br />Arquivos Para Comunicação e Produção</a>
                 </li>
                 <li class="<?php echo isset($acionar5) ? $acionar5 : 'clickable'; ?>">
-                    <a onclick="location.href='index.php?perfil=proponente'" href=""><br />Cadastro do Pedido</a>
+                    <a onclick="location.href='index.php?perfil=pedido'" href=""><br />Cadastro do Pedido</a>
                 </li> 
                 <li class="<?php echo isset($acionar6) ? $acionar6 : 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=proponente'" href=""><br />Cadastro do Proponente</a>

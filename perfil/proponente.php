@@ -72,7 +72,7 @@ if($idPf == NULL && $idPj == NULL)
 					</div>
 					<div class="form-group">
 						<div class="col-md-offset-1 col-md-2">
-							<form class="form-horizontal" role="form" action="?perfil=arquivos_com_prod" method="post">
+							<form class="form-horizontal" role="form" action="?perfil=pedido" method="post">
 								<input type="submit" value="Voltar" class="btn btn-theme btn-md btn-block" >
 							</form>
 						</div>

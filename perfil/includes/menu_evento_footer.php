@@ -63,7 +63,7 @@ function menuEvento($perfil,$voltar,$avancar)
 
 				    case 'proponente':
 				        $perfil = "proponente";
-				        $voltar = "arquivos_com_prod";
+				        $voltar = "pedido";
 				        $avancar = "proponente";
 				        $menu = menuEvento($perfil,$voltar,$avancar);
 				    break;
