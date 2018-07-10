@@ -117,7 +117,7 @@ if($num_busca > 0)
 												<tr>
 													<td class='list_description'><b>".$descricao['nome']."</b></td>
 													<td class='list_description'>".$descricao['email']."</td>
-													<td><a href='https://goo.gl/forms/AM7jU1XVDUBUVJXE3'><input type='submit' value='Esqueci a Senha' class='btn btn-theme btn-block'></a></td>
+													<td><a href='./recuperar_senha.php'><input type='submit' value='Esqueci a Senha' class='btn btn-theme btn-block'></a></td>
 												</tr>
 											";
 										}
