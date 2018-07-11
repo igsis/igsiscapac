@@ -7,7 +7,6 @@ $urlMenuEvento = array(
     '/igsiscapac/visual/index.php?perfil=produtor_novo',
     '/igsiscapac/visual/index.php?perfil=produtor_edicao',
     '/igsiscapac/visual/index.php?perfil=arquivos_com_prod',
-    '/igsiscapac/visual/index.php?perfil=pedido',
     '/igsiscapac/visual/index.php?perfil=proponente'
 );
 for ($i = 0; $i < count($urlMenuEvento); $i++) {
@@ -22,8 +21,6 @@ for ($i = 0; $i < count($urlMenuEvento); $i++) {
             $acionar4 = 'active loading';
         }elseif ($i == 6) {                
             $acionar5 = 'active loading';
-        }elseif ($i == 7) {
-            $acionar6 = 'active loading';
         }
 
 ?>
@@ -46,9 +43,6 @@ for ($i = 0; $i < count($urlMenuEvento); $i++) {
                     <a onclick="location.href='index.php?perfil=arquivos_com_prod'" href=""><br />Arquivos Para Comunicação e Produção</a>
                 </li>
                 <li class="<?php echo isset($acionar5) ? $acionar5 : 'clickable'; ?>">
-                    <a onclick="location.href='index.php?perfil=pedido'" href=""><br />Cadastro do Pedido</a>
-                </li> 
-                <li class="<?php echo isset($acionar6) ? $acionar6 : 'clickable'; ?>">
                     <a onclick="location.href='index.php?perfil=proponente'" href=""><br />Cadastro do Proponente</a>
                 </li>               
                 <!-- <li class=""><a href="#step-6"><br /><small>Informações Iniciais</small></a></li>    -->                                  
