@@ -284,7 +284,7 @@ date_default_timezone_set("Brazil/East");
 	function geraOpcao($tabela,$select)
 	{
 		//gera os options de um select
-		$sql = "SELECT * FROM $tabela ORDER BY 2";
+		$sql = "SELECT * FROM $tabela WHERE publicado = '1' ORDER BY 2";
 
 		$con = bancoMysqli();
 		$query = mysqli_query($con,$sql);
