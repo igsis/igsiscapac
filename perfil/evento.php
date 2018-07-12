@@ -33,7 +33,23 @@ $usuario = recuperaDados("usuario","id",$idUser);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<form class="form-horizontal" role="form" action="?perfil=evento_novo" method="post">
-							<input type="submit" value="Inserir novo evento" class="btn btn-theme btn-lg btn-block">
+							<input type="submit" value="Inserir novo evento com cachê" class="btn btn-theme btn-lg btn-block">
+						</form>
+					</div>
+				</div>
+				<br/>
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<form class="form-horizontal" role="form" action="?perfil=evento_semcache_novo" method="post">
+							<input type="submit" value="Inserir novo evento sem cachê" class="btn btn-theme btn-lg btn-block">
+						</form>
+					</div>
+				</div>
+				<br/>
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<form class="form-horizontal" role="form" action="?perfil=evento_semcontratacao_novo" method="post">
+							<input type="submit" value="Inserir novo evento sem contratação" class="btn btn-theme btn-lg btn-block">
 						</form>
 					</div>
 				</div>
@@ -59,6 +75,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
 										<td>Nome do evento</td>
 										<td>Tipo de evento</td>
 										<td>Data cadastro</td>
+										<td>Modalidade</td>
 										<td>Enviado</td>
 										<td width='10%'></td>
 										<td width='10%'></td>
@@ -76,6 +93,23 @@ $usuario = recuperaDados("usuario","id",$idUser);
 									echo "<td class='list_description'>".$campo['nomeEvento']."</td>";
 									echo "<td class='list_description'>".retornaTipo($campo['idTipoEvento'])."</td>";
 									echo "<td class='list_description'>".exibirDataHoraBr($campo['dataCadastro'])."</td>";
+									if($campo['contratacao'] == 1)
+									{
+										echo "<td class='list_description'>Com cachê</td>";
+									}
+									elseif($campo['contratacao'] == 2)
+									{
+										echo "<td class='list_description'>Sem cachê</td>";
+									}
+									elseif($campo['contratacao'] == 3)
+									{
+										echo "<td class='list_description'>Sem contratação</td>";
+									}
+									else
+									{
+										echo "<td class='list_description'>Não informada</td>";
+
+									}
 									if($campo['publicado'] == 2)
 									{
 										echo "<td class='list_description'>Sim</td>";

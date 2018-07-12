@@ -23,8 +23,14 @@ unset($_SESSION['idPf']);
 								echo "<a href='?perfil=busca_reset' class='btn btn-theme btn-lg btn-block'>Reiniciar Senha</a><br/>";
 							}
 						?>
-						<p>Aqui são inseridas as informações sobre o seu evento, incluindo pessoa jurídica e/ou física.</p>
-						<a href="?perfil=evento_apresentacao" class="btn btn-theme btn-lg btn-block">EVENTO</a>
+						<p>Aqui são inseridas as informações sobre o seu evento com cachê, incluindo pessoa jurídica e/ou física.</p>
+						<a href="?perfil=evento_apresentacao" class="btn btn-theme btn-lg btn-block">EVENTO COM CACHÊ</a>
+						<br />
+						<p>Aqui são inseridas as informações sobre o seu evento sem cachê, incluindo pessoa jurídica e/ou física.</p>
+						<a href="?perfil=evento_apresentacao_semcache" class="btn btn-theme btn-lg btn-block">EVENTO SEM CACHÊ</a>
+						<br />
+						<p>Aqui são inseridas as informações sobre o seu evento, que não terá contratação.</p>
+						<a href="?perfil=evento_apresentacao_semcontratacao" class="btn btn-theme btn-lg btn-block">EVENTO SEM CONTRATAÇÃO</a>
 						<br />
 						<?php
 						if($usr < 11)
