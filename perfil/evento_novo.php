@@ -21,7 +21,7 @@
 							<label>Tipo de Evento *</label>
 							<select class="form-control" name="idTipoEvento" id="inputSubject" >
 								<option value="1"></option>
-								<?php echo geraOpcao("tipo_evento","") ?>
+								<?php echo geraOpcaoPublicado("tipo_evento","") ?>
 							</select>
 						</div>
 					</div>

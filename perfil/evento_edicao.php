@@ -99,7 +99,7 @@ $evento = recuperaDados("evento","id",$idEvento);
 							<label>Tipo de Evento *</label>
 							<select class="form-control" name="idTipoEvento" id="inputSubject" >
 								<option>Selecione...</option>
-								<<?php echo geraOpcao("tipo_evento",$evento['idTipoEvento']) ?>
+								<<?php echo geraOpcaoPublicado("tipo_evento",$evento['idTipoEvento']) ?>
 							</select>
 						</div>
 					</div>
