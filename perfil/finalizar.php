@@ -72,13 +72,14 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf)
 			$arq4 = "list.id = '96' OR";
 			$arq5 = "list.id = '97' OR";
 			$arq6 = "list.id = '98' OR";
-			$arq7 = "list.id = '105')";
+			$arq7 = "list.id = '105' OR";
+			$arq8 = "list.id = '108')";
 			$sql = "SELECT *
 				FROM upload_lista_documento as list
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
 				AND arq.idTipoPessoa = '3'
-				$arq1 $arq2 $arq3 $arq4 $arq5 $arq6 $arq7
+				$arq1 $arq2 $arq3 $arq4 $arq5 $arq6 $arq7 $arq8
 				AND arq.publicado = '1'";
 		break;
 		default:
