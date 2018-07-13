@@ -132,6 +132,8 @@ if(isset($_POST['apagar']))
 
 
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
+$evento_pf = recuperaDados("evento","id",$evento);
+
 ?>
 
 <section id="list_items" class="home-section bg-white">
@@ -277,32 +279,34 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
 				<!-- Botão para Voltar e Prosseguir -->
 				<div class="form-group">
+					<?php
+					if ($evento_pf['contratacao'] == 2)
+					{
+					?>	
+					<div class="col-md-offset-2 col-md-2">
+						<form class="form-horizontal" role="form" action="?perfil=informacoes_complementares_pf" method="post">
+							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
+						</form>
+					</div>
+					<?php
+					}
+					else
+					{
+					?>
 					<div class="col-md-offset-2 col-md-2">
 						<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pf" method="post">
 							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
 						</form>
 					</div>
-				</div>
-				<?php
-					if(isset($_SESSION['idEvento']))
-					{
-					?>
-						<div class="col-md-offset-4 col-md-2">
-							<form class="form-horizontal" role="form" action="?perfil=finalizar" method="post">
-								<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
-							</form>
-						</div>
 					<?php
-					}else{
-				?>
-				<div class="col-md-offset-4 col-md-2">
-					<form class="form-horizontal" role="form" action="?perfil=final_pf" method="post">
-						<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
-					</form>
+					}
+					?>	
 				</div>
-				<?php
-				}
-				?>
+					<div class="col-md-offset-4 col-md-2">
+						<form class="form-horizontal" role="form" action="?perfil=finalizar" method="post">
+							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
+						</form>
+					</div>
 			</div>
 		</div>
 		</div>

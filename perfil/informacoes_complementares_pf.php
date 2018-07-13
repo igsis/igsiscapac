@@ -103,7 +103,7 @@ if(isset($_POST['apagar']))
 
 
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
-
+$evento_pf = recuperaDados("evento","id",$evento);
 ?>
 
 <section id="list_items" class="home-section bg-white">
@@ -212,7 +212,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 						</form>
 					</div>
 					<?php
-					if ($evento['contratacao'] == 2)
+					if ($evento_pf['contratacao'] == 2)
 					{
 					?>	
 					<div class="col-md-offset-4 col-md-2">

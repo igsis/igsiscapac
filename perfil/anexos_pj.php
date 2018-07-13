@@ -4,6 +4,8 @@ $idPj = isset($_SESSION['idPj']) ? $_SESSION['idPj'] : null;
 $contador = 0;
 $tipoPessoa = 2;
 $pj = recuperaDados("pessoa_juridica","id",$idPj);
+$evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
+
 
 if(isset($_POST["enviar"]))
 {
@@ -126,7 +128,7 @@ if(isset($_POST['apagar']))
 
 
 $pj = recuperaDados("pessoa_juridica","id",$idPj);
-
+$evento_pj = recuperaDados("evento","id",$evento);
 ?>
 
 
@@ -233,45 +235,34 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 
 				<!-- Botão para Voltar -->
 				<div class="form-group">
+					<?php
+					if ($evento_pj['contratacao'] == 2)
+					{
+					?>	
 					<div class="col-md-offset-2 col-md-2">
-						<?php
-						if(isset($_SESSION['idEvento']))
-						{
-						?>
-							<form class="form-horizontal" role="form" action="?perfil=declaracao_exclusividade_pj" method="post">
-						<?php
-						}
-						else
-						{
-						?>
-							<form class="form-horizontal" role="form" action="?perfil=arquivos_dados_bancarios_pj" method="post">
-						<?php
-						}
-						?>
+						<form class="form-horizontal" role="form" action="?perfil=informacoes_complementares_pj" method="post">
 							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
 						</form>
 					</div>
+					<?php
+					}
+					else
+					{
+					?>
+					<div class="col-md-offset-2 col-md-2">
+						<form class="form-horizontal" role="form" action="?perfil=arquivos_dados_bancarios_pj" method="post">
+							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+						</form>
+					</div>
+					<?php
+					}
+					?>	
 					<!-- Botão para Avançar -->
-						<?php
-						if(isset($_SESSION['idEvento']))
-						{
-						?>
-							<div class="col-md-offset-4 col-md-2">
-								<form class="form-horizontal" role="form" action="?perfil=finalizar" method="post">
-									<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
-								</form>
-							</div>
-						<?php
-						} else {
-						?>
-						<div class="col-md-offset-4 col-md-2">
-								<form class="form-horizontal" role="form" action="?perfil=final_pj" method="post">
-									<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
-								</form>
-							</div>
-						<?php
-						}
-						?>
+					<div class="col-md-offset-4 col-md-2">
+						<form class="form-horizontal" role="form" action="?perfil=finalizar" method="post">
+							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
+						</form>
+					</div>
 				</div>
 			</div>
 	</div>

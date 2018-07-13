@@ -1,6 +1,7 @@
 ﻿<?php
 $con = bancoMysqli();
 $idPj = $_SESSION['idPj'];
+$evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 
 if(isset($_POST['cadastrarJuridica']))
 {
@@ -22,6 +23,7 @@ if(isset($_POST['cadastrarJuridica']))
 }
 
 $pj = recuperaDados("pessoa_juridica","id",$idPj);
+$evento_pj = recuperaDados("evento","id",$evento);
 
 ?>
 
@@ -52,13 +54,29 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>	
 					</div>
+					<?php
+					if ($evento_pj['contratacao'] == 2)
+					{
+					?>	
+					<div class="col-md-offset-4 col-md-2">
+						<form class="form-horizontal" role="form" action="?perfil=anexos_pj" method="post">
+							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
+						</form>
+					</div>
+					<?php
+					}
+					else
+					{
+					?>
 					<div class="col-md-offset-4 col-md-2">
 						<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pj" method="post">	
 							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>	
-					</div>					
+					</div>	
+					<?php
+					}
+					?>
 				</div>
-				
 			</div>
 		</div>
 	</div>
