@@ -187,106 +187,111 @@ if($produtor['telefone1'] == NULL)
 	$i = 1;
 }
 $idTipoPessoa = $evento['idTipoPessoa'];
-if($idTipoPessoa == 2)
+
+if($evento['contratacao'] != 3)
 {
-	$pj = recuperaDados("pessoa_juridica","id",$evento['idPj']);
-	if($pj['razaoSocial'] == NULL)
+
+	if($idTipoPessoa == 2)
 	{
-		$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pj'>Razão Social</a><br/>";
+		$pj = recuperaDados("pessoa_juridica","id",$evento['idPj']);
+		if($pj['razaoSocial'] == NULL)
+		{
+			$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pj'>Razão Social</a><br/>";
+			$i = 1;
+		}
+		if($pj['cnpj'] == NULL)
+		{
+			$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pj'>CNPJ</a><br/>";
+			$i = 1;
+		}
+		if($pj['telefone1'] == NULL)
+		{
+			$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pj'>Celular da empresa</a><br/>";
+			$i = 1;
+		}
+		if($pj['email'] == NULL)
+		{
+			$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pj'>E-mail da empresa</a><br/>";
+			$i = 1;
+		}
+		if($pj['cep'] == NULL)
+		{
+			$mensagem = $mensagem."<a href='index.php?perfil=endereco_pj'>CEP da empresa</a><br/>";
+			$i = 1;
+		}
+		if($pj['numero'] == NULL)
+		{
+			$mensagem = $mensagem."<a href='index.php?perfil=endereco_pj'>Número do endereço da empresa</a><br/>";
+			$i = 1;
+		}
+		if($pj['idRepresentanteLegal1'] == NULL)
+		{
+			$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj_cadastro&id_pj=21'>Dados do representante legal</a><br/>";
+			$i = 1;
+		}
+		$representante = recuperaDados("representante_legal","id",$pj['idRepresentanteLegal1']);
+		if($representante['nome'] == NULL)
+		{
+			$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj_cadastro&id_pj=21'>Nome do Representante Legal 1</a><br/>";
+			$i = 1;
+		}
+		if($representante['rg'] == NULL)
+		{
+			$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj_cadastro&id_pj=21'>RG do Representante Legal 1</a><br/>";
+			$i = 1;
+		}
+		if($representante['cpf'] == NULL)
+		{
+			$mensagem = $mensagem."<a href='index.php?perfil='>CPF do Representante Legal 1</a><br/>";
+			$i = 1;
+		}
+	}
+	# Pessoa física
+	$pf = recuperaDados("pessoa_fisica","id",$evento['idPf']);
+	if($pf['nome'] == NULL)
+	{
+		$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>Nome do artista</a><br/>";
 		$i = 1;
 	}
-	if($pj['cnpj'] == NULL)
+	if($pf['nomeArtistico'] == NULL)
 	{
-		$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pj'>CNPJ</a><br/>";
+		$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>Nome Artístico</a><br/>";
 		$i = 1;
 	}
-	if($pj['telefone1'] == NULL)
+	if($pf['rg'] == NULL)
 	{
-		$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pj'>Celular da empresa</a><br/>";
+		$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>RG do artista</a><br/>";
 		$i = 1;
 	}
-	if($pj['email'] == NULL)
+	if($pf['cpf'] == NULL)
 	{
-		$mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pj'>E-mail da empresa</a><br/>";
+		$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>CPF do artista</a><br/>";
 		$i = 1;
 	}
-	if($pj['cep'] == NULL)
+	if($pf['telefone1'] == NULL)
 	{
-		$mensagem = $mensagem."<a href='index.php?perfil=endereco_pj'>CEP da empresa</a><br/>";
+		$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>Telefone do artista</a><br/>";
 		$i = 1;
 	}
-	if($pj['numero'] == NULL)
+	if($pf['email'] == NULL)
 	{
-		$mensagem = $mensagem."<a href='index.php?perfil=endereco_pj'>Número do endereço da empresa</a><br/>";
+		$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>E-mail do artista</a><br/>";
 		$i = 1;
 	}
-	if($pj['idRepresentanteLegal1'] == NULL)
+	if($tipoPessoa == 1)
 	{
-		$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj_cadastro&id_pj=21'>Dados do representante legal</a><br/>";
-		$i = 1;
+		if($pf['cep'] == NULL)
+		{
+			$mensagem = $mensagem."<a href='index.php?perfil=endereco_pf'>CEP do artista</a><br/>";
+			$i = 1;
+		}
+		if($pf['numero'] == NULL)
+		{
+			$mensagem = $mensagem."<a href='index.php?perfil=endereco_pf'>Número do endereço do artista</a><br/>";
+			$i = 1;
+		}
 	}
-	$representante = recuperaDados("representante_legal","id",$pj['idRepresentanteLegal1']);
-	if($representante['nome'] == NULL)
-	{
-		$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj_cadastro&id_pj=21'>Nome do Representante Legal 1</a><br/>";
-		$i = 1;
-	}
-	if($representante['rg'] == NULL)
-	{
-		$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj_cadastro&id_pj=21'>RG do Representante Legal 1</a><br/>";
-		$i = 1;
-	}
-	if($representante['cpf'] == NULL)
-	{
-		$mensagem = $mensagem."<a href='index.php?perfil='>CPF do Representante Legal 1</a><br/>";
-		$i = 1;
-	}
-}
-# Pessoa fica
-$pf = recuperaDados("pessoa_fisica","id",$evento['idPf']);
-if($pf['nome'] == NULL)
-{
-	$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>Nome do artista</a><br/>";
-	$i = 1;
-}
-if($pf['nomeArtistico'] == NULL)
-{
-	$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>Nome Artístico</a><br/>";
-	$i = 1;
-}
-if($pf['rg'] == NULL)
-{
-	$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>RG do artista</a><br/>";
-	$i = 1;
-}
-if($pf['cpf'] == NULL)
-{
-	$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>CPF do artista</a><br/>";
-	$i = 1;
-}
-if($pf['telefone1'] == NULL)
-{
-	$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>Telefone do artista</a><br/>";
-	$i = 1;
-}
-if($pf['email'] == NULL)
-{
-	$mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>E-mail do artista</a><br/>";
-	$i = 1;
-}
-if($tipoPessoa == 1)
-{
-	if($pf['cep'] == NULL)
-	{
-		$mensagem = $mensagem."<a href='index.php?perfil=endereco_pf'>CEP do artista</a><br/>";
-		$i = 1;
-	}
-	if($pf['numero'] == NULL)
-	{
-		$mensagem = $mensagem."<a href='index.php?perfil=endereco_pf'>Número do endereço do artista</a><br/>";
-		$i = 1;
-	}
-}
+}	
 if(isset($_POST['enviar']))
 {
 	$sql_envia = "UPDATE `evento` SET `publicado`= 2 WHERE `id` = '$idEvento'";
@@ -347,47 +352,53 @@ if(isset($_POST['enviar']))
 					<p align="justify"><strong>E-mail:</strong> <?php echo $produtor['email'] ?></p>
 					<p align="justify"><strong>Telefone:</strong> <?php echo $produtor['telefone1']." | ".$produtor['telefone2'] ?></p>
 					<br/>
-					<h5>Informações de Contratação</h5>
-					<p align="justify"><strong>Tipo:</strong> <?php echo $tipoPessoa['tipoPessoa'] ?></p>
-					<br/>
-					<?php
-					if($evento['idTipoPessoa'] == 2)
+
+					<?php 
+					if ($evento['contratacao'] != 3)
 					{
-					?>
-						<p align="justify"><strong>Razão Social:</strong> <?php echo $pessoaJuridica['razaoSocial'] ?></p>
-						<p align="justify"><strong>CNPJ:</strong> <?php echo $pessoaJuridica['cnpj'] ?></p>
-						<p align="justify"><strong>CCM:</strong> <?php echo $pessoaJuridica['ccm'] ?></p>
-						<p align="justify"><strong>CEP:</strong> <?php echo $pessoaJuridica['cep'] ?></p>
-						<p align="justify"><strong>Número:</strong> <?php echo $pessoaJuridica['numero'] ?></p>
-						<p align="justify"><strong>Complemento:</strong> <?php echo $pessoaJuridica['complemento'] ?></p>
-						<p align="justify"><strong>Telefone:</strong> <?php echo $pessoaJuridica['telefone1']." | ".$pessoaJuridica['telefone2']." | ".$pessoaJuridica['telefone3'] ?></p>
-						<p align="justify"><strong>E-mail:</strong> <?php echo $pessoaJuridica['email'] ?></p>
-						<br/>
-						<p align="justify"><strong>REPRESENTANTE LEGAL #1</strong></p>
-						<p align="justify"><strong>Nome:</strong> <?php echo $representante1['nome'] ?></p>
-						<p align="justify"><strong>RG/RNE/PASSAPORTE:</strong> <?php echo $representante1['rg'] ?></p>
-						<p align="justify"><strong>CPF:</strong> <?php echo $representante1['cpf'] ?></p>
+					?>	
+						<h5>Informações de Contratação</h5>
+						<p align="justify"><strong>Tipo:</strong> <?php echo $tipoPessoa['tipoPessoa'] ?></p>
 						<br/>
 						<?php
-						if($representante2 != NULL)
+						if($evento['idTipoPessoa'] == 2)
 						{
 						?>
-							<p align="justify"><strong>REPRESENTANTE LEGAL #2</strong></p>
-							<p align="justify"><strong>Nome:</strong> <?php echo $representante2['nome'] ?></p>
-							<p align="justify"><strong>RG/RNE/PASSAPORTE:</strong> <?php echo $representante2['rg'] ?></p>
-							<p align="justify"><strong>CPF:</strong> <?php echo $representante2['cpf'] ?></p>
+							<p align="justify"><strong>Razão Social:</strong> <?php echo $pessoaJuridica['razaoSocial'] ?></p>
+							<p align="justify"><strong>CNPJ:</strong> <?php echo $pessoaJuridica['cnpj'] ?></p>
+							<p align="justify"><strong>CCM:</strong> <?php echo $pessoaJuridica['ccm'] ?></p>
+							<p align="justify"><strong>CEP:</strong> <?php echo $pessoaJuridica['cep'] ?></p>
+							<p align="justify"><strong>Número:</strong> <?php echo $pessoaJuridica['numero'] ?></p>
+							<p align="justify"><strong>Complemento:</strong> <?php echo $pessoaJuridica['complemento'] ?></p>
+							<p align="justify"><strong>Telefone:</strong> <?php echo $pessoaJuridica['telefone1']." | ".$pessoaJuridica['telefone2']." | ".$pessoaJuridica['telefone3'] ?></p>
+							<p align="justify"><strong>E-mail:</strong> <?php echo $pessoaJuridica['email'] ?></p>
+							<br/>
+							<p align="justify"><strong>REPRESENTANTE LEGAL #1</strong></p>
+							<p align="justify"><strong>Nome:</strong> <?php echo $representante1['nome'] ?></p>
+							<p align="justify"><strong>RG/RNE/PASSAPORTE:</strong> <?php echo $representante1['rg'] ?></p>
+							<p align="justify"><strong>CPF:</strong> <?php echo $representante1['cpf'] ?></p>
+							<br/>
+							<?php
+							if($representante2 != NULL)
+							{
+							?>
+								<p align="justify"><strong>REPRESENTANTE LEGAL #2</strong></p>
+								<p align="justify"><strong>Nome:</strong> <?php echo $representante2['nome'] ?></p>
+								<p align="justify"><strong>RG/RNE/PASSAPORTE:</strong> <?php echo $representante2['rg'] ?></p>
+								<p align="justify"><strong>CPF:</strong> <?php echo $representante2['cpf'] ?></p>
+								<br/>
+							<?php
+							}
+							?>
+							<p align="justify"><strong>Banco:</strong> <?php echo recuperaBanco($pessoaJuridica['codigoBanco']) ?></p>
+							<p align="justify"><strong>Agência:</strong> <?php echo $pessoaJuridica['agencia'] ?></p>
+							<p align="justify"><strong>Conta:</strong> <?php echo $pessoaJuridica['conta'] ?></p>
+							<p align="justify"><strong>Data da última atualização do cadastro:</strong> <?php echo exibirDataHoraBr($pessoaJuridica['dataAtualizacao']) ?></p>
 							<br/>
 						<?php
 						}
 						?>
-						<p align="justify"><strong>Banco:</strong> <?php echo recuperaBanco($pessoaJuridica['codigoBanco']) ?></p>
-						<p align="justify"><strong>Agência:</strong> <?php echo $pessoaJuridica['agencia'] ?></p>
-						<p align="justify"><strong>Conta:</strong> <?php echo $pessoaJuridica['conta'] ?></p>
-						<p align="justify"><strong>Data da última atualização do cadastro:</strong> <?php echo exibirDataHoraBr($pessoaJuridica['dataAtualizacao']) ?></p>
-						<br/>
-					<?php
-					}
-					?>
+
 					<p align="justify"><strong>ARTISTA</strong></p>
 					<p align="justify"><strong>Nome:</strong> <?php echo $pessoaFisica['nome'] ?></p>
 					<p align="justify"><strong>Nome Artístico:</strong> <?php echo $pessoaFisica['nomeArtistico'] ?></p>
@@ -414,57 +425,90 @@ if(isset($_POST['enviar']))
 					}
 					?>
 					<br/>
-
+	
 					<div class="table-responsive list_info"><h6>Arquivo(s) de Eventos</h6>
 						<?php listaArquivoCamposMultiplos1($idEvento,5); ?>
 					</div>
+				<?php
+				}
+				?>
 
 					<div class="table-responsive list_info"><h6>Arquivo(s) para Comunicação/Produção</h6>
 						<?php listaArquivosComProd($idEvento); ?>
 					</div>
 
-					<?php
-					if($evento['idTipoPessoa'] == 2)
+					<?php 
+					if ($evento['contratacao'] != 3)
 					{
-					?>
-						<div class="table-responsive list_info"><h6>Arquivo(s) de Pessoa Jurídica</h6>
-							<?php listaArquivoCamposMultiplos1($pessoaJuridica['id'],2); ?>
-						</div>
+					?>	
+						<?php
+						if($evento['idTipoPessoa'] == 2)
+						{
+						?>
+							<div class="table-responsive list_info"><h6>Arquivo(s) de Pessoa Jurídica</h6>
+								<?php listaArquivoCamposMultiplos1($pessoaJuridica['id'],2); ?>
+							</div>
 
-						<div class="table-responsive list_info"><h6>Arquivo(s) Representante Legal</h6>
-							<?php listaArquivoCamposMultiplos1($pessoaJuridica['id'],3); ?>
+							<div class="table-responsive list_info"><h6>Arquivo(s) Representante Legal</h6>
+								<?php listaArquivoCamposMultiplos1($pessoaJuridica['id'],3); ?>
+							</div>
+						<?php
+						}
+						else
+						{	
+						?>
+						<div class="table-responsive list_info"><h6>Arquivo(s) de Pessoa Física</h6>
+							<?php listaArquivoCamposMultiplos1($pessoaFisica['id'],1); ?>
 						</div>
+						<?php
+						}
+						?>
 					<?php
 					}
-					?>
-
-					<div class="table-responsive list_info"><h6>Arquivo(s) de Pessoa Física</h6>
-						<?php listaArquivoCamposMultiplos1($pessoaFisica['id'],1); ?>
-					</div>
-
+					?>	
 				</div>
 				<!-- Fim detalhes do evento -->
 				<!-- Botão para Voltar -->
 				<div class="form-group">
-					<?php
-					if ($evento['idTipoPessoa'] == 1) {
+					<?php 
+					if ($evento['contratacao'] != 3)
+					{
 					?>	
+						<?php
+						if ($evento['idTipoPessoa'] == 1) 
+						{
+						?>	
+						<div class="col-md-offset-2 col-md-2">
+								<form class="form-horizontal" role="form" action="?perfil=anexos_pf" method="post">
+								<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaFisica ?>">
+							</form>
+						</div>
+						<?php
+						}
+						else
+						{
+						?>	
+						<div class="col-md-offset-2 col-md-2">
+							<form class="form-horizontal" role="form" action="?perfil=anexos_pj" method="post">
+								<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+							</form>
+						</div>	
+						<?php
+						 }
+						?>
+					<?php
+					}
+					else
+					{
+					?>
 					<div class="col-md-offset-2 col-md-2">
-							<form class="form-horizontal" role="form" action="?perfil=anexos_pf" method="post">
-							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaFisica ?>">
+						<form class="form-horizontal" role="form" action="?perfil=arquivos_com_prod" method="post">
+							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
 						</form>
 					</div>
 					<?php
-				}else{
-				?>	
-				<div class="col-md-offset-2 col-md-2">
-					<form class="form-horizontal" role="form" action="?perfil=anexos_pj" method="post">
-						<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
-					</form>
-				</div>	
-				<?php
-				 }
-				?>
+					}
+					?>
 				<!-- FIM Botão para Voltar -->
 						<div class="col-md-offset-4 col-md-2">
 								<?php

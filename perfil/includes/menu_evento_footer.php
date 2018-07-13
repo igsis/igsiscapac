@@ -36,23 +36,23 @@ function menuEvento($perfil,$voltar,$avancar)
 				        $avancar = "arquivos_evento";
 				        $menu = menuEvento($perfil,$voltar,$avancar);
 				    break;
+				    case 'evento_semcache_edicao':
+				        $perfil = "evento_semcache_edicao";
+				        $voltar = "evento";
+				        $avancar = "arquivos_evento";
+				        $menu = menuEvento($perfil,$voltar,$avancar);
+				    break;
+				    case 'evento_semcontratacao_edicao':
+				    	$perfil = "evento_semcontratacao_edicao";
+				        $voltar = "evento";
+				        $avancar = "produtor";
+				        $menu = menuEvento($perfil,$voltar,$avancar);
+				    break;   
 				    case 'arquivos_evento':
 				        $perfil = "arquivos_evento";
 				        $voltar = "evento_edicao";
 				        $avancar = "produtor";
 				        $menu = menuEvento($perfil,$voltar,$avancar);
-				    break;
-				    case 'produtor':
-				        $perfil = "produtor_edicao";
-				        $voltar = "arquivos_evento";
-				        $avancar = "arquivos_com_prod";
-				        $menu = menuEvento($perfil,$voltar,$avancar);
-				    break;
-				    case 'arquivos_com_prod':
-				        $perfil = "arquivos_com_prod";
-				        $voltar = "produtor_edicao";
- 						$avancar = "proponente";
- 				        $menu = menuEvento($perfil,$voltar,$avancar);
 				    break;
 				    case 'proponente':
 				        $perfil = "proponente";

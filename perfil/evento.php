@@ -118,6 +118,8 @@ $usuario = recuperaDados("usuario","id",$idUser);
 									{
 										echo "<td class='list_description'>Não</td>";
 									}
+									if($campo['contratacao'] == 1)
+									{	
 									echo "
 										<td class='list_description'>
 											<form method='POST' action='?perfil=evento_edicao'>
@@ -125,6 +127,38 @@ $usuario = recuperaDados("usuario","id",$idUser);
 												<input type ='submit' class='btn btn-theme btn-block' value='carregar'>
 											</form>
 										</td>";
+									}
+									elseif($campo['contratacao'] == 2)
+									{
+									echo "
+										<td class='list_description'>
+											<form method='POST' action='?perfil=evento_semcache_edicao'>
+												<input type='hidden' name='carregar' value='".$campo['id']."' />
+												<input type ='submit' class='btn btn-theme btn-block' value='carregar'>
+											</form>
+										</td>";
+									}
+									elseif($campo['contratacao'] == 3)
+									{
+									echo "
+										<td class='list_description'>
+											<form method='POST' action='?perfil=evento_semcontratacao_edicao'>
+												<input type='hidden' name='carregar' value='".$campo['id']."' />
+												<input type ='submit' class='btn btn-theme btn-block' value='carregar'>
+											</form>
+										</td>";
+									}
+									else
+									{	
+									echo "
+										<td class='list_description'>
+											<form method='POST' action='?perfil=evento_edicao'>
+												<input type='hidden' name='carregar' value='".$campo['id']."' />
+												<input type ='submit' class='btn btn-theme btn-block' value='carregar'>
+											</form>
+										</td>";	
+									}
+
 									if($campo['publicado'] == 1)
 									{
 										echo "
