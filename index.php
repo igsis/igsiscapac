@@ -61,13 +61,17 @@ if(isset($_POST['login']))
 		<script src="visual/js/modernizr.custom.js"></script>
 	</head>
 	<body>
-		<div id="bar">
-			<p id="p-bar"><img src="visual/images/logo_cultura_h.png" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IGSIS-CAPAC<!--<img src="images/logo_pequeno.png" />-->
-			</p>
-		</div>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
+    <div id="bar">
+        <div class="col-xs-2" style="padding: 10px">
+            <img src="visual/images/logo_cultura_h.png">
+        </div>
+        <div class="col-md-2" style="padding: 13px">
+            <span style="color: #fff">IGSIS-CAPAC</span>
+        </div>
+        <div class="col-md-offset-4 col-md-4" style="padding: 5px">
+            <span style="color: #fff">Problemas com o sistema?<br><a href="mailto:sistema.igsis@gmail.com">sistema.igsis@gmail.com</a></span>
+        </div>
+    </div>
 
 		<section id="contact" class="home-section bg-white">
 			<div class="container">
@@ -122,13 +126,17 @@ if(isset($_POST['login']))
 			<p>&nbsp;</p>
 			<footer>
 				<div class="container">
-					<table width="100%">
-						<tr>
-							<td width="20%"></td>
-							<td align="center"><font color="#ccc">2017 @ IGSIS - CAPAC<br/>Secretaria Municipal de Cultura<br/>Prefeitura de São Paulo</font></td>
-							<td><img src="visual/images/logo_igsis_azul.png" align="right"/></td>
-						</tr>
-					</table>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="visual/images/logo_cultura_q.png">
+                        </div>
+                        <div class="col-md-offset-2 col-md-4" style="padding: 10px">
+                            <span style="color: #ccc; "><?= date("Y") ?> @ IGSIS - CAPAC<br>Secretaria Municipal de Cultura<br>Prefeitura de São Paulo</span>
+                        </div>
+                        <div class="col-md-offset-2 col-md-2">
+                            <img src="visual/images/logo_igsis_azul.png">
+                        </div>
+                    </div>
 				</div>
 			</footer>
 		</section>

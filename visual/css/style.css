@@ -12,7 +12,7 @@ General
 ================================= */
 body{
 	margin:0;
-	padding:0;
+	padding-top:60px;
 	text-align: center;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
@@ -580,8 +580,7 @@ more media queries
 
 #bar{
 	background:#2b2b2b;
-	height:50px;
-	line-height:100px;
+	height:auto;
 	position:fixed;
 	width:100%;
 	z-index:999;
