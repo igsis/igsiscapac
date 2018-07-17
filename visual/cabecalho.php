@@ -35,7 +35,7 @@ else
                     <span style="color: #fff">IGSIS-CAPAC</span>
                 </div>
                 <div class="col-md-offset-4 col-md-4" style="padding: 5px">
-                    <span style="color: #fff">Problemas com o sistema?<br><a href="mailto:sistema.igsis@gmail.com">sistema.igsis@gmail.com</a></span>
+                    <span style="color: #fff">Suporte:<br><a href="mailto:sistema.igsis@gmail.com">sistema.igsis@gmail.com</a></span>
                 </div>
         </div>
 		<!--<div id="bar">
