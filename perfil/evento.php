@@ -36,6 +36,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
                             <form class="form-horizontal" role="form" action="?perfil=evento_novo" method="post">
+                                <input type="hidden" name="contratacao" value="1">
                                 <input type="submit" value="Inserir novo evento com cachê" class="btn btn-theme btn-lg btn-block">
                             </form>
                         </div>
@@ -44,6 +45,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
                             <form class="form-horizontal" role="form" action="?perfil=evento_semcache_novo" method="post">
+                                <input type="hidden" name="contratacao" value="2">
                                 <input type="submit" value="Inserir novo evento sem cachê" class="btn btn-theme btn-lg btn-block">
                             </form>
                         </div>
@@ -52,6 +54,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
                             <form class="form-horizontal" role="form" action="?perfil=evento_semcontratacao_novo" method="post">
+                                <input type="hidden" name="contratacao" value="3">
                                 <input type="submit" value="Inserir novo evento sem contratação" class="btn btn-theme btn-lg btn-block">
                             </form>
                         </div>
@@ -122,7 +125,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
 										echo "<td class='list_description'>Não</td>";
 									}
 									if($campo['contratacao'] == 1)
-									{	
+									{
 									echo "
 										<td class='list_description'>
 											<form method='POST' action='?perfil=evento_edicao'>
@@ -152,14 +155,14 @@ $usuario = recuperaDados("usuario","id",$idUser);
 										</td>";
 									}
 									else
-									{	
+									{
 									echo "
 										<td class='list_description'>
 											<form method='POST' action='?perfil=evento_edicao'>
 												<input type='hidden' name='carregar' value='".$campo['id']."' />
 												<input type ='submit' class='btn btn-theme btn-block' value='carregar'>
 											</form>
-										</td>";	
+										</td>";
 									}
 
 									if($campo['publicado'] == 1)
