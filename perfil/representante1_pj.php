@@ -32,7 +32,7 @@ if ($pj['idRepresentanteLegal1'] == 0) // Não possui representante legal cadast
 {
 ?>
 	<section id="services" class="home-section bg-white">
-		<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
+		<div class="container"><?php include 'includes/menu_evento.php'; ?>
 			<div class="row">
 				<div class="col-md-offset-2 col-md-8">
 					<div class="section-heading">
