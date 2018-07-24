@@ -171,7 +171,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
 											<td class='list_description'>
 												<form method='POST' action='?perfil=evento'>
 													<input type='hidden' name='apagar' value='".$campo['id']."' />
-													<button class='btn btn-theme' type='button' data-toggle='modal' data-target='#confirmApagar'>Apagar</button>
+													<button class='btn btn-theme' type='button' data-toggle='modal' data-target='#confirmApagar' data-message='".$campo['nomeEvento']."'>Apagar</button>
 													<!--<input type ='submit' class='btn btn-theme  btn-block' value='apagar' data-toggle='modal' data-target='#confirmApagar'>-->
 												</form>
 											</td>";
@@ -191,7 +191,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
                                             <h4 class="modal-title">Deseja excluir o evento?</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <p>&nbsp;</p>
+                                            <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
