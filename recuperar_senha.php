@@ -122,10 +122,20 @@
 				<h6>ESQUECEU SUA SENHA?</h6>
 				<h5><?php if(isset($mensagem)){echo $mensagem;}?></h5>
 				<hr>
-				
-				<?php
-					if ($tentativa >= 3)
-					{?>
+                <?php
+                if( $tentativa > 0 && $tentativa <= 3){ ?>
+                    <div class="form-group">
+                        <h5 class="alert alert-info" role="alert">
+                            Tentativa:
+                            <?php
+                                echo $tentativa;
+                            ?> de 3
+                        </h5>
+                    </div>
+                <?php
+                }
+
+                if ($tentativa >= 3) {?>
 							<div class="col-md-offset-4 col-md-4 form-group">
 								<a href="https://docs.google.com/forms/d/e/1FAIpQLSf8XlUkbEV7L62-2hhs0nEidtbixHBY9CV1KIh6oI7qZm_cHg/viewform" target="_blank" class="btn btn-theme btn-md btn-block form-control">Utilize nosso Formulário</a>
 							</div>
