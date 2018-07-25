@@ -172,6 +172,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
 												<form method='POST' action='?perfil=evento'>
 													<input type='hidden' name='apagar' value='".$campo['id']."' />
 													<button class='btn btn-theme' type='button' data-toggle='modal' data-target='#confirmApagar' data-message='".$campo['nomeEvento']."'>Apagar</button>
+													<!--<input type ='submit' class='btn btn-theme  btn-block' value='apagar' data-toggle='modal' data-target='#confirmApagar'>-->
 												</form>
 											</td>";
 									}
