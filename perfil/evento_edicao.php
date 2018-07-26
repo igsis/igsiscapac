@@ -77,7 +77,7 @@ if(isset($_SESSION['idEvento']))
 
 
 
-$evento = recuperaDados("evento","id",$idEvento);
+$evento = recuperaDados("evento","id", $idEvento);
 ?>
 <section id="list_items" class="home-section bg-white">
     <div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>

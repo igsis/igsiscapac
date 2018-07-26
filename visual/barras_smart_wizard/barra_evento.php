@@ -27,7 +27,6 @@ if ($contratacao != 3) {
         $modalidade = "semcache_";
     }
             $urlMenuEvento = array(
-        '/igsiscapac/visual/index.php?perfil=evento_'.$modalidade.'novo',
         '/igsiscapac/visual/index.php?perfil=evento_'.$modalidade.'edicao',
         '/igsiscapac/visual/index.php?perfil=arquivos_evento',
         '/igsiscapac/visual/index.php?perfil=produtor_novo',
@@ -37,15 +36,15 @@ if ($contratacao != 3) {
     );
     for ($i = 0; $i < count($urlMenuEvento); $i++) {
         if ($uri == $urlMenuEvento[$i]) {
-              if ($i == 0 || $i == 1) {
+              if ($i == 0) {
                 $acionar1 = 'active loading';
-            } elseif ($i == 2) {
+            } elseif ($i == 1) {
                 $acionar2 = 'active loading';
-            } elseif ($i == 3 || $i == 4) {
+            } elseif ($i == 2 || $i == 3) {
                 $acionar3 = 'active loading';
-            } elseif ($i == 5) {
+            } elseif ($i == 4) {
                 $acionar4 = 'active loading';
-            } elseif ($i == 6) {
+            } elseif ($i == 5) {
                 $acionar5 = 'active loading';
             }
 
@@ -85,7 +84,6 @@ if ($contratacao != 3) {
 else
 {
     $urlMenuEvento = array(
-        '/igsiscapac/visual/index.php?perfil=evento_semcontratacao_novo',
         '/igsiscapac/visual/index.php?perfil=evento_semcontratacao_edicao',
         '/igsiscapac/visual/index.php?perfil=produtor_novo',
         '/igsiscapac/visual/index.php?perfil=produtor_edicao',
@@ -94,13 +92,13 @@ else
     );
     for ($i = 0; $i < count($urlMenuEvento); $i++) {
         if ($uri == $urlMenuEvento[$i]) {
-            if ($i == 0 || $i == 1) {
+            if ($i == 0) {
                 $acionar1 = 'active loading';
-            } elseif ($i == 2 || $i == 3) {
+            } elseif ($i == 1 || $i == 2) {
                 $acionar2 = 'active loading';
-            } elseif ($i == 4) {
+            } elseif ($i == 3) {
                 $acionar3 = 'active loading';
-            } elseif ($i == 5) {
+            } elseif ($i == 4) {
                 $acionar4 = 'active loading';
             }
 
