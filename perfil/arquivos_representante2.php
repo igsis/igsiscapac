@@ -2,7 +2,7 @@
 $con = bancoMysqli();
 $idPj = $_SESSION['idPj'];
 $tipoPessoa = "2";
-
+$evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 
 if(isset($_POST["enviar"]))
 {
@@ -102,6 +102,7 @@ if(isset($_POST['apagar']))
 }
 
 $pj = recuperaDados("pessoa_juridica","id",$idPj);
+$evento_pj = recuperaDados("evento","id",$evento);
 ?>
 
 <section id="list_items" class="home-section bg-white">
@@ -230,9 +231,18 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 						</form>
 					</div>
 					<div class="col-md-offset-4 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pj" method="post">
-							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
-						</form>
+                        <?php
+                        if($evento_pj['contratacao'] == 2){ ?>
+                            <form class="form-horizontal" role="form" action="?perfil=artista_pj" method="post">
+                                <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
+                            </form>
+                            <?php
+                        }else{ ?>
+                            <form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pj" method="post">
+                                <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
+                            </form>
+                        <?php }
+                        ?>
 					</div>
 				</div>
 
