@@ -74,7 +74,7 @@ else
   </thead>
 
 	<section id="contact" class="home-section bg-white">
-		<div class="container"><?php include 'includes/menu_interno_pf.php'; ?>
+		<div class="container"><div class="container"><?php include 'includes/menu_evento.php'; ?>
 			<div class="form-group">
 				<h3>INFORMAÇÕES INICIAIS</h3>
 			</div>
