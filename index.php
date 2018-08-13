@@ -70,7 +70,7 @@ if(isset($_POST['login']))
             <span style="color: #fff">IGSIS-CAPAC</span>
         </div>
         <div class="col-md-offset-4 col-md-4" style="padding: 5px">
-            <span style="color: #fff">Suporte:<br><i class="fab fa-whatsapp"></i> 96912-4884</span>
+            <span style="color: #fff">Suporte para o sistema:<br><i class="fab fa-whatsapp"></i> 96912-4884</span>
         </div>
     </div>
 
