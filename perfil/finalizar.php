@@ -226,25 +226,10 @@ if($evento['contratacao'] != 3)
 		}
 		if($pj['idRepresentanteLegal1'] == NULL)
 		{
-			$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj_cadastro&id_pj=21'>Dados do representante legal</a><br/>";
+			$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj'>Representante legal 1</a><br/>";
 			$i = 1;
 		}
-		$representante = recuperaDados("representante_legal","id",$pj['idRepresentanteLegal1']);
-		if($representante['nome'] == NULL)
-		{
-			$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj_cadastro&id_pj=21'>Nome do Representante Legal 1</a><br/>";
-			$i = 1;
-		}
-		if($representante['rg'] == NULL)
-		{
-			$mensagem = $mensagem."<a href='index.php?perfil=representante1_pj_cadastro&id_pj=21'>RG do Representante Legal 1</a><br/>";
-			$i = 1;
-		}
-		if($representante['cpf'] == NULL)
-		{
-			$mensagem = $mensagem."<a href='index.php?perfil='>CPF do Representante Legal 1</a><br/>";
-			$i = 1;
-		}
+
 	}
 	# Pessoa física
 	$pf = recuperaDados("pessoa_fisica","id",$evento['idPf']);
