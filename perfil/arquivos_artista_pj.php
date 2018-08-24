@@ -114,7 +114,7 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 										$envio = $con->query($query);
 										$row = $envio->fetch_array(MYSQLI_ASSOC);
 										
-										if(verificaArquivosExistentesPF($idPf,$row['id'])){
+										if(verificaArquivosExistentesPJ($idPf,$row['id'])){
 											echo '<div class="alert alert-success">O arquivo ' . $doc . ' já foi enviado.</div>';
 										}
 										else{
@@ -150,7 +150,7 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 										$envio = $con->query($query);
 										$row = $envio->fetch_array(MYSQLI_ASSOC);
 										
-										if(verificaArquivosExistentesPF($idPf,$row['id'])){
+										if(verificaArquivosExistentesPJ($idPf,$row['id'])){
 											echo '<div class="alert alert-success">O arquivo ' . $doc . ' já foi enviado.</div>';
 										}
 										else{ 
@@ -185,7 +185,7 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 										$envio = $con->query($query);
 										$row = $envio->fetch_array(MYSQLI_ASSOC);
 										
-										if(verificaArquivosExistentesPF($idPf,$row['id'])){
+										if(verificaArquivosExistentesPJ($idPf,$row['id'])){
 											echo '<div class="alert alert-success">O arquivo ' . $doc . ' já foi enviado.</div>';
 										}
 										else{ 
@@ -220,7 +220,7 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 										$envio = $con->query($query);
 										$row = $envio->fetch_array(MYSQLI_ASSOC);
 										
-										if(verificaArquivosExistentesPF($idPf,$row['id'])){
+										if(verificaArquivosExistentesPJ($idPf,$row['id'])){
 											echo '<div class="alert alert-success">O arquivo ' . $doc . ' já foi enviado.</div>';
 										}
 										else{ 
