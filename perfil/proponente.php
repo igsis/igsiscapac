@@ -39,11 +39,11 @@ if(isset($_POST['inserePj']))
 	}
 	else
 	{
-		$mensagem = "<font color='#FF0000'><strong>Erro ao inserir! Tente novamente./strong></font>";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao inserir! Tente novamente.</strong></font>";
 	}
 }
 
-if($idPf == NULL && $idPj == NULL)
+if(($idPf == NULL || $idPf == 0) && ($idPj == NULL || $idPj == 0))
 {
 ?>
 	<section id="list_items" class="home-section bg-white">
@@ -86,7 +86,7 @@ if($idPf == NULL && $idPj == NULL)
 }
 else
 {
-	if($idPj == NULL)
+	if($idPj == NULL || $idPj == 0)
 	{
 ?>
 		<section id="list_items" class="home-section bg-white">
