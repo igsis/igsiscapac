@@ -32,6 +32,9 @@ unset($_SESSION['idPf']);
 						<p>Aqui são inseridas as informações sobre o seu evento, que não terá contratação.</p>
 						<a href="?perfil=evento_apresentacao_semcontratacao" class="btn btn-theme btn-lg btn-block">EVENTO SEM CONTRATAÇÃO</a>
 						<br />
+                        <p>Aqui são inseridas as informações sobre os Oficineiros.</p>
+						<a href="?perfil=evento_apresentacao_oficinas" class="btn btn-theme btn-lg btn-block">OFICINAS</a>
+						<br />
 						<?php
 						if($usr < 11)
 						{
