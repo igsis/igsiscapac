@@ -2,10 +2,8 @@
 
 $con = bancoMysqli();
 $idPf = $_SESSION['idPf'];
-$pf = recuperaDados("pessoa_fisica","id",$idPf);
-
-
 $idUser = $_SESSION['idUser'];
+$pf = recuperaDados("pessoa_fisica","id",$idPf);
 $tipoPessoa = ($pf['oficineiro'] == 1) ? 4 : 1;
 $evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 
@@ -44,7 +42,7 @@ if(isset($_POST["enviar"]))
 		}
 		else
 		{
-			if($nome_arquivo != "")
+			if(($nome_arquivo != "") || ($nome_arquivo != NULL))
 			{
 				$nome_temporario = $_FILES['arquivo']['tmp_name'][$x];
 				$new_name = date("YmdHis")."_".semAcento($nome_arquivo); //Definindo um novo nome para o arquivo
@@ -64,6 +62,7 @@ if(isset($_POST["enviar"]))
 							if(file_exists($dir.$new_name))
 							{
 								$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
+                                echo '<script>window.location = "?perfil=arquivos_pf"</script>';
 								gravarLog($sql_insere_arquivo);
 							}
 							else
@@ -186,25 +185,25 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 								<tr>
 									<td width="50%"><td>
 								</tr>
-								<?php
-                                    $idDocumento = ($tipoPessoa == 4) ? 109 : 2;
-                                    if(verificaArquivosExistentesPF($idPf, $idDocumento, $tipoPessoa))
+                                <?php
+                                $idDocumento = ($tipoPessoa == 4) ? 109 : 2;
+                                if(verificaArquivosExistentesPF($idPf, $idDocumento, $tipoPessoa))
+                                {
+                                    echo '<div class="alert alert-success">O arquivo RG/RNE/PASSAPORTE já foi enviado.</div> ';
+                                }
+                                else
+                                {
+                                    $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idDocumento'";
+                                    $query_arquivos = mysqli_query($con,$sql_arquivos);
+                                    while($arq = mysqli_fetch_array($query_arquivos))
                                     {
-                                        echo '<div class="alert alert-success">O arquivo RG/RNE/PASSAPORTE já foi enviado.</div> ';
-                                    }
-                                    else
-                                    {
-                                        $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idDocumento'";
-                                        $query_arquivos = mysqli_query($con,$sql_arquivos);
-                                        while($arq = mysqli_fetch_array($query_arquivos))
-                                        {
-								?>
+                                ?>
                                             <tr>
                                                 <td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
                                             </tr>
                                 <?php
-									    }
-								    }
+                                    }
+                                }
                                 ?>
 							</table><br>
 						</td>	

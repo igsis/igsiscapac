@@ -4,7 +4,7 @@ $idUser= $_SESSION['idUser'];
 <section id="list_items" class="home-section bg-white">
     <div class="container"><?php include '../perfil/includes/menu_oficinas.php'; ?>
         <div class="form-group">
-            <h3>Resumo das Informações para preenchimento do evento</h3>
+            <h3>Resumo das Informações para preenchimento do cadastro</h3>
             <h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
         </div>
         <div class="row">
@@ -18,7 +18,7 @@ $idUser= $_SESSION['idUser'];
 
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-success"><b>Cadastro do Oficineiro</b></li>
-                                <li class="list-group-item">Informe se haverá ou não haverá representação jurídica</li>
+                                <li class="list-group-item">Escolha entre "Pessoa Física" ou "Pessoa Jurídica"</li>
                             </ul>
 
                             <ul class="nav nav-tabs">
@@ -150,10 +150,6 @@ $idUser= $_SESSION['idUser'];
                                         <li class="list-group-item">Comprovante de Residência</li>
                                     </ul>
                                     <ul class="list-group">
-                                        <li class="list-group-item list-group-item-success"><b>Informações Complementares</b></li>
-                                        <li class="list-group-item">DRT (Somente para Teatro, Dança ou Circo)</li>
-                                    </ul>
-                                    <ul class="list-group">
                                         <li class="list-group-item list-group-item-success"><b>Dados Bancários</b></li>
                                         <li class="list-group-item list-group-item-danger"><b>Realizamos pagamentos de valores acima de R$ 5.000,00 *SOMENTE COM CONTA CORRENTE NO BANCO DO BRASIL*.<br />Não são aceitas: conta fácil, poupança e conjunta.</b></li>
                                         <li class="list-group-item">Banco</li>
@@ -167,14 +163,11 @@ $idUser= $_SESSION['idUser'];
                                     </ul>
                                     <ul class="list-group">
                                         <li class="list-group-item list-group-item-success"><b>Demais Anexos</b></li>
-                                        <li class="list-group-item">Demais anexos necessários para a contratação</li>
-                                        <li class="list-group-item"><a href="https://duc.prefeitura.sp.gov.br/certidoes/forms_anonimo/frmConsultaEmissaoCertificado.aspx" target="_blank">CTM - Certidão Negativa de Débitos Tributários Mobiliários Municipais</a></li>
-                                        <li class="list-group-item"><a href="http://www3.prefeitura.sp.gov.br/cadin/Pesq_Deb.aspx">CADIN Municipal</a></li>
-                                        <li class="list-group-item">Currículo</li>
+                                        <li class="list-group-item">CTM - Certidão Negativa de Débitos Tributários Mobiliários Municipais</li>
+                                        <li class="list-group-item">CADIN Municipal</li>
                                         <li class="list-group-item">CND Federal - (Certidão Negativa de Débitos de Tributos Federais)</li>
-                                        <li class="list-group-item">Gerar a Declaração de Exclusividade</li>
-                                        <li class="list-group-item">Anexar a Declaração de Exclusividade depois de assinada</li>
-                                        <li class="list-group-item">Currículo Artístico do Líder do Grupo</li>
+                                        <li class="list-group-item">CNDT - Certidão Negativa de Débitos de Tributos Trabalhistas</li>
+                                        <li class="list-group-item">Declaração de Aceite</li>
                                     </ul>
                                     <ul class="list-group">
                                         <li class="list-group-item list-group-item-success"><b>Finalizar</b></li>

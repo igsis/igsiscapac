@@ -776,6 +776,7 @@ function verificaArquivosExistentesPJ($idPessoa,$idDocumento)
  * 9: Grupo <br>
  * 10: Evento <br>
  * 11: Informações Iniciais Oficineiros <br>
+ * 12: Demais Anexos Oficineiro PF <br>
  * </p>
  */
 function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, $pf)
@@ -911,7 +912,17 @@ function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, 
 				$arq1 $arq2 $arq3 $arq4
 				AND arq.publicado = '1'";
             break;
-		default:
+        case 12: //anexos_oficineiro_pf
+            $sql = "SELECT *
+				FROM upload_lista_documento as list
+				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+				WHERE arq.idPessoa = '$idPessoa'
+				AND arq.idTipoPessoa = '$tipoPessoa'
+				AND list.id NOT IN (109,110,113,111,112,114)
+				AND arq.publicado = '1'";
+            break;
+
+        default:
 		break;
 	}
 	$query = mysqli_query($con,$sql);
