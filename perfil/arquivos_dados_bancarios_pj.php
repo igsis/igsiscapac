@@ -2,8 +2,9 @@
 $con = bancoMysqli();
 $idPj = $_SESSION['idPj'];
 
-$idCampo = 89;
-$tipoPessoa = 2;
+$pj = recuperaDados("pessoa_juridica","id",$idPj);
+$idCampo = ($pj['oficineiro'] == 1) ? 127 : 89;
+$tipoPessoa = ($pj['oficineiro'] == 1) ? 5 : 2;
 
 if(isset($_POST["enviar"]))
 {
@@ -45,7 +46,7 @@ if(isset($_POST["enviar"]))
 
 						if($query)
 						{
-							if(file_exists($dir.$newname))
+							if(file_exists($dir.$new_name))
 							{
 								$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 								gravarLog($sql_insere_arquivo);
@@ -58,7 +59,7 @@ if(isset($_POST["enviar"]))
 
 								if($query)
 								{
-									if(file_exists($dir.$newname))
+									if(file_exists($dir.$new_name))
 									{
 										$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 										gravarLog($sql_insere_arquivo);
@@ -108,7 +109,17 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 ?>
 
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_evento.php'; ?>
+	<div class="container">
+        <?php
+        if ($pj['oficineiro'] == 1)
+        {
+            include 'includes/menu_oficinas.php';
+        }
+        else
+        {
+            include 'includes/menu_evento.php';
+        }
+        ?>
 		<div class="form-group">
 			<h4>Arquivo dos Dados Bancários</h4>
 			<p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
@@ -164,7 +175,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 									<td width="50%"><td>
 								</tr>
 								<?php
-								if(verificaArquivosExistentesPF($idPj, $idCampo)){
+								if(verificaArquivosExistentesPF($idPj, $idCampo, $tipoPessoa)){
 									echo '<div class="alert alert-success">O arquivo FACC foi enviado.</div> ';
 								}
 								else{
