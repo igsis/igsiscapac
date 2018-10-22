@@ -12,7 +12,7 @@
             <a href="?perfil=oficineiro_pf" class="btn btn-theme btn-lg btn-block">PESSOA FÍSICA</a>
             <br />
             <p>Aqui você atualiza os dados cadastrais da empresa.</p>
-            <a href="?perfil=proponente_pj" class="btn btn-theme btn-lg btn-block">PESSOA JURÍDICA</a>
+            <a href="?perfil=oficineiro_pj" class="btn btn-theme btn-lg btn-block">PESSOA JURÍDICA</a>
             <br />
         </div>
     </div>

@@ -26,7 +26,16 @@ if($num_busca > 0)
 { // Se exisitr, lista a resposta.
 ?>
 	<section id="list_items" class="home-section bg-white">
-		<div class="container"><?php include 'includes/menu_evento.php'; ?>
+		<div class="container"><?php
+        if ($pj['oficineiro'] == 1)
+        {
+            include 'includes/menu_oficinas.php';
+        }
+        else
+        {
+            include 'includes/menu_evento.php';
+        }
+        ?>
 			<div class="form-group">
 				<h3>REPRESENTANTE LEGAL #1</h3>
 				<p><b>Código de cadastro:</b> <?php echo $idPj; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
@@ -81,7 +90,16 @@ else
 { // se não existir o cpf, imprime um formulário.
 ?>	
 	<section id="contact" class="home-section bg-white">
-		<div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
+		<div class="container"><?php
+            if ($pj['oficineiro'] == 1)
+            {
+                include 'includes/menu_oficinas.php';
+            }
+            else
+            {
+                include 'includes/menu_evento.php';
+            }
+            ?>
 			<div class="form-group">
 				<h3>CADASTRO REPRESENTANTE LEGAL #1</h3>
 				<p><b>Código de cadastro:</b> <?php echo $idPj; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>

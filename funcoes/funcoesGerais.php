@@ -1,5 +1,5 @@
 <?php
-date_default_timezone_set("Brazil/East");
+date_default_timezone_set("America/Sao_Paulo");
 
 	function habilitarErro()
 	{
@@ -775,8 +775,10 @@ function verificaArquivosExistentesPJ($idPessoa,$idDocumento)
  * 8: Demais Anexos PJ <br>
  * 9: Grupo <br>
  * 10: Evento <br>
- * 11: Informações Iniciais Oficineiros <br>
+ * 11: Informações Iniciais Oficineiros PF <br>
  * 12: Demais Anexos Oficineiro PF <br>
+ * 13: Informações Iniciais Oficineiros PJ <br>
+ * 14: Representante Legal 1 Oficineiro <br>
  * </p>
  */
 function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, $pf)
@@ -919,6 +921,29 @@ function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, 
 				WHERE arq.idPessoa = '$idPessoa'
 				AND arq.idTipoPessoa = '$tipoPessoa'
 				AND list.id NOT IN (109,110,113,111,112,114)
+				AND arq.publicado = '1'";
+            break;
+        case 13: //informacoes_iniciais_oficineiros_pj
+            $arq1 = "AND (list.id = '120' OR ";
+            $arq2 = "list.id = '121' OR";
+            $arq3 = "list.id = '122')";
+            $sql = "SELECT *
+				FROM upload_lista_documento as list
+				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+				WHERE arq.idPessoa = '$idPessoa'
+				AND arq.idTipoPessoa = '$tipoPessoa'
+				$arq1 $arq2 $arq3
+				AND arq.publicado = '1'";
+            break;
+        case 14: //representante_legal1_oficineiro
+            $arq1 = "AND (list.id = '123' OR ";
+            $arq2 = "list.id = '124')";
+            $sql = "SELECT *
+				FROM upload_lista_documento as list
+				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+				WHERE arq.idPessoa = '$idPessoa'
+				AND arq.idTipoPessoa = '$tipoPessoa'
+				$arq1 $arq2
 				AND arq.publicado = '1'";
             break;
 

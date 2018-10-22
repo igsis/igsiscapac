@@ -5,7 +5,6 @@ $idUser = $_SESSION['idUser'];
 $tipoPessoa = "1";
 $bool = false;
 $evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
-
 if(isset($_POST['cadastrarFisica']))
 {
     $oficineiro = isset($_POST['oficineiro']) ? 1 : 0;
