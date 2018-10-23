@@ -2,15 +2,22 @@
 $con = bancoMysqli();
 $idPj = isset($_SESSION['idPj']) ? $_SESSION['idPj'] : null;
 $contador = 0;
-$tipoPessoa = 2;
 $pj = recuperaDados("pessoa_juridica","id",$idPj);
+$tipoPessoa = ($pj['oficineiro'] == 1) ? 5 : 2;
 $evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 
 
 if(isset($_POST["enviar"]))
 {
-
-	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN (20,21,22,28,43,89,103,104) AND publicado = '1'";
+    if ($tipoPessoa == 2)
+    {
+        $arquivos = "20,21,22,28,43,89,103,104";
+    }
+    else
+    {
+        $arquivos = "120, 121, 122, 123, 124, 125, 126, 127";
+    }
+	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN ($arquivos) AND publicado = '1'";
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
 	{
@@ -45,7 +52,7 @@ if(isset($_POST["enviar"]))
 						$query = mysqli_query($con,$sql_insere_arquivo);
 						if($query)
 						{
-							if(file_exists($dir.$newname))
+							if(file_exists($dir.$new_name))
 							{
 								$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 								gravarLog($sql_insere_arquivo);
@@ -58,7 +65,7 @@ if(isset($_POST["enviar"]))
 
 								if($query)
 								{
-									if(file_exists($dir.$newname))
+									if(file_exists($dir.$new_name))
 									{
 										$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 										gravarLog($sql_insere_arquivo);
@@ -133,7 +140,17 @@ $evento_pj = recuperaDados("evento","id",$evento);
 
 
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_evento.php'; ?>
+	<div class="container">
+        <?php
+        if ($pj['oficineiro'] == 1)
+        {
+            include 'includes/menu_oficinas.php';
+        }
+        else
+        {
+            include 'includes/menu_evento.php';
+        }
+        ?>
 		<div class="form-group">
 			<h4> Demais Anexos</h4>
 			<p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
@@ -148,9 +165,21 @@ $evento_pj = recuperaDados("evento","id",$evento);
 						<p align="justify">
 							<a href="https://www.sifge.caixa.gov.br/Cidadao/Crf/FgeCfSCriteriosPesquisa.asp" target="_blank">CRF do FGTS</a><br />
 							<a href="https://duc.prefeitura.sp.gov.br/certidoes/forms_anonimo/frmConsultaEmissaoCertificado.aspx" target="_blank">CTM - Certidão Negativa de Débitos Tributários Mobiliários Municipais (opção: mobiliária)</a><br />
-							<a href="http://www.receita.fazenda.gov.br/Aplicacoes/ATSPO/Certidao/CNDConjuntaSegVia/NICertidaoSegVia.asp?Tipo=1" target="_blank">CND - Certidão de regularidade perante o INSS</a><br />
+							<a href="http://www.receita.fazenda.gov.br/Aplicacoes/ATSPO/Certidao/CNDConjuntaSegVia/NICertidaoSegVia.asp?Tipo=1" target="_blank">CND Federal - Certidão Negativa de Débitos Relativos a Créditos Tributários Federais e à Dívida Ativa da União</a><br />
 							<a href="http://www.receita.fazenda.gov.br/Aplicacoes/ATSPO/Certidao/certaut/CndConjunta/ConfirmaAutenticCndSolicitacao.asp?ORIGEM=PJ" target="_blank">Autenticidade de CND ­ Certidão de Débitos Relativos a Créditos Tributários Federais e à Dívida Ativa da União (CND)</a><br />
 							<a href="http://www3.prefeitura.sp.gov.br/cadin/Pesq_Deb.aspx" target="_blank">CADIN Municipal</a>
+                            <?php
+                            if ($pj['oficineiro'] == 1)
+                            {
+                                $server = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/";
+                                $http = $server."/pdf/";
+                                $link1 = $http."rlt_decaracaoaceite_oficineiro.php"."?idPj=".$idPj;
+                                ?>
+                                <br /><a href='<?= $link1 ?>' target="_blank">Declaração de Aceite</a><br />
+                                <a onclick="location.href='index.php?perfil=cronograma_oficinas'" href="">Proposta e Cronograma de Realização de Oficinas</a>
+                                <?php
+                            }
+                            ?>
 						</p>
 					</div>
 				</div>
@@ -163,7 +192,9 @@ $evento_pj = recuperaDados("evento","id",$evento);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
-							<?php listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","anexos_pj",8); ?>
+							<?php
+                            $lista = ($tipoPessoa == 5) ? 16 : 8;
+                            listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","anexos_pj",$lista); ?>
 						</div>
 					</div>
 				</div>
@@ -175,7 +206,15 @@ $evento_pj = recuperaDados("evento","id",$evento);
 						<form method="POST" action="?perfil=anexos_pj" enctype="multipart/form-data">
 							<table class='table table-condensed'>
 								<?php
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN ('20','21','22','28','43','89','103','104') AND publicado = '1'";
+                                    if ($tipoPessoa == 2)
+                                    {
+                                        $arquivos = "20,21,22,28,43,89,103,104";
+                                    }
+                                    else
+                                    {
+                                        $arquivos = "120, 121, 122, 123, 124, 125, 126, 127";
+                                    }
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN ($arquivos) AND publicado = '1'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{
@@ -183,12 +222,12 @@ $evento_pj = recuperaDados("evento","id",$evento);
 										<tr>
 											<?php
 											$doc = $arq['documento'];
-										$query = "SELECT id FROM upload_lista_documento WHERE documento='$doc' AND publicado='1' AND idTipoUpload='2'";
+										$query = "SELECT id FROM upload_lista_documento WHERE documento='$doc' AND publicado='1' AND idTipoUpload='$tipoPessoa'";
 										$envio = $con->query($query);
 
 										$row = $envio->fetch_array(MYSQLI_ASSOC);
 
-											if(verificaArquivosExistentesPF($idPj,$row['id'])){
+											if(verificaArquivosExistentesPF($idPj,$row['id'], $tipoPessoa)){
 											echo '<div class="alert alert-success">O arquivo ' . $doc . ' já foi enviado.</div>';
 										}
 										else{ ?>
@@ -241,7 +280,7 @@ $evento_pj = recuperaDados("evento","id",$evento);
 					?>	
 					<div class="col-md-offset-2 col-md-2">
 						<form class="form-horizontal" role="form" action="?perfil=informacoes_complementares_pj" method="post">
-							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>
 					</div>
 					<?php
@@ -251,18 +290,36 @@ $evento_pj = recuperaDados("evento","id",$evento);
 					?>
 					<div class="col-md-offset-2 col-md-2">
 						<form class="form-horizontal" role="form" action="?perfil=arquivos_dados_bancarios_pj" method="post">
-							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
+							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>
 					</div>
 					<?php
 					}
 					?>	
 					<!-- Botão para Avançar -->
-					<div class="col-md-offset-4 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=finalizar" method="post">
-							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
-						</form>
-					</div>
+                    <?php
+                        if ($tipoPessoa == 2)
+                        {
+                            ?>
+                            <div class="col-md-offset-4 col-md-2">
+                                <form class="form-horizontal" role="form" action="?perfil=finalizar" method="post">
+                                    <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
+                                </form>
+                            </div>
+                    <?php
+                        }
+                        else
+                        {
+                    ?>
+                            <div class="col-md-offset-4 col-md-2">
+                                <form class="form-horizontal" role="form" action="?perfil=final_pj" method="post">
+                                    <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
+                                </form>
+                            </div>
+                    <?php
+                        }
+                    ?>
+
 				</div>
 			</div>
 	</div>

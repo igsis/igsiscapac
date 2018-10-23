@@ -9,7 +9,7 @@ $tipoPessoa = ($pj['oficineiro'] == 1) ? 5 : 2;
 if(isset($_POST['carregar']))
 {
 	$_SESSION['idPj'] = $_POST['carregar'];
-}
+}anexos pj
 
 
 if(isset($_POST["enviar"]))

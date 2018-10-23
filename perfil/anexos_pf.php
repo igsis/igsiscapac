@@ -222,16 +222,16 @@ $evento_pf = recuperaDados("evento","id",$evento);
 						<p align="justify">
 							<a href="https://duc.prefeitura.sp.gov.br/certidoes/forms_anonimo/frmConsultaEmissaoCertificado.aspx" target="_blank">CTM - Certidão Negativa de Débitos Tributários Mobiliários Municipais de São Paulo</a><br />
 							<a href="http://www.tst.jus.br/certidao" target="_blank">CNDT - Certidão Negativa de Débitos de Tributos Trabalhistas</a><br />
-							<a href="http://www3.prefeitura.sp.gov.br/cadin/Pesq_Deb.aspx" target="_blank">CADIN Municipal</a><br />
+							<a href="http://www3.prefeitura.sp.gov.br/cadin/Pesq_Deb.aspx" target="_blank">CADIN Municipal</a>
                             <?php
                             if ($pf['oficineiro'] == 1)
                             {
                             ?>
-                                <a href="http://servicos.receita.fazenda.gov.br/Servicos/certidao/CNDConjuntaInter/InformaNICertidao.asp?tipo=2" target="_blank">CND Federal - Certidão Negativa de Débitos Relativos a Créditos Tributários Federais e à Dívida Ativa da União</a><br />
+                                <br /><a href="http://servicos.receita.fazenda.gov.br/Servicos/certidao/CNDConjuntaInter/InformaNICertidao.asp?tipo=2" target="_blank">CND Federal - Certidão Negativa de Débitos Relativos a Créditos Tributários Federais e à Dívida Ativa da União</a><br />
                                 <?php
                                 $server = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/";
                                 $http = $server."/pdf/";
-                                $link1 = $http."rlt_decaracaoaceite_oficineiro.php"."?id_pf=".$idPf;
+                                $link1 = $http."rlt_decaracaoaceite_oficineiro.php"."?idPf=".$idPf;
                                 ?>
                                 <a href='<?= $link1 ?>' target="_blank">Declaração de Aceite</a>
                             <?php

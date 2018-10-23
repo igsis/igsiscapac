@@ -1,5 +1,4 @@
 <?php
-/*TODO: Ocultar opções do menu*/
 $urlPf = array(
     '/igsiscapac/visual/index.php?perfil=proponente_pf_resultado',
     '/igsiscapac/visual/index.php?perfil=informacoes_iniciais_pf',

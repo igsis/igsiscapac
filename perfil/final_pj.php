@@ -3,9 +3,10 @@
 $con = bancoMysqli();
 $idPj = $_SESSION['idPj'];
 $pj = recuperaDados("pessoa_juridica","id",$idPj);
+$tipoPessoa = ($pj['oficineiro'] == 1) ? 5 : 2;
 $contador = 0;
 
-function listaArquivoCamposMultiplos1($idPessoa,$pf)
+function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '2')
 {
 	$con = bancoMysqli();
 	switch ($pf) {
@@ -14,7 +15,7 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf)
 				FROM upload_lista_documento as list
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
-				AND arq.idTipoPessoa = '1'
+				AND arq.idTipoPessoa = '$tipoPessoa'
 				AND arq.publicado = '1'
 				ORDER BY documento";
 		break;
@@ -23,7 +24,7 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf)
 				FROM upload_lista_documento as list
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
-				AND arq.idTipoPessoa = '2'
+				AND arq.idTipoPessoa = '$tipoPessoa'
 				AND arq.publicado = '1'
 				AND list.id NOT IN (20,21,103,104)
 				ORDER BY documento";
@@ -37,7 +38,7 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf)
 				FROM upload_lista_documento as list
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
-				AND arq.idTipoPessoa = '2'
+				AND arq.idTipoPessoa = '$tipoPessoa'
 				$arq1 $arq2 $arq3 $arq4
 				AND arq.publicado = '1'";
 		break;
@@ -69,7 +70,30 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf)
 				$arq1 $arq2 $arq3 $arq4 $arq5 $arq6
 				AND arq.publicado = '1'";
 		break;
-		default:
+        case 6: //todos os arquivos de pj oficineiro
+            $sql = "SELECT *
+				FROM upload_lista_documento as list
+				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+				WHERE arq.idPessoa = '$idPessoa'
+				AND arq.idTipoPessoa = '$tipoPessoa'
+				AND arq.publicado = '1'
+				AND list.id NOT IN (123, 124, 125, 126)
+				ORDER BY documento";
+            break;
+        case 7: //representante_legal1 Oficineiro
+            $arq1 = "AND (list.id = '123' OR ";
+            $arq2 = "list.id = '124'OR ";
+            $arq3 = "list.id = '125' OR ";
+            $arq4 = "list.id = '126')";
+            $sql = "SELECT *
+				FROM upload_lista_documento as list
+				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+				WHERE arq.idPessoa = '$idPessoa'
+				AND arq.idTipoPessoa = '$tipoPessoa'
+				$arq1 $arq2 $arq3 $arq4
+				AND arq.publicado = '1'";
+            break;
+        default:
 		break;
 	}
 	$query = mysqli_query($con,$sql);
@@ -105,7 +129,17 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf)
 
 ?>
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_evento.php'; ?>
+	<div class="container">
+        <?php
+        if ($pj['oficineiro'] == 1)
+        {
+            include 'includes/menu_oficinas.php';
+        }
+        else
+        {
+            include 'includes/menu_evento.php';
+        }
+        ?>
 		<div class="form-group">
 			<h4>Finalizar</h4>
 	<p><strong><font color="green">Todos os campos obrigatórios foram preenchidos corretamente.<br/> Seu cadastro de Pessoa Jurídica foi concluído com sucesso!</font></strong></p><br>
@@ -145,10 +179,14 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf)
 	</div>
 
 	<div class="table-responsive list_info"><h6>Arquivo(s) de Pessoa Jurídica</h6>
-		<?php listaArquivoCamposMultiplos1($pj['id'],2); ?>
+		<?php
+        $lista1 = ($tipoPessoa == 5) ? 6 : 2;
+        listaArquivoCamposMultiplos1($pj['id'], $lista1, $tipoPessoa); ?>
 	</div>
 
 	<div class="table-responsive list_info"><h6>Arquivo(s) Representante Legal</h6>
-		<?php listaArquivoCamposMultiplos1($pj['id'],3); ?>
+		<?php
+        $lista2 = ($tipoPessoa == 5) ? 7 : 3;
+        listaArquivoCamposMultiplos1($pj['id'], $lista2, $tipoPessoa); ?>
 	</div>
 </section>

@@ -1,5 +1,4 @@
 <?php
-/*TODO: Ocultar opções do menu*/
 $con = bancoMysqli();
 $idPj = isset($_SESSION['idPj']) ? $_SESSION['idPj'] : '';
 $urlPj = array(

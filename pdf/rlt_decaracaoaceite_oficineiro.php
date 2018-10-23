@@ -10,22 +10,36 @@ $conexao = bancoMysqli();
 session_start();
 
 //CONSULTA
-$idPf = $_SESSION['idPf'];
+if (isset($_GET['idPf']))
+{
+    $id = $_GET['idPf'];
 
-$pessoa = recuperaDados("pessoa_fisica","id",$idPf);
+    $pessoa = recuperaDados("pessoa_fisica","id",$id);
 
-$Nome = $pessoa["nome"];
-$RG = $pessoa["rg"];
-$CPF = $pessoa["cpf"];
+    $nome = $pessoa["nome"];
+    $documento = $pessoa["rg"];
+}
+else
+{
+    $id = $_GET['idPj'];
 
+    $pessoa = recuperaDados("pessoa_juridica","id",$id);
+
+    $nome = $pessoa["razaoSocial"];
+    $documento = $pessoa["cnpj"];
+
+    $representante = recuperaDados('representante_legal', 'id', $pessoa['idRepresentanteLegal1']);
+    $nomeRepresentante = $representante['nome'];
+    $rgRepresentante = $representante['rg'];
+}
 
 header("Content-type: application/vnd.ms-word");
-header("Content-Disposition: attachment;Filename=declaracao-aceite-$Nome.doc");
+header("Content-Disposition: attachment;Filename=declaracao-aceite-$nome.doc");
 setlocale(LC_TIME, 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
 ?>
 <html>
-<meta http-equiv=\"Content-Type\" content=\"text/html; charset=Windows-1252\">
+<meta http-equiv="Content-Type" charset="UTF-8">
 <body>
     <div style="font-family: sans-serif">
         <p align='center'><strong>DECLARAÇÃO DE ACEITE</strong></p>
@@ -58,8 +72,11 @@ date_default_timezone_set('America/Sao_Paulo');
         <p align="center">___________________________________________________________</p>
         <p align="center">
             Assinatura do Proponente <br/>
-            <?=$Nome?><br/>
-            <?=$RG?>
+        </p>
+            <p>&nbsp;</p>
+        <p align="center">
+            <?=$nome?><br/>
+            <?=$documento?>
         </p>
     </div>
 </body>
