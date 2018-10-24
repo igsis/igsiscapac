@@ -88,8 +88,11 @@ for ($i = 0; $i < count($urlPj); $i++) {
                         <a onclick="location.href='index.php?perfil=anexos_pj'" href=""><br /><small>Demais Anexos</small></a>
                     </li> 
                     <li class="<?php echo isset($ativ11) ? $ativ11 : 'clickable'; ?>">
+                        <a onclick="location.href='index.php?perfil=final_pj'" href=""><br /><small>Cronograma Oficineiro</small></a>
+                    </li>
+                    <li class="<?php echo isset($ativ11) ? $ativ11 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=final_pj'" href=""><br /><small>Finalizar</small></a>
-                    </li> 
+                    </li>
                 </ul>
             </div>
 <?php

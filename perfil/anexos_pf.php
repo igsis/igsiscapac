@@ -346,7 +346,7 @@ $evento_pf = recuperaDados("evento","id",$evento);
 					{
 					?>
 					<div class="col-md-offset-2 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pf" method="post">
+						<form class="form-horizontal" role="form" action="<?= ($tipoPessoa == 1) ? "?perfil=dados_bancarios_pf" : "?perfil=oficinas_cronograma"?>" method="post">
 							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
 						</form>
 					</div>

@@ -175,8 +175,7 @@ $evento_pj = recuperaDados("evento","id",$evento);
                                 $http = $server."/pdf/";
                                 $link1 = $http."rlt_decaracaoaceite_oficineiro.php"."?idPj=".$idPj;
                                 ?>
-                                <br /><a href='<?= $link1 ?>' target="_blank">Declaração de Aceite</a><br />
-                                <a onclick="location.href='index.php?perfil=cronograma_oficinas'" href="">Proposta e Cronograma de Realização de Oficinas</a>
+                                <br /><a href='<?= $link1 ?>' target="_blank">Declaração de Aceite</a>
                                 <?php
                             }
                             ?>
