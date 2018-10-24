@@ -19,7 +19,7 @@ $urlPf = array(
     '/igsiscapac/visual/index.php?perfil=anexos_pf', // 06 demais anexos
     '/igsiscapac/visual/index.php?perfil=final_pf', // 07 final pf
     '/igsiscapac/visual/index.php?perfil=arquivos_dados_bancarios_pf', // 08
-    '/igsiscapac/visual/index.php?perfil=oficinas_cronograma' // 09
+    '/igsiscapac/visual/index.php?perfil=oficinas_cronograma&tipoPessoa=4' // 09
 );
 for ($i = 0; $i < count($urlPf); $i++) {
     if ($uri == $urlPf[$i]) {
@@ -72,7 +72,7 @@ for ($i = 0; $i < count($urlPf); $i++) {
                 </li>
             <?php if ($pf['oficineiro'] == 1) { ?>
                 <li class="<?php echo isset($active9) ? $active9 : 'clickable'; ?>">
-                    <a onclick="location.href='index.php?perfil=oficinas_cronograma'" href=""><br /><small>Cronograma de Oficinas</small></a>
+                    <a onclick="location.href='index.php?perfil=oficinas_cronograma&tipoPessoa=4'" href=""><br /><small>Cronograma de Oficinas</small></a>
                 </li>
             </ul>
             <ul>

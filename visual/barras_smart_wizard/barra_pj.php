@@ -1,6 +1,14 @@
 <?php
 $con = bancoMysqli();
-$idPj = isset($_SESSION['idPj']) ? $_SESSION['idPj'] : '';
+if (isset($_SESSION['idPj']))
+{
+    $idPj = $_SESSION['idPj'];
+    $pj = recuperaDados('pessoa_juridica', 'id', $idPj);
+}
+else
+{
+    $pj = null;
+}
 $urlPj = array(
 	'/igsiscapac/visual/index.php?perfil=proponente_pj_resultado', // 00
 	'/igsiscapac/visual/index.php?perfil=informacoes_iniciais_pj', // 01 info iniciais
@@ -19,7 +27,8 @@ $urlPj = array(
 	'/igsiscapac/visual/index.php?perfil=anexos_pj', // 14 anexos
 	'/igsiscapac/visual/index.php?perfil=final_pj', // finalizar
     '/igsiscapac/visual/index.php?perfil=representante1_pj_cadastro&id_pj='.$idPj,// 16 representante 1
-    '/igsiscapac/visual/index.php?perfil=representante2_pj_cadastro&id_pj='.$idPj // 17 representante 2
+    '/igsiscapac/visual/index.php?perfil=representante2_pj_cadastro&id_pj='.$idPj, // 17 representante 2
+    '/igsiscapac/visual/index.php?perfil=oficinas_cronograma&tipoPessoa=5' // 18 cronograma
 
 );
 for ($i = 0; $i < count($urlPj); $i++) {
@@ -46,6 +55,8 @@ for ($i = 0; $i < count($urlPj); $i++) {
         	$ativ10 = 'active loading';
         }elseif ($i == 15){ // Arquivo dos Dados Bancários
         	$ativ11 = 'active loading';
+        }elseif ($i == 18){ // Cronograma
+            $ativ12 = 'active loading';
         }
     	if(!(isset($_SESSION['idEvento']))){
 ?>
@@ -83,12 +94,14 @@ for ($i = 0; $i < count($urlPj); $i++) {
                     </li>
                     <li class="<?php echo isset($ativ9) ? $ativ9 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=arquivos_dados_bancarios_pj'" href=""><br /><small>Arquivos Dados Bancários</small></a>
-                    </li>          
+                    </li>
+                    <?php if ($pj['oficineiro'] == 1) { ?>
+                        <li class="<?php echo isset($ativ12) ? $ativ12 : 'clickable'; ?>">
+                            <a onclick="location.href='index.php?perfil=oficinas_cronograma&tipoPessoa=5'" href=""><br /><small>Cronograma de Oficinas</small></a>
+                        </li>
+                    <?php } ?>
                     <li class="<?php echo isset($ativ10) ? $ativ10 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=anexos_pj'" href=""><br /><small>Demais Anexos</small></a>
-                    </li> 
-                    <li class="<?php echo isset($ativ11) ? $ativ11 : 'clickable'; ?>">
-                        <a onclick="location.href='index.php?perfil=final_pj'" href=""><br /><small>Cronograma Oficineiro</small></a>
                     </li>
                     <li class="<?php echo isset($ativ11) ? $ativ11 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=final_pj'" href=""><br /><small>Finalizar</small></a>

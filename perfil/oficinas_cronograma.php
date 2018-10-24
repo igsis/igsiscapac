@@ -1,6 +1,7 @@
 <?php
 
 $con = bancoMysqli();
+
 if (isset($_SESSION['idPf']))
 {
     $id = $_SESSION['idPf'];
@@ -47,7 +48,7 @@ if(isset($_POST["enviar"]))
                 {
                     if(move_uploaded_file($nome_temporario, $dir.$new_name))
                     {
-                        $sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPf', '$idCampo', '$new_name', '$hoje', '1'); ";
+                        $sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$id', '$idCampo', '$new_name', '$hoje', '1'); ";
                         $query = mysqli_query($con,$sql_insere_arquivo);
                         if($query)
                         {
@@ -138,8 +139,8 @@ $pessoa = recuperaDados($tabela,"id",$id);
                 <!-- Exibir arquivos -->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-8">
-                        <div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
-                            <?php listaArquivoCamposMultiplos($id,$tipoPessoa,$idCampo,"oficinas_cronograma",3); ?>
+                        <div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s) Somente em PDF</h6>
+                            <?php listaArquivoCamposMultiplos($id,$tipoPessoa,$idCampo,"oficinas_cronograma&tipoPessoa=".$tipoPessoa,3); ?>
                         </div>
                     </div>
                 </div>
@@ -147,7 +148,7 @@ $pessoa = recuperaDados($tabela,"id",$id);
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-8">
                         <div class = "center">
-                            <form method="POST" action="?perfil=oficinas_cronograma" enctype="multipart/form-data">
+                            <form method="POST" action="?perfil=oficinas_cronograma&tipoPessoa=<?=$tipoPessoa?>" enctype="multipart/form-data">
                                 <table>
                                     <tr>
                                         <td width="50%"><td>
@@ -246,12 +247,12 @@ $pessoa = recuperaDados($tabela,"id",$id);
                 <!-- Botão para Voltar e Prosseguir -->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-2">
-                        <form class="form-horizontal" role="form" action="<?= ($tipoPessoa == 4) ? "?perfil=dados_bancarios_pf" : "arquivos_dados_bancarios_pj"?>" method="post">
+                        <form class="form-horizontal" role="form" action="<?= ($tipoPessoa == 4) ? "?perfil=dados_bancarios_pf" : "dados_bancarios_pj"?>" method="post">
                             <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $id ?>">
                         </form>
                     </div>
                     <div class="col-md-offset-4 col-md-2">
-                        <form class="form-horizontal" role="form" action="<?= ($tipoPessoa == 4) ? "?perfil=anexos_pf" : "anexos_pj"?>" method="post">
+                        <form class="form-horizontal" role="form" action="<?= ($tipoPessoa == 4) ? "?perfil=anexos_pf" : "?perfil=anexos_pj"?>" method="post">
                             <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $id ?>">
                         </form>
                     </div>

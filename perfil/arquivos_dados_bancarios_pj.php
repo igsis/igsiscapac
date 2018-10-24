@@ -243,7 +243,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 						else
 						{
 						?>
-							<form class="form-horizontal" role="form" action="?perfil=anexos_pj" method="post">
+							<form class="form-horizontal" role="form" action="<?= ($tipoPessoa == 2) ? "?perfil=anexos_pj" : "?perfil=oficinas_cronograma&tipoPessoa=".$tipoPessoa?>" method="post">
 						<?php
 						}
 						?>
