@@ -59,14 +59,7 @@ if(isset($_POST["enviar"]))
 							{
 								$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 								gravarLog($sql_insere_arquivo);
-                                if ($tipoPessoa == 1)
-                                {
-                                    echo '<script>window.location = "?perfil=arquivos_evento"</script>';
-                                }
-                                else
-                                {
-                                    echo '<script>window.location = "?perfil=anexos_pf"</script>';
-                                }
+                                echo '<script>window.location = "?perfil=anexos_pf"</script>';
 
 							}
 							else
