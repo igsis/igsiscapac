@@ -4,9 +4,8 @@ $con = bancoMysqli();
 $idUser = $_SESSION['idUser'];
 $tipoPessoa = "6";
 $bool = false;
-$evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 
-if(isset($_POST['cadastrarFisica']))
+if(isset($_POST['cadastrarFormacao']))
 {
     $nome = addslashes($_POST['nome']);
     $nomeArtistico = addslashes($_POST['nomeArtistico']);
@@ -27,34 +26,12 @@ if(isset($_POST['cadastrarFisica']))
     {
         $mensagem = "<font color='#01DF3A'><strong>Cadastrado com sucesso!</strong></font>";
         gravarLog($sql_cadastra_pf);
-        if(isset($_SESSION['idEvento']))
-        {
-            $idEvento = $_SESSION['idEvento'];
-            $sql_ultimo = "SELECT id FROM pessoa_fisica WHERE idUsuario = '$idUser' ORDER BY id DESC LIMIT 0,1";
-            $query_ultimo = mysqli_query($con,$sql_ultimo);
-            $ultimoPf = mysqli_fetch_array($query_ultimo);
-            $idPf = $ultimoPf['id'];
 
-            $sql_atualiza_evento = "UPDATE evento SET idPf = '$idPf', idTipoPessoa = '$tipoPessoa' WHERE id = '$idEvento'";
-            if(mysqli_query($con,$sql_atualiza_evento))
-            {
-                $mensagem .= "<font color='#01DF3A'><strong>Pessoa inserida no evento.</strong></font><br/>";
-                $_SESSION['idPf'] = $idPf;
-                gravarLog($sql_atualiza_evento);
-            }
-            else
-            {
-                $mensagem .= "<font color='#FF0000'><strong>Erro ao cadastrar evento!</strong></font>";
-            }
-        }
-        else
-        {
-            $sql_ultimo = "SELECT id FROM pessoa_fisica WHERE idUsuario = '$idUser' ORDER BY id DESC LIMIT 0,1";
-            $query_ultimo = mysqli_query($con,$sql_ultimo);
-            $ultimoPf = mysqli_fetch_array($query_ultimo);
-            $_SESSION['idPf'] = $ultimoPf['id'];
-            $idPf = $_SESSION['idPf'];
-        }
+        $sql_ultimo = "SELECT id FROM pessoa_fisica WHERE idUsuario = '$idUser' ORDER BY id DESC LIMIT 0,1";
+        $query_ultimo = mysqli_query($con,$sql_ultimo);
+        $ultimoPf = mysqli_fetch_array($query_ultimo);
+        $_SESSION['idPf'] = $ultimoPf['id'];
+        $idPf = $_SESSION['idPf'];
     }
     else
     {
@@ -99,21 +76,6 @@ if(isset($_POST['atualizarFisica']))
         $mensagem = "<font color='#01DF3A'><strong>Atualizado com sucesso!</strong></font>";
         $bool = true;
         gravarLog($sql_atualiza_pf);
-        if(isset($_SESSION['idEvento']))
-        {
-            $idEvento = $_SESSION['idEvento'];
-            $sql_atualiza_evento = "UPDATE evento SET idPf = '$idPf', idTipoPessoa = '$tipoPessoa' WHERE id = '$idEvento'";
-            if(mysqli_query($con,$sql_atualiza_evento))
-            {
-                $mensagem .= "<font color='#01DF3A'><strong>Pessoa inserida no evento.</strong></font>";
-                gravarLog($sql_atualiza_evento);
-
-            }
-            else
-            {
-                $mensagem .= "<font color='#01DF3A'><strong>Erro ao cadastrar evento.</strong></font>";
-            }
-        }
     }
     else
     {
@@ -212,43 +174,16 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 <thead>
 <script src="js/sweetalert.min.js"></script>
 <link href="css/sweetalert.css" rel="stylesheet" type="text/css"/>
-<script>
-    function alerta()
-    {
-        swal({   title: "Atenção!",
-            text: "Para maiores informações sobre contratação de artistas com idade inferior a 18 anos, entrar em contato com o programador do seu evento.",
-            timer: 10000,
-            confirmButtonColor:	"#20B2AA",
-            showConfirmButton: true });}
-</script>
 </thead>
 
 <section id="list_items" class="home-section bg-white">
-    <div class="container"><?php include 'includes/menu_evento.php'; ?>
+    <div class="container"><?php include 'includes/menu_formacao.php'; ?>
         <div class="form-group">
             <h4>Informações Iniciais</h4>
         </div>
         <div class="row">
             <div class="col-md-offset-1 col-md-10">
-                <form name="form1" class="form-horizontal" role="form" action="?perfil=informacoes_iniciais_pf" method="post">
-                    <!-- Botão para inserir pessoa no evento -->
-                    <?php
-                    if(isset($_SESSION['idEvento']))
-                    {
-                        $evento = recuperaDados("evento","id",$_SESSION['idEvento']);
-                        if($evento['idPf'] == NULL)
-                        {
-                            ?>
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-8">
-                                    <input type="hidden" name="atualizarFisica" value="<?php echo $idPf ?>">
-                                    <input type="submit" value="Inserir pessoa no evento" class="btn btn-theme btn-md btn-block">
-                                </div>
-                            </div>
-                            <?php
-                        }
-                    }
-                    ?>
+                <form name="form1" class="form-horizontal" role="form" action="?perfil=formacao_informacoes_iniciais" method="post">
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8"><strong>Nome *:</strong><br/>
                             <input type="text" class="form-control next-step" name="nome" placeholder="Nome" maxlength="70" value="<?php echo $pf['nome']; ?>" required >

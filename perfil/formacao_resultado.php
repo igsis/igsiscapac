@@ -142,10 +142,18 @@ else
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-8"><strong>Programa:</strong><br/>
+                                    <select class="form-control" name="funcao" id="funcao">
+                                        <?php geraOpcao('tipo_formacao', '') ?>
+                                    </select>
+                                </div>
+                            </div>
+
                             <!-- Botão para Gravar -->
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-8">
-                                    <input type="submit" name="cadastrarFisica" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
+                                    <input type="submit" name="cadastrarFormacao" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
                                 </div>
                             </div>
                         </form>

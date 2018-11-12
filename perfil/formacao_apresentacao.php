@@ -24,12 +24,13 @@ $idUser= $_SESSION['idUser'];
                                 <li class="list-group-item">Nº do documento</li>
                                 <li class="list-group-item">CPF</li>
                                 <li class="list-group-item">CCM</li>
-                                <li class="list-group-item">Celular</li>
+                                <li class="list-group-item">Telefone #1</li>
                                 <li class="list-group-item">Telefone #2</li>
                                 <li class="list-group-item">Telefone #3</li>
                                 <li class="list-group-item">E-mail</li>
                                 <li class="list-group-item">Data de Nascimento</li>
                                 <li class="list-group-item">PIS/PASEP/NIT</li>
+                                <li class="list-group-item">Estado Civil</li>
                             </ul>
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-success"><b>Arquivos da Pessoa</b></li>
@@ -56,14 +57,9 @@ $idUser= $_SESSION['idUser'];
                                 <li class="list-group-item">Agência</li>
                                 <li class="list-group-item">Conta</li>
                             </ul>
-                            <ul class="list-group">
-                                <li class="list-group-item list-group-item-success"><b>Arquivo dos Dados Bancários em PDF</b></li>
-                                <li class="list-group-item">Gerar FACC</li>
-                                <li class="list-group-item">Anexar a FACC depois de assinada</li>
-                            </ul>
+                            vocacional
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-success"><b>Demais Anexos</b></li>
-                                <li class="list-group-item">Demais anexos necessários para a contratação</li>
                                 <li class="list-group-item"><a href="https://duc.prefeitura.sp.gov.br/certidoes/forms_anonimo/frmConsultaEmissaoCertificado.aspx" target="_blank">CTM - Certidão Negativa de Débitos Tributários Mobiliários Municipais</a></li>
                                 <li class="list-group-item"><a href="http://www3.prefeitura.sp.gov.br/cadin/Pesq_Deb.aspx">CADIN Municipal</a></li>
                                 <li class="list-group-item">Currículo</li>
