@@ -2,7 +2,7 @@
 
 $con = bancoMysqli();
 $idUser = $_SESSION['idUser'];
-$tipoPessoa = "6";
+$tipoPessoa = 6;
 $bool = false;
 
 if(isset($_POST['cadastrarFormacao']))
@@ -19,9 +19,10 @@ if(isset($_POST['cadastrarFormacao']))
     $email = $_POST['email'];
     $dataNascimento = exibirDataMysql($_POST['dataNascimento']);
     $pis = $_POST['pis'];
+    $programa = $_POST['programa'];
     $dataAtualizacao = date("Y-m-d H:i:s");
 
-    $sql_cadastra_pf = "INSERT INTO `pessoa_fisica`(`nome`, `nomeArtistico`, `idTipoDocumento`, `rg`, `cpf`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `dataNascimento`, `pis`, `dataAtualizacao`, `idUsuario`) VALUES ('$nome', '$nomeArtistico', '$idTipoDocumento', '$rg', '$cpf', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$dataNascimento', '$pis', '$dataAtualizacao', '$idUser')";
+    $sql_cadastra_pf = "INSERT INTO `pessoa_fisica`(`nome`, `nomeArtistico`, `idTipoDocumento`, `rg`, `cpf`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `dataNascimento`, `pis`, `tipo_formacao_id`, `dataAtualizacao`, `idUsuario`) VALUES ('$nome', '$nomeArtistico', '$idTipoDocumento', '$rg', '$cpf', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$dataNascimento', '$pis', '$programa', '$dataAtualizacao', '$idUser')";
     if(mysqli_query($con,$sql_cadastra_pf))
     {
         $mensagem = "<font color='#01DF3A'><strong>Cadastrado com sucesso!</strong></font>";
@@ -39,7 +40,7 @@ if(isset($_POST['cadastrarFormacao']))
     }
 }
 
-if(isset($_POST['atualizarFisica']))
+if(isset($_POST['atualizarFormacao']))
 {
     $nome = addslashes($_POST['nome']);
     $nomeArtistico = addslashes($_POST['nomeArtistico']);
@@ -52,6 +53,7 @@ if(isset($_POST['atualizarFisica']))
     $email = $_POST['email'];
     $dataNascimento = exibirDataMysql($_POST['dataNascimento']);
     $pis = $_POST['pis'];
+    $programa = $_POST['programa'];
     date_default_timezone_set('America/Sao_Paulo');
     $dataAtualizacao = date("Y-m-d");
     $idPf = $_SESSION['idPf'];
@@ -68,6 +70,7 @@ if(isset($_POST['atualizarFisica']))
 	`email` = '$email',
 	`dataNascimento` = '$dataNascimento',
 	`pis` = '$pis',
+	`tipo_formacao_id` = '$programa',
 	`dataAtualizacao` = '$dataAtualizacao'
 	WHERE `id` = '$idPf'";
 
@@ -88,98 +91,15 @@ if(isset($_POST['carregar']))
     $_SESSION['idPf'] = $_POST['carregar'];
 }
 
-
-if(isset($_POST["enviar"]))
-{
-    $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id IN (2,3,25,31)";
-    $query_arquivos = mysqli_query($con,$sql_arquivos);
-    while($arq = mysqli_fetch_array($query_arquivos))
-    {
-        $idPf = $_SESSION['idPf'];
-        $y = $arq['id'];
-        $x = $arq['sigla'];
-        $nome_arquivo = $_FILES['arquivo']['name'][$x];
-        $f_size = $_FILES['arquivo']['size'][$x];
-
-        //Extensões permitidas
-        $ext = array("PDF","pdf");
-
-        if($f_size > 5242880) // 5MB em bytes
-        {
-            $mensagem = "<font color='#01DF3A'><strong>Erro! Tamanho de arquivo excedido! Tamanho máximo permitido: 05 MB.</strong></font>";
-        }
-        else
-        {
-            if($nome_arquivo != "")
-            {
-                $nome_temporario = $_FILES['arquivo']['tmp_name'][$x];
-                $new_name = date("YmdHis")."_".semAcento($nome_arquivo); //Definindo um novo nome para o arquivo
-                $hoje = date("Y-m-d H:i:s");
-                $dir = '../uploadsdocs/'; //Diretório para uploads
-                $allowedExts = array(".pdf", ".PDF"); //Extensões permitidas
-                $ext = strtolower(substr($nome_arquivo,-4));
-
-                if(in_array($ext, $allowedExts)) //Pergunta se a extensão do arquivo, está presente no array das extensões permitidas
-                {
-                    if(move_uploaded_file($nome_temporario, $dir.$new_name))
-                    {
-                        $sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPf', '$y', '$new_name', '$hoje', '1'); ";
-                        $query = mysqli_query($con,$sql_insere_arquivo);
-                        if($query)
-                        {
-                            $mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
-                            gravarLog($sql_insere_arquivo);
-                            echo '<script>window.location = "?perfil=informacoes_iniciais_pf"</script>';
-                        }
-                        else
-                        {
-                            $mensagem = "<font color='#FF0000'><strong>Erro ao gravar no banco.</strong></font>";
-                        }
-                    }
-                    else
-                    {
-                        $mensagem = "<font color='#FF0000'><strong>Erro no upload! Tente novamente.</strong></font>";
-                    }
-                }
-                else
-                {
-                    $mensagem = "<font color='#FF0000'><strong>Erro no upload! Anexar documentos somente no formato PDF.</strong></font>";
-                }
-            }
-        }
-    }
-}
-
-if(isset($_POST['apagar']))
-{
-    $idArquivo = $_POST['apagar'];
-    $sql_apagar_arquivo = "UPDATE upload_arquivo SET publicado = 0 WHERE id = '$idArquivo'";
-    if(mysqli_query($con,$sql_apagar_arquivo))
-    {
-        $mensagem = "<font color='#01DF3A'><strong>Arquivo apagado com sucesso!</strong></font>";
-        gravarLog($sql_apagar_arquivo);
-    }
-    else
-    {
-        $mensagem = "<font color='#FF0000'><strong>Erro ao apagar arquivo!</strong></font>";
-    }
-}
-
-
 $idPf = $_SESSION['idPf'];
 
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
 ?>
-<!-- Chamamento Alert-->
-<thead>
-<script src="js/sweetalert.min.js"></script>
-<link href="css/sweetalert.css" rel="stylesheet" type="text/css"/>
-</thead>
 
 <section id="list_items" class="home-section bg-white">
     <div class="container"><?php include 'includes/menu_formacao.php'; ?>
         <div class="form-group">
-            <h4>Informações Iniciais</h4>
+            <h4>INFORMAÇÕES INICIAIS</h4>
         </div>
         <div class="row">
             <div class="col-md-offset-1 col-md-10">
@@ -238,15 +158,35 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                         <div class="col-md-offset-2 col-md-6"><strong>Data Nascimento *:</strong><br/>
                             <input type="text" class="form-control" name="dataNascimento" id="datepicker01" onclick="alerta()" placeholder="Data de Nascimento" value = "<?php echo exibirDataBr($pf['dataNascimento']) ?>" required>
                         </div>
+                        <div class="col-md-6"><strong>Estado civil:</strong><br/>
+                            <select class="form-control" name="idEstadoCivil" >
+                                <?php geraOpcao("estado_civil",$pf['idEstadoCivil']); ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-6"><strong>Nacionalidade:</strong><br/>
+                            <input type="text" class="form-control" name="nacionalidade" placeholder="Nacionalidade" value="<?= $pf['nacionalidade'] ?>">
+                        </div>
                         <div class="col-md-6"><strong>PIS/PASEP/NIT:</strong><br/>
                             <input type="text" class="form-control" name="pis" placeholder="Nº do PIS/PASEP/NIT" maxlength="50" value="<?php echo $pf['pis']; ?>">
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8"><strong>Programa:</strong><br/>
+                            <select class="form-control" name="programa" id="programa">
+                                <?php geraOpcao('tipo_formacao', $pf['tipo_formacao_id']) ?>
+                            </select>
+                        </div>
+                    </div>
+
+
                     <!-- Botão para Gravar -->
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
-                            <input type="hidden" name="atualizarFisica" value="<?php echo $idPf ?>">
+                            <input type="hidden" name="atualizarFormacao" value="<?php echo $idPf ?>">
                             <input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
                         </div>
                     </div>
@@ -255,7 +195,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
                 <!-- Botão para Prosseguir -->
                 <div class="form-group">
-                    <form class="form-horizontal" role="form" action="?perfil=arquivos_pf" method="post">
+                    <form class="form-horizontal" role="form" action="?perfil=formacao_arquivos_pf" method="post">
                         <div class="col-md-offset-8 col-md-2">
                             <?php if($bool == true)
                             { ?>

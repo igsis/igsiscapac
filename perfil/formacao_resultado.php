@@ -24,7 +24,7 @@ if($query != '')
                 <div class="col-md-offset-2 col-md-8">
                     <div class="section-heading">
                         <h4>PESSOA FÍSICA</h4>
-                        <p><strong><a href="?perfil=proponente_pf">Pesquisar outro CPF</a></strong></p>
+                        <p><strong><a href="?perfil=formacao">Pesquisar outro CPF</a></strong></p>
                     </div>
                     <div class="table-responsive list_info">
                         <table class="table table-condensed">
@@ -36,15 +36,16 @@ if($query != '')
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td class='list_description'><?php echo $query["nome"]; ?></td>
-                                <td class='list_description'><?php echo $query["cpf"] ?></td>
-                                <td class='list_description'>
-                                    <form method='POST' action='?perfil=informacoes_iniciais_pf'>
-                                        <input type='hidden' name='carregar' value='<?php echo $query["id"] ?>'>
-                                        <input type ='submit' class='btn btn-theme btn-md btn-block' value='Carregar'></form>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td class='list_description'><?php echo $query["nome"]; ?></td>
+                                    <td class='list_description'><?php echo $query["cpf"] ?></td>
+                                    <td class='list_description'>
+                                        <form method='POST' action='?perfil=formacao_informacoes_iniciais'>
+                                            <input type='hidden' name='carregar' value='<?php echo $query["id"] ?>'>
+                                            <input type ='submit' class='btn btn-theme btn-md btn-block' value='Carregar'>
+                                        </form>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -58,11 +59,6 @@ else
 {
     $busca = $_POST['busca'];
     ?>
-
-    <thead>
-        <script src="js/sweetalert.min.js"></script>
-        <link href="css/sweetalert.css" rel="stylesheet" type="text/css"/>
-    </thead>
 
     <section id="contact" class="home-section bg-white">
         <div class="container"><div class="container"><?php include 'includes/menu_formacao.php'; ?>
@@ -144,8 +140,8 @@ else
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-8"><strong>Programa:</strong><br/>
-                                    <select class="form-control" name="funcao" id="funcao">
-                                        <?php geraOpcao('tipo_formacao', '') ?>
+                                    <select class="form-control" name="programa" id="programa">
+                                        <?php geraOpcao('tipo_formacao', $pf['tipo_formacao_id']) ?>
                                     </select>
                                 </div>
                             </div>

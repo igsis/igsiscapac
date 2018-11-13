@@ -3,7 +3,7 @@
 $urlPf = array(
     '/igsiscapac/visual/index.php?perfil=formacao_resultado',
     '/igsiscapac/visual/index.php?perfil=formacao_informacoes_iniciais',
-    '/igsiscapac/visual/index.php?perfil=arquivos_pf', // 02 arquivo Evento
+    '/igsiscapac/visual/index.php?perfil=formacao_arquivos_pf', // 02 arquivo Evento
     '/igsiscapac/visual/index.php?perfil=endereco_pf', // 03 endereço
     '/igsiscapac/visual/index.php?perfil=informacoes_complementares_pf', // 04 info complem
     '/igsiscapac/visual/index.php?perfil=dados_bancarios_pf', // 05 dados bancarios
@@ -44,7 +44,7 @@ for ($i = 0; $i < count($urlPf); $i++) {
                         <a onclick="location.href='index.php?perfil=formacao_informacoes_iniciais'" href=""><br /><small>Informações Iniciais</small></a>
                     </li>
                     <li class="<?php echo isset($active2) ? $active2 : 'clickable'; ?>">
-                        <a onclick="location.href='index.php?perfil=arquivos_pf'" href=""><br /><small>Arquivos da Pessoa</small></a>
+                        <a onclick="location.href='index.php?perfil=formacao_arquivos_pf'" href=""><br /><small>Arquivos da Pessoa</small></a>
                     </li>
                     <li class="<?php echo isset($active3) ? $active3 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=endereco_pf'" href=""><br /><small>Endereço</small></a>

@@ -2,7 +2,7 @@
 $idUser= $_SESSION['idUser'];
 ?>
 <section id="list_items" class="home-section bg-white">
-    <div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
+    <div class="container"><?php include '../perfil/includes/menu_formacao.php'; ?>
         <div class="form-group">
             <h3>Resumo das Informações para preenchimento do Formação</h3>
             <h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
