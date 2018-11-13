@@ -301,6 +301,26 @@ date_default_timezone_set("Brazil/East");
 		}
 	}
 
+function geraOpcaoFormacao($select,$tipoFormacao)
+{
+    //gera os options de um select
+    $sql = "SELECT * FROM `formacao_funcoes` WHERE `tipo_formacao_id` = '$tipoFormacao' ORDER BY 2";
+
+    $con = bancoMysqli();
+    $query = mysqli_query($con,$sql);
+    while($option = mysqli_fetch_row($query))
+    {
+        if($option[0] == $select)
+        {
+            echo "<option value='".$option[0]."' selected >".$option[1]."</option>";
+        }
+        else
+        {
+            echo "<option value='".$option[0]."'>".$option[1]."</option>";
+        }
+    }
+}
+
 	function geraOpcaoPublicado($tabela,$select)
 	{
 		//gera os options de um select
