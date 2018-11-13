@@ -114,7 +114,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
     <div class="container"><?php include 'includes/menu_formacao.php'; ?>
         <div class="form-group">
             <h3>Informações Complementares</h3>
-            <p><b>Código de cadastro:</b> <?php echo $idPf; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>
+            <p><b>Nome:</b> <?php echo $pf['nome']; ?></p>
             <h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
         </div>
         <div class="row">
@@ -240,7 +240,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                         </form>
                     </div>
                     <div class="col-md-offset-4 col-md-2">
-                        <form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pf" method="post">
+                        <form class="form-horizontal" role="form" action="?perfil=formacao_dados_bancarios" method="post">
                             <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
                         </form>
                     </div>

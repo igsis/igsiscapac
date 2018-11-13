@@ -117,7 +117,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
     <div class="container"><?php include '../perfil/includes/menu_formacao.php'; ?>
         <div class="form-group">
             <h3>Endereço</h3>
-            <p><b>Código de cadastro:</b> <?php echo $idPf; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>
+            <p><b>Nome:</b> <?php echo $pf['nome']; ?></p>
             <h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
         </div>
         <div class="row">
