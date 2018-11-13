@@ -726,10 +726,18 @@ function verificaArquivosExistentesComunicacao($idEvento)
 	}
 }
 
-function verificaArquivosExistentesPF($idPessoa,$idDocumento)
+/**
+ * @param $idPessoa
+ * @param $idDocumento
+ * @param int $tipoPessoa <p>
+ * (opcional) Valor a ser consultado na coluna `idTipoPessoa`
+ * </p>
+ * @return bool
+ */
+function verificaArquivosExistentesPF($idPessoa, $idDocumento, $tipoPessoa = 1)
 {
 	$con = bancoMysqli();
-	$verificacaoArquivo = "SELECT arquivo FROM upload_arquivo WHERE idTipoPessoa = '1' AND idPessoa = '$idPessoa' AND idUploadListaDocumento = '$idDocumento' AND publicado = '1'";
+	$verificacaoArquivo = "SELECT arquivo FROM upload_arquivo WHERE idTipoPessoa = '$tipoPessoa' AND idPessoa = '$idPessoa' AND idUploadListaDocumento = '$idDocumento' AND publicado = '1'";
 	$envio = mysqli_query($con, $verificacaoArquivo);
 	if (mysqli_num_rows($envio) > 0) {
 		return true;
@@ -747,7 +755,30 @@ function verificaArquivosExistentesPJ($idPessoa,$idDocumento)
 }
 
 
-function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
+/**
+ * @param $idPessoa
+ * @param $tipoPessoa
+ * @param int $idCampo <p>
+ * (opcional) Caso deseje exibir um arquivo especifico para download, caso não, preencher com ""
+ * </p>
+ * @param String $pagina <p>
+ * Para qual página vai retornar quando clicar no botão "Apagar"
+ * </p>
+ * @param int $pf <p> Qual lista de arquivos vai ser exibida <br>
+ * 1: Informações Iniciais PF <br>
+ * 2: Informações Iniciais PJ <br>
+ * 3: Dados Bancarios e Informações Complementares <br>
+ * 4: Demais Anexos PF <br>
+ * 5: Representante Legal 1 <br>
+ * 6: Representante Legal 2 <br>
+ * 7: Artista PJ Cadastro <br>
+ * 8: Demais Anexos PJ <br>
+ * 9: Grupo <br>
+ * 10: Evento <br>
+ * 11: Informações Iniciais Oficineiros <br>
+ * </p>
+ */
+function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, $pf)
 {
 	$con = bancoMysqli();
 	switch ($pf) {
@@ -867,6 +898,19 @@ function listaArquivoCamposMultiplos($idPessoa,$tipoPessoa,$idCampo,$pagina,$pf)
 				$arq1 $arq2 $arq3 $arq4 $arq5 $arq6 $arq7
 				AND arq.publicado = '1'";
 		break;
+        case 11: //informacoes_iniciais_oficineiros_pf
+            $arq1 = "AND (list.id = '109' OR ";
+            $arq2 = "list.id = '110' OR";
+            $arq3 = "list.id = '111' OR";
+            $arq4 = "list.id = '112')";
+            $sql = "SELECT *
+				FROM upload_lista_documento as list
+				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+				WHERE arq.idPessoa = '$idPessoa'
+				AND arq.idTipoPessoa = '$tipoPessoa'
+				$arq1 $arq2 $arq3 $arq4
+				AND arq.publicado = '1'";
+            break;
 		default:
 		break;
 	}
