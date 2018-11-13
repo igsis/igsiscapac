@@ -288,7 +288,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                             </form>
                         </div>
                         <div class="col-md-offset-4 col-md-2">
-                            <form class="form-horizontal" role="form" action="?perfil=endereco_pf" method="post">
+                            <form class="form-horizontal" role="form" action="?perfil=formacao_endereco" method="post">
                                 <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
                             </form>
                         </div>
