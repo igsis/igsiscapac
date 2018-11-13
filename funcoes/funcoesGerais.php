@@ -775,7 +775,12 @@ function verificaArquivosExistentesPJ($idPessoa,$idDocumento)
  * 8: Demais Anexos PJ <br>
  * 9: Grupo <br>
  * 10: Evento <br>
- * 11: Informações Iniciais Oficineiros <br>
+ * 11: Informações Iniciais Oficineiros PF <br>
+ * 12: Demais Anexos Oficineiro PF <br>
+ * 13: Informações Iniciais Oficineiros PJ <br>
+ * 14: Representante Legal 1 Oficineiro <br>
+ * 15: Representante Legal 2 Oficineiro <br>
+ * 16: Demais Anexos Oficineiro PJ <br>
  * </p>
  */
 function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, $pf)
@@ -911,7 +916,60 @@ function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, 
 				$arq1 $arq2 $arq3 $arq4
 				AND arq.publicado = '1'";
             break;
-		default:
+        case 12: //anexos_oficineiro_pf
+            $sql = "SELECT *
+				FROM upload_lista_documento as list
+				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+				WHERE arq.idPessoa = '$idPessoa'
+				AND arq.idTipoPessoa = '$tipoPessoa'
+				AND list.id NOT IN (109,110,113,111,112,114)
+				AND arq.publicado = '1'";
+            break;
+        case 13: //informacoes_iniciais_oficineiros_pj
+            $arq1 = "AND (list.id = '120' OR ";
+            $arq2 = "list.id = '121' OR";
+            $arq3 = "list.id = '122')";
+            $sql = "SELECT *
+				FROM upload_lista_documento as list
+				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+				WHERE arq.idPessoa = '$idPessoa'
+				AND arq.idTipoPessoa = '$tipoPessoa'
+				$arq1 $arq2 $arq3
+				AND arq.publicado = '1'";
+            break;
+        case 14: //representante_legal1_oficineiro
+            $arq1 = "AND (list.id = '123' OR ";
+            $arq2 = "list.id = '124')";
+            $sql = "SELECT *
+				FROM upload_lista_documento as list
+				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+				WHERE arq.idPessoa = '$idPessoa'
+				AND arq.idTipoPessoa = '$tipoPessoa'
+				$arq1 $arq2
+				AND arq.publicado = '1'";
+            break;
+        case 15: //representante_legal2_oficineiro
+            $arq1 = "AND (list.id = '125' OR ";
+            $arq2 = "list.id = '126')";
+            $sql = "SELECT *
+				FROM upload_lista_documento as list
+				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+				WHERE arq.idPessoa = '$idPessoa'
+				AND arq.idTipoPessoa = '$tipoPessoa'
+				$arq1 $arq2
+				AND arq.publicado = '1'";
+            break;
+        case 16: //anexos_pj
+            $sql = "SELECT *
+				FROM upload_lista_documento as list
+				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+				WHERE arq.idPessoa = '$idPessoa'
+				AND arq.idTipoPessoa = '$tipoPessoa'
+				AND list.id NOT IN ('120', '121', '122', '123', '124', '125', '126', '127')
+				AND arq.publicado = '1'";
+            break;
+
+        default:
 		break;
 	}
 	$query = mysqli_query($con,$sql);
