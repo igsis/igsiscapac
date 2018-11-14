@@ -134,7 +134,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                                 <?php geraOpcao('etnias', $pf['etnia_id']) ?>
                             </select>
                         </div>
-                        <div class="col-md-4"><strong>Etnia:</strong><br/>
+                        <div class="col-md-4"><strong>Grau de Instrução:</strong><br/>
                             <select name="grauInstrucao" id="grauInstrucao" class="form-control">
                                 <option value="">Selecione...</option>
                                 <?php geraOpcao('grau_instrucoes', $pf['grau_instrucao_id']) ?>

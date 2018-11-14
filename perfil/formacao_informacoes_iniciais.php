@@ -18,11 +18,12 @@ if(isset($_POST['cadastrarFormacao']))
     $telefone3 = $_POST['telefone3'];
     $email = $_POST['email'];
     $dataNascimento = exibirDataMysql($_POST['dataNascimento']);
+    $estadoCivil = $_POST['idEstadoCivil'];
     $pis = $_POST['pis'];
     $programa = $_POST['programa'];
     $dataAtualizacao = date("Y-m-d H:i:s");
 
-    $sql_cadastra_pf = "INSERT INTO `pessoa_fisica`(`nome`, `nomeArtistico`, `idTipoDocumento`, `rg`, `cpf`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `dataNascimento`, `pis`, `tipo_formacao_id`, `dataAtualizacao`, `idUsuario`) VALUES ('$nome', '$nomeArtistico', '$idTipoDocumento', '$rg', '$cpf', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$dataNascimento', '$pis', '$programa', '$dataAtualizacao', '$idUser')";
+    $sql_cadastra_pf = "INSERT INTO `pessoa_fisica`(`nome`, `nomeArtistico`, `idTipoDocumento`, `rg`, `cpf`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `idEstadoCivil`, `dataNascimento`, `pis`, `tipo_formacao_id`, `dataAtualizacao`, `idUsuario`) VALUES ('$nome', '$nomeArtistico', '$idTipoDocumento', '$rg', '$cpf', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$estadoCivil', '$dataNascimento', '$pis', '$programa', '$dataAtualizacao', '$idUser')";
     if(mysqli_query($con,$sql_cadastra_pf))
     {
         $mensagem = "<font color='#01DF3A'><strong>Cadastrado com sucesso!</strong></font>";
@@ -51,6 +52,7 @@ if(isset($_POST['atualizarFormacao']))
     $telefone2 = $_POST['telefone2'];
     $telefone3 = $_POST['telefone3'];
     $email = $_POST['email'];
+    $estadoCivil = $_POST['idEstadoCivil'];
     $dataNascimento = exibirDataMysql($_POST['dataNascimento']);
     $pis = $_POST['pis'];
     $programa = $_POST['programa'];
@@ -68,6 +70,7 @@ if(isset($_POST['atualizarFormacao']))
 	`telefone2` = '$telefone2',
 	`telefone3` = '$telefone3',
 	`email` = '$email',
+	`idEstadoCivil` = '$estadoCivil',
 	`dataNascimento` = '$dataNascimento',
 	`pis` = '$pis',
 	`tipo_formacao_id` = '$programa',
