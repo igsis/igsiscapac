@@ -7,7 +7,7 @@ $urlPf = array(
     '/igsiscapac/visual/index.php?perfil=formacao_endereco', // 03 endereço
     '/igsiscapac/visual/index.php?perfil=formacao_informacoes_complementares', // 04 info complem
     '/igsiscapac/visual/index.php?perfil=formacao_dados_bancarios', // 05 dados bancarios
-    '/igsiscapac/visual/index.php?perfil=anexos_pf', // 06 demais anexos
+    '/igsiscapac/visual/index.php?perfil=formacao_anexos', // 06 demais anexos
     '/igsiscapac/visual/index.php?perfil=final_pf', // 07 final pf
     '/igsiscapac/visual/index.php?perfil=arquivos_dados_bancarios_pf' // 08
 );
@@ -55,11 +55,11 @@ for ($i = 0; $i < count($urlPf); $i++) {
                     <li class="<?php echo isset($active5) ? $active5 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=formacao_dados_bancarios'" href=""><br /><small>Dados Bancários</small></a>
                     </li>
-                    <li class="<?php echo isset($active8) ? $active8 : 'clickable'; ?>">
+                    <!--<li class="<?php /*echo isset($active8) ? $active8 : 'clickable'; */?>">
                         <a onclick="location.href='index.php?perfil=arquivos_dados_bancarios_pf'" href=""><br /><small>Arquivos Dados Bancários</small></a>
-                    </li>
+                    </li>-->
                     <li class="<?php echo isset($active6) ? $active6 : 'clickable'; ?>">
-                        <a onclick="location.href='index.php?perfil=anexos_pf'" href=""><br /><small>Demais Anexos</small></a>
+                        <a onclick="location.href='index.php?perfil=formacao_anexos'" href=""><br /><small>Demais Anexos</small></a>
                     </li>
                     <li class="<?php echo isset($active7) ? $active7 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=final_pf'" href=""><br /><small>Finalizar</small></a>
