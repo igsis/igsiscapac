@@ -122,6 +122,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-6"><strong>Tipo de documento *:</strong><br/>
                             <select class="form-control" id="idTipoDocumento" name="idTipoDocumento" >
+                                <option value="">Selecione...</option>
                                 <?php geraOpcao("tipo_documento",$pf['idTipoDocumento']); ?>
                             </select>
                         </div>
@@ -163,6 +164,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                         </div>
                         <div class="col-md-6"><strong>Estado civil:</strong><br/>
                             <select class="form-control" name="idEstadoCivil" >
+                                <option value="">Selecione...</option>
                                 <?php geraOpcao("estado_civil",$pf['idEstadoCivil']); ?>
                             </select>
                         </div>
@@ -180,6 +182,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8"><strong>Programa:</strong><br/>
                             <select class="form-control" name="programa" id="programa">
+                                <option value="">Selecione...</option>
                                 <?php geraOpcao('tipo_formacao', $pf['tipo_formacao_id']) ?>
                             </select>
                         </div>

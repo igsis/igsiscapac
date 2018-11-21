@@ -3,12 +3,57 @@
 $con = bancoMysqli();
 $idPf = $_SESSION['idPf'];
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
-$contador = 0;
+
+$obrigatorios = [
+//Informacoes Iniciais
+    'nome'                  =>  'Nome',
+    'nomeArtistico'         =>  'Nome Artístico',
+    'idTipoDocumento'       =>  'Tipo de Documento',
+    'rg'                    =>  'Nº do Documento',
+    'cpf'                   =>  'CPF',
+    'telefone1'             =>  'Telefone',
+    'email'                 =>  'E-Mail',
+    'dataNascimento'        =>  'Data de Nascimento',
+//Endereco
+    'logradouro'            =>  'Endereço',
+    'bairro'                =>  'Bairro',
+    'cidade'                =>  'Cidade',
+    'estado'                =>  'Estado',
+    'cep'                   =>  'CEP',
+    'numero'                =>  'Número',
+//Informacoes Complementares
+    'tipo_formacao_id'      =>  'Programa',
+    'etnia_id'              =>  'Etnia',
+    'grau_instrucao_id'     =>  'Grau de Instrução',
+    'formacao_funcao_id'    =>  'Função',
+    'codigoBanco'           =>  'Banco',
+    'agencia'               =>  'Agência',
+    'conta'                 =>  'Conta',
+];
+
+$erro = false;
+$campoVazio = [];
+
+foreach ($pf as $campo => $valor)
+{
+    if (!(is_numeric($campo)))
+    {
+        if (array_key_exists($campo, $obrigatorios))
+        {
+            if (($valor == '') || ($valor == null) || ($valor == '0'))
+            {
+                array_push($campoVazio, $campo);
+                $erro = true;
+            }
+        }
+    }
+}
 
 $estadoCivil = recuperaDados('estado_civil', 'id', $pf['idEstadoCivil']);
 $etnia = recuperaDados('etnias', 'id', $pf['etnia_id']);
 $grauInstrucao = recuperaDados('grau_instrucoes', 'id', $pf['grau_instrucao_id']);
 $programa = recuperaDados('tipo_formacao', 'id', $pf['tipo_formacao_id']);
+$documento = recuperaDados('tipo_documento', 'id', $pf['idTipoDocumento']);
 
 $sql_funcao = "SELECT ff.funcao FROM formacao_funcoes AS ff
                 INNER JOIN pessoa_fisica AS pf ON ff.id = pf.formacao_funcao_id
@@ -23,25 +68,17 @@ function recuperaBanco($campoY)
     return $nomeBanco;
 }
 
-function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = 6)
+function listaArquivoCamposMultiplos1($idPessoa, $tipoPessoa = 6)
 {
     $con = bancoMysqli();
-    switch ($pf) {
-        case 1: //formacao_informacoes_iniciais
-            $arq1 = "AND (list.id = '137' OR ";
-            $arq2 = "list.id = '138' OR";
-            $arq3 = "list.id = '139')";
-            $sql = "SELECT *
+    $sql = "SELECT *
 				FROM upload_lista_documento as list
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
 				AND arq.idTipoPessoa = '$tipoPessoa'
-				$arq1 $arq2 $arq3
-				AND arq.publicado = '1'";
-            break;
-        default:
-            break;
-    }
+				AND arq.publicado = '1'
+				ORDER BY documento";
+
     $query = mysqli_query($con,$sql);
     $linhas = mysqli_num_rows($query);
 
@@ -73,31 +110,57 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = 6)
     }
 }
 
+$sql_arquivos = "SELECT * FROM `upload_lista_documento` WHERE `idTipoUpload` = '6' AND `publicado` = '1'";
+$arquivos = mysqli_fetch_array(mysqli_query($con, $sql_arquivos));
+
 ?>
 <section id="list_items" class="home-section bg-white">
     <div class="container"><?php include 'includes/menu_formacao.php'; ?>
         <div class="form-group">
             <h4>Finalizar</h4>
-            <p>
-                <strong>
-                    <span style="color: green;">
-                        Todos os campos obrigatórios foram preenchidos corretamente.<br/>
-                        Seu cadastro de Pessoa Física foi concluído com sucesso!
-                    </span>
-                </strong>
-            </p>
-            <br>
+            <?php if ($erro) { ?>
+                <p>
+                    <strong>
+                        <span style="color: red;">
+                            Alguns campos obrigatórios não foram preenchidos.<br/>
+                            Por favor revise seu cadastro
+                        </span>
+                    </strong>
+                </p>
+                <?php foreach ($campoVazio as $campo) { ?>
+                    <div class="alert alert-danger ">
+                        Campo <strong><?= $obrigatorios[$campo] ?></strong> não preenchido
+                    </div>
 
-            <div class="alert alert-success ">
-                Seu Código de Cadastro é <strong><?= $pf['id'] ?></strong>
-            </div>
+           <?php
+                foreach ($arquivos as $cpo => $valor){
+                echo key($cpo);
+                }
+                }
+
+            } else { ?>
+                <p>
+                    <strong>
+                            <span style="color: green;">
+                                Todos os campos obrigatórios foram preenchidos corretamente.<br/>
+                                Seu cadastro de Pessoa Física foi concluído com sucesso!
+                            </span>
+                    </strong>
+                </p>
+                <br>
+
+                <div class="alert alert-success ">
+                    Seu Código de Cadastro é <strong><?= $pf['id'] ?></strong>
+                </div>
+            <?php } ?>
+
             <div class="container">
                 <div class = "page-header"> <h5>Informações Pessoais </h5><br></div>
                 <div class="well">
                     <p align="justify"><strong>Nome:</strong> <?= $pf['nome']; ?></p>
                     <p align="justify"><strong>Nome artístico:</strong> <?= $pf['nomeArtistico']; ?></p>
                     <p align="justify"><strong>Data de Nascimento:</strong> <?= date_format(date_create($pf['dataNascimento']), 'd/m/Y'); ?></p>
-                    <p align="justify"><strong>RG:</strong> <?= $pf['rg']; ?><p>
+                    <p align="justify"><strong><?= $documento['tipoDocumento'] ?>:</strong> <?= $pf['rg']; ?><p>
                     <p align="justify"><strong>CPF:</strong> <?= $pf['cpf']; ?><p>
                     <p align="justify"><strong>CCM:</strong> <?= $pf['ccm']; ?><p>
                     <p align="justify"><strong>Email:</strong> <?= $pf['email']; ?><p>
@@ -133,7 +196,7 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = 6)
                 </div>
 
             <div class="table-responsive list_info"><h6>Arquivo(s) de Pessoa Física</h6>
-                <?php listaArquivoCamposMultiplos1($pf['id'],1); ?>
+                <?php listaArquivoCamposMultiplos1($pf['id']); ?>
             </div>
             </div>
 </section>
