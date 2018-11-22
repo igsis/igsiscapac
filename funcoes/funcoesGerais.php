@@ -1191,4 +1191,16 @@ function listaArquivos($idEvento)
 		</table>";
 }
 
+function arquivosObrigatorios($tipoPessoa, $idPessoa, $idListaDocumento) {
+    $con = bancoMysqli();
+    $sql = "SELECT * FROM `upload_arquivo` WHERE `idTipoPessoa` = '$tipoPessoa' AND idPessoa = '$idPessoa' AND idUploadListaDocumento = '$idListaDocumento' AND publicado = '1'";
+    $query = mysqli_query($con, $sql);
+    if (mysqli_num_rows($query) > 0) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
 ?>

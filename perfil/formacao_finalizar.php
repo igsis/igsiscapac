@@ -32,6 +32,8 @@ $obrigatorios = [
 ];
 
 $erro = false;
+$erroCampo = false;
+$erroArquivo = false;
 $campoVazio = [];
 
 foreach ($pf as $campo => $valor)
@@ -44,7 +46,24 @@ foreach ($pf as $campo => $valor)
             {
                 array_push($campoVazio, $campo);
                 $erro = true;
+                $erroCampo = true;
             }
+        }
+    }
+}
+
+$sql_arquivos = "SELECT * FROM `upload_lista_documento` WHERE `idTipoUpload` = '6' AND `publicado` = '1'";
+$arquivos = mysqli_query($con, $sql_arquivos);
+$arquivoVazio = [];
+
+while ($arquivo = mysqli_fetch_assoc($arquivos))
+{
+    if (arquivosObrigatorios(6, $idPf, $arquivo['id']))
+    {
+        if ($arquivo['documento'] != "DRT") {
+            array_push($arquivoVazio, $arquivo['documento']);
+            $erro = true;
+            $erroArquivo = true;
         }
     }
 }
@@ -110,48 +129,66 @@ function listaArquivoCamposMultiplos1($idPessoa, $tipoPessoa = 6)
     }
 }
 
-$sql_arquivos = "SELECT * FROM `upload_lista_documento` WHERE `idTipoUpload` = '6' AND `publicado` = '1'";
-$arquivos = mysqli_fetch_array(mysqli_query($con, $sql_arquivos));
-
 ?>
 <section id="list_items" class="home-section bg-white">
     <div class="container"><?php include 'includes/menu_formacao.php'; ?>
         <div class="form-group">
             <h4>Finalizar</h4>
-            <?php if ($erro) { ?>
-                <p>
-                    <strong>
-                        <span style="color: red;">
-                            Alguns campos obrigatórios não foram preenchidos.<br/>
-                            Por favor revise seu cadastro
-                        </span>
-                    </strong>
-                </p>
-                <?php foreach ($campoVazio as $campo) { ?>
+            <?php
+            if ($erro) {
+                if ($erroCampo) {
+            ?>
+                    <p>
+                        <strong>
+                                <span style="color: red;">
+                                    Alguns campos obrigatórios não foram preenchidos.<br/>
+                                    Por favor revise seu cadastro
+                                </span>
+                        </strong>
+                    </p>
+                    <?php
+                    foreach ($campoVazio as $campo) {
+                    ?>
+                        <div class="alert alert-danger ">
+                            Campo <strong><?= $obrigatorios[$campo] ?></strong> não preenchido
+                        </div>
+
+                <?php
+                    }
+                }
+                if ($erroArquivo) {
+                ?>
+                    <p>
+                        <strong>
+                                <span style="color: red;">
+                                    Alguns arquivos obrigatórios não foram enviados.<br/>
+                                    Por favor revise seu cadastro
+                                </span>
+                        </strong>
+                    </p>
+                <?php
+                    foreach ($arquivoVazio as $arquivo) {
+                ?>
                     <div class="alert alert-danger ">
-                        Campo <strong><?= $obrigatorios[$campo] ?></strong> não preenchido
+                        Arquivo <strong><?= $arquivo ?></strong> não enviado
                     </div>
-
-           <?php
-                foreach ($arquivos as $cpo => $valor){
-                echo key($cpo);
+                <?php
+                    }
                 }
-                }
-
             } else { ?>
-                <p>
-                    <strong>
+            <p>
+                <strong>
                             <span style="color: green;">
                                 Todos os campos obrigatórios foram preenchidos corretamente.<br/>
                                 Seu cadastro de Pessoa Física foi concluído com sucesso!
                             </span>
-                    </strong>
-                </p>
-                <br>
+                </strong>
+            </p>
+            <br>
 
-                <div class="alert alert-success ">
-                    Seu Código de Cadastro é <strong><?= $pf['id'] ?></strong>
-                </div>
+            <div class="alert alert-success ">
+                Seu Código de Cadastro é <strong><?= $pf['id'] ?></strong>
+            </div>
             <?php } ?>
 
             <div class="container">
