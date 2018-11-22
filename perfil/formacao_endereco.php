@@ -2,7 +2,7 @@
 
 $con = bancoMysqli();
 $idPf = $_SESSION['idPf'];
-$idCampo = 140;
+$idCampo = 139;
 $tipoPessoa = 6;
 
 if(isset($_POST['cadastrarEndereco']))

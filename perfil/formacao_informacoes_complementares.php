@@ -2,7 +2,7 @@
 $con = bancoMysqli();
 $idPf = $_SESSION['idPf'];
 
-$idCampo = 141;
+$idCampo = 140;
 $tipoPessoa = 6;
 
 if(isset($_POST['cadastrarFisica']))

@@ -11,7 +11,7 @@ $http = $server."/pdf/";
 
 if(isset($_POST["enviar"]))
 {
-    $sql_arquivos = "SELECT * FROM `upload_lista_documento` WHERE `id` NOT BETWEEN '137' AND '141' AND `idTipoUpload` = '6' AND `publicado` = '1'";
+    $sql_arquivos = "SELECT * FROM `upload_lista_documento` WHERE `id` NOT BETWEEN '136' AND '140' AND `idTipoUpload` = '6' AND `publicado` = '1'";
     $query_arquivos = mysqli_query($con,$sql_arquivos);
     while($arq = mysqli_fetch_array($query_arquivos))
     {
@@ -134,7 +134,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                             <form method="POST" action="?perfil=formacao_anexos" enctype="multipart/form-data">
                                 <table class='table table-condensed'>
                                     <?php
-                                    $sql_arquivos = "SELECT * FROM `upload_lista_documento` WHERE `id` NOT BETWEEN '137' AND '141' AND `idTipoUpload` = '6' AND `publicado` = '1'";
+                                    $sql_arquivos = "SELECT * FROM `upload_lista_documento` WHERE `id` NOT BETWEEN '136' AND '140' AND `idTipoUpload` = '6' AND `publicado` = '1'";
                                     $query_arquivos = mysqli_query($con,$sql_arquivos);
                                     while($arq = mysqli_fetch_array($query_arquivos))
                                     {

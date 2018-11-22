@@ -991,9 +991,9 @@ function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, 
 				AND arq.publicado = '1'";
             break;
         case 17: //formacao_informacoes_iniciais
-            $arq1 = "AND (list.id = '137' OR ";
-            $arq2 = "list.id = '138' OR";
-            $arq3 = "list.id = '139')";
+            $arq1 = "AND (list.id = '136' OR ";
+            $arq2 = "list.id = '137' OR";
+            $arq3 = "list.id = '138')";
             $sql = "SELECT *
 				FROM upload_lista_documento as list
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
@@ -1009,7 +1009,7 @@ function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, 
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
 				AND arq.idTipoPessoa = '$tipoPessoa'
-				AND list.id NOT BETWEEN '137' AND '142'
+				AND list.id NOT BETWEEN '136' AND '140'
 				AND arq.publicado = '1'";
             break;
 

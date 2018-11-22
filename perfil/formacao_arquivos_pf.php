@@ -13,7 +13,7 @@ if(isset($_POST['carregar']))
 
 if(isset($_POST["enviar"]))
 {
-    $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id IN (137,138,139)";
+    $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id IN (136,137,138)";
     $query_arquivos = mysqli_query($con,$sql_arquivos);
     while($arq = mysqli_fetch_array($query_arquivos))
     {
@@ -157,12 +157,12 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                                         <td width="50%"><td>
                                     </tr>
                                     <?php
-                                    if(verificaArquivosExistentesPF($idPf, '137', $tipoPessoa))
+                                    if(verificaArquivosExistentesPF($idPf, '136', $tipoPessoa))
                                     {
                                         echo '<div class="alert alert-success">O arquivo RG/RNE/PASSAPORTE já foi enviado.</div> ';
                                     }
                                     else{
-                                        $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '137'";
+                                        $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '136'";
                                         $query_arquivos = mysqli_query($con,$sql_arquivos);
                                         while($arq = mysqli_fetch_array($query_arquivos))
                                         {
@@ -190,12 +190,12 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                                         <td width="50%"><td>
                                     </tr>
                                     <?php
-                                    if(verificaArquivosExistentesPF($idPf, '138', $tipoPessoa))
+                                    if(verificaArquivosExistentesPF($idPf, '137', $tipoPessoa))
                                     {
                                         echo '<div class="alert alert-success">O arquivo CPF já foi enviado.</div> ';
                                     }
                                     else{
-                                        $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '138'";
+                                        $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '137'";
                                         $query_arquivos = mysqli_query($con,$sql_arquivos);
                                         while($arq = mysqli_fetch_array($query_arquivos))
                                         {
@@ -221,12 +221,12 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                                     <td width="50%"></td>
                                 </tr>
                                 <?php
-                                if(verificaArquivosExistentesPF($idPf, '139', $tipoPessoa))
+                                if(verificaArquivosExistentesPF($idPf, '138', $tipoPessoa))
                                 {
                                     echo '<div class="alert alert-success">O arquivo PIS/PASEP/NIT já foi enviado.</div> ';
                                 }
                                 else{
-                                    $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '139'";
+                                    $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '138'";
                                     $query_arquivos = mysqli_query($con,$sql_arquivos);
                                     while($arq = mysqli_fetch_array($query_arquivos))
                                     {
