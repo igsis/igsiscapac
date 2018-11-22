@@ -1,7 +1,6 @@
 <?php
 /*TODO: Ocultar opções do menu*/
 $urlPf = array(
-    '/igsiscapac/visual/index.php?perfil=formacao_resultado',
     '/igsiscapac/visual/index.php?perfil=formacao_informacoes_iniciais',
     '/igsiscapac/visual/index.php?perfil=formacao_arquivos_pf', // 02 arquivo Evento
     '/igsiscapac/visual/index.php?perfil=formacao_endereco', // 03 endereço
@@ -13,21 +12,21 @@ $urlPf = array(
 );
 for ($i = 0; $i < count($urlPf); $i++) {
     if ($uri == $urlPf[$i]) {
-        if ($i == 0 || $i == 1){
+        if ($i == 0){
             $active1 = 'active loading';
-        }elseif ($i == 2){
+        }elseif ($i == 1){
             $active2 = 'active loading';
-        }elseif ($i == 3){ // endereco
+        }elseif ($i == 2){ // endereco
             $active3 = 'active loading';
-        }elseif ($i == 4){ // info complem
+        }elseif ($i == 3){ // info complem
             $active4 = 'active loading';
-        }elseif ($i == 5){ // dados bancarios
+        }elseif ($i == 4){ // dados bancarios
             $active5 = 'active loading';
-        }elseif ($i == 6){ // demais anexos
+        }elseif ($i == 5){ // demais anexos
             $active6 = 'active loading';
-        }elseif ($i == 7){ // Finalizar
+        }elseif ($i == 6){ // Finalizar
             $active7 = 'active loading';
-        }elseif ($i == 8){ // dados bancarios
+        }elseif ($i == 7){ // dados bancarios
             $active8 = 'active loading';
         }
         if(!(isset($_SESSION['idEvento']))){

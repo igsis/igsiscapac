@@ -129,13 +129,13 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-4"><strong>Etnia:</strong><br/>
-                            <select name="etnia" id="etnia" class="form-control">
+                            <select name="etnia" id="etnia" class="form-control" required>
                                 <option value="">Selecione...</option>
                                 <?php geraOpcao('etnias', $pf['etnia_id']) ?>
                             </select>
                         </div>
                         <div class="col-md-4"><strong>Grau de Instrução:</strong><br/>
-                            <select name="grauInstrucao" id="grauInstrucao" class="form-control">
+                            <select name="grauInstrucao" id="grauInstrucao" class="form-control" required>
                                 <option value="">Selecione...</option>
                                 <?php geraOpcao('grau_instrucoes', $pf['grau_instrucao_id']) ?>
                             </select>
@@ -144,7 +144,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8"><strong>Função:</strong><br/>
-                            <select name="funcaoFormacao" id="funcaoFormacao" class="form-control">
+                            <select name="funcaoFormacao" id="funcaoFormacao" class="form-control" required>
                                 <option value="">Selecione...</option>
                                 <?php geraOpcaoFormacao($pf['formacao_funcao_id'], $pf['tipo_formacao_id']) ?>
                             </select>

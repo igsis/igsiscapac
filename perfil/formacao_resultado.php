@@ -69,31 +69,32 @@ else
                     <div class="col-md-offset-1 col-md-10">
                         <form class="form-horizontal" role="form" action="?perfil=formacao_informacoes_iniciais" method="post">
                             <div class="form-group">
-                                <div class="col-md-offset-2 col-md-8"><strong>Nome *:</strong><br/>
-                                    <input type="text" class="form-control" name="nome" placeholder="Nome Completo" >
+                                <div class="col-md-offset-2 col-md-8"><strong>Nome*:</strong><br/>
+                                    <input type="text" class="form-control" name="nome" placeholder="Nome Completo" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-8"><strong>Nome Artístico*:</strong><br/>
-                                    <input type="text" class="form-control" name="nomeArtistico" placeholder="Nome Artístico" >
+                                    <input type="text" class="form-control" name="nomeArtistico" placeholder="Nome Artístico" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <div class="col-md-offset-2 col-md-6"><strong>Tipo de documento *:</strong><br/>
-                                    <select class="form-control" id="idTipoDocumento" name="idTipoDocumento" >
+                                <div class="col-md-offset-2 col-md-6"><strong>Tipo de documento*:</strong><br/>
+                                    <select class="form-control" id="idTipoDocumento" name="idTipoDocumento" required>
+                                        <option value="">Selecione...</option>
                                         <?php geraOpcao("tipo_documento",""); ?>
                                     </select>
                                 </div>
-                                <div class="col-md-6"><strong>Nº do documento *:</strong><br/>
-                                    <input type="text" class="form-control" name="rg" placeholder="Número">
+                                <div class="col-md-6"><strong>Nº do documento*:</strong><br/>
+                                    <input type="text" class="form-control" name="rg" placeholder="Número" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <div class="col-md-offset-2 col-md-6"><strong>CPF *:</strong><br/>
-                                    <input type="text" readonly class="form-control" id="cpf" name="cpf" placeholder="CPF" value="<?php echo $busca; ?>">
+                                <div class="col-md-offset-2 col-md-6"><strong>CPF*:</strong><br/>
+                                    <input type="text" readonly class="form-control" id="cpf" name="cpf" placeholder="CPF" value="<?php echo $busca; ?>" required>
                                 </div>
                                 <div class="col-md-6"><strong>CCM:</strong><br/>
                                     <input type="text" class="form-control" id="ccm" name="ccm" placeholder="CCM" >
@@ -101,8 +102,8 @@ else
                             </div>
 
                             <div class="form-group">
-                                <div class="col-md-offset-2 col-md-6"><strong>Celular *:</strong><br/>
-                                    <input type="text" class="form-control" name="telefone1" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" >
+                                <div class="col-md-offset-2 col-md-6"><strong>Celular*:</strong><br/>
+                                    <input type="text" class="form-control" name="telefone1" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" required>
                                 </div>
                                 <div class="col-md-6"><strong>Telefone #2:</strong><br/>
                                     <input type="text" class="form-control" name="telefone2" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" >
@@ -113,17 +114,18 @@ else
                                 <div class="col-md-offset-2 col-md-6"><strong>Telefone #3:</strong><br/>
                                     <input type="text" class="form-control" name="telefone3" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" >
                                 </div>
-                                <div class="col-md-6"><strong>E-mail *:</strong><br/>
-                                    <input type="text" class="form-control" name="email" placeholder="E-mail" >
+                                <div class="col-md-6"><strong>E-mail*:</strong><br/>
+                                    <input type="text" class="form-control" name="email" placeholder="E-mail" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <div class="col-md-offset-2 col-md-6"><strong>Data Nascimento *:</strong><br/>
-                                    <input type="text" class="form-control" name="dataNascimento" id="datepicker01" placeholder="Data de Nascimento" onclick="alerta()" >
+                                <div class="col-md-offset-2 col-md-6"><strong>Data Nascimento*:</strong><br/>
+                                    <input type="text" class="form-control" name="dataNascimento" id="datepicker01" placeholder="Data de Nascimento" required>
                                 </div>
                                 <div class="col-md-6"><strong>Estado civil:</strong><br/>
                                     <select class="form-control" name="idEstadoCivil" >
+                                        <option value="">Selecione...</option>
                                         <?php geraOpcao("estado_civil",""); ?>
                                     </select>
                                 </div>
@@ -139,8 +141,9 @@ else
                             </div>
 
                             <div class="form-group">
-                                <div class="col-md-offset-2 col-md-8"><strong>Programa:</strong><br/>
-                                    <select class="form-control" name="programa" id="programa">
+                                <div class="col-md-offset-2 col-md-8"><strong>Programa*:</strong><br/>
+                                    <select class="form-control" name="programa" id="programa" required>
+                                        <option value="">Selecione...</option>
                                         <?php geraOpcao('tipo_formacao', $pf['tipo_formacao_id']) ?>
                                     </select>
                                 </div>

@@ -168,7 +168,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                                         {
                                             ?>
                                             <tr>
-                                                <td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+                                                <td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]' required></td>
                                             </tr>
                                             <?php
                                         }
@@ -201,7 +201,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                                         {
                                             ?>
                                             <tr>
-                                                <td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+                                                <td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]' required></td>
                                             </tr>
                                             <?php
                                         }
@@ -232,7 +232,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                                     {
                                         ?>
                                         <tr>
-                                            <td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+                                            <td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]' required></td>
                                         </tr>
                                         <?php
                                     }

@@ -48,8 +48,8 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8"><strong>Banco:</strong><br/>
-                            <select class="form-control" name="codigoBanco" id="codigoBanco">
-                                <option></option>
+                            <select class="form-control" name="codigoBanco" id="codigoBanco" required>
+                                <option value="">Selecione...</option>
                                 <?php geraOpcaoBancos("banco",$pf['codigoBanco']);	?>
                             </select>
                         </div>
@@ -57,10 +57,10 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-6"><strong>Agência</strong><br/>
-                            <input type="text" class="form-control" id="agencia" name="agencia" placeholder="" maxlength="12" value="<?php echo $pf['agencia']; ?>">
+                            <input type="text" class="form-control" id="agencia" name="agencia" placeholder="" maxlength="12" value="<?php echo $pf['agencia']; ?>" required>
                         </div>
                         <div class=" col-md-6"><strong>Conta:</strong><br/>
-                            <input type="text" class="form-control" id="conta" name="conta" placeholder="" maxlength="12" value="<?php echo $pf['conta']; ?>">
+                            <input type="text" class="form-control" id="conta" name="conta" placeholder="" maxlength="12" value="<?php echo $pf['conta']; ?>" required>
                         </div>
                     </div>
 

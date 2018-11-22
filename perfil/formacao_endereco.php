@@ -126,7 +126,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-6"><strong>CEP *:</strong><br/>
-                            <input type="text" class="form-control" id="CEP" name="CEP" placeholder="CEP" value="<?php echo $pf['cep']; ?>">
+                            <input type="text" class="form-control" id="CEP" name="CEP" placeholder="CEP" value="<?php echo $pf['cep']; ?>" required>
                         </div>
                         <div class="col-md-6" align="left"><i>Clique no número do CEP e pressione a tecla Tab para carregar</i>
                         </div>
@@ -202,7 +202,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                                         {
                                             ?>
                                             <tr>
-                                                <td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+                                                <td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]' required></td>
                                             </tr>
                                             <?php
                                         }
