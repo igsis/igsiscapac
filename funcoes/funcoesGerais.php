@@ -301,10 +301,10 @@ date_default_timezone_set("Brazil/East");
 		}
 	}
 
-function geraOpcaoFormacao($select,$tipoFormacao)
+function geraOpcaoFormacao($select, $tipoFormacao, $tabela = 'formacao_funcoes')
 {
     //gera os options de um select
-    $sql = "SELECT * FROM `formacao_funcoes` WHERE `tipo_formacao_id` = '$tipoFormacao' ORDER BY 2";
+    $sql = "SELECT * FROM `$tabela` WHERE `tipo_formacao_id` = '$tipoFormacao' ORDER BY 2";
 
     $con = bancoMysqli();
     $query = mysqli_query($con,$sql);

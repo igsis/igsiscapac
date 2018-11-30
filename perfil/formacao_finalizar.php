@@ -73,6 +73,7 @@ $etnia = recuperaDados('etnias', 'id', $pf['etnia_id']);
 $grauInstrucao = recuperaDados('grau_instrucoes', 'id', $pf['grau_instrucao_id']);
 $programa = recuperaDados('tipo_formacao', 'id', $pf['tipo_formacao_id']);
 $documento = recuperaDados('tipo_documento', 'id', $pf['idTipoDocumento']);
+$linguagem = recuperaDados('formacao_linguagem', 'id', $pf['formacao_linguagem_id']);
 
 $sql_funcao = "SELECT ff.funcao FROM formacao_funcoes AS ff
                 INNER JOIN pessoa_fisica AS pf ON ff.id = pf.formacao_funcao_id
@@ -226,6 +227,7 @@ function listaArquivoCamposMultiplos1($idPessoa, $tipoPessoa = 6)
                     <p align="justify"><strong>DRT:</strong> <?php echo $pf['drt']; ?></p>
                     <p align="justify"><strong>Etnia:</strong> <?= $etnia['etnia']; ?><p>
                     <p align="justify"><strong>Grau de Instrução:</strong> <?= $grauInstrucao['grau_instrucao']; ?><p>
+                    <p align="justify"><strong>Linguagem:</strong> <?= $linguagem['linguagem']; ?><p>
                     <p align="justify"><strong>Função:</strong> <?= $funcao[0]; ?><p>
                     <p align="justify"><strong>Banco:</strong> <?php echo recuperaBanco ($pf['codigoBanco']); ?></p>
                     <p align="justify"><strong>Agência:</strong> <?php echo $pf['agencia']; ?></p>

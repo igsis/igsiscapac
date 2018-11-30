@@ -12,12 +12,14 @@ if(isset($_POST['cadastrarFisica']))
     $etnia = $_POST['etnia'];
     $grauInstrucao = $_POST['grauInstrucao'];
     $funcaoFormacao = $_POST['funcaoFormacao'];
+    $linguagem = $_POST['linguagem'];
 
     $sql_atualiza_complementares = "UPDATE pessoa_fisica SET
 	`drt` = '$Drt',
 	`etnia_id` = '$etnia',
 	`grau_instrucao_id` = '$grauInstrucao',
-	`formacao_funcao_id` = '$funcaoFormacao'
+	`formacao_funcao_id` = '$funcaoFormacao',
+    `formacao_linguagem_id` = '$linguagem'
 	WHERE `id` = '$idPf'";
 
     if (mysqli_query($con,$sql_atualiza_complementares))
@@ -143,7 +145,13 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-8"><strong>Função:</strong><br/>
+                        <div class="col-md-offset-2 col-md-4"><strong>Linguagem:</strong><br/>
+                            <select name="linguagem" id="linguagem" class="form-control" required>
+                                <option value="">Selecione...</option>
+                                <?php geraOpcaoFormacao($pf['formacao_linguagem_id'], $pf['tipo_formacao_id'], 'formacao_linguagem') ?>
+                            </select>
+                        </div>
+                        <div class="col-md-4"><strong>Função:</strong><br/>
                             <select name="funcaoFormacao" id="funcaoFormacao" class="form-control" required>
                                 <option value="">Selecione...</option>
                                 <?php geraOpcaoFormacao($pf['formacao_funcao_id'], $pf['tipo_formacao_id']) ?>
