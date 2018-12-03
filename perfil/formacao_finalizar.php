@@ -52,7 +52,18 @@ foreach ($pf as $campo => $valor)
     }
 }
 
-$sql_arquivos = "SELECT * FROM `upload_lista_documento` WHERE `idTipoUpload` = '6' AND `publicado` = '1'";
+if (($pf['formacao_funcao_id'] != 3) && ($pf['formacao_funcao_id'] != 6))
+{
+    $ids = ['144', '145', '146', '148', '149', '150', '152', '153', '154', '156', '157', '158'];
+    $coordenador = "AND `id` NOT IN (".implode(', ', $ids).")";
+}
+else
+{
+    $ids = ['144', '145', '146', '148', '149', '150', '152', '153', '154', '155', '156', '157', '158'];
+    $coordenador = "AND `id` NOT IN (".implode(', ', $ids).")";
+}
+
+$sql_arquivos = "SELECT * FROM `upload_lista_documento` WHERE `idTipoUpload` = '6' $coordenador AND `publicado` = '1'";
 $arquivos = mysqli_query($con, $sql_arquivos);
 $arquivoVazio = [];
 

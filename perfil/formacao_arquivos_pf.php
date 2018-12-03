@@ -123,21 +123,6 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
         </div>
         <div class="row">
             <div class="col-md-offset-1 col-md-10">
-                <!-- Links emissão de documentos -->
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-8">
-                        <h6>Gerar Arquivo(s)</h6>
-                        <p>Para gerar alguns dos arquivos online, utilize os links abaixo:</p>
-                        <p align="justify">
-                            <a href="https://www.receita.fazenda.gov.br/Aplicacoes/SSL/ATCTA/cpf/ImpressaoComprovante/ConsultaImpressao.asp" target="_blank">Cartão CPF</a><br/>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-8"><hr/><br/></div>
-                </div>
-
                 <!-- Exibir arquivos -->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-8">

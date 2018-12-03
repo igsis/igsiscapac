@@ -29,6 +29,28 @@ if(isset($_POST['cadastrarBanco']))
 
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
+
+
+function geraOpcaoBancos1($tabela,$select)
+{
+    //gera os options de um select
+    $sql = "SELECT * FROM $tabela WHERE `id` = '32' ORDER BY `codigoBanco` ASC";
+
+    $con = bancoMysqli();
+    $query = mysqli_query($con,$sql);
+    while($option = mysqli_fetch_row($query))
+    {
+        if($option[0] == $select)
+        {
+            echo "<option value='".$option[0]."' selected >".$option[1]."</option>";
+        }
+        else
+        {
+            echo "<option value='".$option[0]."'>".$option[1]."</option>";
+        }
+    }
+}
+
 ?>
 
 <section id="list_items" class="home-section bg-white">
@@ -42,15 +64,23 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
             <div class="col-md-offset-1 col-md-10">
                 <form class="form-horizontal" role="form" action="?perfil=formacao_dados_bancarios" method="post">
 
-                    <font color="#FF0000"><strong>Realizamos pagamentos de valores acima de R$ 5.000,00 *SOMENTE COM CONTA CORRENTE NO BANCO DO BRASIL*.<br />
-                            Não são aceitas: conta fácil, poupança e conjunta.</strong></font><br />
-                    <p>
+                    <span style="color: #FF0000; ">
+                        <strong>
+                            <p>Pagamentos serão feitos unicamente em conta corrente de Pessoa Física no
+                            Banco do Brasil. <br>
+                            Não são aceitas: conta fácil, poupança e conjunta. <br>
+                            Candidato contratado que não possuir conta, receberá no ato da assinatura do
+                            contrato, carta de apresentação para abertura da conta.</p>
+                        </strong>
+                    </span>
+
+                    <br />
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8"><strong>Banco:</strong><br/>
-                            <select class="form-control" name="codigoBanco" id="codigoBanco" required>
-                                <option value="">Selecione...</option>
-                                <?php geraOpcaoBancos("banco",$pf['codigoBanco']);	?>
+                            <select class="form-control" name="codigoBanco" id="codigoBanco">
+                                <?php geraOpcaoBancos1("banco",$pf['codigoBanco']);	?>
+                                <option value="">Não Possui</option>
                             </select>
                         </div>
                     </div>

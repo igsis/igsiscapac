@@ -56,7 +56,17 @@ $idUser= $_SESSION['idUser'];
                             </ul>
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-success"><b>Dados Bancários</b></li>
-                                <li class="list-group-item list-group-item-danger"><b>Realizamos pagamentos de valores acima de R$ 5.000,00 *SOMENTE COM CONTA CORRENTE NO BANCO DO BRASIL*.<br />Não são aceitas: conta fácil, poupança e conjunta.</b></li>
+                                <li class="list-group-item list-group-item-danger">
+                                    <b>
+                                        <p>
+                                            Pagamentos serão feitos unicamente em conta corrente de Pessoa Física no
+                                            Banco do Brasil. <br>
+                                            Não são aceitas: conta fácil, poupança e conjunta. <br>
+                                            Candidato contratado que não possuir conta, receberá no ato da assinatura do
+                                            contrato, carta de apresentação para abertura da conta.
+                                        </p>
+                                    </b>
+                                </li>
                                 <li class="list-group-item">Banco</li>
                                 <li class="list-group-item">Agência</li>
                                 <li class="list-group-item">Conta</li>

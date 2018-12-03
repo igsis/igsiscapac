@@ -134,13 +134,22 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                             <form method="POST" action="?perfil=formacao_anexos" enctype="multipart/form-data">
                                 <table class='table table-condensed'>
                                     <?php
-                                    $sql_arquivos = "SELECT * FROM `upload_lista_documento` WHERE `id` NOT BETWEEN '136' AND '140' AND `idTipoUpload` = '6' AND `publicado` = '1'";
+                                    if (($pf['formacao_funcao_id'] != 3) && ($pf['formacao_funcao_id'] != 6))
+                                    {
+                                        $coordenador = "";
+                                    }
+                                    else
+                                    {
+                                        $coordenador = "AND `id` NOT BETWEEN '155' AND '158'";
+                                    }
+                                    $sql_arquivos = "SELECT * FROM `upload_lista_documento` WHERE `id` NOT BETWEEN '136' AND '140' AND `idTipoUpload` = '6' $coordenador AND `publicado` = '1'";
                                     $query_arquivos = mysqli_query($con,$sql_arquivos);
                                     while($arq = mysqli_fetch_array($query_arquivos))
                                     {
                                         ?>
                                         <tr>
                                             <?php
+                                            $required = ['141', '142', '143', '147', '151', '155'];
                                             $doc = $arq['documento'];
                                             $query = "SELECT id FROM upload_lista_documento WHERE documento='$doc' AND publicado='1' AND idTipoUpload='$tipoPessoa'";
                                             $envio = $con->query($query);
@@ -151,7 +160,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                                             }
                                             else{ ?>
                                                 <td class="list_description"><?php echo $arq['documento']?></td>
-                                                <td valign="center"><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+                                                <td valign="center"><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]' <?= in_array($row['id'], $required) ? 'required' : '' ?>></td>
                                             <?php } ?>
                                         </tr>
                                         <?php
