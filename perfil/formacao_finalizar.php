@@ -197,7 +197,8 @@ function listaArquivoCamposMultiplos1($idPessoa, $tipoPessoa = 6)
                 <strong>
                             <span style="color: green;">
                                 Todos os campos obrigatórios foram preenchidos corretamente.<br/>
-                                Seu cadastro de Pessoa Física foi concluído com sucesso!
+                                Seu cadastro de Pessoa Física foi concluído com sucesso!<br>
+                                Anote seu código de cadastro, ele é o seu comprovante de inscrição!
                             </span>
                 </strong>
             </p>
