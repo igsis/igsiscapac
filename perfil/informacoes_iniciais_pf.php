@@ -6,6 +6,16 @@ $tipoPessoa = "1";
 $bool = false;
 $evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 
+function anoFormacao(){
+	$conn = bancoPDO();
+
+	$stmt = $conn->prepare("SELECT ano FROM capac.formacao_cadastro WHERE id = '1'");
+	$stmt->execute();
+	$res = $stmt->fetch();
+
+	return $res['ano'];
+}
+
 if(isset($_POST['cadastrarFisica']))
 {
 	$nome = addslashes($_POST['nome']);
@@ -21,8 +31,9 @@ if(isset($_POST['cadastrarFisica']))
 	$dataNascimento = exibirDataMysql($_POST['dataNascimento']);
 	$pis = $_POST['pis'];
 	$dataAtualizacao = date("Y-m-d H:i:s");
+	$formacaoAno = anoFormacao();
 
-	$sql_cadastra_pf = "INSERT INTO `pessoa_fisica`(`nome`, `nomeArtistico`, `idTipoDocumento`, `rg`, `cpf`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `dataNascimento`, `pis`, `dataAtualizacao`, `idUsuario`) VALUES ('$nome', '$nomeArtistico', '$idTipoDocumento', '$rg', '$cpf', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$dataNascimento', '$pis', '$dataAtualizacao', '$idUser')";
+	$sql_cadastra_pf = "INSERT INTO `pessoa_fisica`(`nome`, `nomeArtistico`, `idTipoDocumento`, `rg`, `cpf`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `dataNascimento`, `pis`, `dataAtualizacao`, `idUsuario`, `formacao_ano` ) VALUES ('$nome', '$nomeArtistico', '$idTipoDocumento', '$rg', '$cpf', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$dataNascimento', '$pis', '$dataAtualizacao', '$idUser', '$formacaoAno')";
 	if(mysqli_query($con,$sql_cadastra_pf))
 	{
 		$mensagem = "<font color='#01DF3A'><strong>Cadastrado com sucesso!</strong></font>";
@@ -78,6 +89,7 @@ if(isset($_POST['atualizarFisica']))
 	date_default_timezone_set('America/Sao_Paulo');
 	$dataAtualizacao = date("Y-m-d");
 	$idPf = $_SESSION['idPf'];
+	$formacaoAno = anoFormacao();
 
 	$sql_atualiza_pf = "UPDATE pessoa_fisica SET
 	`nome` = '$nome',
@@ -91,7 +103,8 @@ if(isset($_POST['atualizarFisica']))
 	`email` = '$email',
 	`dataNascimento` = '$dataNascimento',
 	`pis` = '$pis',
-	`dataAtualizacao` = '$dataAtualizacao'
+	`dataAtualizacao` = '$dataAtualizacao',
+	`formacao_ano`	= '$formacaoAno'
 	WHERE `id` = '$idPf'";
 
 	if(mysqli_query($con,$sql_atualiza_pf))
