@@ -35,7 +35,7 @@ $idUser= $_SESSION['idUser'];
                                 <li class="list-group-item">Programa</li>
                             </ul>
                             <ul class="list-group">
-                                <li class="list-group-item list-group-item-success"><b>Arquivos da Pessoa</b></li>
+                                <li class="list-group-item list-group-item-success"><b>Arquivos da Pessoa (Upload de arquivo em formato PDF)</b></li>
                                 <li class="list-group-item">RG/RNE/PASSAPORTE</li>
                                 <li class="list-group-item">CPF</li>
                                 <li class="list-group-item">PIS/PASEP/NIT</li>
@@ -72,7 +72,7 @@ $idUser= $_SESSION['idUser'];
                                 <li class="list-group-item">Conta</li>
                             </ul>
                             <ul class="list-group">
-                                <li class="list-group-item list-group-item-success"><b>Demais Anexos</b></li>
+                                <li class="list-group-item list-group-item-success"><b>Demais Anexos (Upload de arquivo em formato PDF)</b></li>
                                 <li class="list-group-item">Currículo</li>
                                 <?php
                                     $comprovantes = [
@@ -81,12 +81,12 @@ $idUser= $_SESSION['idUser'];
                                         'Comprovante de Experiência Artístico-pedagógica',
                                         'Comprovante de Experiência em Coordenação/Articulação'
                                     ];
-                                    foreach ($comprovantes as $comprovante)
+                                    foreach ($comprovantes as $key => $comprovante)
                                     {
                                         for ($i=1;$i<=4;$i++)
                                         {
                                 ?>
-                                            <li class="list-group-item"><?= $comprovante." ".$i ?></li>
+                                            <li class="list-group-item"><?= $comprovante." ".$i ?> <?= ($key == 3) ? "*(Para algumas funções)*" : "" ?></li>
                                 <?php
                                         }
                                     }

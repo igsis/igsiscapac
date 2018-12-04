@@ -136,7 +136,8 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                                     <?php
                                     if (($pf['formacao_funcao_id'] != 3) && ($pf['formacao_funcao_id'] != 6))
                                     {
-                                        $coordenador = "";
+
+                                        $coordenador = ($pf['formacao_funcao_id'] != NULL) ? "" : "AND `id` NOT BETWEEN '155' AND '158'";
                                     }
                                     else
                                     {
