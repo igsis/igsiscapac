@@ -136,7 +136,7 @@ else
                                     <input type="text" class="form-control" name="nacionalidade" placeholder="Nacionalidade" >
                                 </div>
                                 <div class="col-md-6"><strong>PIS/PASEP/NIT:</strong><br/>
-                                    <input type="text" class="form-control" name="pis" placeholder="Nº do PIS/PASEP/NIT">
+                                    <input type="text" class="form-control" name="pis" placeholder="Nº do PIS/PASEP/NIT" required>
                                 </div>
                             </div>
 
