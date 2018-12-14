@@ -209,7 +209,7 @@ function listaArquivoCamposMultiplos1($idPessoa, $tipoPessoa = 6)
             </div>
 
             <div class="alert alert-warning ">
-                <strong>Link para acesso ao formulário "Anexo III": </strong> <a href="#">######</a>
+                <strong>Link para acesso ao formulário "Anexo III": </strong> <!--<a href="#">######</a>-->
             </div>
             <?php } ?>
 
