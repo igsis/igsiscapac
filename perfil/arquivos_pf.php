@@ -156,7 +156,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                             $http = $server."/pdf/";
                             $link1 = $http."rlt_declaracaoccm_pf.php"."?id_pf=".$idPf;
                             ?>
-							<a href='<?= $link1 ?>' target="_blank">Declaração CCM</a>
+							<a href='<?= $link1 ?>' target="_blank">Declaração CCM (caso não possua)</a>
 						</p>
 					</div>
 				</div>
