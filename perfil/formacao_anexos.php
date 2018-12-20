@@ -134,7 +134,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                             <form method="POST" action="?perfil=formacao_anexos" enctype="multipart/form-data">
                                 <table class='table table-condensed'>
                                     <?php
-                                    if (($pf['formacao_funcao_id'] != 3) && ($pf['formacao_funcao_id'] != 6))
+                                    if (($pf['formacao_funcao_id'] != 4) && ($pf['formacao_funcao_id'] != 8))
                                     {
 
                                         $coordenador = ($pf['formacao_funcao_id'] != NULL) ? "" : "AND `id` NOT BETWEEN '155' AND '158'";
