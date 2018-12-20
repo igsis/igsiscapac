@@ -1,5 +1,6 @@
 <?php
 /*TODO: Ocultar opções do menu*/
+
 $urlPf = array(
     '/igsiscapac/visual/index.php?perfil=formacao_informacoes_iniciais',
     '/igsiscapac/visual/index.php?perfil=formacao_arquivos_pf', // 02 arquivo Evento
@@ -10,6 +11,7 @@ $urlPf = array(
     '/igsiscapac/visual/index.php?perfil=formacao_finalizar', // 07 final pf
     '/igsiscapac/visual/index.php?perfil=arquivos_dados_bancarios_pf' // 08
 );
+
 for ($i = 0; $i < count($urlPf); $i++) {
     if ($uri == $urlPf[$i]) {
         if ($i == 0){

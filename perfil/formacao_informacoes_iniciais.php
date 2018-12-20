@@ -97,6 +97,15 @@ if(isset($_POST['carregar']))
 $idPf = $_SESSION['idPf'];
 
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
+
+if (!($bool))
+{
+    $_SESSION['menu'] = false;
+}
+else
+{
+    $_SESSION['menu'] = true;
+}
 ?>
 
 <section id="list_items" class="home-section bg-white">

@@ -6,6 +6,7 @@ $formacao = $con->query('SELECT `situacao` FROM `formacao_cadastro`')->fetch_ass
 unset($_SESSION['idEvento']);
 unset($_SESSION['idPj']);
 unset($_SESSION['idPf']);
+unset($_SESSION['menu']);
 ?>
 <section id="contact" class="home-section bg-white">
 	<div class="container">
