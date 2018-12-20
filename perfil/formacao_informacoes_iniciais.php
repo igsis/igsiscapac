@@ -181,7 +181,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8"><strong>Programa:</strong><br/>
-                            <select class="form-control" name="programa" id="programa">
+                            <select class="form-control" name="programa" id="programa" required>
                                 <option value="">Selecione...</option>
                                 <?php geraOpcao('tipo_formacao', $pf['tipo_formacao_id']) ?>
                             </select>
