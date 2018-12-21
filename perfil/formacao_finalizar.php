@@ -52,7 +52,7 @@ foreach ($pf as $campo => $valor)
     }
 }
 
-if (($pf['formacao_funcao_id'] != 3) && ($pf['formacao_funcao_id'] != 6))
+if (($pf['formacao_funcao_id'] != 4) && ($pf['formacao_funcao_id'] != 8))
 {
     if ($pf['formacao_funcao_id'] != NULL) {
         $ids = ['144', '145', '146', '148', '149', '150', '152', '153', '154', '156', '157', '158'];
