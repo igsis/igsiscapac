@@ -47,7 +47,7 @@ if($query != '')
 									<td class='list_description'><?php echo $query["nome"]; ?></td>
 									<td class='list_description'><?php echo $query["cpf"] ?></td>
 									<td class='list_description'>
-										<form method='POST' action='?perfil=informacoes_iniciais_pf'>
+										<form method='POST' action='?perfil=oficineiro_pf_informacoes_iniciais'>
 										<input type='hidden' name='carregar' value='<?php echo $query["id"] ?>'>
                                         <input type="hidden" name="oficineiro">
                                         <input type ='submit' class='btn btn-theme btn-md btn-block' value='Carregar'></form>
@@ -67,20 +67,6 @@ else
 	$busca = $_POST['busca'];
 ?>
 
-<thead>
-	<script src="js/sweetalert.min.js"></script>
-    <link href="css/sweetalert.css" rel="stylesheet" type="text/css"/>
-<script>
-	function alerta()
-	{
-    swal({   title: "Atenção!", 
-	text: "Para maiores informações sobre contratação de artistas com idade inferior a 18 anos, entrar em contato com o programador do seu evento.",
-	timer: 10000,   
-	confirmButtonColor:	"#20B2AA",
-	showConfirmButton: true });}
-</script>
-  </thead>
-
 	<section id="contact" class="home-section bg-white">
 		<div class="container"><div class="container"><?php include 'includes/menu_oficinas.php'; ?>
 			<div class="form-group">
@@ -88,7 +74,7 @@ else
 			</div>
 			<div class="row">
 				<div class="col-md-offset-1 col-md-10">
-					<form class="form-horizontal" role="form" action="?perfil=informacoes_iniciais_pf" method="post">
+					<form class="form-horizontal" role="form" action="?perfil=oficineiro_pf_informacoes_iniciais" method="post">
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8"><strong>Nome *:</strong><br/>
 							<input type="text" class="form-control" name="nome" placeholder="Nome Completo" >
