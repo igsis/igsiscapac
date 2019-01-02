@@ -5,6 +5,16 @@ $idUser = $_SESSION['idUser'];
 $tipoPessoa = 6;
 $bool = false;
 
+function anoFormacao(){
+    $conn = bancoPDO();
+
+    $stmt = $conn->prepare("SELECT ano FROM capac.formacao_cadastro WHERE id = '1'");
+    $stmt->execute();
+    $res = $stmt->fetch();
+
+    return $res['ano'];
+}
+
 if(isset($_POST['cadastrarFormacao']))
 {
     $nome = addslashes($_POST['nome']);
@@ -22,6 +32,7 @@ if(isset($_POST['cadastrarFormacao']))
     $pis = $_POST['pis'];
     $programa = $_POST['programa'];
     $dataAtualizacao = date("Y-m-d H:i:s");
+    $formacaoAno = anoFormacao();
 
     $sql_cadastra_pf = "INSERT INTO `pessoa_fisica`(`nome`, `nomeArtistico`, `idTipoDocumento`, `rg`, `cpf`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `idEstadoCivil`, `dataNascimento`, `pis`, `tipo_formacao_id`, `dataAtualizacao`, `idUsuario`) VALUES ('$nome', '$nomeArtistico', '$idTipoDocumento', '$rg', '$cpf', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$estadoCivil', '$dataNascimento', '$pis', '$programa', '$dataAtualizacao', '$idUser')";
     if(mysqli_query($con,$sql_cadastra_pf))
@@ -59,6 +70,7 @@ if(isset($_POST['atualizarFormacao']))
     date_default_timezone_set('America/Sao_Paulo');
     $dataAtualizacao = date("Y-m-d");
     $idPf = $_SESSION['idPf'];
+    $formacaoAno = anoFormacao();
 
     $sql_atualiza_pf = "UPDATE pessoa_fisica SET
 	`nome` = '$nome',
@@ -74,7 +86,8 @@ if(isset($_POST['atualizarFormacao']))
 	`dataNascimento` = '$dataNascimento',
 	`pis` = '$pis',
 	`tipo_formacao_id` = '$programa',
-	`dataAtualizacao` = '$dataAtualizacao'
+	`dataAtualizacao` = '$dataAtualizacao',
+	`formacao_ano`	= '$formacaoAno'
 	WHERE `id` = '$idPf'";
 
     if(mysqli_query($con,$sql_atualiza_pf))
