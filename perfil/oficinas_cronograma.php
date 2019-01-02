@@ -127,6 +127,8 @@ $pessoa = recuperaDados($tabela,"id",$id);
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
                             <input type="hidden" name="gerarCronograma">
+                            <input type="hidden" name="id" value="<?= $id ?>">
+                            <input type="hidden" name="tabela" value="<?= $tabela ?>">
                             <input type="submit" value="Gerar Cronograma para Preenchimento" class="btn btn-theme btn-lg btn-block">
                         </div>
                     </div>
