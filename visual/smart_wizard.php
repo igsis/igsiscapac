@@ -37,6 +37,15 @@
         
         # barra Pessoa Juridica
         include_once 'barras_smart_wizard/barra_pj.php';
+
+        # barra Formação
+    if (isset($_SESSION['menu']))
+    {
+        if ($_SESSION['menu'])
+        {
+            include_once 'barras_smart_wizard/barra_formacao.php';
+        }
+    }
         ?>
 </div>
 <!-- Include SmartWizard JavaScript source -->

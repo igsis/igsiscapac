@@ -301,6 +301,26 @@ date_default_timezone_set("America/Sao_Paulo");
 		}
 	}
 
+function geraOpcaoFormacao($select, $tipoFormacao, $tabela = 'formacao_funcoes', $publicado = 1)
+{
+    //gera os options de um select
+    $sql = "SELECT * FROM `$tabela` WHERE `tipo_formacao_id` = '$tipoFormacao' AND `publicado` = '$publicado' ORDER BY 2";
+
+    $con = bancoMysqli();
+    $query = mysqli_query($con,$sql);
+    while($option = mysqli_fetch_row($query))
+    {
+        if($option[0] == $select)
+        {
+            echo "<option value='".$option[0]."' selected >".$option[1]."</option>";
+        }
+        else
+        {
+            echo "<option value='".$option[0]."'>".$option[1]."</option>";
+        }
+    }
+}
+
 	function geraOpcaoPublicado($tabela,$select)
 	{
 		//gera os options de um select
@@ -781,6 +801,8 @@ function verificaArquivosExistentesPJ($idPessoa,$idDocumento)
  * 14: Representante Legal 1 Oficineiro <br>
  * 15: Representante Legal 2 Oficineiro <br>
  * 16: Demais Anexos Oficineiro PJ <br>
+ * 17: Formação - Info Iniciais
+ * 18: Formação - Demais Anexos
  * </p>
  */
 function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, $pf)
@@ -968,9 +990,30 @@ function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, 
 				AND list.id NOT IN ('120', '121', '122', '123', '124', '125', '126', '127')
 				AND arq.publicado = '1'";
             break;
+        case 17: //formacao_informacoes_iniciais
+            $arq1 = "AND (list.id = '136' OR ";
+            $arq2 = "list.id = '137' OR";
+            $arq3 = "list.id = '138')";
+            $sql = "SELECT *
+				FROM upload_lista_documento as list
+				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+				WHERE arq.idPessoa = '$idPessoa'
+				AND arq.idTipoPessoa = '$tipoPessoa'
+				$arq1 $arq2 $arq3
+				AND arq.publicado = '1'";
+            break;
 
+        case 18: //formacao_anexos
+            $sql = "SELECT *
+				FROM upload_lista_documento as list
+				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+				WHERE arq.idPessoa = '$idPessoa'
+				AND arq.idTipoPessoa = '$tipoPessoa'
+				AND list.id NOT BETWEEN '136' AND '140'
+				AND arq.publicado = '1'";
+            break;
         default:
-		break;
+		    break;
 	}
 	$query = mysqli_query($con,$sql);
 	$linhas = mysqli_num_rows($query);
@@ -1143,6 +1186,18 @@ function listaArquivos($idEvento)
 	echo "
 		</tbody>
 		</table>";
+}
+
+function arquivosObrigatorios($tipoPessoa, $idPessoa, $idListaDocumento) {
+    $con = bancoMysqli();
+    $sql = "SELECT * FROM `upload_arquivo` WHERE `idTipoPessoa` = '$tipoPessoa' AND idPessoa = '$idPessoa' AND idUploadListaDocumento = '$idListaDocumento' AND publicado = '1'";
+    $query = mysqli_query($con, $sql);
+    if (mysqli_num_rows($query) > 0) {
+        return false;
+    }
+    else {
+        return true;
+    }
 }
 
 ?>

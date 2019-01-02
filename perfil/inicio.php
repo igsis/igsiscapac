@@ -1,7 +1,12 @@
 ﻿<?php
+$con = bancoMysqli();
+
+$formacao = $con->query('SELECT `situacao` FROM `formacao_cadastro`')->fetch_assoc();
+
 unset($_SESSION['idEvento']);
 unset($_SESSION['idPj']);
 unset($_SESSION['idPf']);
+unset($_SESSION['menu']);
 ?>
 <section id="contact" class="home-section bg-white">
 	<div class="container">
@@ -35,7 +40,12 @@ unset($_SESSION['idPf']);
                         <p>Aqui são inseridas as informações sobre os Oficineiros.</p>
 						<a href="?perfil=evento_apresentacao_oficinas" class="btn btn-theme btn-lg btn-block">OFICINAS</a>
 						<br />
+                        <?php if($formacao['situacao'] == 1) { ?>
+                            <p>Aqui são inseridas os dados para inscrição às vagas dos Editais dos Programas da Supervisão de Formação.</p>
+                            <a href="?perfil=formacao_apresentacao" class="btn btn-theme btn-lg btn-block">FORMAÇÃO</a>
+                            <br />
 						<?php
+                        }
 						if($usr < 11)
 						{
 						?>
