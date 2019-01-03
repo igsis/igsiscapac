@@ -113,6 +113,7 @@ if(isset($_POST['apagar']))
 }
 
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
+
 ?>
 
 <section id="list_items" class="home-section bg-white">
@@ -161,6 +162,9 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                             <input type="text" readonly class="form-control" id="Cidade" name="Cidade" placeholder="Cidade" value="<?php echo $pf['cidade']; ?>">
                         </div>
                         <div class="col-md-6"><strong>Estado:</strong><br/>
+                            <input type="text" readonly class="form-control" id="Estado" name="Estado" placeholder="Estado" value="<?php echo $pf['estado']; ?>">
+                        </div>
+                        <div class="col-md-6"><strong>Prefeitura Regional:</strong><br/>
                             <input type="text" readonly class="form-control" id="Estado" name="Estado" placeholder="Estado" value="<?php echo $pf['estado']; ?>">
                         </div>
                     </div>
