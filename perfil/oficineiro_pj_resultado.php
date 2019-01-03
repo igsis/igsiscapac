@@ -67,7 +67,7 @@ else
                 </div>
                 <div class="row">
                     <div class="col-md-offset-1 col-md-10">
-                        <form class="form-horizontal" role="form" action="?perfil=informacoes_iniciais_pj" method="post">
+                        <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_informacoes_iniciais" method="post">
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-8"><strong>Razão Social *:</strong><br/>
                                     <input type="text" class="form-control" name="razaoSocial" placeholder="Razão Social" >

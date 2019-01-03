@@ -22,7 +22,7 @@ if(isset($_POST['cadastrarEndereco']))
 	`estado` = '$Estado',
 	`cep` = '$CEP',
 	`numero` = '$Numero',
-	`complemento` = '$Complemento'
+	`complemento` = '$Complemento',
 	`prefeituraRegional_id` = '$prefeituraRegional'
 	WHERE `id` = '$idPj'";
 
@@ -52,7 +52,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
         </div>
         <div class="row">
             <div class="col-md-offset-1 col-md-10">
-                <form class="form-horizontal" role="form" action="?perfil=endereco_pj" method="post">
+                <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_endereco" method="post">
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-6"><strong>CEP *:</strong><br/>
                             <input type="text" class="form-control" id="CEP" name="CEP" placeholder="CEP" value="<?php echo $pj['cep']; ?>">
@@ -83,7 +83,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
                         <div class="col-md-6"><strong>Prefeitura Regional:</strong><br/>
                             <select class="form-control" id="prefeituraRegional" name="prefeituraRegional" required>
                                 <option value="">Selecione...</option>
-                                <?php geraOpcao('prefeitura_regionais', $pf['prefeituraRegional_id']) ?>
+                                <?php geraOpcao('prefeitura_regionais', $pj['prefeituraRegional_id']) ?>
                             </select>
                         </div>
                     </div>

@@ -283,7 +283,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
                 <!-- Botão para Voltar e Prosseguir -->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-2">
-                        <form class="form-horizontal" role="form" action="?perfil=oficineiro_pf_informacoes_iniciais" method="post">
+                        <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_informacoes_iniciais" method="post">
                             <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
                         </form>
                     </div>
