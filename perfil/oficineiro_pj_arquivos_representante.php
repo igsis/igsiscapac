@@ -60,7 +60,7 @@ if(isset($_POST["enviar"]))
                                     {
                                         $mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
                                         gravarLog($sql_insere_arquivo);
-                                        echo '<script>window.location = "?perfil=arquivos_representante1"</script>';
+                                        echo '<script>window.location = "?perfil=oficineiro_pj_arquivos_representante"</script>';
                                     }
                                     else{
                                         echo "<script>alert('Houve um erro durante o processamento do arquivo, entre em contato com os administradores do sistema')</script>";
@@ -112,9 +112,9 @@ $evento_pj = recuperaDados("evento","id",$evento);
 <section id="list_items" class="home-section bg-white">
     <div class="container">
         <?php include 'includes/menu_oficinas.php'; ?>
-        
+
         <div class="form-group">
-            <h4>Arquivos do Representante Legal #1</h4>
+            <h4>Arquivos do Representante Legal</h4>
             <p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
             <h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
         </div>
@@ -126,7 +126,7 @@ $evento_pj = recuperaDados("evento","id",$evento);
                         <div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s) Somente em PDF</h6>
                             <?php
                             $lista = ($tipoPessoa == 5) ? 14 : 5;
-                            listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","arquivos_representante1",$lista); ?>
+                            listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","oficineiro_pj_arquivos_representante",$lista); ?>
                         </div>
                     </div>
                 </div>
@@ -135,7 +135,7 @@ $evento_pj = recuperaDados("evento","id",$evento);
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-8">
                         <div class = "center">
-                            <form method="POST" action="?perfil=arquivos_representante1" enctype="multipart/form-data">
+                            <form method="POST" action="?perfil=oficineiro_pj_arquivos_representante" enctype="multipart/form-data">
                                 <table>
                                     <tr>
                                         <td width="50%"><td>
@@ -246,7 +246,7 @@ $evento_pj = recuperaDados("evento","id",$evento);
                             </form>
                             <?php
                         }else{ ?>
-                            <form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pj" method="post">
+                            <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_dados_bancarios" method="post">
                                 <input type="submit" value="Não" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
                             </form>
                         <?php }
