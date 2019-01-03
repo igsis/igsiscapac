@@ -268,7 +268,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                     <!-- Botão para Voltar e Prosseguir -->
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-2">
-                            <form class="form-horizontal" role="form" action="?perfil=formacao_arquivos_pf" method="post">
+                            <form class="form-horizontal" role="form" action="?perfil=formacao_informacoes_iniciais" method="post">
                                 <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
                             </form>
                         </div>
