@@ -18,7 +18,7 @@ if(isset($_POST['apagaRepresentante']))
         gravarLog($sql_apaga_rep1);
         ?>
         <script language="JavaScript">
-            window.location = "?perfil=representante1_pj";
+            window.location = "?perfil=oficineiro_pj_representante";
         </script>
         <?php
     }
@@ -40,7 +40,7 @@ if ($pj['idRepresentanteLegal1'] == 0) // Não possui representante legal cadast
                     <div class="section-heading">
                         <h3>REPRESENTANTE LEGAL</h3>
                         <p><strong><?php if(isset($mensagem)){echo $mensagem;} ?></strong></p>
-                        <p><strong>Você está inserindo representante legal </strong></p>
+                        <p><strong>Você está inserindo representante legal</strong></p>
                         <p></p>
                     </div>
                 </div>
@@ -90,6 +90,6 @@ if ($pj['idRepresentanteLegal1'] == 0) // Não possui representante legal cadast
 }
 else
 {
-    echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=?perfil=representante1_pj_cadastro&id_pj=".$idPj."'>";
+    echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=?perfil=oficineiro_pj_representante_cadastro&id_pj=".$idPj."'>";
 }
 ?>
