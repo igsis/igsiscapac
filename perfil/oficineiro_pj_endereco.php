@@ -77,10 +77,10 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-8"><strong>Bairro:</strong><br/>
+                        <div class="col-md-offset-2 col-md-6"><strong>Bairro:</strong><br/>
                             <input type="text" readonly class="form-control" id="Bairro" name="Bairro" placeholder="Bairro" value="<?php echo $pj['bairro']; ?>">
                         </div>
-                        <div class="col-md-4"><strong>Prefeitura Regional:</strong><br/>
+                        <div class="col-md-6"><strong>Prefeitura Regional:</strong><br/>
                             <select class="form-control" id="prefeituraRegional" name="prefeituraRegional" required>
                                 <option value="">Selecione...</option>
                                 <?php geraOpcao('prefeitura_regionais', $pf['prefeituraRegional_id']) ?>
@@ -112,12 +112,12 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
                 <!-- Botão para Voltar e Prosseguir -->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-2">
-                        <form class="form-horizontal" role="form" action="?perfil=arquivos_pj" method="post">
+                        <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_arquivos" method="post">
                             <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
                         </form>
                     </div>
                     <div class="col-md-offset-4 col-md-2">
-                        <form class="form-horizontal" role="form" action="?perfil=representante1_pj" method="post">
+                        <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_representante" method="post">
                             <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
                         </form>
                     </div>

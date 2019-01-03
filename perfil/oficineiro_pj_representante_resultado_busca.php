@@ -30,7 +30,7 @@ if($num_busca > 0)
             <?php include 'includes/menu_oficinas.php'; ?>
 
             <div class="form-group">
-                <h3>REPRESENTANTE LEGAL #1</h3>
+                <h3>REPRESENTANTE LEGAL</h3>
                 <p><b>Código de cadastro:</b> <?php echo $idPj; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
                 <h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
             </div>
@@ -53,7 +53,7 @@ if($num_busca > 0)
 										<tr>
 											<td class='list_description'><b>".$descricao['nome']."</b></td>
 											<td class='list_description'>".$descricao['cpf']."</td><td class='list_description'>
-											<form method='POST' action='?perfil=oficineiro_pj_representante_cadastro.php&id_pj=".$idPj."'>
+											<form method='POST' action='?perfil=oficineiro_pj_representante_cadastro&id_pj=".$idPj."'>
 												<input type='hidden' name='insereRepresentante' value='".$descricao['id']."'>
 												<input type ='submit' class='btn btn-theme btn-md btn-block' value='escolher'>
 											</form>
@@ -68,7 +68,7 @@ if($num_busca > 0)
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
-                            <a href="?perfil=oficineiro_pj_representante1.php"><input type="submit" value="Inserir outro representante" class="btn btn-theme btn-block"></a>
+                            <a href="?perfil=oficineiro_pj_representante"><input type="submit" value="Inserir outro representante" class="btn btn-theme btn-block"></a>
                         </div>
                     </div>
 
@@ -83,24 +83,15 @@ else
 { // se não existir o cpf, imprime um formulário.
     ?>
     <section id="contact" class="home-section bg-white">
-        <div class="container"><?php
-            if ($pj['oficineiro'] == 1)
-            {
-                include 'includes/menu_oficinas.php';
-            }
-            else
-            {
-                include 'includes/menu_evento.php';
-            }
-            ?>
+        <div class="container"><?php include 'includes/menu_oficinas.php'; ?>
             <div class="form-group">
-                <h3>CADASTRO REPRESENTANTE LEGAL #1</h3>
+                <h3>CADASTRO REPRESENTANTE LEGAL</h3>
                 <p><b>Código de cadastro:</b> <?php echo $idPj; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
                 <h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
             </div>
             <div class="row">
                 <div class="col-md-offset-1 col-md-10">
-                    <form class="form-horizontal" role="form" action="?perfil=representante1_pj_cadastro" method="post">
+                    <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_representante_cadastro" method="post">
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-8"><strong>Nome: *</strong><br/>
                                 <input type="text" class="form-control" name="nome" placeholder="Nome completo">

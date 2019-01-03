@@ -233,40 +233,10 @@ $evento_pj = recuperaDados("evento","id",$evento);
                     <div class="col-md-offset-2 col-md-8"><hr/><br/></div>
                 </div>
 
-                <!-- Botão -->
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-8"><strong>O contrato social da empresa exige assinatura de mais um representante legal?</strong><br/><br/></div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-2">
-                        <?php
-                        if($evento_pj['contratacao'] == 2){ ?>
-                            <form class="form-horizontal" role="form" action="?perfil=artista_pj" method="post">
-                                <input type="submit" value="Não" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
-                            </form>
-                            <?php
-                        }else{ ?>
-                            <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_dados_bancarios" method="post">
-                                <input type="submit" value="Não" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
-                            </form>
-                        <?php }
-                        ?>
-                    </div>
-                    <div class="col-md-offset-4 col-md-2">
-                        <form class="form-horizontal" role="form" action="?perfil=representante2_pj" method="post">
-                            <input type="submit" value="Sim" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
-                        </form>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-8"><hr/><br/></div>
-                </div>
-
                 <!-- Botão para Voltar e Prosseguir -->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-2">
-                        <form class="form-horizontal" role="form" action="?perfil=representante1_pj_cadastro" method="post">
+                        <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_representante_cadastro" method="post">
                             <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
                         </form>
                     </div>

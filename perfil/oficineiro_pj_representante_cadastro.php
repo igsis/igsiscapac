@@ -98,13 +98,13 @@ $representante1 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
         <?php include 'includes/menu_oficinas.php'; ?>
 
         <div class="form-group">
-            <h4>Representante Legal #1</h4>
+            <h4>Representante Legal</h4>
             <p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
             <h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
         </div>
         <div class="row">
             <div class="col-md-offset-1 col-md-10">
-                <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_representante_cadastro.php" method="post">
+                <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_representante_cadastro" method="post">
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8"><strong>Nome: *</strong><br/>
                             <input type="text" class="form-control" name="nome" placeholder="Nome completo" maxlength="100" value="<?php echo $representante1['nome']; ?>" required>
@@ -149,7 +149,7 @@ $representante1 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
                 <!-- Botão para Remover o Representante -->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-8">
-                        <form method='POST' action='?perfil=oficineiro_pj_representante.php'>
+                        <form method='POST' action='?perfil=oficineiro_pj_representante'>
                             <input type="hidden" name="apagaRepresentante" value="<?php echo $idPj ?>">
                             <input type="submit" value="Remover o Representante" class="btn btn-theme btn-lg btn-block">
                         </form>
@@ -159,12 +159,12 @@ $representante1 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
                 <!-- Botão para Voltar e Prosseguir -->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-2">
-                        <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_endereco.php" method="post">
+                        <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_endereco" method="post">
                             <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
                         </form>
                     </div>
                     <div class="col-md-offset-4 col-md-2">
-                        <form class="form-horizontal" role="form" action="?perfil=arquivos_representante1" method="post">
+                        <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_arquivos_representante" method="post">
                             <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
                         </form>
                     </div>
