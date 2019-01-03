@@ -172,9 +172,6 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                         <div class="col-md-6"><strong>Estado:</strong><br/>
                             <input type="text" readonly class="form-control" id="Estado" name="Estado" placeholder="Estado" value="<?php echo $pf['estado']; ?>">
                         </div>
-                        <div class="col-md-6"><strong>Prefeitura Regional:</strong><br/>
-                            <input type="text" readonly class="form-control" id="Estado" name="Estado" placeholder="Estado" value="<?php echo $pf['estado']; ?>">
-                        </div>
                     </div>
 
                     <div class="form-group">

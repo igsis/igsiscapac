@@ -13,6 +13,7 @@ if(isset($_POST['cadastrarEndereco']))
     $CEP = $_POST['CEP'];
     $Numero = $_POST['Numero'];
     $Complemento = $_POST['Complemento'];
+    $prefeituraRegional = $_POST['prefeituraRegional'];
 
     $sql_atualiza_endereco_pj = "UPDATE pessoa_juridica SET
 	`logradouro` = '$Endereco',
@@ -22,6 +23,7 @@ if(isset($_POST['cadastrarEndereco']))
 	`cep` = '$CEP',
 	`numero` = '$Numero',
 	`complemento` = '$Complemento'
+	`prefeituraRegional_id` = '$prefeituraRegional'
 	WHERE `id` = '$idPj'";
 
     if(mysqli_query($con,$sql_atualiza_endereco_pj))
@@ -77,6 +79,12 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8"><strong>Bairro:</strong><br/>
                             <input type="text" readonly class="form-control" id="Bairro" name="Bairro" placeholder="Bairro" value="<?php echo $pj['bairro']; ?>">
+                        </div>
+                        <div class="col-md-4"><strong>Prefeitura Regional:</strong><br/>
+                            <select class="form-control" id="prefeituraRegional" name="prefeituraRegional" required>
+                                <option value="">Selecione...</option>
+                                <?php geraOpcao('prefeitura_regionais', $pf['prefeituraRegional_id']) ?>
+                            </select>
                         </div>
                     </div>
 
