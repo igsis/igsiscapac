@@ -127,7 +127,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
         </div>
         <div class="row">
             <div class="col-md-offset-1 col-md-10">
-                <form name="form2" class="form-horizontal" role="form" action="?perfil=informacoes_iniciais_pj" method="post">
+                <form name="form2" class="form-horizontal" role="form" action="?perfil=oficineiro_pj_informacoes_iniciais" method="post">
                     <!-- Botão para inserir empresa no evento -->
                     <?php
                     if(isset($_SESSION['idEvento']))
@@ -189,7 +189,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
                 </form>
                 <!-- Botão para Prosseguir -->
                 <div class="form-group">
-                    <form class="form-horizontal" role="form" action="?perfil=arquivos_pj" method="post">
+                    <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_arquivos" method="post">
                         <div class="col-md-offset-8 col-md-2">
                             <?php if($bool == true) { ?>
                                 <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">

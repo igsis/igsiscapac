@@ -66,7 +66,7 @@ if(isset($_POST["enviar"]))
                                     {
                                         $mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
                                         gravarLog($sql_insere_arquivo);
-                                        echo '<script>window.location = "?perfil=arquivos_pj"</script>';
+                                        echo '<script>window.location = "?perfil=oficineiro_pj_arquivos"</script>';
                                     }
                                     else{
                                         echo "<script>alert('Houve um erro durante o processamento do arquivo, entre em contato com os administradores do sistema')</script>";
@@ -158,7 +158,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-8">
                         <div class = "center">
-                            <form method="POST" action="?perfil=arquivos_pj" enctype="multipart/form-data">
+                            <form method="POST" action="?perfil=oficineiro_pj_arquivos" enctype="multipart/form-data">
                                 <table>
                                     <tr>
                                         <td width="50%"><td>
@@ -191,7 +191,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-8">
                         <div class = "center">
-                            <form method="POST" action="?perfil=informacoes_iniciais_pj" enctype="multipart/form-data">
+                            <form method="POST" action="?perfil=oficineiro_pf_informacoes_iniciais" enctype="multipart/form-data">
                                 <table>
                                     <tr>
                                         <td width="50%"><td>
@@ -283,12 +283,12 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
                 <!-- Botão para Voltar e Prosseguir -->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-2">
-                        <form class="form-horizontal" role="form" action="?perfil=informacoes_iniciais_pj" method="post">
+                        <form class="form-horizontal" role="form" action="?perfil=oficineiro_pf_informacoes_iniciais" method="post">
                             <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
                         </form>
                     </div>
                     <div class="col-md-offset-4 col-md-2">
-                        <form class="form-horizontal" role="form" action="?perfil=endereco_pj" method="post">
+                        <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_endereco" method="post">
                             <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
                         </form>
                     </div>

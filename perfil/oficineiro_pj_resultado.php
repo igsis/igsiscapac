@@ -41,7 +41,7 @@ if($query != '')
                                 <td class='list_description'><?php echo $query["razaoSocial"]; ?></td>
                                 <td class='list_description'><?php echo $query["cnpj"] ?></td>
                                 <td class='list_description'>
-                                    <form method='POST' action='?perfil=informacoes_iniciais_pj'>
+                                    <form method='POST' action='?perfil=oficineiro_pj_informacoes_iniciais'>
                                         <input type='hidden' name='carregar' value='<?php echo $query["id"] ?>'>
                                         <input type="hidden" name="oficineiro">
                                         <input type ='submit' class='btn btn-theme btn-md btn-block' value='Carregar'></form>
