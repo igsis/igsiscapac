@@ -3,30 +3,63 @@ $con = bancoMysqli();
 $idPf = $_SESSION['idPf'];
 $evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 
-$idCampo = 60;
+$idCampo = 159;
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
 $tipoPessoa = 4;
 
-if(isset($_POST['cadastrarFisica']))
+$consulta = "SELECT * FROM `oficina_dados` WHERE `tipoPessoa` = '$tipoPessoa' AND `idPessoa` = '$idPf' AND `publicado` = '1'";
+$queryDados = $con->query($consulta);
+$cadastra = $queryDados->num_rows;
+
+if ($cadastra)
 {
-	$idPf = $_POST['cadastrarFisica'];
-	$Drt = $_POST['drt'];
+    $dados = $queryDados->fetch_assoc();
+    $idDados = $dados['id'];
+}
 
-	$sql_atualiza_complementares = "UPDATE pessoa_fisica SET
-	`drt` = '$Drt'
-	WHERE `id` = '$idPf'";
+$post = ($cadastra) ? "atualizaDados" : "cadastraDados";
 
-	if (mysqli_query($con,$sql_atualiza_complementares))
+if(isset($_POST['cadastraDados']))
+{
+	$idPf = $_POST['cadastraDados'];
+	$nivel = $_POST['nivel'];
+	$linguagem = $_POST['linguagem'];
+
+	$sql_insere_dados = "INSERT INTO `oficina_dados` (`tipoPessoa`, `idPessoa`, `oficina_linguagem_id`, `oficina_nivel_id`) 
+                          VALUES ('$tipoPessoa', '$idPf', '$linguagem', '$nivel')";
+
+	if (mysqli_query($con,$sql_insere_dados))
 	{
-		$mensagem = "<font color='#01DF3A'><strong>Atualizado com sucesso!</strong></font>";
-		gravarLog($sql_atualiza_complementares);
+		$mensagem = "<font color='#01DF3A'><strong>Cadastrado com sucesso!</strong></font>";
+		gravarLog($sql_insere_dados);
 	}
 	else
 	{
-		$mensagem = "<font color='#FF0000'><strong>Erro ao atualizar! Tente novamente.</strong></font>";
+		$mensagem = "<font color='#FF0000'><strong>Erro ao Cadastrar! Tente novamente.</strong></font>";
 	}
 }
 
+if(isset($_POST["atualizaDados"]))
+{
+    $idPf = $_POST['atualizaDados'];
+    $nivel = $_POST['nivel'];
+    $linguagem = $_POST['linguagem'];
+
+    $sql_atualiza_dados = "UPDATE `oficina_dados` SET 
+                           `oficina_linguagem_id` = '$linguagem',
+                           `oficina_nivel_id` = '$nivel'
+                           WHERE `id` = '$idDados'";
+
+    if (mysqli_query($con,$sql_atualiza_dados))
+    {
+        $mensagem = "<font color='#01DF3A'><strong>Atualizado com sucesso!</strong></font>";
+        gravarLog($sql_atualiza_dados);
+    }
+    else
+    {
+        $mensagem = "<font color='#FF0000'><strong>Erro ao Atualizar! Tente novamente.</strong></font>";
+    }
+}
 
 if(isset($_POST["enviar"]))
 {
@@ -101,24 +134,14 @@ if(isset($_POST['apagar']))
 	}
 }
 
-
-
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
 $evento_pf = recuperaDados("evento","id",$evento);
+$dados = recuperaDados('oficina_dados', 'id', $idDados);
 ?>
 
 <section id="list_items" class="home-section bg-white">
 	<div class="container">
-        <?php
-        if ($pf['oficineiro'] == 1)
-        {
-            include 'includes/menu_oficinas.php';
-        }
-        else
-        {
-            include 'includes/menu_evento.php';
-        }
-        ?>
+        <?php include 'includes/menu_oficinas.php'; ?>
 		<div class="form-group">
 			<h3>Informações Complementares</h3>
 			<p><b>Nome:</b> <?php echo $pf['nome']; ?></p>
@@ -130,14 +153,23 @@ $evento_pf = recuperaDados("evento","id",$evento);
 				<form class="form-horizontal" role="form" action="?perfil=oficineiro_pf_informacoes_complementares" method="post">
 
 					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8"><strong>Nível:</strong> <font size="1"><i>(Somente para artes cênicas)</i></font><br/>
-							<input type="text" class="form-control" name="drt" placeholder="DRT caso for teatro, dança ou circo" maxlength="15" value="<?php echo $pf['drt']; ?>">
+						<div class="col-md-offset-2 col-md-4"><strong>Nível:</strong><br/>
+                            <select class="form-control" name="nivel" id="nivel" required>
+                                <option value="">Selecione...</option>
+                                <?php geraOpcao('oficina_niveis', $dados['oficina_nivel_id']) ?>
+                            </select>
 						</div>
+                        <div class="col-md-4"><strong>Linguagem:</strong><br/>
+                            <select class="form-control" name="linguagem" id="linguagem" required>
+                                <option value="">Selecione...</option>
+                                <?php geraOpcao('oficina_linguagens', $dados['oficina_linguagem_id']) ?>
+                            </select>
+                        </div>
 					</div>
 
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
-							<input type="hidden" name="cadastrarFisica" value="<?php echo $idPf ?>">	<input type="hidden" name="Sucesso" id="Sucesso" />
+							<input type="hidden" name="<?= $post ?>" value="<?php echo $idPf ?>">
 							<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 						</div>
 					</div>
@@ -223,28 +255,12 @@ $evento_pf = recuperaDados("evento","id",$evento);
 							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
 						</form>
 					</div>
-					<?php
-					if ($evento_pf['contratacao'] == 2)
-					{
-					?>	
+
 					<div class="col-md-offset-4 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=anexos_pf" method="post">
+						<form class="form-horizontal" role="form" action="?perfil=oficineiro_pf_dados_bancarios" method="post">
 							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
 						</form>
 					</div>
-					<?php
-					}
-					else
-					{
-					?>
-					<div class="col-md-offset-4 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pf" method="post">
-							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
-						</form>
-					</div>
-					<?php
-					}
-					?>
 				</div>
 
 			</div>
