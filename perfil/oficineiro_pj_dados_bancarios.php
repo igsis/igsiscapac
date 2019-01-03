@@ -30,7 +30,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 ?>
 
 <section id="list_items" class="home-section bg-white">
-    <div class="container"><?php include 'includes/menu_evento.php'; ?>
+    <div class="container"><?php include 'includes/menu_oficinas.php'; ?>
         <div class="form-group">
             <h4>Dados Bancários</h4>
             <p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
@@ -78,25 +78,12 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
                 <!-- Botão para Voltar e Prosseguir -->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-2">
-                        <?php
-                        if($pj['idRepresentanteLegal2'] != NULL)
-                        {
-                        ?>
-                        <form class="form-horizontal" role="form" action="?perfil=arquivos_representante2" method="post">
-                            <?php
-                            }
-                            else
-                            {
-                            ?>
-                            <form class="form-horizontal" role="form" action="?perfil=arquivos_representante1" method="post">
-                                <?php
-                                }
-                                ?>
-                                <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
-                            </form>
+                        <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_arquivos_representante" method="post">
+                            <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
+                        </form>
                     </div>
                     <div class="col-md-offset-4 col-md-2">
-                        <form class="form-horizontal" role="form" action="?perfil=arquivos_dados_bancarios_pj" method="post">
+                        <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_arquivos_dados_bancarios" method="post">
                             <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
                         </form>
                     </div>
