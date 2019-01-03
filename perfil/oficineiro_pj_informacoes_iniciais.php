@@ -2,7 +2,7 @@
 
 $con = bancoMysqli();
 $idUser = $_SESSION['idUser'];
-$tipoPessoa = 2;
+$tipoPessoa = 5;
 $bool = 0;
 
 if(isset($_POST['cadastrarJuridica']))
