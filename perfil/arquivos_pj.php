@@ -3,8 +3,7 @@
 $con = bancoMysqli();
 $idUser = $_SESSION['idUser'];
 $pj = recuperaDados("pessoa_juridica","id",$idPj);
-$tipoPessoa = ($pj['oficineiro'] == 1) ? 5 : 2;
-
+$tipoPessoa = 2;
 
 if(isset($_POST['carregar']))
 {
@@ -14,15 +13,7 @@ if(isset($_POST['carregar']))
 
 if(isset($_POST["enviar"]))
 {
-    if ($tipoPessoa == 2)
-    {
-        $arquivos = "22,43,28";
-    }
-    else
-    {
-        $arquivos = "120,121,122";
-    }
-	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id IN ($arquivos)";
+	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id IN (22,43,28)";
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
 	{
@@ -125,16 +116,8 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 
 <section id="list_items" class="home-section bg-white">
 	<div class="container">
-        <?php
-        if ($pj['oficineiro'] == 1)
-        {
-            include 'includes/menu_oficinas.php';
-        }
-        else
-        {
-            include 'includes/menu_evento.php';
-        }
-        ?>
+        <?php include 'includes/menu_evento.php'; ?>
+
 		<div class="form-group">
 			<h4>Arquivos da Empresa</h4>
 			<p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
