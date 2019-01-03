@@ -17,6 +17,7 @@ if(isset($_POST['cadastrarEndereco']))
     $CEP = $_POST['CEP'];
     $Numero = $_POST['Numero'];
     $Complemento = $_POST['Complemento'];
+    $prefeituraRegional = $_POST['prefeituraRegional'];
 
     $sql_atualiza_oficineiro_pf_endereco = "UPDATE pessoa_fisica SET
 	`logradouro` = '$Endereco',
@@ -25,7 +26,8 @@ if(isset($_POST['cadastrarEndereco']))
 	`estado` = '$Estado',
 	`cep` = '$CEP',
 	`numero` = '$Numero',
-	`complemento` = '$Complemento'
+	`complemento` = '$Complemento',
+    `prefeituraRegional_id` = '$prefeituraRegional'
 	WHERE `id` = '$idPf'";
 
     if(mysqli_query($con,$sql_atualiza_oficineiro_pf_endereco))
@@ -152,8 +154,14 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-8"><strong>Bairro:</strong><br/>
+                        <div class="col-md-offset-2 col-md-4"><strong>Bairro:</strong><br/>
                             <input type="text" readonly class="form-control" id="Bairro" name="Bairro" placeholder="Bairro" value="<?php echo $pf['bairro']; ?>">
+                        </div>
+                        <div class="col-md-4"><strong>Prefeitura Regional:</strong><br/>
+                            <select class="form-control" id="prefeituraRegional" name="prefeituraRegional" required>
+                                <option value="">Selecione...</option>
+                                <?php geraOpcao('prefeitura_regionais', $pf['prefeituraRegional_id']) ?>
+                            </select>
                         </div>
                     </div>
 
@@ -256,7 +264,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                         </form>
                     </div>
                     <div class="col-md-offset-4 col-md-2">
-                        <form class="form-horizontal" role="form" action="?perfil=informacoes_complementares_pf" method="post">
+                        <form class="form-horizontal" role="form" action="?perfil=oficineiro_pf_informacoes_complementares" method="post">
                             <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
                         </form>
                     </div>

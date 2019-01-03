@@ -5,7 +5,7 @@ $evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 
 $idCampo = 60;
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
-$tipoPessoa = ($pf['oficineiro'] == 1) ? 4 : 1;
+$tipoPessoa = 4;
 
 if(isset($_POST['cadastrarFisica']))
 {
@@ -65,7 +65,7 @@ if(isset($_POST["enviar"]))
 						{
 							$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 							gravarLog($sql_insere_arquivo);
-							echo '<script>window.location = "?perfil=informacoes_complementares_pf"</script>';
+							echo '<script>window.location = "?perfil=oficineiro_pf_informacoes_complementares"</script>';
 						}
 						else
 						{
@@ -121,29 +121,16 @@ $evento_pf = recuperaDados("evento","id",$evento);
         ?>
 		<div class="form-group">
 			<h3>Informações Complementares</h3>
-			<p><b>Código de cadastro:</b> <?php echo $idPf; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>
+			<p><b>Nome:</b> <?php echo $pf['nome']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>
-        <?php
-        if ($pf['oficineiro'] == 1)
-        {
-        ?>
-            <div class="row col-md-offset-4 col-md-6">
-                <div class="alert alert-danger">
-                    <h5 style="color: #802420">ATENÇÃO OFICINEIRO!</h5>
-                    <p>DRT não obrigatório</p>
-                    <p>Utilize o menu para avançar ao próximo passo</p>
-                </div>
-            </div>
-        <?php
-        }
-        ?>
+        
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-				<form class="form-horizontal" role="form" action="?perfil=informacoes_complementares_pf" method="post">
+				<form class="form-horizontal" role="form" action="?perfil=oficineiro_pf_informacoes_complementares" method="post">
 
 					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8"><strong>DRT:</strong> <font size="1"><i>(Somente para artes cênicas)</i></font><br/>
+						<div class="col-md-offset-2 col-md-8"><strong>Nível:</strong> <font size="1"><i>(Somente para artes cênicas)</i></font><br/>
 							<input type="text" class="form-control" name="drt" placeholder="DRT caso for teatro, dança ou circo" maxlength="15" value="<?php echo $pf['drt']; ?>">
 						</div>
 					</div>
@@ -164,7 +151,7 @@ $evento_pf = recuperaDados("evento","id",$evento);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
-							<?php listaArquivoCamposMultiplos($idPf,$tipoPessoa,$idCampo,"informacoes_complementares_pf",3); ?>
+							<?php listaArquivoCamposMultiplos($idPf,$tipoPessoa,$idCampo,"oficineiro_pf_informacoes_complementares",3); ?>
 						</div>
 					</div>
 				</div>
@@ -172,7 +159,7 @@ $evento_pf = recuperaDados("evento","id",$evento);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class = "center">
-						<form method="POST" action="?perfil=informacoes_complementares_pf" enctype="multipart/form-data">
+						<form method="POST" action="?perfil=oficineiro_pf_informacoes_complementares" enctype="multipart/form-data">
 							<table>
 								<tr>
 									<td width="45%"><td>
@@ -232,7 +219,7 @@ $evento_pf = recuperaDados("evento","id",$evento);
 				<!-- Botão para Voltar e Prosseguir -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=endereco_pf" method="post">
+						<form class="form-horizontal" role="form" action="?perfil=oficineiro_pf_endereco" method="post">
 							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
 						</form>
 					</div>
