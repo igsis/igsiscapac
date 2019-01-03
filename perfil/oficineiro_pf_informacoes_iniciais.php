@@ -3,12 +3,12 @@
 $con = bancoMysqli();
 $idUser = $_SESSION['idUser'];
 $tipoPessoa = "1";
-$bool = false;
+$bool = isset($_SESSION['menu']) ? $_SESSION['menu'] : false;
 $evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 
 if(isset($_POST['cadastrarFisica']))
 {
-    $oficineiro = isset($_POST['oficineiro']) ? 1 : 0;
+    $oficineiro = 1;
     $nome = addslashes($_POST['nome']);
     $nomeArtistico = addslashes($_POST['nomeArtistico']);
     $idTipoDocumento = $_POST['idTipoDocumento'];
@@ -28,34 +28,12 @@ if(isset($_POST['cadastrarFisica']))
     {
         $mensagem = "<font color='#01DF3A'><strong>Cadastrado com sucesso!</strong></font>";
         gravarLog($sql_cadastra_pf);
-        if(isset($_SESSION['idEvento']))
-        {
-            $idEvento = $_SESSION['idEvento'];
-            $sql_ultimo = "SELECT id FROM pessoa_fisica WHERE idUsuario = '$idUser' ORDER BY id DESC LIMIT 0,1";
-            $query_ultimo = mysqli_query($con,$sql_ultimo);
-            $ultimoPf = mysqli_fetch_array($query_ultimo);
-            $idPf = $ultimoPf['id'];
 
-            $sql_atualiza_evento = "UPDATE evento SET idPf = '$idPf', idTipoPessoa = '$tipoPessoa' WHERE id = '$idEvento'";
-            if(mysqli_query($con,$sql_atualiza_evento))
-            {
-                $mensagem .= "<font color='#01DF3A'><strong>Pessoa inserida no evento.</strong></font><br/>";
-                $_SESSION['idPf'] = $idPf;
-                gravarLog($sql_atualiza_evento);
-            }
-            else
-            {
-                $mensagem .= "<font color='#FF0000'><strong>Erro ao cadastrar evento!</strong></font>";
-            }
-        }
-        else
-        {
-            $sql_ultimo = "SELECT id FROM pessoa_fisica WHERE idUsuario = '$idUser' ORDER BY id DESC LIMIT 0,1";
-            $query_ultimo = mysqli_query($con,$sql_ultimo);
-            $ultimoPf = mysqli_fetch_array($query_ultimo);
-            $_SESSION['idPf'] = $ultimoPf['id'];
-            $idPf = $_SESSION['idPf'];
-        }
+        $sql_ultimo = "SELECT id FROM pessoa_fisica WHERE idUsuario = '$idUser' ORDER BY id DESC LIMIT 0,1";
+        $query_ultimo = mysqli_query($con,$sql_ultimo);
+        $ultimoPf = mysqli_fetch_array($query_ultimo);
+        $_SESSION['idPf'] = $ultimoPf['id'];
+        $idPf = $_SESSION['idPf'];
     }
     else
     {
@@ -127,86 +105,18 @@ if(isset($_POST['carregar']))
     $_SESSION['idPf'] = $_POST['carregar'];
 }
 
-
-if(isset($_POST["enviar"]))
-{
-    $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id IN (2,3,25,31)";
-    $query_arquivos = mysqli_query($con,$sql_arquivos);
-    while($arq = mysqli_fetch_array($query_arquivos))
-    {
-        $idPf = $_SESSION['idPf'];
-        $y = $arq['id'];
-        $x = $arq['sigla'];
-        $nome_arquivo = $_FILES['arquivo']['name'][$x];
-        $f_size = $_FILES['arquivo']['size'][$x];
-
-        //Extensões permitidas
-        $ext = array("PDF","pdf");
-
-        if($f_size > 5242880) // 5MB em bytes
-        {
-            $mensagem = "<font color='#01DF3A'><strong>Erro! Tamanho de arquivo excedido! Tamanho máximo permitido: 05 MB.</strong></font>";
-        }
-        else
-        {
-            if($nome_arquivo != "")
-            {
-                $nome_temporario = $_FILES['arquivo']['tmp_name'][$x];
-                $new_name = date("YmdHis")."_".semAcento($nome_arquivo); //Definindo um novo nome para o arquivo
-                $hoje = date("Y-m-d H:i:s");
-                $dir = '../uploadsdocs/'; //Diretório para uploads
-                $allowedExts = array(".pdf", ".PDF"); //Extensões permitidas
-                $ext = strtolower(substr($nome_arquivo,-4));
-
-                if(in_array($ext, $allowedExts)) //Pergunta se a extensão do arquivo, está presente no array das extensões permitidas
-                {
-                    if(move_uploaded_file($nome_temporario, $dir.$new_name))
-                    {
-                        $sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPf', '$y', '$new_name', '$hoje', '1'); ";
-                        $query = mysqli_query($con,$sql_insere_arquivo);
-                        if($query)
-                        {
-                            $mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
-                            gravarLog($sql_insere_arquivo);
-                            echo '<script>window.location = "?perfil=informacoes_iniciais_pf"</script>';
-                        }
-                        else
-                        {
-                            $mensagem = "<font color='#FF0000'><strong>Erro ao gravar no banco.</strong></font>";
-                        }
-                    }
-                    else
-                    {
-                        $mensagem = "<font color='#FF0000'><strong>Erro no upload! Tente novamente.</strong></font>";
-                    }
-                }
-                else
-                {
-                    $mensagem = "<font color='#FF0000'><strong>Erro no upload! Anexar documentos somente no formato PDF.</strong></font>";
-                }
-            }
-        }
-    }
-}
-
-if(isset($_POST['apagar']))
-{
-    $idArquivo = $_POST['apagar'];
-    $sql_apagar_arquivo = "UPDATE upload_arquivo SET publicado = 0 WHERE id = '$idArquivo'";
-    if(mysqli_query($con,$sql_apagar_arquivo))
-    {
-        $mensagem = "<font color='#01DF3A'><strong>Arquivo apagado com sucesso!</strong></font>";
-        gravarLog($sql_apagar_arquivo);
-    }
-    else
-    {
-        $mensagem = "<font color='#FF0000'><strong>Erro ao apagar arquivo!</strong></font>";
-    }
-}
-
 $idPf = $_SESSION['idPf'];
 
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
+
+if (!($bool))
+{
+    $_SESSION['menu'] = false;
+}
+else
+{
+    $_SESSION['menu'] = true;
+}
 ?>
 <!-- Chamamento Alert-->
 <thead>
@@ -231,25 +141,8 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
         </div>
         <div class="row">
             <div class="col-md-offset-1 col-md-10">
-                <form name="form1" class="form-horizontal" role="form" action="?perfil=informacoes_iniciais_pf" method="post">
-                    <!-- Botão para inserir pessoa no evento -->
-                    <?php
-                    if(isset($_SESSION['idEvento']))
-                    {
-                        $evento = recuperaDados("evento","id",$_SESSION['idEvento']);
-                        if($evento['idPf'] == NULL)
-                        {
-                            ?>
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-8">
-                                    <input type="hidden" name="atualizarFisica" value="<?php echo $idPf ?>">
-                                    <input type="submit" value="Inserir pessoa no evento" class="btn btn-theme btn-md btn-block">
-                                </div>
-                            </div>
-                            <?php
-                        }
-                    }
-                    ?>
+                <form name="form1" class="form-horizontal" role="form" action="?perfil=oficineiro_pf_informacoes_iniciais" method="post">
+
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8"><strong>Nome *:</strong><br/>
                             <input type="text" class="form-control next-step" name="nome" placeholder="Nome" maxlength="70" value="<?php echo $pf['nome']; ?>" required >
@@ -321,7 +214,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
                 <!-- Botão para Prosseguir -->
                 <div class="form-group">
-                    <form class="form-horizontal" role="form" action="?perfil=arquivos_pf" method="post">
+                    <form class="form-horizontal" role="form" action="?perfil=oficineiro_pf_arquivos" method="post">
                         <div class="col-md-offset-8 col-md-2">
                             <?php if($bool == true)
                             { ?>
