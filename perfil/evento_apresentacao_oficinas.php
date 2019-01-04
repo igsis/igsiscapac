@@ -119,7 +119,14 @@ $idUser= $_SESSION['idUser'];
                                         <li class="list-group-item">CEP</li>
                                         <li class="list-group-item">Número</li>
                                         <li class="list-group-item">Complemento</li>
+                                        <li class="list-group-item">Prefeitura Regional</li>
                                         <li class="list-group-item">Comprovante de Residência</li>
+                                    </ul>
+                                    <ul class="list-group">
+                                        <li class="list-group-item list-group-item-success"><b>Informações Complementares</b></li>
+                                        <li class="list-group-item">Nível</li>
+                                        <li class="list-group-item">Linguagem</li>
+                                        <li class="list-group-item">Curriculo</li>
                                     </ul>
                                     <ul class="list-group">
                                         <li class="list-group-item list-group-item-success"><b>Dados Bancários</b></li>
@@ -129,9 +136,10 @@ $idUser= $_SESSION['idUser'];
                                         <li class="list-group-item">Conta</li>
                                     </ul>
                                     <ul class="list-group">
-                                        <li class="list-group-item list-group-item-success"><b>Arquivo dos Dados Bancários em PDF</b></li>
-                                        <li class="list-group-item">Gerar FACC</li>
-                                        <li class="list-group-item">Anexar a FACC depois de assinada</li>
+                                        <li class="list-group-item list-group-item-success"><b>Dados e Cronograma da Oficina</b></li>
+                                        <li class="list-group-item">Nome da Oficina</li>
+                                        <li class="list-group-item">Modalidade</li>
+                                        <li class="list-group-item">Proposta e Cronograma de Realização de Oficinas</li>
                                     </ul>
                                     <ul class="list-group">
                                         <li class="list-group-item list-group-item-success"><b>Demais Anexos</b></li>
@@ -139,7 +147,8 @@ $idUser= $_SESSION['idUser'];
                                         <li class="list-group-item">CADIN Municipal</li>
                                         <li class="list-group-item">CND Federal - (Certidão Negativa de Débitos de Tributos Federais)</li>
                                         <li class="list-group-item">CNDT - Certidão Negativa de Débitos de Tributos Trabalhistas</li>
-                                        <li class="list-group-item">Declaração de Aceite</li>
+                                        <li class="list-group-item">Comprovante de experiência artístico-pedagógica (no mínimo 2)</li>
+                                        <li class="list-group-item">Comprovante de experiência artística (no mínimo 2)</li>
                                     </ul>
                                     <ul class="list-group">
                                         <li class="list-group-item list-group-item-success"><b>Finalizar</b></li>

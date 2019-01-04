@@ -180,7 +180,7 @@ $evento_pf = recuperaDados("evento","id",$evento);
 						<form method="POST" action="?perfil=oficineiro_pf_anexos" enctype="multipart/form-data">
 							<table class='table table-condensed'>
 							<?php
-                                $arquivos = "109,110,113,111,112,114";
+                                $arquivos = "109,110,113,111,112,114,159";
 								$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN ($arquivos) AND publicado = '1'";
 								$query_arquivos = mysqli_query($con,$sql_arquivos);
 								while($arq = mysqli_fetch_array($query_arquivos))
