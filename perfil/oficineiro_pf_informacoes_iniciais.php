@@ -2,7 +2,7 @@
 
 $con = bancoMysqli();
 $idUser = $_SESSION['idUser'];
-$tipoPessoa = "1";
+$tipoPessoa = 4;
 $bool = isset($_SESSION['menu']) ? $_SESSION['menu'] : false;
 $evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 

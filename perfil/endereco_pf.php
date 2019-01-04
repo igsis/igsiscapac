@@ -3,7 +3,7 @@
 $con = bancoMysqli();
 $idPf = $_SESSION['idPf'];
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
-$tipoPessoa = ($pf['oficineiro'] == 1) ? 4 : 1;
+$tipoPessoa = 1;
 $idCampo = ($pf['oficineiro'] == 1) ? 113 : 4;
 $evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 
@@ -117,16 +117,8 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
 <section id="list_items" class="home-section bg-white">
 	<div class="container">
-        <?php
-        if ($pf['oficineiro'] == 1)
-        {
-            include 'includes/menu_oficinas.php';
-        }
-        else
-        {
-            include 'includes/menu_evento.php';
-        }
-        ?>
+        <?php include 'includes/menu_evento.php'; ?>
+
 		<div class="form-group">
 			<h3>Endereço</h3>
 			<p><b>Código de cadastro:</b> <?php echo $idPf; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>

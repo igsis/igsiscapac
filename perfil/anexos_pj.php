@@ -152,7 +152,7 @@ $evento_pj = recuperaDados("evento","id",$evento);
         }
         ?>
 		<div class="form-group">
-			<h4> Demais Anexos</h4>
+			<h4>Demais Anexos</h4>
 			<p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>

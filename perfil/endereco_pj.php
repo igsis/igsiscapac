@@ -39,16 +39,9 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 ?>
 
 <section id="contact" class="home-section bg-white">
-	<div class="container"><?php
-        if ($pj['oficineiro'] == 1)
-        {
-            include 'includes/menu_oficinas.php';
-        }
-        else
-        {
-            include 'includes/menu_evento.php';
-        }
-        ?>
+	<div class="container">
+        <?php include 'includes/menu_evento.php'; ?>
+
 		<div class="form-group">
 			<h4>Endereço</h4>
 			<p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>

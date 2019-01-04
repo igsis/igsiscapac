@@ -7,7 +7,6 @@ $bool = 0;
 
 if(isset($_POST['cadastrarJuridica']))
 {
-    $oficineiro = isset($_POST['oficineiro']) ? 1 : 0;
 	$razaoSocial = addslashes($_POST['razaoSocial']);
 	$cnpj = $_POST['cnpj'];
 	$ccm = $_POST['ccm'];
@@ -118,16 +117,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 
 <section id="list_items" class="home-section bg-white">
 	<div class="container">
-        <?php
-        if (isset($_POST['oficineiro']) || ($pj['oficineiro'] == 1))
-        {
-            include 'includes/menu_oficinas.php';
-        }
-        else
-        {
-            include 'includes/menu_evento.php';
-        }
-        ?>
+        <?php include 'includes/menu_evento.php'; ?>
         <div class="form-group">
 			<h4>Informações Iniciais</h4>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>

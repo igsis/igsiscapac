@@ -45,6 +45,7 @@
             {
                 include_once 'barras_smart_wizard/barra_formacao.php';
                 include_once 'barras_smart_wizard/barra_oficinas_pf.php';
+                include_once 'barras_smart_wizard/barra_oficinas_pj.php';
             }
         }
         ?>

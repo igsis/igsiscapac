@@ -115,6 +115,7 @@ if(isset($_POST['apagar']))
 }
 
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
+
 ?>
 
 <section id="list_items" class="home-section bg-white">
