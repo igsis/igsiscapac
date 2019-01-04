@@ -31,6 +31,7 @@ $idUser= $_SESSION['idUser'];
                                 <div class="tab-pane fade in active" id="A">
                                     <br>
                                     <ul class="list-group">
+                                        <li class="list-group-item list-group-item-danger text-center"><b>Somente com MEI</b></li><br>
                                         <li class="list-group-item list-group-item-success"><b>Informações iniciais</b></li>
                                         <li class="list-group-item">Razão Social</li>
                                         <li class="list-group-item">CNPJ</li>
@@ -69,35 +70,6 @@ $idUser= $_SESSION['idUser'];
                                         <li class="list-group-item">Banco</li>
                                         <li class="list-group-item">Agência</li>
                                         <li class="list-group-item">Conta</li>
-                                    </ul>
-                                    <ul class="list-group">
-                                        <li class="list-group-item list-group-item-success"><b>Arquivo dos Dados Bancários em PDF</b></li>
-                                        <li class="list-group-item">Gerar FACC</li>
-                                        <li class="list-group-item">Anexar a FACC depois de assinada</li>
-                                    </ul>
-                                    <ul class="list-group">
-                                        <li class="list-group-item list-group-item-success"><b>ARTISTA - Líder do Grupo ou Artista Solo</b></li>
-                                        <li class="list-group-item">Nome</li>
-                                        <li class="list-group-item">Nome Artístico</li>
-                                        <li class="list-group-item">RG/RNE/PASSAPORTE</li>
-                                        <li class="list-group-item">CPF</li>
-                                        <li class="list-group-item">E-mail</li>
-                                        <li class="list-group-item">Celular</li>
-                                        <li class="list-group-item">Telefone #2</li>
-                                        <li class="list-group-item">Telefone #3</li>
-                                        <li class="list-group-item">DRT</li>
-                                    </ul>
-                                    <ul class="list-group">
-                                        <li class="list-group-item list-group-item-success"><b>Arquivos do Líder do Grupo ou Artista Solo em PDF</b></li>
-                                        <li class="list-group-item">RG/RNE/PASSAPORTE</li>
-                                        <li class="list-group-item">CPF</li>
-                                        <li class="list-group-item">DRT</li>
-                                        <li class="list-group-item">Currículo Artístico do Líder do Grupo</li>
-                                    </ul>
-                                    <ul class="list-group">
-                                        <li class="list-group-item list-group-item-success"><b>Declaração de Exclusividade</b></li>
-                                        <li class="list-group-item">Gerar a Declaração de Exclusividade</li>
-                                        <li class="list-group-item">Anexar a Declaração de Exclusividade depois de assinada</li>
                                     </ul>
                                     <ul class="list-group">
                                         <li class="list-group-item list-group-item-success"><b>Demais Anexos</b></li>

@@ -94,16 +94,8 @@ $pessoa = recuperaDados($tabela,"id",$id);
 
 <section id="list_items" class="home-section bg-white">
     <div class="container">
-        <?php
-        if ($pessoa['oficineiro'] == 1)
-        {
-            include 'includes/menu_oficinas.php';
-        }
-        else
-        {
-            include 'includes/menu_evento.php';
-        }
-        ?>
+        <?php include 'includes/menu_oficinas.php'; ?>
+
         <div class="form-group">
             <h3>Cronograma de Oficinas</h3>
             <p><b>Código de cadastro:</b> <?php echo $id; ?> | <b>Nome:</b> <?= ($tipoPessoa == 4) ? $pessoa['nome'] : $pessoa['razaoSocial']; ?></p>
