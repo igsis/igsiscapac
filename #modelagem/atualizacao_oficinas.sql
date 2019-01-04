@@ -83,12 +83,17 @@ CREATE TABLE `oficina_dados` (
 `id` INT(11) NOT NULL AUTO_INCREMENT,
 `tipoPessoa` INT(11) NOT NULL,
 `idPessoa` INT(11) NOT NULL,
+`nomeOficina` VARCHAR(240) NULL DEFAULT NULL,
 `oficina_linguagem_id` INT(11) NOT NULL,
 `oficina_nivel_id` INT(11) NOT NULL,
+`modalidade_id` INT(11) NOT NULL DEFAULT '0',
 `publicado` TINYINT(1) NOT NULL DEFAULT '1',
 PRIMARY KEY (`id`)
 );
-
 INSERT INTO capac.upload_lista_documento (id, idTipoUpload, documento, sigla, teatro, musica, oficina, edital, validade, publicado) VALUES (159, 4, 'Currículo', 'curriculo', 1, 1, 1, 0, null, 1);
 INSERT INTO capac.upload_lista_documento (id, idTipoUpload, documento, sigla, teatro, musica, oficina, edital, validade, publicado) VALUES (160, 5, 'Currículo', 'curriculo', 1, 1, 1, 0, null, 1);
 
+INSERT INTO capac.upload_lista_documento (id, idTipoUpload, documento, sigla, teatro, musica, oficina, edital, validade, publicado) VALUES (161, 4, 'Comprovante de experiência artístico-pedagógica (no mínimo 2)', 'comartped1', 1, 1, 1, 0, null, 1);
+INSERT INTO capac.upload_lista_documento (id, idTipoUpload, documento, sigla, teatro, musica, oficina, edital, validade, publicado) VALUES (162, 5, 'Comprovante de experiência artístico-pedagógica (no mínimo 2)', 'comartped1', 1, 1, 1, 0, null, 1);
+INSERT INTO capac.upload_lista_documento (id, idTipoUpload, documento, sigla, teatro, musica, oficina, edital, validade, publicado) VALUES (163, 4, 'Comprovante de experiência artística (no mínimo 2)', 'com_art1', 1, 1, 1, 0, null, 1);
+INSERT INTO capac.upload_lista_documento (id, idTipoUpload, documento, sigla, teatro, musica, oficina, edital, validade, publicado) VALUES (164, 5, 'Comprovante de experiência artística (no mínimo 2)', 'com_art1', 1, 1, 1, 0, null, 1);
