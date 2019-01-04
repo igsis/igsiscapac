@@ -17,6 +17,9 @@ elseif (isset($_SESSION['idPj']))
 $pessoa = recuperaDados($tabela,"id",$id);
 $idCampo = ($tipoPessoa == 4) ? 134 : 135;
 
+$consulta = "SELECT * FROM `oficina_dados` WHERE `tipoPessoa` = '$tipoPessoa' AND `idPessoa` = '$idPf' AND `publicado` = '1'";
+$dados = $con->query($consulta)->fetch_assoc();
+
 if(isset($_POST["enviar"]))
 {
     $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idCampo'";
@@ -90,23 +93,15 @@ if(isset($_POST['apagar']))
 }
 
 $pessoa = recuperaDados($tabela,"id",$id);
+$dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
 ?>
 
 <section id="list_items" class="home-section bg-white">
     <div class="container">
-        <?php
-        if ($pessoa['oficineiro'] == 1)
-        {
-            include 'includes/menu_oficinas.php';
-        }
-        else
-        {
-            include 'includes/menu_evento.php';
-        }
-        ?>
+        <?php include 'includes/menu_oficinas.php'; ?>
         <div class="form-group">
             <h3>Cronograma de Oficinas</h3>
-            <p><b>Código de cadastro:</b> <?php echo $id; ?> | <b>Nome:</b> <?= ($tipoPessoa == 4) ? $pessoa['nome'] : $pessoa['razaoSocial']; ?></p>
+            <p><b>Nome:</b> <?= ($tipoPessoa == 4) ? $pessoa['nome'] : $pessoa['razaoSocial']; ?></p>
             <h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
         </div>
         <div class="row">
@@ -114,12 +109,17 @@ $pessoa = recuperaDados($tabela,"id",$id);
                 <form name="form1" class="form-horizontal" role="form" action="../pdf/rlt_cronograma_oficina.php" method="post" target="_blank">
 
                     <div class="form-group">
-
+                        <div class="col-md-offset-2 col-md-8">
+                            <label for="nomeOficina">Nome da Oficina: *:</label>
+                            <input type="text" class="form-control" name="nomeOficina" id="nomeOficina" maxlength="240" value="<?= $dadosOficineiro['nomeOficina'] ?>" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
                             <label for="modalidade">Modalidade *:</label> <button class='btn btn-default btn-sm' type='button' data-toggle='modal' data-target='#infoModalidade' style="border-radius: 15px;"><i class="fa fa-question-circle"></i></button>
                             <select class="form-control" name="modalidade" id="modalidade" required>
                                 <option value="">Selecione...</option>
-                                <?php geraOpcao('modalidades', '') ?>
+                                <?php geraOpcao('modalidades', $dadosOficineiro['modalidade_id']) ?>
                             </select>
                         </div>
                     </div>
@@ -128,7 +128,8 @@ $pessoa = recuperaDados($tabela,"id",$id);
                         <div class="col-md-offset-2 col-md-8">
                             <input type="hidden" name="gerarCronograma">
                             <input type="hidden" name="id" value="<?= $id ?>">
-                            <input type="hidden" name="tabela" value="<?= $tabela ?>">
+                            <input type="hidden" name="tipoPessoa" value="<?= $tipoPessoa ?>">
+                            <input type="hidden" name="idDadosOficineiro" value="<?= $dadosOficineiro['id'] ?>">
                             <input type="submit" value="Gerar Cronograma para Preenchimento" class="btn btn-theme btn-lg btn-block">
                         </div>
                     </div>
@@ -142,7 +143,7 @@ $pessoa = recuperaDados($tabela,"id",$id);
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-8">
                         <div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s) Somente em PDF</h6>
-                            <?php listaArquivoCamposMultiplos($id,$tipoPessoa,$idCampo,"oficinas_cronograma&tipoPessoa=".$tipoPessoa,3); ?>
+                            <?php listaArquivoCamposMultiplos($id,$tipoPessoa,$idCampo,"oficinas_cronograma",3); ?>
                         </div>
                     </div>
                 </div>
@@ -150,7 +151,7 @@ $pessoa = recuperaDados($tabela,"id",$id);
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-8">
                         <div class = "center">
-                            <form method="POST" action="?perfil=oficinas_cronograma&tipoPessoa=<?=$tipoPessoa?>" enctype="multipart/form-data">
+                            <form method="POST" action="?perfil=oficinas_cronograma" enctype="multipart/form-data">
                                 <table>
                                     <tr>
                                         <td width="50%"><td>
@@ -249,12 +250,12 @@ $pessoa = recuperaDados($tabela,"id",$id);
                 <!-- Botão para Voltar e Prosseguir -->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-2">
-                        <form class="form-horizontal" role="form" action="<?= ($tipoPessoa == 4) ? "?perfil=dados_bancarios_pf" : "dados_bancarios_pj"?>" method="post">
+                        <form class="form-horizontal" role="form" action="<?= ($tipoPessoa == 4) ? "?perfil=oficineiro_pf_dados_bancarios" : "dados_bancarios_pj"?>" method="post">
                             <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $id ?>">
                         </form>
                     </div>
                     <div class="col-md-offset-4 col-md-2">
-                        <form class="form-horizontal" role="form" action="<?= ($tipoPessoa == 4) ? "?perfil=anexos_pf" : "?perfil=anexos_pj"?>" method="post">
+                        <form class="form-horizontal" role="form" action="<?= ($tipoPessoa == 4) ? "?perfil=oficineiro_pf_anexos" : "?perfil=anexos_pj"?>" method="post">
                             <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $id ?>">
                         </form>
                     </div>

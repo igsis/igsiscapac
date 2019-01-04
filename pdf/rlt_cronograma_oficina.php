@@ -7,9 +7,35 @@ session_start();
 $con = bancoMysqli();
 
 $idModalidade = $_POST['modalidade'];
+if ($_POST['tipoPessoa'] == 4)
+{
+    $tabela = "pessoa_fisica";
+}
+else
+{
+    $tabela = "pessoa_juridica";
+}
+$nomeOficina = addslashes($_POST['nomeOficina']);
 
 $modalidade = recuperaDados('modalidades', 'id', $idModalidade);
-$oficineiro = recuperaDados($_POST['tabela'], 'id', $_POST['id']);
+$oficineiro = recuperaDados($tabela, 'id', $_POST['id']);
+$nome =
+
+
+$idDados = $_POST['idDadosOficineiro'];
+$sql_dados = "UPDATE `oficina_dados` SET 
+                `modalidade_id` = '$idModalidade',
+                `nomeOficina` = '$nomeOficina'
+              WHERE `id` = '$idDados'";
+$query = $con->query($sql_dados);
+if ($query)
+{
+    gravarLog($sql_dados);
+}
+
+$dados = recuperaDados('oficina_dados', 'id', $idDados);
+$linguagem = recuperaDados('oficina_linguagens', 'id', $dados['oficina_linguagem_id']);
+$nivel = recuperaDados('oficina_niveis', 'id', $dados['oficina_nivel_id']);
 
 function geraCronogramaOficina($idModalidade)
 {
@@ -18,7 +44,7 @@ function geraCronogramaOficina($idModalidade)
     switch ($modalidade['meses_atividade'])
     {
         case 1:
-            echo "<table border='1'>
+            echo "<table border='1' style='font-family: sans-serif'>
                     <thead>
                         <tr align='center' bgcolor='#d3d3d3'>
                             <th width='10%'>MÊS</th>
@@ -48,7 +74,7 @@ function geraCronogramaOficina($idModalidade)
             break;
 
         case 3:
-            echo "<table border='1'>
+            echo "<table border='1' style='font-family: sans-serif'
                     <thead>
                         <tr align='center' bgcolor='#d3d3d3'>
                             <th width='10%'>MÊS</th>
@@ -100,7 +126,7 @@ function geraCronogramaOficina($idModalidade)
             break;
 
         case 4:
-            echo "<table border='1'>
+            echo "<table border='1' style='font-family: sans-serif'>
                     <thead>
                         <tr align='center' bgcolor='#d3d3d3'>
                             <th width='10%'>MÊS</th>
@@ -159,7 +185,7 @@ function geraCronogramaOficina($idModalidade)
             break;
 
         case 6:
-            echo "<table border='1'>
+            echo "<table border='1' style='font-family: sans-serif'
                     <thead>
                         <tr align='center' bgcolor='#d3d3d3'>
                             <th width='10%'>MÊS</th>
@@ -236,7 +262,7 @@ function geraCronogramaOficina($idModalidade)
             break;
 
         case 10:
-            echo "<table border='1'>
+            echo "<table border='1' style='font-family: sans-serif'>
                     <thead>
                         <tr align='center' bgcolor='#d3d3d3'>
                             <th width='10%'>MÊS</th>
@@ -362,8 +388,15 @@ date_default_timezone_set('America/Sao_Paulo');
 ?>
 <html lang="pt-BR">
     <meta http-equiv="Content-Type" charset="UTF-8">
+    <head>
+        <style>
+            .sansSerif {
+                font-family: sans-serif;
+            }
+        </style>
+    </head>
     <body>
-        <div style="font-family: sans-serif">
+        <div class="sansSerif">
             <p align='center'><strong>PROPOSTA E CRONOGRAMA DE REALIZAÇÃO DE OFICINAS</strong></p>
             <p align='center'><strong><?php echo $modalidade['modalidade']." - ".$modalidade['descricao'] ?></strong></p>
 
@@ -372,20 +405,20 @@ date_default_timezone_set('America/Sao_Paulo');
             <p style="text-align: justify">O presente projeto de Oficina foi selecionado a partir do <strong>EDITAL DE
                     CREDENCIAMENTO Nº 02 /2018 – SMC/GAB</strong>, o qual credenciou projetos de artistas e outros
                 profissionais interessados em realizar oficinas em equipamentos da Secretaria Municipal de Cultura.</p>
-            <p style="text-align: justify">O(a) contratado(a) executará o projeto de oficina __________________________, nos exatos
+            <p style="text-align: justify">O(a) contratado(a) executará o projeto de oficina <strong><?= $dados['nomeOficina'] ?></strong>, nos exatos
                 termos de sua proposta apresentada na ocasião de sua inscrição para o referido Edital.</p>
 
             <p>&nbsp;</p>
 
-            <p><strong>Nome do Oficineiro: </strong></p>
-            <p><strong>Linguagem Artística e Cultural: </strong></p>
+            <p><strong>Nome do Oficineiro: </strong><?= $oficineiro['nome'] ?></p>
+            <p><strong>Linguagem Artística e Cultural: </strong><?= $linguagem['linguagem'] ?></p>
             <p><strong>Período: </strong>__/__/____ a __/__/____</p>
             <p><strong>Dias da Semana: </strong></p>
             <p><strong>Horário: </strong></p>
             <p><strong>Carga Horária Total: </strong></p>
             <p><strong>Local / Equipamento: </strong></p>
             <p><strong>Público: </strong></p>
-            <p><strong>Nível: </strong></p>
+            <p><strong>Nível: </strong><?= $nivel['nivel'] ?></p>
 
             <?php geraCronogramaOficina($idModalidade) ?>
 
@@ -398,12 +431,12 @@ date_default_timezone_set('America/Sao_Paulo');
 
 
 
-            <table>
+            <table class="sansSerif">
                 <tr>
                     <td>
                         <p align="left">_________________________</p>
                         <p align="left">
-                            <strong>Oficineiro</strong> <br/>
+                            <strong>Oficineiro: </strong> <br/>
                             RG: <?= $oficineiro['rg'] ?>
                         </p>
                     </td>
