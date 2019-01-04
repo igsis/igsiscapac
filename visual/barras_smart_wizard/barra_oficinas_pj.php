@@ -1,10 +1,10 @@
 <?php
 
 $urlPf = array(
-    '/igsiscapac/visual/index.php?perfil=oficineiro_pf_informacoes_iniciais',
-    '/igsiscapac/visual/index.php?perfil=oficineiro_pf_arquivos', // 02 Arquivos PF
-    '/igsiscapac/visual/index.php?perfil=oficineiro_pf_endereco', // 03 Endereço
-    '/igsiscapac/visual/index.php?perfil=oficineiro_pf_informacoes_complementares', // 04 info complem
+    '/igsiscapac/visual/index.php?perfil=oficineiro_pj_informacoes_iniciais',
+    '/igsiscapac/visual/index.php?perfil=oficineiro_pj_arquivos', // 02 Arquivos PF
+    '/igsiscapac/visual/index.php?perfil=oficineiro_pj_endereco', // 03 Endereço
+    '/igsiscapac/visual/index.php?perfil=oficineiro_pj_informacoes_complementares', // 04 info complem
     '/igsiscapac/visual/index.php?perfil=formacao_dados_bancarios', // 05 dados bancarios
     '/igsiscapac/visual/index.php?perfil=formacao_anexos', // 06 demais anexos
     '/igsiscapac/visual/index.php?perfil=formacao_finalizar', // 07 final pf

@@ -3,7 +3,8 @@
 $con = bancoMysqli();
 $idUser = $_SESSION['idUser'];
 $tipoPessoa = 5;
-$bool = 0;
+$evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
+$bool = isset($_SESSION['menu']) ? $_SESSION['menu'] : false;
 
 if(isset($_POST['cadastrarJuridica']))
 {
@@ -104,6 +105,15 @@ if(isset($_POST['atualizarJuridica']))
     {
         $mensagem = "<font color='#FF0000'><strong>Erro ao atualizar! Tente novamente.</strong></font>";
     }
+}
+
+if (!($bool))
+{
+    $_SESSION['menu'] = false;
+}
+else
+{
+    $_SESSION['menu'] = true;
 }
 
 if(isset($_POST['carregar']))
