@@ -31,7 +31,7 @@ $evento_pj = recuperaDados("evento","id",$evento);
     <div class="container"><?php include 'includes/menu_oficinas.php'; ?>
         <div class="form-group">
             <h3>INFORMAÇÕES COMPLEMENTARES</h3>
-            <p><b>Código de cadastro:</b> <?php echo $idPj; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
+            <p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
             <h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
         </div>
         <div class="row">
