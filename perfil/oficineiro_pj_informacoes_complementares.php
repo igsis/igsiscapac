@@ -28,7 +28,7 @@ $evento_pj = recuperaDados("evento","id",$evento);
 ?>
 
 <section id="contact" class="home-section bg-white">
-    <div class="container"><?php include 'includes/menu_interno_pj.php'; ?>
+    <div class="container"><?php include 'includes/menu_oficinas.php'; ?>
         <div class="form-group">
             <h3>INFORMAÇÕES COMPLEMENTARES</h3>
             <p><b>Código de cadastro:</b> <?php echo $idPj; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
@@ -36,9 +36,7 @@ $evento_pj = recuperaDados("evento","id",$evento);
         </div>
         <div class="row">
             <div class="col-md-offset-1 col-md-10">
-                <form class="form-horizontal" role="form" action="?perfil=informacoes_complementares_pj" method="post">
-
-
+                <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_informacoes_complementares" method="post">
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
                             <input type="hidden" name="cadastrarJuridica" value="<?php echo $idPj ?>">	<input type="hidden" name="Sucesso" id="Sucesso" />
@@ -50,32 +48,15 @@ $evento_pj = recuperaDados("evento","id",$evento);
                 <!-- Botão para Voltar e Prosseguir -->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-2">
-                        <form class="form-horizontal" role="form" action="?perfil=endereco_pj" method="post">
+                        <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_endereco" method="post">
                             <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
                         </form>
                     </div>
-                    <?php
-                    if ($evento_pj['contratacao'] == 2)
-                    {
-                        ?>
-                        <div class="col-md-offset-4 col-md-2">
-                            <form class="form-horizontal" role="form" action="?perfil=anexos_pj" method="post">
-                                <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
-                            </form>
-                        </div>
-                        <?php
-                    }
-                    else
-                    {
-                        ?>
-                        <div class="col-md-offset-4 col-md-2">
-                            <form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pj" method="post">
-                                <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
-                            </form>
-                        </div>
-                        <?php
-                    }
-                    ?>
+                    <div class="col-md-offset-4 col-md-2">
+                        <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_representante" method="post">
+                            <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

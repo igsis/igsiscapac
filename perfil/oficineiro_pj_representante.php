@@ -90,6 +90,6 @@ if ($pj['idRepresentanteLegal1'] == 0) // Não possui representante legal cadast
 }
 else
 {
-    echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=?perfil=oficineiro_pj_representante_cadastro&id_pj=".$idPj."'>";
+    echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=?perfil=oficineiro_pj_representante_cadastro'>";
 }
 ?>

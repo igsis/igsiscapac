@@ -53,7 +53,7 @@ if($num_busca > 0)
 										<tr>
 											<td class='list_description'><b>".$descricao['nome']."</b></td>
 											<td class='list_description'>".$descricao['cpf']."</td><td class='list_description'>
-											<form method='POST' action='?perfil=oficineiro_pj_representante_cadastro&id_pj=".$idPj."'>
+											<form method='POST' action='?perfil=oficineiro_pj_representante_cadastro'>
 												<input type='hidden' name='insereRepresentante' value='".$descricao['id']."'>
 												<input type ='submit' class='btn btn-theme btn-md btn-block' value='escolher'>
 											</form>

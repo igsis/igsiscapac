@@ -107,6 +107,15 @@ if(isset($_POST['atualizarJuridica']))
     }
 }
 
+if(isset($_POST['carregar']))
+{
+    $_SESSION['idPj'] = $_POST['carregar'];
+}
+
+$idPj = isset($_SESSION['idPj']) ? $_SESSION['idPj'] : null;
+
+$pj = recuperaDados("pessoa_juridica","id",$idPj);
+
 if (!($bool))
 {
     $_SESSION['menu'] = false;
@@ -116,14 +125,6 @@ else
     $_SESSION['menu'] = true;
 }
 
-if(isset($_POST['carregar']))
-{
-    $_SESSION['idPj'] = $_POST['carregar'];
-}
-
-$idPj = isset($_SESSION['idPj']) ? $_SESSION['idPj'] : null;
-
-$pj = recuperaDados("pessoa_juridica","id",$idPj);
 ?>
 
 <section id="list_items" class="home-section bg-white">
