@@ -6,12 +6,19 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 $tipoPessoa = 4;
 $contador = 0;
 
+$idDados = recuperaIdDadosOficineiro($tipoPessoa, $idPf);
+$dados = recuperaDados('oficina_dados', 'id', $idDados);
+$nivel = recuperaDados('oficina_niveis', 'id', $dados['oficina_nivel_id']);
+$linguagem = recuperaDados('oficina_linguagens', 'id', $dados['oficina_linguagem_id']);
+$modalidade = recuperaDados('modalidades', 'id', $dados['modalidade_id']);
+
 function recuperaBanco($campoY)
 {
 	$banco = recuperaDados("banco","id",$campoY);
 	$nomeBanco = $banco['banco'];
 	return $nomeBanco;
 }
+
 
 function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '1')
 {
@@ -157,7 +164,9 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '1')
         <div class="table-responsive list_inf">
             <div class = "page-header"><h5>Informações Complementares: </h5><br></div>
             <div class="well">
-                <p align="justify"><strong>DRT:</strong> <?php echo $pf['drt']; ?></p>
+                <p align="justify"><strong>Nome da Oficina:</strong> <?php echo $dados['nomeOficina']; ?></p>
+                <p align="justify"><strong>Linguagem:</strong> <?php echo $linguagem['linguagem']; ?></p>
+                <p align="justify"><strong>Nível:</strong> <?php echo $nivel['nivel']; ?></p>
                 <p align="justify"><strong>Banco:</strong> <?php echo recuperaBanco ($pf['codigoBanco']); ?></p>
                 <p align="justify"><strong>Agência:</strong> <?php echo $pf['agencia']; ?></p>
                 <p align="justify"><strong>Conta:</strong> <?php echo $pf['conta']; ?></p>

@@ -502,6 +502,24 @@ function geraOpcaoFormacao($select, $tipoFormacao, $tabela = 'formacao_funcoes',
 		return $campo;
 	}
 
+	function recuperaIdDadosOficineiro($tipoPessoa,$idPessoa)
+    {
+	    $con = bancoMysqli();
+        $consulta = "SELECT * FROM `oficina_dados` WHERE `tipoPessoa` = '$tipoPessoa' AND `idPessoa` = '$idPessoa' AND `publicado` = '1'";
+
+        $queryConsulta = $con->query($consulta);
+        if ($queryConsulta->num_rows > 0)
+        {
+            $dados = $queryConsulta->fetch_assoc();
+            $id = $dados['id'];
+            return $id;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
 	function verificaExiste($idTabela,$idCampo,$idDado,$st)
 	{
 		//retorna uma array com indice 'numero' de registros e 'dados' da tabela
