@@ -77,13 +77,13 @@ else
 					<form class="form-horizontal" role="form" action="?perfil=oficineiro_pf_informacoes_iniciais" method="post">
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8"><strong>Nome *:</strong><br/>
-							<input type="text" class="form-control" name="nome" placeholder="Nome Completo" >
+							<input type="text" class="form-control" name="nome" placeholder="Nome Completo" required>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8"><strong>Nome Artístico*:</strong><br/>
-							<input type="text" class="form-control" name="nomeArtistico" placeholder="Nome Artístico" >
+							<input type="text" class="form-control" name="nomeArtistico" placeholder="Nome Artístico" required>
 						</div>
 					</div>
 
@@ -94,7 +94,7 @@ else
 							</select>
 						</div>
 						<div class="col-md-6"><strong>Nº do documento *:</strong><br/>
-							<input type="text" class="form-control" name="rg" placeholder="Número">
+							<input type="text" class="form-control" name="rg" placeholder="Número" required>
 						</div>
 					</div>
 
@@ -109,7 +109,7 @@ else
 
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-6"><strong>Celular *:</strong><br/>
-							<input type="text" class="form-control" name="telefone1" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" >
+							<input type="text" class="form-control" name="telefone1" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" required>
 						</div>
 						<div class="col-md-6"><strong>Telefone #2:</strong><br/>
 							<input type="text" class="form-control" name="telefone2" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" >
@@ -121,13 +121,13 @@ else
 							<input type="text" class="form-control" name="telefone3" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" >
 						</div>
 						<div class="col-md-6"><strong>E-mail *:</strong><br/>
-							<input type="text" class="form-control" name="email" placeholder="E-mail" >
+							<input type="text" class="form-control" name="email" placeholder="E-mail" required>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-6"><strong>Data Nascimento *:</strong><br/>
-							<input type="text" class="form-control" name="dataNascimento" id="datepicker01" placeholder="Data de Nascimento" onclick="alerta()" >
+							<input type="text" class="form-control" name="dataNascimento" id="datepicker01" placeholder="Data de Nascimento" onclick="alerta()" required>
 						</div>
 						<div class="col-md-6"><strong>Estado civil:</strong><br/>
 							<select class="form-control" name="idEstadoCivil" >
