@@ -68,7 +68,7 @@ if(isset($_POST["enviar"]))
 						{
 							$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 							gravarLog($sql_insere_arquivo);
-							echo '<script>window.location = "?perfil=dados_bancarios_pf"</script>';
+							echo '<script>window.location = "?perfil=oficineiro_pf_dados_bancarios"</script>';
 						}
 						else
 						{
@@ -120,7 +120,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-			<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pf" method="post">
+			<form class="form-horizontal" role="form" action="?perfil=oficineiro_pf_dados_bancarios" method="post">
 
 			<span style="color: #FF0000; "><strong>Realizamos pagamentos de valores acima de R$ 5.000,00 *SOMENTE COM CONTA CORRENTE NO BANCO DO BRASIL*.<br />
 			Não são aceitas: conta fácil, poupança e conjunta.</strong></span><br />
