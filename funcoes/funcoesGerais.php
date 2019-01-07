@@ -944,7 +944,7 @@ function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, 
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
 				AND arq.idTipoPessoa = '$tipoPessoa'
-				AND list.id NOT IN (109,110,113,111,112,114)
+				AND list.id NOT IN (109,110,113,111,112,114,134,159)
 				AND arq.publicado = '1'";
             break;
         case 13: //informacoes_iniciais_oficineiros_pj
