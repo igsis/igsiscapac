@@ -136,7 +136,10 @@ if(isset($_POST['apagar']))
 
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
 $evento_pf = recuperaDados("evento","id",$evento);
-$dados = recuperaDados('oficina_dados', 'id', $idDados);
+if ($cadastra)
+{
+    $dados = recuperaDados('oficina_dados', 'id', $idDados);
+}
 ?>
 
 <section id="list_items" class="home-section bg-white">
