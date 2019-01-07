@@ -32,7 +32,10 @@ if(isset($_POST['cadastraDados']))
 	{
 		$mensagem = "<font color='#01DF3A'><strong>Cadastrado com sucesso!</strong></font>";
 		gravarLog($sql_insere_dados);
-	}
+		$idDados = $con->insert_id;
+        $dados = recuperaDados('oficina_dados', 'id', $idDados);
+        $post = "atualizaDados";
+    }
 	else
 	{
 		$mensagem = "<font color='#FF0000'><strong>Erro ao Cadastrar! Tente novamente.</strong></font>";
