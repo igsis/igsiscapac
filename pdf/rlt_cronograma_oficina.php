@@ -7,20 +7,23 @@ session_start();
 $con = bancoMysqli();
 
 $idModalidade = $_POST['modalidade'];
-if ($_POST['tipoPessoa'] == 4)
-{
-    $tabela = "pessoa_fisica";
-}
-else
-{
-    $tabela = "pessoa_juridica";
-}
-$nomeOficina = addslashes($_POST['nomeOficina']);
+$tabela = ($_POST['tipoPessoa'] == 4) ? "pessoa_fisica" : "pessoa_juridica";
 
 $modalidade = recuperaDados('modalidades', 'id', $idModalidade);
 $oficineiro = recuperaDados($tabela, 'id', $_POST['id']);
 $nome = ($_POST['tipoPessoa'] == 4) ? $oficineiro['nome'] : $oficineiro['razaoSocial'];
 
+if ($_POST['tipoPessoa'] == 4)
+{
+    $documento = $oficineiro['rg'];
+}
+else
+{
+    $representante = recuperaDados('representante_legal', 'id', $oficineiro['idRepresentanteLegal1']);
+    $documento = $representante['rg'];
+}
+
+$nomeOficina = addslashes($_POST['nomeOficina']);
 
 $idDados = $_POST['idDadosOficineiro'];
 $sql_dados = "UPDATE `oficina_dados` SET 
@@ -410,7 +413,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
             <p>&nbsp;</p>
 
-            <p><strong>Nome do Oficineiro: </strong><?= $oficineiro['nome'] ?></p>
+            <p><strong>Nome do Oficineiro: </strong><?= $nome ?></p>
             <p><strong>Linguagem Artística e Cultural: </strong><?= $linguagem['linguagem'] ?></p>
             <p><strong>Período: </strong>__/__/____ a __/__/____</p>
             <p><strong>Dias da Semana: </strong></p>
@@ -437,7 +440,7 @@ date_default_timezone_set('America/Sao_Paulo');
                         <p align="left">_________________________</p>
                         <p align="left">
                             <strong>Oficineiro: </strong> <br/>
-                            RG: <?= $oficineiro['rg'] ?>
+                            RG: <?= $documento ?>
                         </p>
                     </td>
                     <td width="100%"></td>
