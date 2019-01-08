@@ -27,9 +27,10 @@ if(isset($_POST['cadastraDados']))
 	$idPf = $_POST['cadastraDados'];
 	$nivel = $_POST['nivel'];
 	$linguagem = $_POST['linguagem'];
+  $sublinguagem = $_POST['sublinguagem'];
 
-	$sql_insere_dados = "INSERT INTO `oficina_dados` (`tipoPessoa`, `idPessoa`, `oficina_linguagem_id`, `oficina_nivel_id`)
-                          VALUES ('$tipoPessoa', '$idPf', '$linguagem', '$nivel')";
+	$sql_insere_dados = "INSERT INTO `oficina_dados` (`tipoPessoa`, `idPessoa`, `oficina_linguagem_id`, `oficina_sublinguagem_id`, `oficina_nivel_id`)
+                          VALUES ('$tipoPessoa', '$idPf', '$linguagem', '$sublinguagem', '$nivel')";
 
 	if (mysqli_query($con,$sql_insere_dados))
 	{
@@ -50,9 +51,11 @@ if(isset($_POST["atualizaDados"]))
     $idPf = $_POST['atualizaDados'];
     $nivel = $_POST['nivel'];
     $linguagem = $_POST['linguagem'];
+    $sublinguagem = $_POST['sublinguagem'];
 
     $sql_atualiza_dados = "UPDATE `oficina_dados` SET
                            `oficina_linguagem_id` = '$linguagem',
+                           `oficina_sublinguagem_id` = '$sublinguagem',
                            `oficina_nivel_id` = '$nivel'
                            WHERE `id` = '$idDados'";
 
@@ -289,9 +292,15 @@ if ($cadastra)
    const url = `<?=$url?>`;
 
    let linguagem = document.querySelector("#linguagem");
+   let sublinguagem_id = <?=$dados['oficina_sublinguagem_id']?>;
+   
+   if(linguagem.value != ''){
+     getSublinguagem(linguagem.value, sublinguagem_id)
+   }
 
     linguagem.addEventListener('change', async e => {
       let idLinguagem = $('#linguagem option:checked').val();
+      getSublinguagem(idLinguagem, '')
 
       fetch(`${url}?linguagem_id=${idLinguagem}`)
         .then(response => response.json())
@@ -304,4 +313,21 @@ if ($cadastra)
             }
         })
     })
+
+    function getSublinguagem(idLinguagem, selectedId){
+      fetch(`${url}?linguagem_id=${idLinguagem}`)
+      .then(response => response.json())
+      .then(sublinguagens => {
+        $('#sublinguagem option').remove();
+
+        for (const sublinguagem of sublinguagens) {
+          if(selectedId == sublinguagem.id){
+            $('#sublinguagem').append(`<option value='${sublinguagem.id}' select>${sublinguagem.sublinguagem}</option>`).focus();;
+          }else{
+            $('#sublinguagem').append(`<option value='${sublinguagem.id}'>${sublinguagem.sublinguagem}</option>`).focus();;
+          }
+        }
+      })
+    }
+
  </script>
