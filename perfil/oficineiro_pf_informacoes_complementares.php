@@ -148,6 +148,8 @@ $evento_pf = recuperaDados("evento","id",$evento);
 if ($cadastra)
 {
     $dados = recuperaDados('oficina_dados', 'id', $idDados);
+}else{
+  $dados['oficina_sublinguagem_id'] = 0;
 }
 ?>
 
@@ -290,11 +292,11 @@ if ($cadastra)
 
 <script>
    const url = `<?=$url?>`;
-
-   let linguagem = document.querySelector("#linguagem");
-   let sublinguagem_id = <?=$dados['oficina_sublinguagem_id']?>;
    
+   let linguagem = document.querySelector("#linguagem");
+
    if(linguagem.value != ''){
+     let sublinguagem_id = <?=$dados['oficina_sublinguagem_id']?>;
      getSublinguagem(linguagem.value, sublinguagem_id)
    }
 

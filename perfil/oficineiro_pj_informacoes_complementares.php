@@ -1,5 +1,8 @@
 <?php
 $con = bancoMysqli();
+
+$url = 'http://'.$_SERVER['HTTP_HOST'].'/igsiscapac/funcoes/api_linguagens.php';
+
 $idPj = $_SESSION['idPj'];
 $evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 
@@ -25,7 +28,7 @@ if(isset($_POST['cadastraDados']))
     $nivel = $_POST['nivel'];
     $linguagem = $_POST['linguagem'];
 
-    $sql_insere_dados = "INSERT INTO `oficina_dados` (`tipoPessoa`, `idPessoa`, `oficina_linguagem_id`, `oficina_nivel_id`) 
+    $sql_insere_dados = "INSERT INTO `oficina_dados` (`tipoPessoa`, `idPessoa`, `oficina_linguagem_id`, `oficina_nivel_id`)
                           VALUES ('$tipoPessoa', '$idPj', '$linguagem', '$nivel')";
 
     if (mysqli_query($con,$sql_insere_dados))
@@ -48,7 +51,7 @@ if(isset($_POST["atualizaDados"]))
     $nivel = $_POST['nivel'];
     $linguagem = $_POST['linguagem'];
 
-    $sql_atualiza_dados = "UPDATE `oficina_dados` SET 
+    $sql_atualiza_dados = "UPDATE `oficina_dados` SET
                            `oficina_linguagem_id` = '$linguagem',
                            `oficina_nivel_id` = '$nivel'
                            WHERE `id` = '$idDados'";
@@ -143,6 +146,8 @@ $evento_pj = recuperaDados("evento","id",$evento);
 if ($cadastra)
 {
     $dados = recuperaDados('oficina_dados', 'id', $idDados);
+}else{
+  $dados['oficina_sublinguagem_id'] = 0;
 }
 ?>
 
@@ -170,6 +175,14 @@ if ($cadastra)
                                 <?php geraOpcao('oficina_linguagens', $dados['oficina_linguagem_id']) ?>
                             </select>
                         </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="col-md-offset-2 col-md-8"><strong>Sub Linguagem:</strong><br/>
+                        <select class="form-control" name="sublinguagem" id="sublinguagem" required>
+                          <!-- Populando por js -->
+                        </select>
+                      </div>
                     </div>
 
                     <div class="form-group">
@@ -270,3 +283,49 @@ if ($cadastra)
         </div>
     </div>
 </section>
+
+<script>
+   const url = `<?=$url?>`;
+
+   let linguagem = document.querySelector("#linguagem");
+      console.log(linguagem.value);
+
+
+   if(linguagem.value != ''){
+
+     let sublinguagem_id = <?=$dados['oficina_sublinguagem_id']?>
+
+     getSublinguagem(linguagem.value, sublinguagem_id)
+   }
+    linguagem.addEventListener('change', async e => {
+      let idLinguagem = $('#linguagem option:checked').val();
+
+      fetch(`${url}?linguagem_id=${idLinguagem}`)
+        .then(response => response.json())
+        .then(sublinguagens => {
+            $('#sublinguagem option').remove();
+            $('#sublinguagem').append('<option value="">Selecione... </option>');
+
+            for (const sublinguagem of sublinguagens) {
+                $('#sublinguagem').append(`<option value='${sublinguagem.id}'>${sublinguagem.sublinguagem}</option>`).focus();;
+            }
+        })
+    })
+
+    function getSublinguagem(idLinguagem, selectedId){
+      fetch(`${url}?linguagem_id=${idLinguagem}`)
+      .then(response => response.json())
+      .then(sublinguagens => {
+        $('#sublinguagem option').remove();
+
+        for (const sublinguagem of sublinguagens) {
+          if(selectedId == sublinguagem.id){
+            $('#sublinguagem').append(`<option value='${sublinguagem.id}' select>${sublinguagem.sublinguagem}</option>`).focus();;
+          }else{
+            $('#sublinguagem').append(`<option value='${sublinguagem.id}'>${sublinguagem.sublinguagem}</option>`).focus();;
+          }
+        }
+      })
+    }
+
+ </script>
