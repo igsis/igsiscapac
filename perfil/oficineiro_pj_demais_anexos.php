@@ -248,52 +248,19 @@ $evento_pj = recuperaDados("evento","id",$evento);
 
         <!-- Botão para Voltar -->
         <div class="form-group">
-            <?php
-            if ($evento_pj['contratacao'] == 2)
-            {
-                ?>
-                <div class="col-md-offset-2 col-md-2">
-                    <form class="form-horizontal" role="form" action="?perfil=oficinas_cronograma" method="post">
-                        <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
-                    </form>
-                </div>
-                <?php
-            }
-            else
-            {
-                ?>
-                <div class="col-md-offset-2 col-md-2">
-                    <form class="form-horizontal" role="form" action="?perfil=oficinas_cronograma" method="post">
-                        <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
-                    </form>
-                </div>
-                <?php
-            }
-            ?>
-            <!-- Botão para Avançar -->
-            <?php
-            if ($tipoPessoa == 2)
-            {
-                ?>
-                <div class="col-md-offset-4 col-md-2">
-                    <form class="form-horizontal" role="form" action="?perfil=finalizar" method="post">
-                        <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
-                    </form>
-                </div>
-                <?php
-            }
-            else
-            {
-                ?>
-                <div class="col-md-offset-4 col-md-2">
-                    <form class="form-horizontal" role="form" action="?perfil=final_pj" method="post">
-                        <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
-                    </form>
-                </div>
-                <?php
-            }
-            ?>
 
+            <div class="col-md-offset-2 col-md-2">
+                <form class="form-horizontal" role="form" action="?perfil=oficinas_cronograma" method="post">
+                    <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
+                </form>
+            </div>
+
+            <!-- Botão para Avançar -->
+            <div class="col-md-offset-4 col-md-2">
+                <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_finalizar.php" method="post">
+                    <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
+                </form>
+            </div>
         </div>
     </div>
     </div>
