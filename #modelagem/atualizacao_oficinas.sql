@@ -226,3 +226,6 @@ INSERT INTO oficina_sublinguagens (idLinguagem, sublinguagem) VALUES
 (22, "Bioconstrução"),
 (22, "Jardim vertical"),
 (23, "Outra");
+
+ALTER TABLE `capac`.`oficina_dados` 
+ADD COLUMN `oficina_sublinguagem_id` INT NOT NULL AFTER `oficina_linguagem_id`;
