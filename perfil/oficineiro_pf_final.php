@@ -133,7 +133,7 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '1')
                 </strong>
             </p><br>
             <div class="alert alert-success ">
-                Seu Código de Cadastro é <strong><?= $pf['id'] ?></strong>
+                Seu Código de Cadastro é <strong>4-<?= $pf['id'] ?></strong>
             </div>
 	<div class="container">
 		 <div class = "page-header"> <h5>Informações Pessoais</h5><br></div>
