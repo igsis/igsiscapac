@@ -17,7 +17,7 @@ elseif (isset($_SESSION['idPj']))
 $pessoa = recuperaDados($tabela,"id",$id);
 $idCampo = ($tipoPessoa == 4) ? 134 : 135;
 
-$consulta = "SELECT * FROM `oficina_dados` WHERE `tipoPessoa` = '$tipoPessoa' AND `idPessoa` = '$idPf' AND `publicado` = '1'";
+$consulta = "SELECT * FROM `oficina_dados` WHERE `tipoPessoa` = '$tipoPessoa' AND `idPessoa` = '$id' AND `publicado` = '1'";
 $dados = $con->query($consulta)->fetch_assoc();
 
 if(isset($_POST["enviar"]))
