@@ -19,7 +19,7 @@ $nomeOficina = addslashes($_POST['nomeOficina']);
 
 $modalidade = recuperaDados('modalidades', 'id', $idModalidade);
 $oficineiro = recuperaDados($tabela, 'id', $_POST['id']);
-$nome =
+$nome = ($_POST['tipoPessoa'] == 4) ? $oficineiro['nome'] : $oficineiro['razaoSocial'];
 
 
 $idDados = $_POST['idDadosOficineiro'];
