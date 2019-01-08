@@ -1,5 +1,8 @@
 ﻿<?php
 $con = bancoMysqli();
+
+$url = 'http://'.$_SERVER['HTTP_HOST'].'/igsiscapac/funcoes/api_linguagens.php';
+
 $idPf = $_SESSION['idPf'];
 $evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 
@@ -25,7 +28,7 @@ if(isset($_POST['cadastraDados']))
 	$nivel = $_POST['nivel'];
 	$linguagem = $_POST['linguagem'];
 
-	$sql_insere_dados = "INSERT INTO `oficina_dados` (`tipoPessoa`, `idPessoa`, `oficina_linguagem_id`, `oficina_nivel_id`) 
+	$sql_insere_dados = "INSERT INTO `oficina_dados` (`tipoPessoa`, `idPessoa`, `oficina_linguagem_id`, `oficina_nivel_id`)
                           VALUES ('$tipoPessoa', '$idPf', '$linguagem', '$nivel')";
 
 	if (mysqli_query($con,$sql_insere_dados))
@@ -48,7 +51,7 @@ if(isset($_POST["atualizaDados"]))
     $nivel = $_POST['nivel'];
     $linguagem = $_POST['linguagem'];
 
-    $sql_atualiza_dados = "UPDATE `oficina_dados` SET 
+    $sql_atualiza_dados = "UPDATE `oficina_dados` SET
                            `oficina_linguagem_id` = '$linguagem',
                            `oficina_nivel_id` = '$nivel'
                            WHERE `id` = '$idDados'";
@@ -153,7 +156,7 @@ if ($cadastra)
 			<p><b>Nome:</b> <?php echo $pf['nome']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>
-        
+
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 				<form class="form-horizontal" role="form" action="?perfil=oficineiro_pf_informacoes_complementares" method="post">
@@ -172,6 +175,14 @@ if ($cadastra)
                             </select>
                         </div>
 					</div>
+
+          <div class="form-group">
+            <div class="col-md-offset-2 col-md-8"><strong>Sub Linguagem:</strong><br/>
+              <select class="form-control" name="sublinguagem" id="sublinguagem" required>
+                <!-- Populando por js -->
+              </select>
+            </div>
+          </div>
 
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
@@ -273,3 +284,24 @@ if ($cadastra)
 		</div>
 	</div>
 </section>
+
+<script>
+   const url = `<?=$url?>`;
+
+   let linguagem = document.querySelector("#linguagem");
+
+    linguagem.addEventListener('change', async e => {
+      let idLinguagem = $('#linguagem option:checked').val();
+
+      fetch(`${url}?linguagem_id=${idLinguagem}`)
+        .then(response => response.json())
+        .then(sublinguagens => {
+            $('#sublinguagem option').remove();
+            $('#sublinguagem').append('<option value="">Selecione... </option>');
+
+            for (const sublinguagem of sublinguagens) {
+                $('#sublinguagem').append(`<option value='${sublinguagem.id}'>${sublinguagem.sublinguagem}</option>`).focus();;
+            }
+        })
+    })
+ </script>
