@@ -72,11 +72,11 @@ for ($i = 0; $i < count($urlPf); $i++) {
                     <li class="<?php echo isset($active7) ? $active7 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=oficineiro_pj_dados_bancarios'" href=""><br /><small>Dados Bancários</small></a>
                     </li>
+                </ul>
+                <ul>
                     <li class="<?php echo isset($active11) ? $active11 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=oficineiro_pj_arquivos_dados_bancarios'" href=""><br /><small>Arquivos Dados Bancários</small></a>
                     </li>
-                </ul>
-                <ul>
                     <li class="<?php echo isset($active8) ? $active8 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=oficinas_cronograma'" href=""><br /><small>Cronograma</small></a>
                     </li>
