@@ -6,7 +6,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 $tipoPessoa = 5;
 $contador = 0;
 
-$idDados = recuperaIdDadosOficineiro($tipoPessoa, $idPf);
+$idDados = recuperaIdDadosOficineiro($tipoPessoa, $idPj);
 $dados = recuperaDados('oficina_dados', 'id', $idDados);
 $nivel = recuperaDados('oficina_niveis', 'id', $dados['oficina_nivel_id']);
 $linguagem = recuperaDados('oficina_linguagens', 'id', $dados['oficina_linguagem_id']);
