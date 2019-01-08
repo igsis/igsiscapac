@@ -53,7 +53,7 @@ if(isset($_POST["enviar"]))
                             {
                                 $mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
                                 gravarLog($sql_insere_arquivo);
-                                echo '<script>window.location = "?perfil=arquivos_pj"</script>';
+                                echo '<script>window.location = "?perfil=oficineiro_pj_arquivos"</script>';
                             }
                             else
                             {
@@ -148,7 +148,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
                         <div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s) Somente em PDF</h6>
                             <?php
                             $lista = ($tipoPessoa == 5) ? 13 : 2;
-                            listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","arquivos_pj",$lista);
+                            listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","oficineiro_pj_arquivos",$lista);
                             ?>
                         </div>
                     </div>
