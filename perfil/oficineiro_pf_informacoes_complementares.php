@@ -203,8 +203,8 @@ if ($cadastra)
 									<td width="45%"><td>
 								</tr>
 								<?php
-									if(verificaArquivosExistentesPF($idPf,'60')){
-										echo '<div class="alert alert-success">O arquivo DRT foi enviado.</div> ';
+									if(verificaArquivosExistentesPF($idPf,'159')){
+										echo '<div class="alert alert-success">O arquivo Curriculo foi enviado.</div> ';
 									}
 									else{
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idCampo'";
