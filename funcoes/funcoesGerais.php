@@ -999,13 +999,14 @@ function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, 
 				$arq1 $arq2
 				AND arq.publicado = '1'";
             break;
-        case 16: //anexos_pj
+        case 16: //anexos_oficineiro_pj
+            $arquivos = "120, 121, 122, 123, 124, 125, 126, 127, 135, 160";
             $sql = "SELECT *
 				FROM upload_lista_documento as list
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
 				AND arq.idTipoPessoa = '$tipoPessoa'
-				AND list.id NOT IN ('120', '121', '122', '123', '124', '125', '126', '127')
+				AND list.id NOT IN ($arquivos)
 				AND arq.publicado = '1'";
             break;
         case 17: //formacao_informacoes_iniciais

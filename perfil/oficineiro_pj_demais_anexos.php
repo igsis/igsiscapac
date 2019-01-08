@@ -9,7 +9,8 @@ $evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 
 if(isset($_POST["enviar"]))
 {
-    $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN (120, 121, 122, 123, 124, 125, 126, 127) AND publicado = '1'";
+    $arquivos = "120, 121, 122, 123, 124, 125, 126, 127, 135, 160";
+    $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN ($arquivos) AND publicado = '1'";
     $query_arquivos = mysqli_query($con,$sql_arquivos);
     while($arq = mysqli_fetch_array($query_arquivos))
     {
@@ -48,7 +49,7 @@ if(isset($_POST["enviar"]))
                             {
                                 $mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
                                 gravarLog($sql_insere_arquivo);
-                                echo '<script>window.location = "?perfil=anexos_pj"</script>';
+                                echo '<script>window.location = "?perfil=oficineiro_pj_demais_anexos"</script>';
                             }
                             else
                             {
@@ -176,7 +177,7 @@ $evento_pj = recuperaDados("evento","id",$evento);
             <div class="col-md-offset-2 col-md-8">
                 <div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
                     <?php
-                    listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","anexos_pj",16); ?>
+                    listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","oficineiro_pj_demais_anexos",16); ?>
                 </div>
             </div>
         </div>
@@ -185,10 +186,11 @@ $evento_pj = recuperaDados("evento","id",$evento);
         <div class="form-group">
             <div class="col-md-offset-1 col-md-10">
                 <div class = "center">
-                    <form method="POST" action="?perfil=anexos_pj" enctype="multipart/form-data">
+                    <form method="POST" action="?perfil=oficineiro_pj_demais_anexos" enctype="multipart/form-data">
                         <table class='table table-condensed'>
                             <?php
-                            $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN (120, 121, 122, 123, 124, 125, 126, 127) AND publicado = '1'";
+                            $arquivos = "120, 121, 122, 123, 124, 125, 126, 127, 135, 160";
+                            $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN ($arquivos) AND publicado = '1'";
                             $query_arquivos = mysqli_query($con,$sql_arquivos);
                             while($arq = mysqli_fetch_array($query_arquivos))
                             {
