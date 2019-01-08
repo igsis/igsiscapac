@@ -70,7 +70,7 @@ else
                         <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_informacoes_iniciais" method="post">
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-8"><strong>Razão Social *:</strong><br/>
-                                    <input type="text" class="form-control" name="razaoSocial" placeholder="Razão Social" >
+                                    <input type="text" class="form-control" name="razaoSocial" placeholder="Razão Social" required>
                                 </div>
                             </div>
 
@@ -85,7 +85,7 @@ else
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-6"><strong>Celular *:</strong><br/>
-                                    <input type="text" class="form-control" name="telefone1" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" >
+                                    <input type="text" class="form-control" name="telefone1" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" required>
                                 </div>
                                 <div class="col-md-6"><strong>Telefone #2:</strong><br/>
                                     <input type="text" class="form-control" name="telefone2" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" >
@@ -97,7 +97,7 @@ else
                                     <input type="text" class="form-control" name="telefone3" id="telefone" onkeyup="mascara( this, mtel );" maxlength="15" placeholder="Exemplo: (11) 98765-4321" >
                                 </div>
                                 <div class="col-md-6"><strong>E-mail *:</strong><br/>
-                                    <input type="text" class="form-control" name="email" placeholder="E-mail" >
+                                    <input type="text" class="form-control" name="email" placeholder="E-mail" required>
                                 </div>
                             </div>
 
