@@ -83,7 +83,7 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
                         </form>
                     </div>
                     <div class="col-md-offset-4 col-md-2">
-                        <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_arquivos_dados_bancarios" method="post">
+                        <form class="form-horizontal" role="form" action="?perfil=oficinas_cronograma" method="post">
                             <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
                         </form>
                     </div>
