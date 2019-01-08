@@ -31,7 +31,7 @@ if($num_busca > 0)
 
             <div class="form-group">
                 <h3>REPRESENTANTE LEGAL</h3>
-                <p><b>Código de cadastro:</b> <?php echo $idPj; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
+                <p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
                 <h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
             </div>
             <div class="row">
@@ -86,7 +86,7 @@ else
         <div class="container"><?php include 'includes/menu_oficinas.php'; ?>
             <div class="form-group">
                 <h3>CADASTRO REPRESENTANTE LEGAL</h3>
-                <p><b>Código de cadastro:</b> <?php echo $idPj; ?> | <b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
+                <p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
                 <h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
             </div>
             <div class="row">
@@ -94,13 +94,13 @@ else
                     <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_representante_cadastro" method="post">
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-8"><strong>Nome: *</strong><br/>
-                                <input type="text" class="form-control" name="nome" placeholder="Nome completo">
+                                <input type="text" class="form-control" name="nome" placeholder="Nome completo" required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-6"><strong>RG/RNE/PASSAPORTE: *</strong><br/>
-                                <input type="text" class="form-control" name="rg" placeholder="RG">
+                                <input type="text" class="form-control" name="rg" placeholder="RG" required>
                             </div>
                             <div class="col-md-6"><strong>CPF: *</strong><br/>
                                 <input type="text" readonly class="form-control" name="cpf" value="<?php echo $busca ?>" placeholder="CPF">
