@@ -1,4 +1,4 @@
-<?php
+x<?php
 $con = bancoMysqli();
 $idPj = $_SESSION['idPj'];
 
@@ -225,22 +225,9 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
                         </form>
                     </div>
                     <div class="col-md-offset-4 col-md-2">
-                        <?php
-                        if(isset($_SESSION['idEvento']))
-                        {
-                        ?>
-                        <form class="form-horizontal" role="form" action="?perfil=artista_pj" method="post">
-                            <?php
-                            }
-                            else
-                            {
-                            ?>
-                            <form class="form-horizontal" role="form" action="?perfil=oficineiros_cronograma&tipoPessoa=<?=$tipoPessoa?>" method="post">
-                                <?php
-                                }
-                                ?>
-                                <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
-                            </form>
+                        <form class="form-horizontal" role="form" action="?perfil=oficinas_cronograma" method="post">
+                            <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
+                        </form>
                     </div>
                 </div>
 

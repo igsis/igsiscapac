@@ -13,6 +13,7 @@ $urlPf = array(
     '/igsiscapac/visual/index.php?perfil=oficinas_cronograma', // 09 cronograma
     '/igsiscapac/visual/index.php?perfil=oficineiro_pj_demais_anexos', // 10 demais anexos
     '/igsiscapac/visual/index.php?perfil=oficineiro_pj_finalizar', // 11 finalizar pj
+    '/igsiscapac/visual/index.php?perfil=oficineiro_pj_arquivos_dados_bancarios', // 12 oficineiro_pj_arquivos_dados_bancarios
 );
 
 for ($i = 0; $i < count($urlPf); $i++) {
@@ -37,6 +38,8 @@ for ($i = 0; $i < count($urlPf); $i++) {
             $active9 = 'active loading';
         }elseif ($i == 11){ // finalizar
             $active10 = 'active loading';
+        }elseif ($i == 12){ // oficineiro_pj_arquivos_dados_bancarios
+            $active11 = 'active loading';
         }
         if(!(isset($_SESSION['idEvento']))){
 
@@ -69,11 +72,14 @@ for ($i = 0; $i < count($urlPf); $i++) {
                     <li class="<?php echo isset($active7) ? $active7 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=oficineiro_pj_dados_bancarios'" href=""><br /><small>Dados Bancários</small></a>
                     </li>
-                    <li class="<?php echo isset($active8) ? $active8 : 'clickable'; ?>">
-                        <a onclick="location.href='index.php?perfil=oficinas_cronograma'" href=""><br /><small>Cronograma</small></a>
+                    <li class="<?php echo isset($active11) ? $active11 : 'clickable'; ?>">
+                        <a onclick="location.href='index.php?perfil=oficineiro_pj_arquivos_dados_bancarios'" href=""><br /><small>Arquivos Dados Bancários</small></a>
                     </li>
                 </ul>
                 <ul>
+                    <li class="<?php echo isset($active8) ? $active8 : 'clickable'; ?>">
+                        <a onclick="location.href='index.php?perfil=oficinas_cronograma'" href=""><br /><small>Cronograma</small></a>
+                    </li>
                     <li class="<?php echo isset($active9) ? $active9 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=oficineiro_pj_demais_anexos'" href=""><br /><small>Demais Anexos</small></a>
                     </li>
