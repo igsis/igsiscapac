@@ -28,7 +28,6 @@ $urlPj = array(
 	'/igsiscapac/visual/index.php?perfil=final_pj', // finalizar
     '/igsiscapac/visual/index.php?perfil=representante1_pj_cadastro&id_pj='.$idPj,// 16 representante 1
     '/igsiscapac/visual/index.php?perfil=representante2_pj_cadastro&id_pj='.$idPj, // 17 representante 2
-    '/igsiscapac/visual/index.php?perfil=oficinas_cronograma&tipoPessoa=5' // 18 cronograma
 
 );
 for ($i = 0; $i < count($urlPj); $i++) {
@@ -95,11 +94,6 @@ for ($i = 0; $i < count($urlPj); $i++) {
                     <li class="<?php echo isset($ativ9) ? $ativ9 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=arquivos_dados_bancarios_pj'" href=""><br /><small>Arquivos Dados Bancários</small></a>
                     </li>
-                    <?php if ($pj['oficineiro'] == 1) { ?>
-                        <li class="<?php echo isset($ativ12) ? $ativ12 : 'clickable'; ?>">
-                            <a onclick="location.href='index.php?perfil=oficinas_cronograma&tipoPessoa=5'" href=""><br /><small>Cronograma de Oficinas</small></a>
-                        </li>
-                    <?php } ?>
                     <li class="<?php echo isset($ativ10) ? $ativ10 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=anexos_pj'" href=""><br /><small>Demais Anexos</small></a>
                     </li>
