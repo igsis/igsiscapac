@@ -6,6 +6,12 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 $tipoPessoa = 5;
 $contador = 0;
 
+$idDados = recuperaIdDadosOficineiro($tipoPessoa, $idPf);
+$dados = recuperaDados('oficina_dados', 'id', $idDados);
+$nivel = recuperaDados('oficina_niveis', 'id', $dados['oficina_nivel_id']);
+$linguagem = recuperaDados('oficina_linguagens', 'id', $dados['oficina_linguagem_id']);
+$modalidade = recuperaDados('modalidades', 'id', $dados['modalidade_id']);
+
 function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '2')
 {
     $con = bancoMysqli();
@@ -134,7 +140,17 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '2')
 
         <div class="form-group">
             <h4>Finalizar</h4>
-            <p><strong><font color="green">Todos os campos obrigatórios foram preenchidos corretamente.<br/> Seu cadastro de Pessoa Jurídica foi concluído com sucesso!</font></strong></p><br>
+            <p>
+                <strong>
+                    <span style="color: green;">
+                        Todos os campos obrigatórios foram preenchidos corretamente.<br/>
+                        Seu cadastro de Pessoa Física foi concluído com sucesso!<br>
+                    </span>
+                </strong>
+            </p><br>
+            <div class="alert alert-success ">
+                Seu Código de Cadastro é <strong><?= $pf['id'] ?></strong>
+            </div>
             <div class="container">
                 <div class = "page-header"> <h5>Informações Pessoais </h5><br></div>
                 <div class="well">
@@ -172,13 +188,11 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '2')
 
             <div class="table-responsive list_info"><h6>Arquivo(s) de Pessoa Jurídica</h6>
                 <?php
-                $lista1 = ($tipoPessoa == 5) ? 6 : 2;
-                listaArquivoCamposMultiplos1($pj['id'], $lista1, $tipoPessoa); ?>
+                listaArquivoCamposMultiplos1($pj['id'], 6, $tipoPessoa); ?>
             </div>
 
             <div class="table-responsive list_info"><h6>Arquivo(s) Representante Legal</h6>
                 <?php
-                $lista2 = ($tipoPessoa == 5) ? 7 : 3;
-                listaArquivoCamposMultiplos1($pj['id'], $lista2, $tipoPessoa); ?>
+                listaArquivoCamposMultiplos1($pj['id'], 7, $tipoPessoa); ?>
             </div>
 </section>

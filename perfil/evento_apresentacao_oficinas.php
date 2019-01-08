@@ -52,6 +52,13 @@ $idUser= $_SESSION['idUser'];
                                         <li class="list-group-item">CEP</li>
                                         <li class="list-group-item">Número</li>
                                         <li class="list-group-item">Complemento</li>
+                                        <li class="list-group-item">Prefeitura Regional</li>
+                                    </ul>
+                                    <ul class="list-group">
+                                        <li class="list-group-item list-group-item-success"><b>Informações Complementares</b></li>
+                                        <li class="list-group-item">Nível</li>
+                                        <li class="list-group-item">Linguagem</li>
+                                        <li class="list-group-item">Curriculo</li>
                                     </ul>
                                     <ul class="list-group">
                                         <li class="list-group-item list-group-item-success"><b>Representante Legal</b></li>
@@ -72,14 +79,21 @@ $idUser= $_SESSION['idUser'];
                                         <li class="list-group-item">Conta</li>
                                     </ul>
                                     <ul class="list-group">
+                                        <li class="list-group-item list-group-item-success"><b>Dados e Cronograma da Oficina</b></li>
+                                        <li class="list-group-item">Nome da Oficina</li>
+                                        <li class="list-group-item">Modalidade</li>
+                                        <li class="list-group-item">Proposta e Cronograma de Realização de Oficinas</li>
+                                    </ul>
+                                    <ul class="list-group">
                                         <li class="list-group-item list-group-item-success"><b>Demais Anexos</b></li>
-                                        <li class="list-group-item">Demais anexos necessários para a contratação</li>
                                         <li class="list-group-item"><a href="https://www.sifge.caixa.gov.br/Cidadao/Crf/FgeCfSCriteriosPesquisa.asp" target="_blank">CRF do FGTS</a></li>
-                                        <li class="list-group-item">Contrato Social</li>
                                         <li class="list-group-item"><a href="https://duc.prefeitura.sp.gov.br/certidoes/forms_anonimo/frmConsultaEmissaoCertificado.aspx" target="_blank">CTM - Certidão Negativa de Débitos Tributários Mobiliários Municipais</a></li>
-                                        <li class="list-group-item"><a href="http://www3.prefeitura.sp.gov.br/cadin/Pesq_Deb.aspx">CADIN Municipal</a></li>
-                                        <li class="list-group-item">Estatuto Social</li>
-                                        <li class="list-group-item"><a href="http://www.receita.fazenda.gov.br/Aplicacoes/ATSPO/Certidao/CNDConjuntaSegVia/NICertidaoSegVia.asp?Tipo=1" target="_blank">CND</a></li>
+                                        <li class="list-group-item"><a href="http://www3.prefeitura.sp.gov.br/cadin/Pesq_Deb.aspx" target="_blank">CADIN Municipal</a></li>
+                                        <li class="list-group-item"><a href="http://www.receita.fazenda.gov.br/Aplicacoes/ATSPO/Certidao/CNDConjuntaSegVia/NICertidaoSegVia.asp?Tipo=1" target="_blank">CND Federal - (Certidão Negativa de Débitos de Tributos Federais)</a></li>
+                                        <li class="list-group-item">CNDT - Certidão Negativa de Débitos de Tributos Trabalhistas</li>
+                                        <li class="list-group-item">Declaração de Aceite</li>
+                                        <li class="list-group-item">Comprovante de experiência artístico-pedagógica (no mínimo 2)</li>
+                                        <li class="list-group-item">Comprovante de experiência artística (no mínimo 2)</li>
 
                                     </ul>
                                     <ul class="list-group">

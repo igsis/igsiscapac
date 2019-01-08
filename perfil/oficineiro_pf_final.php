@@ -136,7 +136,7 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '1')
                 Seu Código de Cadastro é <strong><?= $pf['id'] ?></strong>
             </div>
 	<div class="container">
-		 <div class = "page-header"> <h5>Informações Pessoais </h5><br></div>
+		 <div class = "page-header"> <h5>Informações Pessoais</h5><br></div>
 		 <div class="well">
 			<p align="justify"><strong>Nome:</strong> <?php echo $pf['nome']; ?></p>
 			<p align="justify"><strong>Nome artístico:</strong> <?php echo $pf['nomeArtistico']; ?></p>
