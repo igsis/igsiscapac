@@ -7,7 +7,7 @@ $idCampo = 160;
 $pf = recuperaDados("pessoa_juridica","id",$idPj);
 $tipoPessoa = 5;
 
-$consulta = "SELECT * FROM `oficina_dados` WHERE `tipoPessoa` = '$tipoPessoa' AND `idPessoa` = '$idPf' AND `publicado` = '1'";
+$consulta = "SELECT * FROM `oficina_dados` WHERE `tipoPessoa` = '$tipoPessoa' AND `idPessoa` = '$idPj' AND `publicado` = '1'";
 $queryDados = $con->query($consulta);
 $cadastra = $queryDados->num_rows;
 
@@ -26,7 +26,7 @@ if(isset($_POST['cadastraDados']))
     $linguagem = $_POST['linguagem'];
 
     $sql_insere_dados = "INSERT INTO `oficina_dados` (`tipoPessoa`, `idPessoa`, `oficina_linguagem_id`, `oficina_nivel_id`) 
-                          VALUES ('$tipoPessoa', '$idPf', '$linguagem', '$nivel')";
+                          VALUES ('$tipoPessoa', '$idPj', '$linguagem', '$nivel')";
 
     if (mysqli_query($con,$sql_insere_dados))
     {
@@ -44,7 +44,7 @@ if(isset($_POST['cadastraDados']))
 
 if(isset($_POST["atualizaDados"]))
 {
-    $idPf = $_POST['atualizaDados'];
+    $idPj = $_POST['atualizaDados'];
     $nivel = $_POST['nivel'];
     $linguagem = $_POST['linguagem'];
 
@@ -95,7 +95,7 @@ if(isset($_POST["enviar"]))
                 {
                     if(move_uploaded_file($nome_temporario, $dir.$new_name))
                     {
-                        $sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPf', '$idCampo', '$new_name', '$hoje', '1'); ";
+                        $sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPj', '$idCampo', '$new_name', '$hoje', '1'); ";
                         $query = mysqli_query($con,$sql_insere_arquivo);
                         if($query)
                         {
@@ -188,7 +188,7 @@ if ($cadastra)
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-8">
                         <div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
-                            <?php listaArquivoCamposMultiplos($idPf,$tipoPessoa,$idCampo,"oficineiro_pj_informacoes_complementares",3); ?>
+                            <?php listaArquivoCamposMultiplos($idPj,$tipoPessoa,$idCampo,"oficineiro_pj_informacoes_complementares",3); ?>
                         </div>
                     </div>
                 </div>
