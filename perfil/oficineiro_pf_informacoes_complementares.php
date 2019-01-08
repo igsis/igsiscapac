@@ -203,7 +203,7 @@ if ($cadastra)
 									<td width="45%"><td>
 								</tr>
 								<?php
-									if(verificaArquivosExistentesPF($idPf,'159')){
+									if(verificaArquivosExistentesPF($idPf,'159', $tipoPessoa)){
 										echo '<div class="alert alert-success">O arquivo Curriculo foi enviado.</div> ';
 									}
 									else{
