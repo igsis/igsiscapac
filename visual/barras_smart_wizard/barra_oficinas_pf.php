@@ -8,7 +8,8 @@ $urlPf = array(
     '/igsiscapac/visual/index.php?perfil=oficineiro_pf_dados_bancarios', // 05 dados bancarios
     '/igsiscapac/visual/index.php?perfil=oficineiro_pf_anexos', // 06 demais anexos
     '/igsiscapac/visual/index.php?perfil=oficineiro_pf_final', // 07 final pf
-    '/igsiscapac/visual/index.php?perfil=oficinas_cronograma' // 08
+    '/igsiscapac/visual/index.php?perfil=oficinas_cronograma', // 08
+    '/igsiscapac/visual/index.php?perfil=oficineiro_pf_arquivos_dados_bancarios',
 );
 
 for ($i = 0; $i < count($urlPf); $i++) {
@@ -29,6 +30,8 @@ for ($i = 0; $i < count($urlPf); $i++) {
             $active7 = 'active loading';
         }elseif ($i == 7){ // dados bancarios
             $active8 = 'active loading';
+        }elseif ($i == 8){ // arquivos dados bancarios
+            $active9 = 'active loading';
         }
         if(!(isset($_SESSION['idEvento']))){
 
@@ -63,6 +66,9 @@ for ($i = 0; $i < count($urlPf); $i++) {
                     </li>
                 </ul>
                 <ul>
+                    <li class="<?php echo isset($active9) ? $active9 : 'clickable'; ?>">
+                        <a onclick="location.href='index.php?perfil=oficineiro_pf_arquivos_dados_bancarios'" href=""><br /><small>Arquivos Dados Bancarios</small></a>
+                    </li>
                     <li class="<?php echo isset($active7) ? $active7 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=oficineiro_pf_final'" href=""><br /><small>Finalizar</small></a>
                     </li>
