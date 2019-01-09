@@ -118,7 +118,7 @@ $dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
                         <div class="col-md-offset-2 col-md-8">
                             <label for="sinopseOficina">Sinopse *</label>
                             <p><label>Esse campo deve conter uma breve descrição da oficina que será apresentada.</i></strong></label></p>
-                            <textarea id="sinopseOficina" name="sinopseOficina" class="form-control" rows="10" required></textarea>
+                            <textarea id="sinopseOficina" name="sinopseOficina" class="form-control" rows="10" required><?= $dadosOficineiro['sinopseOficina'] ?></textarea>
                         </div>
                     </div>
                     <div class="form-group">
