@@ -41,6 +41,7 @@ if ($query)
 $dados = recuperaDados('oficina_dados', 'id', $idDados);
 $linguagem = recuperaDados('oficina_linguagens', 'id', $dados['oficina_linguagem_id']);
 $nivel = recuperaDados('oficina_niveis', 'id', $dados['oficina_nivel_id']);
+$subLinguagem = recuperaDados('oficina_sublinguagens', 'id', $dados['oficina_sublinguagem_id']);
 
 function geraCronogramaOficina($idModalidade)
 {
@@ -416,7 +417,7 @@ date_default_timezone_set('America/Sao_Paulo');
             <p>&nbsp;</p>
 
             <p><strong>Nome do Oficineiro: </strong><?= $nome ?></p>
-            <p><strong>Linguagem Artística e Cultural: </strong><?= $linguagem['linguagem'] ?></p>
+            <p><strong>Linguagem Artística e Cultural: </strong><?= $linguagem['linguagem'] ?> - <?= $subLinguagem['sublinguagem'] ?></p>
             <p><strong>Período: </strong>__/__/____ a __/__/____</p>
             <p><strong>Dias da Semana: </strong></p>
             <p><strong>Horário: </strong></p>
