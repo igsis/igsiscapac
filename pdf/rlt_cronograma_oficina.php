@@ -24,11 +24,13 @@ else
 }
 
 $nomeOficina = addslashes($_POST['nomeOficina']);
+$sinopseOficina = addslashes($_POST['sinopseOficina']);
 
 $idDados = $_POST['idDadosOficineiro'];
 $sql_dados = "UPDATE `oficina_dados` SET 
                 `modalidade_id` = '$idModalidade',
-                `nomeOficina` = '$nomeOficina'
+                `nomeOficina` = '$nomeOficina',
+                `sinopseOficina` = '$sinopseOficina'
               WHERE `id` = '$idDados'";
 $query = $con->query($sql_dados);
 if ($query)

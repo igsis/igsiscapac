@@ -116,6 +116,13 @@ $dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
+                            <label for="sinopseOficina">Sinopse *</label>
+                            <p><label>Esse campo deve conter uma breve descrição da oficina que será apresentada.</i></strong></label></p>
+                            <textarea id="sinopseOficina" name="sinopseOficina" class="form-control" rows="10" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8">
                             <label for="modalidade">Modalidade *:</label> <button class='btn btn-default btn-sm' type='button' data-toggle='modal' data-target='#infoModalidade' style="border-radius: 15px;"><i class="fa fa-question-circle"></i></button>
                             <select class="form-control" name="modalidade" id="modalidade" required>
                                 <option value="">Selecione...</option>
@@ -134,10 +141,6 @@ $dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
                         </div>
                     </div>
                 </form>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-8"><hr/></div>
-                </div>
 
                 <!-- Exibir arquivos -->
                 <div class="form-group">
