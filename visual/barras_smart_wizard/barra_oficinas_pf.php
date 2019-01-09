@@ -58,16 +58,16 @@ for ($i = 0; $i < count($urlPf); $i++) {
                     <li class="<?php echo isset($active5) ? $active5 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=oficineiro_pf_dados_bancarios'" href=""><br /><small>Dados Bancários</small></a>
                     </li>
+                    <li class="<?php echo isset($active9) ? $active9 : 'clickable'; ?>">
+                        <a onclick="location.href='index.php?perfil=oficineiro_pf_arquivos_dados_bancarios'" href=""><br /><small>Arquivos Dados Bancarios</small></a>
+                    </li>
                     <li class="<?php echo isset($active8) ? $active8 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=oficinas_cronograma'" href=""><br /><small>Dados e Cronograma da Oficina</small></a>
                     </li>
-                    <li class="<?php echo isset($active6) ? $active6 : 'clickable'; ?>">
-                        <a onclick="location.href='index.php?perfil=oficineiro_pf_anexos'" href=""><br /><small>Demais Anexos</small></a>
-                    </li>
                 </ul>
                 <ul>
-                    <li class="<?php echo isset($active9) ? $active9 : 'clickable'; ?>">
-                        <a onclick="location.href='index.php?perfil=oficineiro_pf_arquivos_dados_bancarios'" href=""><br /><small>Arquivos Dados Bancarios</small></a>
+                    <li class="<?php echo isset($active6) ? $active6 : 'clickable'; ?>">
+                        <a onclick="location.href='index.php?perfil=oficineiro_pf_anexos'" href=""><br /><small>Demais Anexos</small></a>
                     </li>
                     <li class="<?php echo isset($active7) ? $active7 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=oficineiro_pf_final'" href=""><br /><small>Finalizar</small></a>
