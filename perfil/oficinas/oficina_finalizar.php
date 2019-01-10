@@ -8,7 +8,7 @@
                 <strong>
                     <span style="color: green;">
                         Todos os campos obrigatórios foram preenchidos corretamente.<br/>
-                        Seu cadastro de Pessoa Física foi concluído com sucesso!<br>
+                        Cadastro de oficina concluído com sucesso!<br>
                     </span>
                 </strong>
             </p><br>
