@@ -38,6 +38,9 @@
         # barra Pessoa Juridica
         include_once 'barras_smart_wizard/barra_pj.php';
 
+        # barra evento oficina
+        include_once 'barras_smart_wizard/barra_oficina_eventos.php';
+
         # barra Formação
         if (isset($_SESSION['menu']))
         {

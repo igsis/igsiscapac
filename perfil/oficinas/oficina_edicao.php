@@ -3,7 +3,6 @@ $con = bancoMysqli();
 $idUser= $_SESSION['idUser'];
 $tipoPessoa = "3";
 
-
 if(isset($_POST['insere']) || isset($_POST['atualizar']))
 {
     $nomeEvento = addslashes($_POST['nomeEvento']);

@@ -2,9 +2,7 @@
 
 $con = bancoMysqli();
 $idUser= $_SESSION['idUser'];
-
 $tipoPessoa = "3";
-
 
 if(isset($_POST['carregar']))
 {
@@ -58,7 +56,7 @@ if(isset($_POST["enviar"]))
                             {
                                 $mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
                                 gravarLog($sql_insere_arquivo);
-                                echo '<script>window.location = "?perfil=arquivos_evento"</script>';
+                                echo '<script>window.location = "?perfil=oficinas/arquivos_oficinas"</script>';
                             }
                             else
                             {
@@ -71,7 +69,7 @@ if(isset($_POST["enviar"]))
                                     {
                                         $mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
                                         gravarLog($sql_insere_arquivo);
-                                        echo '<script>window.location = "?perfil=arquivos_evento"</script>';
+                                        echo '<script>window.location = "?perfil=oficinas/arquivos_oficinas"</script>';
                                     }
                                     else{
                                         echo "<script>alert('Houve um erro durante o processamento do arquivo, entre em contato com os administradores do sistema')</script>";
@@ -113,8 +111,8 @@ if(isset($_POST['apagar']))
     }
 }
 ?>
-<section id="list_items" class="home-section bg-white">
-    <div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
+<section id="list_items" class="home-section bg-white" xmlns="http://www.w3.org/1999/html">
+    <div class="container"><?php include '../perfil/includes/oficina_menu_evento.php'; ?>
         <div class="form-group">
             <h4>Arquivos do Evento</h4>
             <h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
@@ -135,7 +133,7 @@ if(isset($_POST['apagar']))
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-8">
                         <div class = "center">
-                            <form method="POST" action="?perfil=arquivos_evento" enctype="multipart/form-data">
+                            <form method="POST" action="?perfil=oficinas/arquivos_oficina" enctype="multipart/form-data">
                                 <table>
                                     <tr>
                                         <td width="50%"><td>
@@ -343,6 +341,7 @@ if(isset($_POST['apagar']))
                 <!-- Fim Confirmação de Exclusão -->
             </div>
         </div>
+    </form>
         <div class="col-md-offset-2 col-md-8">
             <hr/>
         </div>
