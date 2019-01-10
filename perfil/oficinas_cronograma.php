@@ -161,7 +161,7 @@ $dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
                                     </tr>
                                     <?php
                                     if(verificaArquivosExistentesPF($id,$idCampo, $tipoPessoa)){
-                                        echo '<div class="alert alert-success">O arquivo Cronograma de Oficinas foi enviado.</div> ';
+                                        echo '<div class="alert alert-success">O arquivo Cronograma de oficinas foi enviado.</div> ';
                                     }
                                     else{
                                         $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idCampo'";
