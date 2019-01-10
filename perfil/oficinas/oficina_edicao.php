@@ -71,7 +71,7 @@ if(isset($_SESSION['idEvento']))
 $evento = recuperaDados("evento","id", $idEvento);
 ?>
 <section id="list_items" class="home-section bg-white">
-    <div class="container"><?php include '../includes/oficina_menu_evento.php'; ?>
+    <div class="container"><?php include '../perfil/includes/oficina_menu_evento.php'; ?>
         <div class="form-group">
             <h4>Informações Gerais da Oficina</h4>
             <h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
@@ -126,6 +126,22 @@ $evento = recuperaDados("evento","id", $idEvento);
                 </form>
             </div>
         </div>
-        <?php include '../includes/oficina_menu_evento_footer.php'; ?>
+        <div class="col-md-offset-2 col-md-8">
+            <hr/>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-8">
+                <div class="col-md-offset-1 col-md-2">
+                    <form class="form-horizontal" role="form" action="?perfil=oficinas/oficinas" method="post">
+                        <input type="submit" value="Voltar" class="btn btn-theme btn-md btn-block">
+                    </form>
+                </div>
+                <div class="col-md-offset-6 col-md-2">
+                    <form class="form-horizontal" role="form" action="?perfil=oficinas/arquivos_oficina" method="post">
+                        <input type="submit" value="Avançar" class="btn btn-theme btn-md btn-block">
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </section>

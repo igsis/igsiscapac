@@ -24,7 +24,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
 ?>
 <section id="list_items" class="home-section bg-white">
     <div class="container">
-        <?php include '../includes\oficina_menu_evento.php'; ?>
+        <?php include '../perfil/includes/oficina_menu_evento.php'; ?>
         <div class="form-group">
             <h3>OFICINAS</h3>
             <h5>
