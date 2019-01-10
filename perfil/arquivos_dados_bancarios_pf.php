@@ -2,8 +2,9 @@
 $con = bancoMysqli();
 $idPf = $_SESSION['idPf'];
 $evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
-$idCampo = 51;
-$tipoPessoa = 1;
+$pf = recuperaDados("pessoa_fisica","id",$idPf);
+$idCampo = ($pf['oficineiro'] == 1) ? 114 : 51;
+$tipoPessoa = ($pf['oficineiro'] == 1) ? 4 : 1;
 
 if(isset($_POST["enviar"]))
 {
@@ -106,8 +107,18 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 ?>
 
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_evento.php'; ?>
-		<div class="form-group">
+	<div class="container">
+        <?php
+        if ($pf['oficineiro'] == 1)
+        {
+            include 'includes/menu_oficinas.php';
+        }
+        else
+        {
+            include 'includes/menu_evento.php';
+        }
+        ?>
+        <div class="form-group">
 			<h3>Arquivos Dados Bancários</h3>
 			<p><b>Código de cadastro:</b> <?php echo $idPf; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
@@ -165,7 +176,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									<td width="50%"><td>
 								</tr>
 								<?php
-								if(verificaArquivosExistentesPF($idPf,'51')){
+								if(verificaArquivosExistentesPF($idPf,$idCampo, $tipoPessoa)){
 										echo '<div class="alert alert-success">O arquivo FACC foi enviado.</div> ';
 									}
 									else{
@@ -222,7 +233,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 						</form>
 					</div>
 					<div class="col-md-offset-4 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=anexos_pf" method="post">
+						<form class="form-horizontal" role="form" action="<?= ($tipoPessoa == 1) ? "?perfil=anexos_pf" : "?perfil=oficinas_cronograma&tipoPessoa=".$tipoPessoa?>" method="post">
 							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
 						</form>
 					</div>

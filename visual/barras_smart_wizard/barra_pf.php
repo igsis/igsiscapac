@@ -1,5 +1,14 @@
 <?php
-/*TODO: Ocultar opções do menu*/
+$con = bancoMysqli();
+if (isset($_SESSION['idPf']))
+{
+    $idPf = $_SESSION['idPf'];
+    $pf = recuperaDados('pessoa_fisica', 'id', $idPf);
+}
+else
+{
+    $pf = null;
+}
 $urlPf = array(
     '/igsiscapac/visual/index.php?perfil=proponente_pf_resultado',
     '/igsiscapac/visual/index.php?perfil=informacoes_iniciais_pf',
@@ -9,7 +18,7 @@ $urlPf = array(
     '/igsiscapac/visual/index.php?perfil=dados_bancarios_pf', // 05 dados bancarios
     '/igsiscapac/visual/index.php?perfil=anexos_pf', // 06 demais anexos
     '/igsiscapac/visual/index.php?perfil=final_pf', // 07 final pf
-    '/igsiscapac/visual/index.php?perfil=arquivos_dados_bancarios_pf' // 08
+    '/igsiscapac/visual/index.php?perfil=arquivos_dados_bancarios_pf'
 );
 for ($i = 0; $i < count($urlPf); $i++) {
     if ($uri == $urlPf[$i]) {

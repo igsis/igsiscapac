@@ -32,7 +32,16 @@ if ($pj['idRepresentanteLegal1'] == 0) // Não possui representante legal cadast
 {
 ?>
 	<section id="services" class="home-section bg-white">
-		<div class="container"><?php include 'includes/menu_evento.php'; ?>
+		<div class="container"><?php
+            if ($pj['oficineiro'] == 1)
+            {
+                include 'includes/menu_oficinas.php';
+            }
+            else
+            {
+                include 'includes/menu_evento.php';
+            }
+            ?>
 			<div class="row">
 				<div class="col-md-offset-2 col-md-8">
 					<div class="section-heading">
@@ -69,12 +78,12 @@ if ($pj['idRepresentanteLegal1'] == 0) // Não possui representante legal cadast
 				<!-- Botão para Voltar e Prosseguir -->
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=representante1_pj" method="post">
+						<form class="form-horizontal" role="form" action="?perfil=endereco_pj" method="post">
 							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>
 					</div>
 					<div class="col-md-offset-4 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pj" method="post">
+						<form class="form-horizontal" role="form" action="?perfil=arquivos_representante1" method="post">
 							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
 						</form>
 					</div>

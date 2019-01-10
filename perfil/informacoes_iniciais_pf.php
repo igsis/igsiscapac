@@ -18,6 +18,7 @@ function anoFormacao(){
 
 if(isset($_POST['cadastrarFisica']))
 {
+    $oficineiro = isset($_POST['oficineiro']) ? 1 : 0;
 	$nome = addslashes($_POST['nome']);
 	$nomeArtistico = addslashes($_POST['nomeArtistico']);
 	$idTipoDocumento = $_POST['idTipoDocumento'];
@@ -33,7 +34,7 @@ if(isset($_POST['cadastrarFisica']))
 	$dataAtualizacao = date("Y-m-d H:i:s");
 	$formacaoAno = anoFormacao();
 
-	$sql_cadastra_pf = "INSERT INTO `pessoa_fisica`(`nome`, `nomeArtistico`, `idTipoDocumento`, `rg`, `cpf`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `dataNascimento`, `pis`, `dataAtualizacao`, `idUsuario`, `formacao_ano` ) VALUES ('$nome', '$nomeArtistico', '$idTipoDocumento', '$rg', '$cpf', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$dataNascimento', '$pis', '$dataAtualizacao', '$idUser', '$formacaoAno')";
+	$sql_cadastra_pf = "INSERT INTO `pessoa_fisica`(`nome`, `nomeArtistico`, `idTipoDocumento`, `rg`, `cpf`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `dataNascimento`, `pis`, `dataAtualizacao`, `oficineiro`, `idUsuario`, `formacao_ano` ) VALUES ('$nome', '$nomeArtistico', '$idTipoDocumento', '$rg', '$cpf', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$dataNascimento', '$pis', '$dataAtualizacao', '$oficineiro', '$idUser', '$formacaoAno')";
 	if(mysqli_query($con,$sql_cadastra_pf))
 	{
 		$mensagem = "<font color='#01DF3A'><strong>Cadastrado com sucesso!</strong></font>";
@@ -237,7 +238,17 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
   </thead>
 
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_evento.php'; ?>
+	<div class="container">
+        <?php
+            if (isset($_POST['oficineiro']) || ($pf['oficineiro'] == 1))
+            {
+                include 'includes/menu_oficinas.php';
+            }
+            else
+            {
+                include 'includes/menu_evento.php';
+            }
+        ?>
 		<div class="form-group">
 			<h4>Informações Iniciais</h4>
 		</div>

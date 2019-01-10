@@ -2,8 +2,8 @@
 
 $con = bancoMysqli();
 $idUser = $_SESSION['idUser'];
+$pj = recuperaDados("pessoa_juridica","id",$idPj);
 $tipoPessoa = 2;
-
 
 if(isset($_POST['carregar']))
 {
@@ -49,7 +49,7 @@ if(isset($_POST["enviar"]))
 						$query = mysqli_query($con,$sql_insere_arquivo);
 						if($query)
 						{
-							if(file_exists($dir.$newname))
+							if(file_exists($dir.$new_name))
 							{
 								$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 								gravarLog($sql_insere_arquivo);
@@ -62,7 +62,7 @@ if(isset($_POST["enviar"]))
 
 								if($query)
 								{
-									if(file_exists($dir.$newname))
+									if(file_exists($dir.$new_name))
 									{
 										$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 										gravarLog($sql_insere_arquivo);
@@ -115,7 +115,9 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 ?>
 
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_evento.php'; ?>
+	<div class="container">
+        <?php include 'includes/menu_evento.php'; ?>
+
 		<div class="form-group">
 			<h4>Arquivos da Empresa</h4>
 			<p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
@@ -144,7 +146,10 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s) Somente em PDF</h6>
-							<?php listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","arquivos_pj",2); ?>
+							<?php
+                                $lista = ($tipoPessoa == 5) ? 13 : 2;
+                                listaArquivoCamposMultiplos($idPj,$tipoPessoa,"","arquivos_pj",$lista);
+                            ?>
 						</div>
 					</div>
 				</div>
@@ -159,12 +164,13 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 									<td width="50%"><td>
 								</tr>
 								<?php
-								if(verificaArquivosExistentesPF($idPj, '22'))
+                                $idDocumentoCNPJ = ($tipoPessoa == 5) ? 120 : 22;
+								if(verificaArquivosExistentesPF($idPj, $idDocumentoCNPJ, $tipoPessoa))
 								{
 									echo '<div class="alert alert-success">O arquivo Cartão CNPJ foi enviado.</div> ';
 								}
 								else{
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '22'";
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idDocumentoCNPJ'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{
@@ -191,12 +197,13 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 									<td width="50%"><td>
 								</tr>
 								<?php
-								if(verificaArquivosExistentesPF($idPj, '43'))
+                                $idDocumentoFDC = ($tipoPessoa == 5) ? 121 : 43;
+								if(verificaArquivosExistentesPF($idPj, $idDocumentoFDC, $tipoPessoa))
 								{
 									echo '<div class="alert alert-success">O arquivo FDC CCM foi enviado.</div> ';
 								}
 								else{
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '43'";
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idDocumentoFDC'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{
@@ -222,12 +229,13 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 									<td width="50%"><td>
 								</tr>
 								<?php
-								if(verificaArquivosExistentesPF($idPj, '28'))
+                                $idDocumentoCPOM = ($tipoPessoa == 5) ? 122 : 28;
+								if(verificaArquivosExistentesPF($idPj, $idDocumentoCPOM, $tipoPessoa))
 								{
 									echo '<div class="alert alert-success">O arquivo CPOM foi enviado.</div> ';
 								}
 								else{
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '28'";
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idDocumentoCPOM'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{

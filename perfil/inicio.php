@@ -37,6 +37,9 @@ unset($_SESSION['menu']);
 						<p>Aqui são inseridas as informações sobre o seu evento, que não terá contratação.</p>
 						<a href="?perfil=evento_apresentacao_semcontratacao" class="btn btn-theme btn-lg btn-block">EVENTO SEM CONTRATAÇÃO</a>
 						<br />
+                        <p>Aqui são inseridas as informações sobre os Oficineiros e sobre as Oficinas que serão executadas.</p>
+						<a href="?perfil=evento_apresentacao_oficinas" class="btn btn-theme btn-lg btn-block">OFICINAS</a>
+						<br />
                         <?php if($formacao['situacao'] == 1) { ?>
                             <p>Aqui são inseridas os dados para inscrição às vagas dos Editais dos Programas da Supervisão de Formação (Vocacional / PIA).</p>
                             <a href="?perfil=formacao_apresentacao" class="btn btn-theme btn-lg btn-block">FORMAÇÃO</a>

@@ -1,7 +1,8 @@
 <?php
 $con = bancoMysqli();
 $idPj = $_SESSION['idPj'];
-$tipoPessoa = "2";
+$pj = recuperaDados("pessoa_juridica","id",$idPj);
+$tipoPessoa = ($pj['oficineiro'] == 1) ? 5 : 2;
 
 // Cadastro um representante que não existe
 if(isset($_POST['cadastraRepresentante']))
@@ -93,7 +94,16 @@ $representante1 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
 ?>
 
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_evento.php'; ?>
+	<div class="container"><?php
+        if ($pj['oficineiro'] == 1)
+        {
+            include 'includes/menu_oficinas.php';
+        }
+        else
+        {
+            include 'includes/menu_evento.php';
+        }
+        ?>
 		<div class="form-group">
 			<h4>Representante Legal #1</h4>
 			<p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>
@@ -121,7 +131,7 @@ $representante1 = recuperaDados("representante_legal","id",$pj['idRepresentanteL
 					<!-- Botão para Gravar -->
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
-							<input type="hidden" name="editaRepresentante" value="<?php echo $idrep1 ?>">
+							<input type="hidden" name="editaRepresentante" value="<?php echo $representante1['id'] ?>">
 							<input type="submit" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
 						</div>
 					</div>

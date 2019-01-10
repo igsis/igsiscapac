@@ -3,6 +3,7 @@
 $con = bancoMysqli();
 $idPf = $_SESSION['idPf'];
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
+$tipoPessoa = ($pf['oficineiro'] == 1) ? 4 : 1;
 $contador = 0;
 
 function recuperaBanco($campoY)
@@ -12,7 +13,7 @@ function recuperaBanco($campoY)
 	return $nomeBanco;
 }
 
-function listaArquivoCamposMultiplos1($idPessoa,$pf)
+function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '1')
 {
 	$con = bancoMysqli();
 	switch ($pf) {
@@ -21,7 +22,7 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf)
 				FROM upload_lista_documento as list
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
-				AND arq.idTipoPessoa = '1'
+				AND arq.idTipoPessoa = '$tipoPessoa'
 				AND arq.publicado = '1'
 				ORDER BY documento";
 		break;
@@ -112,7 +113,17 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf)
 
 ?>
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_evento.php'; ?>
+	<div class="container">
+        <?php
+        if ($pf['oficineiro'] == 1)
+        {
+            include 'includes/menu_oficinas.php';
+        }
+        else
+        {
+            include 'includes/menu_evento.php';
+        }
+        ?>
 		<div class="form-group">
 			<h4>Finalizar</h4>
 	<p><strong><font color="green">Todos os campos obrigatórios foram preenchidos corretamente.<br/> Seu cadastro de Pessoa Física foi concluído com sucesso!</font></strong></p><br>
@@ -121,7 +132,7 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf)
 		 <div class="well">
 			<p align="justify"><strong>Nome:</strong> <?php echo $pf['nome']; ?></p>
 			<p align="justify"><strong>Nome artístico:</strong> <?php echo $pf['nomeArtistico']; ?></p>
-			<p align="justify"><strong>Data de Nascimento:</strong> <?php echo $pf['dataNascimento']; ?></p>
+			<p align="justify"><strong>Data de Nascimento:</strong> <?php echo date_format(date_create($pf['dataNascimento']), 'd/m/Y'); ?></p>
 			<p align="justify"><strong>RG:</strong> <?php echo $pf['rg']; ?><p>
 			<p align="justify"><strong>CPF:</strong> <?php echo $pf['cpf']; ?><p>
 			<p align="justify"><strong>PIS/PASEP/NIT:</strong> <?php echo $pf['pis']; ?><p>
@@ -154,6 +165,6 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf)
 	</div>
 
 	<div class="table-responsive list_info"><h6>Arquivo(s) de Pessoa Física</h6>
-		<?php listaArquivoCamposMultiplos1($pf['id'],1); ?>
+		<?php listaArquivoCamposMultiplos1($pf['id'],1, $tipoPessoa); ?>
 	</div>
 </section>

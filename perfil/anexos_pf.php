@@ -3,8 +3,8 @@
 $con = bancoMysqli();
 $idPf = $_SESSION['idPf'];
 $contador = 0;
-$tipoPessoa = 1;
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
+$tipoPessoa = ($pf['oficineiro'] == 1) ? 4 : 1;
 $evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 
 $server = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/";
@@ -13,7 +13,15 @@ $http = $server."/pdf/";
 $array = array(33,41,53,67);
 if(isset($_POST["enviar"]))
 {
-	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN (2,3,4,25,31,51,60) AND publicado = '1'";
+    if ($tipoPessoa == 1)
+    {
+        $arquivos = "2,3,4,25,31,51,60";
+    }
+    else
+    {
+        $arquivos = "109,110,113,111,112,114";
+    }
+	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN ($arquivos) AND publicado = '1'";
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
 	{
@@ -47,11 +55,12 @@ if(isset($_POST["enviar"]))
 						if($query)
 						{
 
-							if(file_exists($dir.$newname))
+							if(file_exists($dir.$new_name))
 							{
 								$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 								gravarLog($sql_insere_arquivo);
-								echo '<script>window.location = "?perfil=arquivos_evento"</script>';
+                                echo '<script>window.location = "?perfil=anexos_pf"</script>';
+
 							}
 							else
 							{
@@ -60,7 +69,7 @@ if(isset($_POST["enviar"]))
 
 								if($query)
 								{
-									if(file_exists($dir.$newname))
+									if(file_exists($dir.$new_name))
 									{
 										$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 										gravarLog($sql_insere_arquivo);
@@ -137,8 +146,19 @@ $evento_pf = recuperaDados("evento","id",$evento);
 ?>
 
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_evento.php'; ?>
-		<div class="form-group">
+	<div class="container">
+        <?php
+        if ($pf['oficineiro'] == 1)
+        {
+            include 'includes/menu_oficinas.php';
+        }
+        else
+        {
+            include 'includes/menu_evento.php';
+        }
+        ?>
+
+        <div class="form-group">
 			<?php if($evento == NULL || $evento == ""){ ?>
 			<h3>Demais Anexos</h3>
 			<?php } else { ?>
@@ -196,6 +216,20 @@ $evento_pf = recuperaDados("evento","id",$evento);
 							<a href="https://duc.prefeitura.sp.gov.br/certidoes/forms_anonimo/frmConsultaEmissaoCertificado.aspx" target="_blank">CTM - Certidão Negativa de Débitos Tributários Mobiliários Municipais de São Paulo</a><br />
 							<a href="http://www.tst.jus.br/certidao" target="_blank">CNDT - Certidão Negativa de Débitos de Tributos Trabalhistas</a><br />
 							<a href="http://www3.prefeitura.sp.gov.br/cadin/Pesq_Deb.aspx" target="_blank">CADIN Municipal</a>
+                            <?php
+                            if ($pf['oficineiro'] == 1)
+                            {
+                            ?>
+                                <br /><a href="http://servicos.receita.fazenda.gov.br/Servicos/certidao/CNDConjuntaInter/InformaNICertidao.asp?tipo=2" target="_blank">CND Federal - Certidão Negativa de Débitos Relativos a Créditos Tributários Federais e à Dívida Ativa da União</a><br />
+                                <?php
+                                $server = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/";
+                                $http = $server."/pdf/";
+                                $link1 = $http."rlt_decaracaoaceite_oficineiro.php"."?idPf=".$idPf;
+                                ?>
+                                <a href='<?= $link1 ?>' target="_blank">Declaração de Aceite</a>
+                            <?php
+                            }
+                            ?>
 						</p>
 					</div>
 				</div>
@@ -208,7 +242,10 @@ $evento_pf = recuperaDados("evento","id",$evento);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
-							<?php listaArquivoCamposMultiplos($idPf,$tipoPessoa,"","anexos_pf",4); ?>
+							<?php
+                            $lista = ($tipoPessoa == 4) ? 12 : 4;
+                            listaArquivoCamposMultiplos($idPf,$tipoPessoa,"","anexos_pf",$lista);
+                            ?>
 						</div>
 					</div>
 				</div>
@@ -220,7 +257,15 @@ $evento_pf = recuperaDados("evento","id",$evento);
 						<form method="POST" action="?perfil=anexos_pf" enctype="multipart/form-data">
 							<table class='table table-condensed'>
 							<?php
-								$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN (2,3,4,25,31,51,60) AND publicado = '1'";
+                            if ($tipoPessoa == 1)
+                            {
+                                $arquivos = "2,3,4,25,31,51,60";
+                            }
+                            else
+                            {
+                                $arquivos = "109,110,113,111,112,114";
+                            }
+								$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN ($arquivos) AND publicado = '1'";
 								$query_arquivos = mysqli_query($con,$sql_arquivos);
 								while($arq = mysqli_fetch_array($query_arquivos))
 								{
@@ -228,11 +273,11 @@ $evento_pf = recuperaDados("evento","id",$evento);
 									<tr>
 										<?php
 										$doc = $arq['documento'];
-										$query = "SELECT id FROM upload_lista_documento WHERE documento='$doc' AND publicado='1' AND idTipoUpload='1'";
+										$query = "SELECT id FROM upload_lista_documento WHERE documento='$doc' AND publicado='1' AND idTipoUpload='$tipoPessoa'";
 										$envio = $con->query($query);
 										$row = $envio->fetch_array(MYSQLI_ASSOC);
 
-										if(verificaArquivosExistentesPF($idPf,$row['id'])){
+										if(verificaArquivosExistentesPF($idPf,$row['id'], $tipoPessoa)){
 											echo '<div class="alert alert-success">O arquivo ' . $doc . ' já foi enviado.</div>';
 										}
 										else{ ?>
@@ -294,7 +339,7 @@ $evento_pf = recuperaDados("evento","id",$evento);
 					{
 					?>
 					<div class="col-md-offset-2 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=dados_bancarios_pf" method="post">
+						<form class="form-horizontal" role="form" action="<?= ($tipoPessoa == 1) ? "?perfil=dados_bancarios_pf" : "?perfil=oficinas_cronograma&tipoPessoa=".$tipoPessoa ?>" method="post">
 							<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
 						</form>
 					</div>
@@ -302,11 +347,28 @@ $evento_pf = recuperaDados("evento","id",$evento);
 					}
 					?>	
 				</div>
-					<div class="col-md-offset-4 col-md-2">
-						<form class="form-horizontal" role="form" action="?perfil=finalizar" method="post">
-							<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
-						</form>
-					</div>
+                    <?php
+                    if ($tipoPessoa == 1)
+                    {
+                    ?>
+                        <div class="col-md-offset-4 col-md-2">
+                            <form class="form-horizontal" role="form" action="?perfil=finalizar" method="post">
+                                <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
+                            </form>
+                        </div>
+                    <?php
+                    }
+                    else
+                    {
+                    ?>
+                        <div class="col-md-offset-4 col-md-2">
+                            <form class="form-horizontal" role="form" action="?perfil=final_pf" method="post">
+                                <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
+                            </form>
+                        </div>
+                    <?php
+                    }
+                    ?>
 			</div>
 		</div>
 		</div>

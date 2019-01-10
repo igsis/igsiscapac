@@ -4,7 +4,8 @@ $idPf = $_SESSION['idPf'];
 $evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 
 $idCampo = 60;
-$tipoPessoa = 1;
+$pf = recuperaDados("pessoa_fisica","id",$idPf);
+$tipoPessoa = ($pf['oficineiro'] == 1) ? 4 : 1;
 
 if(isset($_POST['cadastrarFisica']))
 {
@@ -107,12 +108,36 @@ $evento_pf = recuperaDados("evento","id",$evento);
 ?>
 
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_evento.php'; ?>
+	<div class="container">
+        <?php
+        if ($pf['oficineiro'] == 1)
+        {
+            include 'includes/menu_oficinas.php';
+        }
+        else
+        {
+            include 'includes/menu_evento.php';
+        }
+        ?>
 		<div class="form-group">
 			<h3>Informações Complementares</h3>
 			<p><b>Código de cadastro:</b> <?php echo $idPf; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>
+        <?php
+        if ($pf['oficineiro'] == 1)
+        {
+        ?>
+            <div class="row col-md-offset-4 col-md-6">
+                <div class="alert alert-danger">
+                    <h5 style="color: #802420">ATENÇÃO OFICINEIRO!</h5>
+                    <p>DRT não obrigatório</p>
+                    <p>Utilize o menu para avançar ao próximo passo</p>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 				<form class="form-horizontal" role="form" action="?perfil=informacoes_complementares_pf" method="post">

@@ -1,5 +1,5 @@
 <?php
-date_default_timezone_set("Brazil/East");
+date_default_timezone_set("America/Sao_Paulo");
 
 	function habilitarErro()
 	{
@@ -502,6 +502,24 @@ function geraOpcaoFormacao($select, $tipoFormacao, $tabela = 'formacao_funcoes',
 		return $campo;
 	}
 
+	function recuperaIdDadosOficineiro($tipoPessoa,$idPessoa)
+    {
+	    $con = bancoMysqli();
+        $consulta = "SELECT * FROM `oficina_dados` WHERE `tipoPessoa` = '$tipoPessoa' AND `idPessoa` = '$idPessoa' AND `publicado` = '1'";
+
+        $queryConsulta = $con->query($consulta);
+        if ($queryConsulta->num_rows > 0)
+        {
+            $dados = $queryConsulta->fetch_assoc();
+            $id = $dados['id'];
+            return $id;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
 	function verificaExiste($idTabela,$idCampo,$idDado,$st)
 	{
 		//retorna uma array com indice 'numero' de registros e 'dados' da tabela
@@ -944,7 +962,7 @@ function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, 
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
 				AND arq.idTipoPessoa = '$tipoPessoa'
-				AND list.id NOT IN (109,110,113,111,112,114)
+				AND list.id NOT IN (109,110,113,111,112,114,134,159)
 				AND arq.publicado = '1'";
             break;
         case 13: //informacoes_iniciais_oficineiros_pj
@@ -981,13 +999,14 @@ function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, 
 				$arq1 $arq2
 				AND arq.publicado = '1'";
             break;
-        case 16: //anexos_pj
+        case 16: //anexos_oficineiro_pj
+            $arquivos = "120, 121, 122, 123, 124, 125, 126, 127, 135, 160";
             $sql = "SELECT *
 				FROM upload_lista_documento as list
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
 				AND arq.idTipoPessoa = '$tipoPessoa'
-				AND list.id NOT IN ('120', '121', '122', '123', '124', '125', '126', '127')
+				AND list.id NOT IN ($arquivos)
 				AND arq.publicado = '1'";
             break;
         case 17: //formacao_informacoes_iniciais
@@ -1012,11 +1031,8 @@ function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, 
 				AND list.id NOT BETWEEN '136' AND '140'
 				AND arq.publicado = '1'";
             break;
-
-
-
         default:
-		break;
+		    break;
 	}
 	$query = mysqli_query($con,$sql);
 	$linhas = mysqli_num_rows($query);

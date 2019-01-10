@@ -50,6 +50,8 @@ if(isset($_POST['login']))
 	}
 }
 
+date_default_timezone_set('America/Sao_Paulo');
+
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>

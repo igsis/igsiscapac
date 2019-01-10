@@ -1,9 +1,10 @@
-
 <?php
 
 $con = bancoMysqli();
+$idPf = $_SESSION['idPf'];
 $idUser = $_SESSION['idUser'];
-$tipoPessoa = 1;
+$pf = recuperaDados("pessoa_fisica","id",$idPf);
+$tipoPessoa = ($pf['oficineiro'] == 1) ? 4 : 1;
 $evento = isset($_SESSION['idEvento']) ? $_SESSION['idEvento'] : null;
 
 if(isset($_POST['carregar']))
@@ -14,7 +15,15 @@ if(isset($_POST['carregar']))
 
 if(isset($_POST["enviar"]))
 {
-	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id IN (2,3,25,31)";
+    if ($tipoPessoa == 1)
+    {
+        $arquivos = " AND id IN (2,3,25,31)";
+    }
+    else
+    {
+        $arquivos = " AND id IN (109, 110, 111, 112)";
+    }
+	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa'$arquivos";
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
 	{
@@ -33,7 +42,7 @@ if(isset($_POST["enviar"]))
 		}
 		else
 		{
-			if($nome_arquivo != "")
+			if(($nome_arquivo != "") || ($nome_arquivo != NULL))
 			{
 				$nome_temporario = $_FILES['arquivo']['tmp_name'][$x];
 				$new_name = date("YmdHis")."_".semAcento($nome_arquivo); //Definindo um novo nome para o arquivo
@@ -50,11 +59,11 @@ if(isset($_POST["enviar"]))
 						$query = mysqli_query($con,$sql_insere_arquivo);
 						if($query)
 						{
-							if(file_exists($dir.$newname))
+							if(file_exists($dir.$new_name))
 							{
 								$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
+                                echo '<script>window.location = "?perfil=arquivos_pf"</script>';
 								gravarLog($sql_insere_arquivo);
-								echo '<script>window.location = "?perfil=arquivos_pf"</script>';
 							}
 							else
 							{
@@ -63,7 +72,7 @@ if(isset($_POST["enviar"]))
 
 								if($query)
 								{
-									if(file_exists($dir.$newname))
+									if(file_exists($dir.$new_name))
 									{
 										$mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
 										gravarLog($sql_insere_arquivo);
@@ -110,13 +119,23 @@ if(isset($_POST['apagar']))
 }
 
 
-$idPf = $_SESSION['idPf'];
+
 
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
 ?>
 
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_evento.php'; ?>
+	<div class="container">
+        <?php
+        if ($pf['oficineiro'] == 1)
+        {
+            include 'includes/menu_oficinas.php';
+        }
+        else
+        {
+            include 'includes/menu_evento.php';
+        }
+        ?>
 		<div class="form-group">
 			<h4>Arquivos da Pessoa</h4>
 			<p><b>Nome:</b> <?php echo $pf['nome']; ?></p>
@@ -132,7 +151,12 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 						<p align="justify">
 							<a href="https://www.receita.fazenda.gov.br/Aplicacoes/SSL/ATCTA/cpf/ImpressaoComprovante/ConsultaImpressao.asp" target="_blank">Cartão CPF</a><br/>
 							<a href="https://ccm.prefeitura.sp.gov.br/login/contribuinte?tipo=F" target="_blank">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</a><br/>
-							<a href='<?php echo $link1 ?>' target="_blank">Declaração CCM</a>
+                            <?php
+                            $server = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/";
+                            $http = $server."/pdf/";
+                            $link1 = $http."rlt_declaracaoccm_pf.php"."?id_pf=".$idPf;
+                            ?>
+							<a href='<?= $link1 ?>' target="_blank">Declaração CCM (caso não possua)</a>
 						</p>
 					</div>
 				</div>
@@ -145,7 +169,9 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s) Somente em PDF</h6>
-							<?php listaArquivoCamposMultiplos($idPf,$tipoPessoa,"","arquivos_pf",1); ?>
+							<?php
+                            $lista = ($tipoPessoa == 4) ? 11 : 1;
+                            listaArquivoCamposMultiplos($idPf,$tipoPessoa,"","arquivos_pf",$lista); ?>
 						</div>
 					</div>
 				</div>
@@ -159,24 +185,26 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 								<tr>
 									<td width="50%"><td>
 								</tr>
-								<?php
-								if(verificaArquivosExistentesPF($idPf, '2'))
-								{
-									echo '<div class="alert alert-success">O arquivo RG/RNE/PASSAPORTE já foi enviado.</div> ';
-								}
-								else{
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '2'";
-									$query_arquivos = mysqli_query($con,$sql_arquivos);
-									while($arq = mysqli_fetch_array($query_arquivos))
-									{
-								?>
-								<tr>
-									<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
-								</tr>
-								<?php
-									}
-								}
-								?>
+                                <?php
+                                $idDocumento = ($tipoPessoa == 4) ? 109 : 2;
+                                if(verificaArquivosExistentesPF($idPf, $idDocumento, $tipoPessoa))
+                                {
+                                    echo '<div class="alert alert-success">O arquivo RG/RNE/PASSAPORTE já foi enviado.</div> ';
+                                }
+                                else
+                                {
+                                    $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idDocumento'";
+                                    $query_arquivos = mysqli_query($con,$sql_arquivos);
+                                    while($arq = mysqli_fetch_array($query_arquivos))
+                                    {
+                                ?>
+                                            <tr>
+                                                <td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+                                            </tr>
+                                <?php
+                                    }
+                                }
+                                ?>
 							</table><br>
 						</td>	
 						</div>
@@ -193,12 +221,13 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									<td width="50%"><td>
 								</tr>
 								<?php
-								if(verificaArquivosExistentesPF($idPf, '3'))
+                                $idDocumento = ($tipoPessoa == 4) ? 110 : 3;
+								if(verificaArquivosExistentesPF($idPf, $idDocumento, $tipoPessoa))
 								{
 									echo '<div class="alert alert-success">O arquivo CPF já foi enviado.</div> ';
 								}
 								else{
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '3'";
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idDocumento'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{
@@ -224,12 +253,13 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 									<td width="50%"></td>
 								</tr>
 								<?php
-								if(verificaArquivosExistentesPF($idPf, '25'))
+                                $idDocumento = ($tipoPessoa == 4) ? 111 : 25;
+								if(verificaArquivosExistentesPF($idPf, $idDocumento, $tipoPessoa))
 								{
 									echo '<div class="alert alert-success">O arquivo PIS/PASEP/NIT já foi enviado.</div> ';
 								}
 								else{
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '25'";
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idDocumento'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{
@@ -252,36 +282,38 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 					<div class="col-md-offset-2 col-md-8">
 						<div class = "center">
 							<form method="POST" action="?perfil=informacoes_iniciais_pf" enctype="multipart/form-data">
-							<table>
-								<tr>
-									<td width="50%"></td>
-								</tr>
-								<?php
-								if(verificaArquivosExistentesPF($idPf, '31'))
-								{
-									echo '<div class="alert alert-success">O arquivo FDC – CCM foi enviado.</div> ';
-								}
-								else{
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '31'";
-									$query_arquivos = mysqli_query($con,$sql_arquivos);
-									while($arq = mysqli_fetch_array($query_arquivos))
-									{
-								?>
-								<tr>
-									<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
-								</tr>
-								<?php
-									}
-								}
-								?>
-							</table><br>
-							<!-- Fim Upload de arquivo -->
-							<input type="hidden" name="idPessoa" value="<?php echo $idPf ?>"  />
-							<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
-							<input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>
-							</form>
-						</div>
-					</div>
+                                <table>
+                                    <tr>
+                                        <td width="50%"></td>
+                                    </tr>
+                                    <?php
+                                    $idDocumento = ($tipoPessoa == 4) ? 112 : 31;
+                                    if(verificaArquivosExistentesPF($idPf, $idDocumento, $tipoPessoa))
+                                    {
+                                        echo '<div class="alert alert-success">O arquivo FDC – CCM foi enviado.</div> ';
+                                    }
+                                    else{
+                                        $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idDocumento'";
+                                        $query_arquivos = mysqli_query($con,$sql_arquivos);
+                                        while($arq = mysqli_fetch_array($query_arquivos))
+                                        {
+                                    ?>
+                                    <tr>
+                                        <td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
+                                    </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </table><br>
+                                <!-- Fim Upload de arquivo -->
+                                <input type="hidden" name="idPessoa" value="<?php echo $idPf ?>"  />
+                                <input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
+                                <input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 				<!-- Confirmação de Exclusão -->
 					<div class="modal fade" id="confirmApagar" role="dialog" aria-labelledby="confirmApagarLabel" aria-hidden="true">
 						<div class="modal-dialog">

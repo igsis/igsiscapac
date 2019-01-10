@@ -16,7 +16,7 @@ if(isset($_POST['cadastrarJuridica']))
 	$email = $_POST['email'];
 	$dataAtualizacao = date("Y-m-d H:i:s");
 
-	$sql_cadastra_pj = "INSERT INTO `pessoa_juridica`(`razaoSocial`, `cnpj`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `dataAtualizacao`, `idUsuario`) VALUES ('$razaoSocial', '$cnpj', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$dataAtualizacao', '$idUser')";
+	$sql_cadastra_pj = "INSERT INTO `pessoa_juridica`(`razaoSocial`, `cnpj`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `dataAtualizacao`, `oficineiro`, `idUsuario`) VALUES ('$razaoSocial', '$cnpj', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$dataAtualizacao', '$oficineiro', '$idUser')";
 	if(mysqli_query($con,$sql_cadastra_pj))
 	{
 		$mensagem = "<font color='#01DF3A'><strong>Cadastrado com sucesso!</strong></font>";
@@ -116,8 +116,9 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 ?>
 
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_evento.php'; ?>
-		<div class="form-group">
+	<div class="container">
+        <?php include 'includes/menu_evento.php'; ?>
+        <div class="form-group">
 			<h4>Informações Iniciais</h4>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>

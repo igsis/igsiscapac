@@ -39,13 +39,21 @@
         include_once 'barras_smart_wizard/barra_pj.php';
 
         # barra Formação
-    if (isset($_SESSION['menu']))
-    {
-        if ($_SESSION['menu'])
+        if (isset($_SESSION['menu']))
         {
-            include_once 'barras_smart_wizard/barra_formacao.php';
+            if ($_SESSION['menu'])
+            {
+                include_once 'barras_smart_wizard/barra_formacao.php';
+                if (isset($_SESSION['idPf']))
+                {
+                    include_once 'barras_smart_wizard/barra_oficinas_pf.php';
+                }
+                else
+                {
+                    include_once 'barras_smart_wizard/barra_oficinas_pj.php';
+                }
+            }
         }
-    }
         ?>
 </div>
 <!-- Include SmartWizard JavaScript source -->
