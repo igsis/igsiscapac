@@ -69,7 +69,7 @@ $campo = recuperaDados("evento","id",$_SESSION['idEvento']);
                             {
                                 $msg[$i] = sprintf('Upload do arquivo %s foi um sucesso!',$i);
                                 gravarLog($sql);
-                                echo '<script>window.location = "?perfil=arquivos_com_prod"</script>';
+                                echo '<script>window.location = "?perfil=oficinas/oficina_arquivos_com_prod"</script>';
                             }
                         }
                     }
@@ -101,7 +101,7 @@ $campo = recuperaDados("evento","id",$_SESSION['idEvento']);
                 <br />
                 <div class="alert alert-danger"><strong>Atenção:</strong> Os arquivos para upload devem ter nomes diferentes.</div>
                 <div class = "center">
-                    <form method='POST' action="?perfil=arquivos_com_prod" enctype='multipart/form-data'>
+                    <form method='POST' action="?perfil=oficinas/oficina_arquivos_com_prod" enctype='multipart/form-data'>
                         <?php
                         if(verificaArquivosExistentesComunicacao($_SESSION['idEvento']) >= 5){}
                         else{
