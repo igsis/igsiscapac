@@ -1,7 +1,7 @@
 <?php
 
-$urlPf = array(
-    '/igsiscapac/visual/index.php?perfil=oficinas/oficina_edicao',
+$urlOficina = array(
+    '/igsiscapac/visual/index.php?perfil=oficinas/oficina_edicao',   // 00 oficina edicao
     '/igsiscapac/visual/index.php?perfil=oficinas/arquivos_oficina', // 01 Arquivos oficina
     '/igsiscapac/visual/index.php?perfil=oficinas/produtor_oficina', // 02 produtor busca
     '/igsiscapac/visual/index.php?perfil=oficinas/oficina_produtor_novo', // 03 produtor novo
@@ -10,8 +10,8 @@ $urlPf = array(
     '/igsiscapac/visual/index.php?perfil=oficinas/oficina_finalizar', // 06 finalizar
 );
 
-for ($i = 0; $i < count($urlPf); $i++) {
-    if ($uri == $urlPf[$i]) {
+for ($i = 0; $i < count($urlOficina); $i++) {
+    if ($uri == $urlOficina[$i]) {
         if ($i == 0){      // oficina edicao
             $active1 = 'active loading';
         }elseif ($i == 1){ // arqs. oficina
@@ -23,10 +23,7 @@ for ($i = 0; $i < count($urlPf); $i++) {
         }elseif ($i == 6){ // finalizar
             $active5 = 'active loading';
         }
-        if(!(isset($_SESSION['idEvento']))){
-
-            ?>
-            <!-- Pessoa Jurídica  -->
+        ?>
             <div id="smartwizard">
                 <ul>
                     <li class="hidden">
@@ -50,7 +47,6 @@ for ($i = 0; $i < count($urlPf); $i++) {
                 </ul>
             </div>
             <?php
-        }
     }
 }
 ?>

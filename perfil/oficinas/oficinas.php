@@ -1,9 +1,22 @@
 <?php
 $con = bancoMysqli();
-$idUser= $_SESSION['idUser'];
+$idUser = $_SESSION['idUser'];
+$tipoPessoa = isset($_POST['tipoPessoa']) ? $_POST['tipoPessoa'] : NULL;
+
+if (isset($_SESSION['idPf']))
+{
+    $id = $_SESSION['idPf'];
+    $tabela = "pessoa_fisica";
+    $tipoPessoa = 4;
+}
+elseif (isset($_SESSION['idPj']))
+{
+    $id = $_SESSION['idPj'];
+    $tabela = "pessoa_juridica";
+    $tipoPessoa = 5;
+}
+
 unset($_SESSION['idEvento']);
-unset($_SESSION['idPj']);
-unset($_SESSION['idPf']);
 
 if(isset($_POST['apagar']))
 {
@@ -21,6 +34,7 @@ if(isset($_POST['apagar']))
 }
 
 $usuario = recuperaDados("usuario","id",$idUser);
+
 ?>
 <section id="list_items" class="home-section bg-white">
     <div class="container">
@@ -35,8 +49,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
             <div class="col-md-offset-1 col-md-10">
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-8">
-                        <form class="form-horizontal" role="form" action="?perfil=evento_novo" method="post">
-                            <input type="hidden" name="contratacao" value="1">
+                        <form class="form-horizontal" role="form" action="?perfil=oficinas/oficina_novo" method="post">
                             <input type="submit" value="Inserir nova oficina" class="btn btn-theme btn-lg btn-block">
                         </form>
                     </div>
@@ -62,7 +75,6 @@ $usuario = recuperaDados("usuario","id",$idUser);
 									<tr class='list_menu'>
 										<td>Id da oficina</td>
 										<td>Nome da oficina</td>
-										<td>Tipo de oficina</td>
 										<td>Data cadastro</td>
 										<td>Enviado</td>
 										<td width='10%'></td>
@@ -79,7 +91,6 @@ $usuario = recuperaDados("usuario","id",$idUser);
                                 echo "<td class='list_description'>"."</td>";
                             }
                             echo "<td class='list_description'>".$campo['nomeEvento']."</td>";
-                            echo "<td class='list_description'>".retornaTipo($campo['idTipoEvento'])."</td>";
                             echo "<td class='list_description'>".exibirDataHoraBr($campo['dataCadastro'])."</td>";
 
                             if($campo['publicado'] == 2)

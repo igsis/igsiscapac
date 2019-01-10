@@ -197,14 +197,14 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '2')
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-2">
-                    <form class="form-horizontal" role="form" action="?perfil=oficinas/oficineiro_pj_demais_anexos" method="post">
+                    <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_demais_anexos" method="post">
                         <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
                     </form>
                 </div>
                 <div class="col-md-offset-4 col-md-2">
                     <form class="form-horizontal" role="form" action="?perfil=oficinas/oficinas" method="post">
                         <input type="hidden" value="<?= $tipoPessoa ?>" name="tipoPessoa">
-                        <input type="submit" name="id" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
+                        <input type="submit" name="id" value="Avançar" class="btn btn-theme btn-lg btn-block">
                     </form>
                 </div>
             </div>

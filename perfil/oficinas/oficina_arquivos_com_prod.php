@@ -145,17 +145,17 @@ $campo = recuperaDados("evento","id",$_SESSION['idEvento']);
 
         <!-- Botão para Voltar e Prosseguir -->
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-8">
+            <div class="col-md-offset-1 col-md-12">
                 <div class="col-md-offset-1 col-md-2">
                     <form class="form-horizontal" role="form" action="?perfil=oficinas/oficina_produtor_edicao" method="post">
                         <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
                     </form>
                 </div>
-                    <div class="col-md-offset-6 col-md-2">
-                        <form class="form-horizontal" role="form" action="?perfil=oficinas/oficina_finalizar" method="post">
-                            <input type="submit" value="Finalizar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
-                        </form>
-                    </div>
+                <div class="col-md-offset-4 col-md-2">
+                    <form class="form-horizontal" role="form" action="?perfil=oficinas/oficina_finalizar" method="post">
+                        <input type="submit" value="Finalizar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
+                    </form>
+                </div>
             </div>
         </div>
 

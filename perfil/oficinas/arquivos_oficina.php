@@ -346,13 +346,13 @@ if(isset($_POST['apagar']))
             <hr/>
         </div>
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-8">
+            <div class="col-md-offset-1 col-md-12">
                 <div class="col-md-offset-1 col-md-2">
                     <form class="form-horizontal" role="form" action="?perfil=oficinas/oficina_edicao" method="post">
                         <input type="submit" value="Voltar" class="btn btn-theme btn-md btn-block">
                     </form>
                 </div>
-                <div class="col-md-offset-6 col-md-2">
+                <div class="col-md-offset-4 col-md-2">
                     <form class="form-horizontal" role="form" action="?perfil=oficinas/produtor_oficina" method="post">
                         <input type="submit" value="Avançar" class="btn btn-theme btn-md btn-block">
                     </form>
