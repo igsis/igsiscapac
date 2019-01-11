@@ -26,9 +26,6 @@ $obrigatorios = [
     'etnia_id'              =>  'Etnia',
     'grau_instrucao_id'     =>  'Grau de Instrução',
     'formacao_funcao_id'    =>  'Função',
-    'codigoBanco'           =>  'Banco',
-    'agencia'               =>  'Agência',
-    'conta'                 =>  'Conta',
 ];
 
 $erro = false;
@@ -101,7 +98,15 @@ function recuperaBanco($campoY)
 {
     $banco = recuperaDados("banco","id",$campoY);
     $nomeBanco = $banco['banco'];
-    return $nomeBanco;
+    if (($nomeBanco == null) || ($nomeBanco == false))
+    {
+        $nomeBanco = "Não Possui";
+        return $nomeBanco;
+    }
+    else
+    {
+        return $nomeBanco;
+    }
 }
 
 function listaArquivoCamposMultiplos1($idPessoa, $tipoPessoa = 6)
@@ -251,8 +256,8 @@ function listaArquivoCamposMultiplos1($idPessoa, $tipoPessoa = 6)
                     <p align="justify"><strong>Linguagem:</strong> <?= $linguagem['linguagem']; ?><p>
                     <p align="justify"><strong>Função:</strong> <?= $funcao[0]; ?><p>
                     <p align="justify"><strong>Banco:</strong> <?php echo recuperaBanco ($pf['codigoBanco']); ?></p>
-                    <p align="justify"><strong>Agência:</strong> <?php echo $pf['agencia']; ?></p>
-                    <p align="justify"><strong>Conta:</strong> <?php echo $pf['conta']; ?></p>
+                    <p align="justify"><strong>Agência:</strong> <?= ($pf['agencia'] == null) ? "Não Possui" : $pf['agencia'] ?></p>
+                    <p align="justify"><strong>Conta:</strong> <?= ($pf['conta'] == null) ? "Não Possui" : $pf['conta'] ?></p>
                 </div>
 
             <div class="table-responsive list_info"><h6>Arquivo(s) de Pessoa Física</h6>

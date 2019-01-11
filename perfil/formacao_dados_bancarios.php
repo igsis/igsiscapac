@@ -80,17 +80,17 @@ function geraOpcaoBancos1($tabela,$select)
                         <div class="col-md-offset-2 col-md-8"><strong>Banco:</strong><br/>
                             <select class="form-control" name="codigoBanco" id="codigoBanco">
                                 <?php geraOpcaoBancos1("banco",$pf['codigoBanco']);	?>
-                                <option value="">Não Possui</option>
+                                <option value="0" <?= ($pf['codigoBanco'] == 0) ? "selected" : "" ?>>Não Possui</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-6"><strong>Agência</strong><br/>
-                            <input type="text" class="form-control" id="agencia" name="agencia" placeholder="" maxlength="12" value="<?php echo $pf['agencia']; ?>" required>
+                            <input type="text" class="form-control" id="agencia" name="agencia" placeholder="" maxlength="12" value="<?php echo $pf['agencia']; ?>">
                         </div>
                         <div class=" col-md-6"><strong>Conta:</strong><br/>
-                            <input type="text" class="form-control" id="conta" name="conta" placeholder="" maxlength="12" value="<?php echo $pf['conta']; ?>" required>
+                            <input type="text" class="form-control" id="conta" name="conta" placeholder="" maxlength="12" value="<?php echo $pf['conta']; ?>">
                         </div>
                     </div>
 
