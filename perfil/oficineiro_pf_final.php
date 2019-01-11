@@ -123,18 +123,15 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '1')
 	<div class="container">
         <?php include 'includes/menu_oficinas.php'; ?>
 		<div class="form-group">
-			<h4>Finalizar</h4>
+			<h4>Confirmação dos Dados</h4>
             <p>
                 <strong>
                     <span style="color: green;">
-                        Todos os campos obrigatórios foram preenchidos corretamente.<br/>
-                        Seu cadastro de Pessoa Física foi concluído com sucesso!<br>
+                        Seu cadastro de Oficineiro Pessoa Física foi concluído!<br>
+                        Avance para cadastrar a Oficina que será realizada!<br>
                     </span>
                 </strong>
             </p><br>
-            <div class="alert alert-success ">
-                Seu Código de Cadastro é <strong>4-<?= $pf['id'] ?></strong>
-            </div>
 	<div class="container">
 		 <div class = "page-header"> <h5>Informações Pessoais</h5><br></div>
 		 <div class="well">
@@ -164,7 +161,6 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '1')
         <div class="table-responsive list_inf">
             <div class = "page-header"><h5>Informações Complementares: </h5><br></div>
             <div class="well">
-                <p align="justify"><strong>Nome da Oficina:</strong> <?php echo $dados['nomeOficina']; ?></p>
                 <p align="justify"><strong>Linguagem:</strong> <?php echo $linguagem['linguagem']; ?></p>
                 <p align="justify"><strong>Nível:</strong> <?php echo $nivel['nivel']; ?></p>
                 <p align="justify"><strong>Banco:</strong> <?php echo recuperaBanco ($pf['codigoBanco']); ?></p>
