@@ -253,12 +253,12 @@ $dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
                 <!-- Botão para Voltar e Prosseguir -->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-2">
-                        <form class="form-horizontal" role="form" action="<?= ($tipoPessoa == 4) ? "?perfil=oficineiro_pf_arquivos_dados_bancarios" : "?perfil=oficineiro_pj_arquivos_dados_bancarios"?>" method="post">
+                        <form class="form-horizontal" role="form" action="?perfil=oficinas/oficina_edicao" method="post">
                             <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $id ?>">
                         </form>
                     </div>
                     <div class="col-md-offset-4 col-md-2">
-                        <form class="form-horizontal" role="form" action="<?= ($tipoPessoa == 4) ? "?perfil=oficineiro_pf_anexos" : "?perfil=oficineiro_pj_demais_anexos"?>" method="post">
+                        <form class="form-horizontal" role="form" action="?perfil=oficinas/oficina_arquivos_com_prod" method="post">
                             <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $id ?>">
                         </form>
                     </div>

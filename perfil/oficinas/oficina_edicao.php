@@ -143,7 +143,7 @@ $evento = recuperaDados("evento","id", $idEvento);
                     </form>
                 </div>
                 <div class="col-md-offset-4 col-md-2">
-                    <form class="form-horizontal" role="form" action="?perfil=oficinas/arquivos_oficina" method="post">
+                    <form class="form-horizontal" role="form" action="?perfil=oficinas_cronograma" method="post">
                         <input type="submit" value="Avançar" class="btn btn-theme btn-md btn-block">
                     </form>
                 </div>

@@ -147,7 +147,7 @@ $campo = recuperaDados("evento","id",$_SESSION['idEvento']);
         <div class="form-group">
             <div class="col-md-offset-1 col-md-12">
                 <div class="col-md-offset-1 col-md-2">
-                    <form class="form-horizontal" role="form" action="?perfil=oficinas/oficina_produtor_edicao" method="post">
+                    <form class="form-horizontal" role="form" action="?perfil=oficinas_cronograma" method="post">
                         <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
                     </form>
                 </div>
