@@ -3,10 +3,25 @@ $con = bancoMysqli();
 $idUser= $_SESSION['idUser'];
 $tipoPessoa = "3";
 
+if (isset($_SESSION['idPf']))
+{
+    $idPf = $_SESSION['idPf'];
+    $idPj = 0;
+    $tabela = "pessoa_fisica";
+    $tipoPessoa = "4";
+}
+elseif (isset($_SESSION['idPj']))
+{
+    $idPj = $_SESSION['idPj'];
+    $idPf = 0;
+    $tabela = "pessoa_juridica";
+    $tipoPessoa = "5";
+}
+
 if(isset($_POST['insere']) || isset($_POST['atualizar']))
 {
+    $tipoEvento = 4;
     $nomeEvento = addslashes($_POST['nomeEvento']);
-    $integrantes = addslashes($_POST['integrantes']);
     $idFaixaEtaria = $_POST['idFaixaEtaria'];
     $sinopse = addslashes($_POST['sinopse']);
     $link = addslashes($_POST['link']);
@@ -15,7 +30,7 @@ if(isset($_POST['insere']) || isset($_POST['atualizar']))
 
 if(isset($_POST['insere']))
 {
-    $sql_insere = "INSERT INTO `evento`(`idTipoEvento`, `nomeEvento`, `integrantes`, `idFaixaEtaria`, `sinopse`, `link`, `dataCadastro`, `publicado`, `contratacao`, `idUsuario`) VALUES ('4', '$nomeEvento', '$integrantes', '$idFaixaEtaria', '$sinopse', '$link', '$dataCadastro', '1', '1', '$idUser')";
+    $sql_insere = "INSERT INTO `evento`(`idTipoEvento`, `nomeEvento`, `idFaixaEtaria`, `sinopse`, `link`, `idTipoPessoa`, `idPj`, `idPf`, `dataCadastro`, `publicado`, `contratacao`, `idUsuario`) VALUES ('$tipoEvento', '$nomeEvento', '$idFaixaEtaria', '$sinopse', '$link', '$tipoPessoa', '$idPj', '$idPf', '$dataCadastro', '1', '1', '$idUser')";
     if(mysqli_query($con,$sql_insere))
     {
         $mensagem = "<font color='#01DF3A'><strong>Inserido com sucesso!</strong></font>";
@@ -37,8 +52,7 @@ if(isset($_POST['atualizar']))
     $idEvento = $_SESSION['idEvento'];
     $sql_atualizar = "UPDATE evento SET
 		nomeEvento = '$nomeEvento',
-		idTipoEvento = 4,
-		integrantes = '$integrantes',
+		idTipoEvento = '$tipoEvento',
 		idFaixaEtaria = '$idFaixaEtaria',
 		sinopse = '$sinopse',
 		link = '$link',
@@ -81,22 +95,15 @@ $evento = recuperaDados("evento","id", $idEvento);
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
                             <label>Nome da Oficina *</label>
-                            <input type="text" name="nomeEvento" maxlength="240" class="form-control" value="<?php echo $evento['nomeEvento'] ?>"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-8"><strong>Integrantes do grupo:</strong><br/>
-                            <label>Esse campo deve conter a listagem de pessoas envolvidas no espetáculo <font color='#FF0000'>incluindo o líder do grupo</font>.<br/>Apenas o <font color='#FF0000'>nome civil, RG e CPF</font> de quem irá se apresentar, excluindo técnicos.</i></strong></label>
-                            <p align="justify"><font color="gray"><strong><i>Elenco de exemplo:</strong><br/>Ana Cañas RG 00000000-0 CPF 000.000.000-00<br/>Lúcio Maia RG 00000000-0 CPF 000.000.000-00<br/>Fabá Jimenez RG 00000000-0 CPF 000.000.000-00</br>Fabio Sá RG 00000000-0 CPF 000.000.000-00</br>Marco da Costa RG 00000000-0 CPF 000.000.000-00</font></i></p>
-                            <textarea name="integrantes" class='form-control' cols="40" rows="5" required><?php echo $evento['integrantes'] ?></textarea>
+                            <input type="text" name="nomeEvento" maxlength="240" class="form-control" value="<?php echo $evento['nomeEvento'] ?>" required/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
                             <label>Classificação indicativa *</label> <a href="?perfil=classificacaoIndicativa" target="_blank"><i>(Confira aqui como classificar)</i></a>
-                            <select class="form-control" name="idFaixaEtaria" id="inputSubject" >
-                                <option>Selecione...</option>
-                                <?php echo geraOpcao("faixa_etaria",$evento['idFaixaEtaria']) ?>
+                            <select class="form-control" name="idFaixaEtaria" id="inputSubject" required>
+                                <option value="">Selecione...</option>
+                                <?php geraOpcao("faixa_etaria",$evento['idFaixaEtaria']) ?>
                             </select>
                         </div>
                     </div>
