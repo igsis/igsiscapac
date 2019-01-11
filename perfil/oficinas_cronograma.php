@@ -1,6 +1,7 @@
 <?php
 
 $con = bancoMysqli();
+$idOficina = $_SESSION['idEvento'];
 
 if (isset($_SESSION['idPf']))
 {
@@ -101,26 +102,12 @@ $dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
         <?php include 'includes/menu_oficinas.php'; ?>
         <div class="form-group">
             <h3>Cronograma de Oficinas</h3>
-            <p><b>Nome:</b> <?= ($tipoPessoa == 4) ? $pessoa['nome'] : $pessoa['razaoSocial']; ?></p>
             <h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
         </div>
         <div class="row">
             <div class="col-md-offset-1 col-md-10">
                 <form name="form1" class="form-horizontal" role="form" action="../pdf/rlt_cronograma_oficina.php" method="post" target="_blank">
 
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-8">
-                            <label for="nomeOficina">Nome da Oficina: *:</label>
-                            <input type="text" class="form-control" name="nomeOficina" id="nomeOficina" maxlength="240" value="<?= $dadosOficineiro['nomeOficina'] ?>" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-8">
-                            <label for="sinopseOficina">Sinopse *</label>
-                            <p><label>Esse campo deve conter uma breve descrição da oficina que será apresentada.</i></strong></label></p>
-                            <textarea id="sinopseOficina" name="sinopseOficina" class="form-control" rows="10" required><?= $dadosOficineiro['sinopseOficina'] ?></textarea>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
                             <label for="modalidade">Modalidade *:</label> <button class='btn btn-default btn-sm' type='button' data-toggle='modal' data-target='#infoModalidade' style="border-radius: 15px;"><i class="fa fa-question-circle"></i></button>
@@ -134,6 +121,7 @@ $dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
                             <input type="hidden" name="gerarCronograma">
+                            <input type="hidden" name="idOficina" value="<?= $idOficina ?>">
                             <input type="hidden" name="id" value="<?= $id ?>">
                             <input type="hidden" name="tipoPessoa" value="<?= $tipoPessoa ?>">
                             <input type="hidden" name="idDadosOficineiro" value="<?= $dadosOficineiro['id'] ?>">

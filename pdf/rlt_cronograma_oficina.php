@@ -7,6 +7,7 @@ session_start();
 $con = bancoMysqli();
 
 $idModalidade = $_POST['modalidade'];
+$idOficina = $_POST['idOficina'];
 $tabela = ($_POST['tipoPessoa'] == 4) ? "pessoa_fisica" : "pessoa_juridica";
 
 $modalidade = recuperaDados('modalidades', 'id', $idModalidade);
@@ -23,20 +24,18 @@ else
     $documento = $representante['rg'];
 }
 
-$nomeOficina = addslashes($_POST['nomeOficina']);
-$sinopseOficina = addslashes($_POST['sinopseOficina']);
-
 $idDados = $_POST['idDadosOficineiro'];
 $sql_dados = "UPDATE `oficina_dados` SET 
                 `modalidade_id` = '$idModalidade',
-                `nomeOficina` = '$nomeOficina',
-                `sinopseOficina` = '$sinopseOficina'
+                `idOficina` = '$idOficina'
               WHERE `id` = '$idDados'";
 $query = $con->query($sql_dados);
 if ($query)
 {
     gravarLog($sql_dados);
 }
+
+$oficina = recuperaDados('evento', 'id', $idOficina);
 
 $dados = recuperaDados('oficina_dados', 'id', $idDados);
 $linguagem = recuperaDados('oficina_linguagens', 'id', $dados['oficina_linguagem_id']);
@@ -411,7 +410,7 @@ date_default_timezone_set('America/Sao_Paulo');
             <p style="text-align: justify">O presente projeto de Oficina foi selecionado a partir do <strong>EDITAL DE
                     CREDENCIAMENTO Nº 02 /2018 – SMC/GAB</strong>, o qual credenciou projetos de artistas e outros
                 profissionais interessados em realizar oficinas em equipamentos da Secretaria Municipal de Cultura.</p>
-            <p style="text-align: justify">O(a) contratado(a) executará o projeto de oficina <strong><?= $dados['nomeOficina'] ?></strong>, nos exatos
+            <p style="text-align: justify">O(a) contratado(a) executará o projeto de oficina <strong><?= $oficina['nomeEvento'] ?></strong>, nos exatos
                 termos de sua proposta apresentada na ocasião de sua inscrição para o referido Edital.</p>
 
             <p>&nbsp;</p>
