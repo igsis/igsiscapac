@@ -7,13 +7,11 @@ if (isset($_SESSION['idPf']))
 {
     $id = $_SESSION['idPf'];
     $tabela = "pessoa_fisica";
-    $tipoPessoa = 4;
 }
 elseif (isset($_SESSION['idPj']))
 {
     $id = $_SESSION['idPj'];
     $tabela = "pessoa_juridica";
-    $tipoPessoa = 5;
 }
 
 unset($_SESSION['idEvento']);
@@ -148,6 +146,32 @@ $usuario = recuperaDados("usuario","id",$idUser);
 
                 </div>
             </div>
+            <?php
+            if (isset($_SESSION['idPf']))
+            {
+            ?>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-2">
+                        <form class="form-horizontal" role="form" action="?perfil=oficineiro_pf_final" method="post">
+                            <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
+                        </form>
+                    </div>
+                </div>
+            <?php
+            }
+            else
+            {
+            ?>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-2">
+                        <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_finalizar" method="post">
+                            <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
+                        </form>
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
         </div>
     </div>
 </section>
