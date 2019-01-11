@@ -117,6 +117,21 @@ $dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
                             </select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label>Período *</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-4">
+                                <label for="datepicker01">Data de Inicio:</label>
+                                <input class="form-control" type="text" name="dataInicio" id="datepicker01">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="datepicker02">Data de Fim:</label>
+                                <input class="form-control" type="text" name="dataFim" id="datepicker02">
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
