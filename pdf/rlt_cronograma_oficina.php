@@ -417,7 +417,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
             <p><strong>Nome do Oficineiro: </strong><?= $nome ?></p>
             <p><strong>Linguagem Artística e Cultural: </strong><?= $linguagem['linguagem'] ?> - <?= $subLinguagem['sublinguagem'] ?></p>
-            <p><strong>Período: </strong>__/__/____ a __/__/____</p>
+            <p><strong>Período: </strong><?php exibirDataBr($dados['dataInicio']) ?> a <?php exibirDataBr($dados['dataFim']) ?></p>
             <p><strong>Dias da Semana: </strong></p>
             <p><strong>Horário: </strong></p>
             <p><strong>Carga Horária Total: </strong></p>
