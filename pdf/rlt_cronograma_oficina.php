@@ -9,8 +9,10 @@ $con = bancoMysqli();
 $idModalidade = $_POST['modalidade'];
 $idOficina = $_POST['idOficina'];
 $tabela = ($_POST['tipoPessoa'] == 4) ? "pessoa_fisica" : "pessoa_juridica";
-$dataInicio = $_POST['dataInicio'];
-$dataFim = $_POST['dataFim'];
+$dataInicio = exibirDataMysql($_POST['dataInicio']);
+$dataFim = exibirDataMysql($_POST['dataFim']);
+$dia1 = $_POST['dia1'];
+$dia2 = $_POST['dia2'];
 
 $modalidade = recuperaDados('modalidades', 'id', $idModalidade);
 $oficineiro = recuperaDados($tabela, 'id', $_POST['id']);
@@ -31,7 +33,9 @@ $sql_dados = "UPDATE `oficina_dados` SET
                 `modalidade_id` = '$idModalidade',
                 `idOficina` = '$idOficina',
                 `dataInicio` = '$dataInicio',
-                `dataFim` = '$dataFim'
+                `dataFim` = '$dataFim',
+                `dia1` = '$dia1',
+                `dia2` = '$dia2'
               WHERE `id` = '$idDados'";
 $query = $con->query($sql_dados);
 if ($query)
@@ -45,6 +49,13 @@ $dados = recuperaDados('oficina_dados', 'id', $idDados);
 $linguagem = recuperaDados('oficina_linguagens', 'id', $dados['oficina_linguagem_id']);
 $nivel = recuperaDados('oficina_niveis', 'id', $dados['oficina_nivel_id']);
 $subLinguagem = recuperaDados('oficina_sublinguagens', 'id', $dados['oficina_sublinguagem_id']);
+$dia1 = recuperaDados('dia_semanas', 'id', $dados['dia1']);
+$diasSemana = [$dia1['dia']];
+if ($dados['dia2'] != 0)
+{
+    $dia2 = recuperaDados('dia_semanas', 'id', $dados['dia2']);
+    array_push($diasSemana, $dia2['dia']);
+}
 
 function geraCronogramaOficina($idModalidade)
 {
@@ -389,8 +400,8 @@ function geraCronogramaOficina($idModalidade)
     }
 }
 
-header("Content-type: application/vnd.ms-word");
-header("Content-Disposition: attachment;Filename=cronograma-oficinas.doc");
+//header("Content-type: application/vnd.ms-word");
+//header("Content-Disposition: attachment;Filename=cronograma-oficinas.doc");
 setlocale(LC_TIME, 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
 
@@ -421,8 +432,8 @@ date_default_timezone_set('America/Sao_Paulo');
 
             <p><strong>Nome do Oficineiro: </strong><?= $nome ?></p>
             <p><strong>Linguagem Artística e Cultural: </strong><?= $linguagem['linguagem'] ?> - <?= $subLinguagem['sublinguagem'] ?></p>
-            <p><strong>Período: </strong><?php exibirDataBr($dados['dataInicio']) ?> a <?php exibirDataBr($dados['dataFim']) ?></p>
-            <p><strong>Dias da Semana: </strong></p>
+            <p><strong>Período: </strong><?= exibirDataBr($dados['dataInicio']) ?> a <?= exibirDataBr($dados['dataFim']) ?></p>
+            <p><strong>Dias da Semana: </strong> <?= implode(', ', $diasSemana) ?></p>
             <p><strong>Horário: </strong></p>
             <p><strong>Carga Horária Total: </strong></p>
             <p><strong>Local / Equipamento: </strong></p>

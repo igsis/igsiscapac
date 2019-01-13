@@ -18,7 +18,7 @@ elseif (isset($_SESSION['idPj']))
 $pessoa = recuperaDados($tabela,"id",$id);
 $idCampo = ($tipoPessoa == 4) ? 134 : 135;
 
-$consulta = "SELECT * FROM `oficina_dados` WHERE `idOficina` = '$idOficina' AND `publicado` = '1'";
+$consulta = "SELECT * FROM `oficina_dados` WHERE `tipoPessoa` = '$tipoPessoa' AND `idPessoa` = '$id' AND `publicado` = '1'";
 $dados = $con->query($consulta)->fetch_assoc();
 
 if(isset($_POST["enviar"]))
@@ -119,16 +119,38 @@ $dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <label>Período *</label>
+                            <label>Período</label>
                         </div>
                         <div class="row">
                             <div class="col-md-offset-2 col-md-4">
-                                <label for="datepicker01">Data de Inicio:</label>
-                                <input class="form-control" type="text" name="dataInicio" id="datepicker01">
+                                <label for="datepicker01">Data de Inicio *:</label>
+                                <input class="form-control" type="text" name="dataInicio" id="datepicker01" value="<?= exibirDataBr($dadosOficineiro['dataInicio']) ?>">
                             </div>
                             <div class="col-md-4">
-                                <label for="datepicker02">Data de Fim:</label>
-                                <input class="form-control" type="text" name="dataFim" id="datepicker02">
+                                <label for="datepicker02">Data de Fim *:</label>
+                                <input class="form-control" type="text" name="dataFim" id="datepicker02" value="<?= exibirDataBr($dadosOficineiro['dataFim']) ?>">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <label>Dias de Execução</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-4">
+                                <label>Dia 1 *:</label>
+                                <select class="form-control " name="dia1" id="dia1">
+                                    <option value="">Selecione...</option>
+                                    <?php geraOpcao('dia_semanas', $dadosOficineiro['dia1']) ?>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Dia 2:</label>
+                                <select class="form-control" name="dia2" id="dia2">
+                                    <option value="">Selecione...</option>
+                                    <?php geraOpcao('dia_semanas', $dadosOficineiro['dia2']) ?>
+                                </select>
                             </div>
                         </div>
                     </div>

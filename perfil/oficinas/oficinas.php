@@ -22,12 +22,12 @@ if(isset($_POST['apagar']))
     $sql_apaga = "UPDATE evento SET publicado = '0' WHERE id = '$idEvento'";
     if(mysqli_query($con,$sql_apaga))
     {
-        $mensagem = "<font color='#01DF3A'><strong>Evento apagado com sucesso!</strong></font>";
+        $mensagem = "<font color='#01DF3A'><strong>Oficina apagada com sucesso!</strong></font>";
         gravarLog($sql_apaga);
     }
     else
     {
-        $mensagem = "<font color='#FF0000'><strong>Erro ao apagar evento! Tente novamente.</strong></font>";
+        $mensagem = "<font color='#FF0000'><strong>Erro ao apagar oficina! Tente novamente.</strong></font>";
     }
 }
 
@@ -61,7 +61,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
                 <div class="table-responsive list_info">
                     <?php
                     $sql = "SELECT * FROM evento
-							WHERE publicado > 0 AND idUsuario ='$idUser'
+							WHERE publicado > 0 AND idUsuario ='$idUser' AND `idTipoEvento` = '4'
 							ORDER BY id DESC";
                     $query = mysqli_query($con,$sql);
                     $num = mysqli_num_rows($query);
@@ -131,7 +131,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title">Deseja excluir o evento?</h4>
+                                    <h4 class="modal-title">Deseja excluir oficina?</h4>
                                 </div>
                                 <div class="modal-body">
                                     <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>

@@ -88,7 +88,10 @@ $campo = recuperaDados("evento","id",$_SESSION['idEvento']);
         <div class="row">
             <div class="col-md-offset-2 col-md-8">
                 <div class="table-responsive list_info">
-                    <?php listaArquivos($_SESSION['idEvento']); ?>
+                    <?php
+                        $action = "oficinas/oficina_arquivos_com_prod";
+                        listaArquivos($_SESSION['idEvento'], $action);
+                    ?>
                 </div>
                 <h3>Envio de Arquivos</h3>
                 <p align="justify">Nesta página você envia os arquivos como o rider, mapas de cenas e luz, logos de parceiros, programação de filmes de mostras de cinema, entre outros arquivos destinados à comunicação e produção. O tamanho máximo do arquivo deve ser 60MB.</p>
