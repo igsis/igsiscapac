@@ -99,7 +99,7 @@ $dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
 
 <section id="list_items" class="home-section bg-white">
     <div class="container">
-        <?php include 'includes/menu_oficinas.php'; ?>
+        <?php include 'includes/oficina_menu_evento.php'; ?>
         <div class="form-group">
             <h3>Cronograma de Oficinas</h3>
             <h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
