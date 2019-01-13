@@ -9,6 +9,8 @@ $con = bancoMysqli();
 $idModalidade = $_POST['modalidade'];
 $idOficina = $_POST['idOficina'];
 $tabela = ($_POST['tipoPessoa'] == 4) ? "pessoa_fisica" : "pessoa_juridica";
+$dataInicio = $_POST['dataInicio'];
+$dataFim = $_POST['dataFim'];
 
 $modalidade = recuperaDados('modalidades', 'id', $idModalidade);
 $oficineiro = recuperaDados($tabela, 'id', $_POST['id']);
@@ -27,7 +29,9 @@ else
 $idDados = $_POST['idDadosOficineiro'];
 $sql_dados = "UPDATE `oficina_dados` SET 
                 `modalidade_id` = '$idModalidade',
-                `idOficina` = '$idOficina'
+                `idOficina` = '$idOficina',
+                `dataInicio` = '$dataInicio',
+                `dataFim` = '$dataFim'
               WHERE `id` = '$idDados'";
 $query = $con->query($sql_dados);
 if ($query)
