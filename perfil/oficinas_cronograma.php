@@ -140,7 +140,7 @@ $dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
                         <div class="row">
                             <div class="col-md-offset-2 col-md-4">
                                 <label>Dia 1 *:</label>
-                                <select class="form-control " name="dia1" id="dia1">
+                                <select class="form-control " name="dia1" id="dia1" required>
                                     <option value="">Selecione...</option>
                                     <?php geraOpcao('dia_semanas', $dadosOficineiro['dia1']) ?>
                                 </select>
