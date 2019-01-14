@@ -291,17 +291,15 @@ if ($cadastra)
    const url = `<?=$url?>`;
 
    let linguagem = document.querySelector("#linguagem");
-      console.log(linguagem.value);
-
 
    if(linguagem.value != ''){
-
-     let sublinguagem_id = <?=$dados['oficina_sublinguagem_id']?>
-
+     let sublinguagem_id = <?=$dados['oficina_sublinguagem_id']?>;
      getSublinguagem(linguagem.value, sublinguagem_id)
    }
+
     linguagem.addEventListener('change', async e => {
       let idLinguagem = $('#linguagem option:checked').val();
+      getSublinguagem(idLinguagem, '')
 
       fetch(`${url}?linguagem_id=${idLinguagem}`)
         .then(response => response.json())
