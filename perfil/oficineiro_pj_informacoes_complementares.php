@@ -27,9 +27,10 @@ if(isset($_POST['cadastraDados']))
     $idPj = $_POST['cadastraDados'];
     $nivel = $_POST['nivel'];
     $linguagem = $_POST['linguagem'];
+    $sublinguagem = $_POST['sublinguagem'];
 
-    $sql_insere_dados = "INSERT INTO `oficina_dados` (`tipoPessoa`, `idPessoa`, `oficina_linguagem_id`, `oficina_nivel_id`)
-                          VALUES ('$tipoPessoa', '$idPj', '$linguagem', '$nivel')";
+    $sql_insere_dados = "INSERT INTO `oficina_dados` (`tipoPessoa`, `idPessoa`, `oficina_linguagem_id`, `oficina_sublinguagem_id`, `oficina_nivel_id`)
+                          VALUES ('$tipoPessoa', '$idPj', '$linguagem', '$sublinguagem', '$nivel')";
 
     if (mysqli_query($con,$sql_insere_dados))
     {
@@ -50,9 +51,11 @@ if(isset($_POST["atualizaDados"]))
     $idPj = $_POST['atualizaDados'];
     $nivel = $_POST['nivel'];
     $linguagem = $_POST['linguagem'];
+    $sublinguagem = $_POST['sublinguagem'];
 
     $sql_atualiza_dados = "UPDATE `oficina_dados` SET
                            `oficina_linguagem_id` = '$linguagem',
+                           `oficina_sublinguagem_id` = '$sublinguagem',
                            `oficina_nivel_id` = '$nivel'
                            WHERE `id` = '$idDados'";
 
@@ -233,7 +236,7 @@ if ($cadastra)
                                     }
                                     ?>
                                 </table><br>
-                                <input type="hidden" name="idPessoa" value="<?php echo $idjf; ?>"  />
+                                <input type="hidden" name="idPessoa" value="<?php echo $idPj; ?>"  />
                                 <input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
                                 <input type="hidden" name="enviar" value="1"  />
                                 <input type="submit" class="btn btn-theme btn-lg btn-block" value='Enviar'>
@@ -288,17 +291,15 @@ if ($cadastra)
    const url = `<?=$url?>`;
 
    let linguagem = document.querySelector("#linguagem");
-      console.log(linguagem.value);
-
 
    if(linguagem.value != ''){
-
-     let sublinguagem_id = <?=$dados['oficina_sublinguagem_id']?>
-
+     let sublinguagem_id = <?=$dados['oficina_sublinguagem_id']?>;
      getSublinguagem(linguagem.value, sublinguagem_id)
    }
+
     linguagem.addEventListener('change', async e => {
       let idLinguagem = $('#linguagem option:checked').val();
+      getSublinguagem(idLinguagem, '')
 
       fetch(`${url}?linguagem_id=${idLinguagem}`)
         .then(response => response.json())
@@ -320,7 +321,7 @@ if ($cadastra)
 
         for (const sublinguagem of sublinguagens) {
           if(selectedId == sublinguagem.id){
-            $('#sublinguagem').append(`<option value='${sublinguagem.id}' select>${sublinguagem.sublinguagem}</option>`).focus();;
+            $('#sublinguagem').append(`<option value='${sublinguagem.id}' selected>${sublinguagem.sublinguagem}</option>`).focus();;
           }else{
             $('#sublinguagem').append(`<option value='${sublinguagem.id}'>${sublinguagem.sublinguagem}</option>`).focus();;
           }
