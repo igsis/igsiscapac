@@ -236,7 +236,7 @@ if ($cadastra)
                                     }
                                     ?>
                                 </table><br>
-                                <input type="hidden" name="idPessoa" value="<?php echo $idjf; ?>"  />
+                                <input type="hidden" name="idPessoa" value="<?php echo $idPj; ?>"  />
                                 <input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
                                 <input type="hidden" name="enviar" value="1"  />
                                 <input type="submit" class="btn btn-theme btn-lg btn-block" value='Enviar'>
