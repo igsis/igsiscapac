@@ -341,6 +341,8 @@ if(isset($_POST['enviar']))
                             <br/>
                             <?php
                         }
+                        if($evento['idTipoPessoa'] == 4)
+                        {
                         ?>
 
                         <p align="justify"><strong>OFICINEIRO</strong></p>
@@ -351,11 +353,8 @@ if(isset($_POST['enviar']))
                         <p align="justify"><strong>Telefone:</strong> <?php echo $pessoaFisica['telefone1']." | ".$pessoaFisica['telefone2']." | ".$pessoaFisica['telefone3'] ?></p>
                         <p align="justify"><strong>E-mail:</strong> <?php echo $pessoaFisica['email'] ?></p>
                         <p align="justify"><strong>DRT:</strong> <?php echo $pessoaFisica['drt'] ?></p>
-                        <?php
-                        if($evento['idTipoPessoa'] == 4)
-                        {
-                            ?>
-                            <p align="justify"><strong>Data de Nascimento:</strong> <?php echo exibirDataBr($pessoaFisica['dataNascimento']) ?></p>
+
+                    <p align="justify"><strong>Data de Nascimento:</strong> <?php echo exibirDataBr($pessoaFisica['dataNascimento']) ?></p>
                             <p align="justify"><strong>Nacionalidade:</strong> <?php echo $pessoaFisica['nacionalidade'] ?></p>
                             <p align="justify"><strong>PIS / PASEP / NIT:</strong> <?php echo $pessoaFisica['pis'] ?></p>
                             <p align="justify"><strong>CEP:</strong> <?php echo $pessoaFisica['cep'] ?></p>
