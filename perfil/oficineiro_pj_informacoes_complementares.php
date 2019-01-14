@@ -51,9 +51,11 @@ if(isset($_POST["atualizaDados"]))
     $idPj = $_POST['atualizaDados'];
     $nivel = $_POST['nivel'];
     $linguagem = $_POST['linguagem'];
+    $sublinguagem = $_POST['sublinguagem'];
 
     $sql_atualiza_dados = "UPDATE `oficina_dados` SET
                            `oficina_linguagem_id` = '$linguagem',
+                           `oficina_sublinguagem_id` = '$sublinguagem',
                            `oficina_nivel_id` = '$nivel'
                            WHERE `id` = '$idDados'";
 
