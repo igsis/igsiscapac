@@ -27,9 +27,10 @@ if(isset($_POST['cadastraDados']))
     $idPj = $_POST['cadastraDados'];
     $nivel = $_POST['nivel'];
     $linguagem = $_POST['linguagem'];
+    $sublinguagem = $_POST['sublinguagem'];
 
-    $sql_insere_dados = "INSERT INTO `oficina_dados` (`tipoPessoa`, `idPessoa`, `oficina_linguagem_id`, `oficina_nivel_id`)
-                          VALUES ('$tipoPessoa', '$idPj', '$linguagem', '$nivel')";
+    $sql_insere_dados = "INSERT INTO `oficina_dados` (`tipoPessoa`, `idPessoa`, `oficina_linguagem_id`, `oficina_sublinguagem_id`, `oficina_nivel_id`)
+                          VALUES ('$tipoPessoa', '$idPj', '$linguagem', '$sublinguagem', '$nivel')";
 
     if (mysqli_query($con,$sql_insere_dados))
     {

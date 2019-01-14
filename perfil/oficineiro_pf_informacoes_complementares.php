@@ -27,7 +27,7 @@ if(isset($_POST['cadastraDados']))
 	$idPf = $_POST['cadastraDados'];
 	$nivel = $_POST['nivel'];
 	$linguagem = $_POST['linguagem'];
-  $sublinguagem = $_POST['sublinguagem'];
+    $sublinguagem = $_POST['sublinguagem'];
 
 	$sql_insere_dados = "INSERT INTO `oficina_dados` (`tipoPessoa`, `idPessoa`, `oficina_linguagem_id`, `oficina_sublinguagem_id`, `oficina_nivel_id`)
                           VALUES ('$tipoPessoa', '$idPf', '$linguagem', '$sublinguagem', '$nivel')";
