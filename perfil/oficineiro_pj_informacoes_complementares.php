@@ -321,7 +321,7 @@ if ($cadastra)
 
         for (const sublinguagem of sublinguagens) {
           if(selectedId == sublinguagem.id){
-            $('#sublinguagem').append(`<option value='${sublinguagem.id}' select>${sublinguagem.sublinguagem}</option>`).focus();;
+            $('#sublinguagem').append(`<option value='${sublinguagem.id}' selected>${sublinguagem.sublinguagem}</option>`).focus();;
           }else{
             $('#sublinguagem').append(`<option value='${sublinguagem.id}'>${sublinguagem.sublinguagem}</option>`).focus();;
           }
