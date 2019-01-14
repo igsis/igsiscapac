@@ -298,6 +298,7 @@ if(isset($_POST['enviar']))
                 <!-- Início de Detalhes -->
                 <div class="left">
                     <p align="justify"><br><br><br><br><br><br><strong>Tipo de evento:</strong> <?php echo $tipoEvento['tipoEvento'] ?></p>
+                    <p align="justify"><strong>Nome da Oficina:</strong> <?php echo $evento['nomeEvento'] ?></p>
                     <p align="justify"><strong>Faixa Etária:</strong> <?php echo $faixaEtaria['faixaEtaria'] ?></p>
                     <p align="justify"><strong>Sinopse:</strong> <?php echo $evento['sinopse'] ?></p>
                     <p align="justify"><strong>Links:</strong> <?php echo $evento['link'] ?></p>
