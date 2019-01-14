@@ -50,7 +50,7 @@ if(isset($_POST["enviar"]))
                             {
                                 $mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
                                 gravarLog($sql_insere_arquivo);
-                                echo '<script>window.location = "?perfil=arquivos_dados_bancarios_pj"</script>';
+                                echo '<script>window.location = "?perfil=oficineiro_pj_arquivos_dados_bancarios"</script>';
                             }
                             else
                             {
@@ -63,7 +63,7 @@ if(isset($_POST["enviar"]))
                                     {
                                         $mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
                                         gravarLog($sql_insere_arquivo);
-                                        echo '<script>window.location = "?perfil=arquivos_dados_bancarios_pj"</script>';
+                                        echo '<script>window.location = "?perfil=oficineiro_pj_arquivos_dados_bancarios"</script>';
                                     }
                                     else{
                                         echo "<script>alert('Houve um erro durante o processamento do arquivo, entre em contato com os administradores do sistema')</script>";
