@@ -12,13 +12,13 @@ $nivel = recuperaDados('oficina_niveis', 'id', $dados['oficina_nivel_id']);
 $linguagem = recuperaDados('oficina_linguagens', 'id', $dados['oficina_linguagem_id']);
 $sublinguagem = recuperaDados('oficina_sublinguagens', 'id', $dados['oficina_sublinguagem_id']);
 
+
 function recuperaBanco($campoY)
 {
 	$banco = recuperaDados("banco","id",$campoY);
 	$nomeBanco = $banco['banco'];
 	return $nomeBanco;
 }
-
 
 function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '1')
 {
@@ -176,7 +176,7 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '1')
         <div class="form-group">
             <div class="col-md-offset-2 col-md-2">
                 <form class="form-horizontal" role="form" action="?perfil=oficineiro_pf_anexos" method="post">
-                    <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
+                    <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
                 </form>
             </div>
             <div class="col-md-offset-4 col-md-2">

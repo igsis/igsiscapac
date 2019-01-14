@@ -205,49 +205,52 @@ if($evento['contratacao'] != 3)
         }
 
     }
-    # Pessoa física
-    $pf = recuperaDados("pessoa_fisica","id",$evento['idPf']);
-    if($pf['nome'] == NULL)
+    elseif ($tipoPessoa = 4)
     {
-        $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_informacoes_iniciais'>Nome do artista</a><br/>";
-        $i = 1;
-    }
-    if($pf['nomeArtistico'] == NULL)
-    {
-        $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_informacoes_iniciais'>Nome Artístico</a><br/>";
-        $i = 1;
-    }
-    if($pf['rg'] == NULL)
-    {
-        $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_informacoes_iniciais'>RG do artista</a><br/>";
-        $i = 1;
-    }
-    if($pf['cpf'] == NULL)
-    {
-        $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_informacoes_iniciais'>CPF do artista</a><br/>";
-        $i = 1;
-    }
-    if($pf['telefone1'] == NULL)
-    {
-        $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_informacoes_iniciais'>Telefone do artista</a><br/>";
-        $i = 1;
-    }
-    if($pf['email'] == NULL)
-    {
-        $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_informacoes_iniciais'>E-mail do artista</a><br/>";
-        $i = 1;
-    }
-    if($tipoPessoa == 1)
-    {
-        if($pf['cep'] == NULL)
+        # Pessoa física
+        $pf = recuperaDados("pessoa_fisica","id",$evento['idPf']);
+        if($pf['nome'] == NULL)
         {
-            $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_endereco'>CEP do artista</a><br/>";
+            $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_informacoes_iniciais'>Nome do artista</a><br/>";
             $i = 1;
         }
-        if($pf['numero'] == NULL)
+        if($pf['nomeArtistico'] == NULL)
         {
-            $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_endereco'>Número do endereço do artista</a><br/>";
+            $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_informacoes_iniciais'>Nome Artístico</a><br/>";
             $i = 1;
+        }
+        if($pf['rg'] == NULL)
+        {
+            $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_informacoes_iniciais'>RG do artista</a><br/>";
+            $i = 1;
+        }
+        if($pf['cpf'] == NULL)
+        {
+            $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_informacoes_iniciais'>CPF do artista</a><br/>";
+            $i = 1;
+        }
+        if($pf['telefone1'] == NULL)
+        {
+            $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_informacoes_iniciais'>Telefone do artista</a><br/>";
+            $i = 1;
+        }
+        if($pf['email'] == NULL)
+        {
+            $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_informacoes_iniciais'>E-mail do artista</a><br/>";
+            $i = 1;
+        }
+        if($tipoPessoa == 4)
+        {
+            if($pf['cep'] == NULL)
+            {
+                $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_endereco'>CEP do artista</a><br/>";
+                $i = 1;
+            }
+            if($pf['numero'] == NULL)
+            {
+                $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_endereco'>Número do endereço do artista</a><br/>";
+                $i = 1;
+            }
         }
     }
 }
