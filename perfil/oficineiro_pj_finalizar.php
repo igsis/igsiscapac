@@ -10,6 +10,7 @@ $idDados = recuperaIdDadosOficineiro($tipoPessoa, $idPj);
 $dados = recuperaDados('oficina_dados', 'id', $idDados);
 $nivel = recuperaDados('oficina_niveis', 'id', $dados['oficina_nivel_id']);
 $linguagem = recuperaDados('oficina_linguagens', 'id', $dados['oficina_linguagem_id']);
+$sublinguagem = recuperaDados('oficina_linguagens', 'id', $dados['oficina_sublinguagem_id']);
 $modalidade = recuperaDados('modalidades', 'id', $dados['modalidade_id']);
 
 function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '2')
@@ -181,6 +182,7 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '2')
                 <div class = "page-header"><h5>Informações Complementares: </h5><br></div>
                 <div class="well">
                     <p align="justify"><strong>Linguagem:</strong> <?php echo $linguagem['linguagem']; ?></p>
+                    <p align="justify"><strong>Sub-Linguagem:</strong> <?php echo $sublinguagem['sublinguagem']; ?></p>
                     <p align="justify"><strong>Nível:</strong> <?php echo $nivel['nivel']; ?></p>
                     <p align="justify"><strong>Banco:</strong> <?php echo $pj['codigoBanco']; ?></p>
                     <p align="justify"><strong>Agência:</strong> <?php echo $pj['agencia']; ?></p>
