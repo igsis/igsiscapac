@@ -124,11 +124,11 @@ $dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
                         <div class="row">
                             <div class="col-md-offset-2 col-md-4">
                                 <label for="datepicker01">Data de Inicio *:</label>
-                                <input class="form-control" type="text" name="dataInicio" id="datepicker01" value="<?= exibirDataBr($dadosOficineiro['dataInicio']) ?>">
+                                <input class="form-control" type="text" name="dataInicio" id="datepicker01" value="<?= ($dadosOficineiro['dataInicio'] == null) ? "" : exibirDataBr($dadosOficineiro['dataInicio']) ?>">
                             </div>
                             <div class="col-md-4">
                                 <label for="datepicker02">Data de Fim *:</label>
-                                <input class="form-control" type="text" name="dataFim" id="datepicker02" value="<?= exibirDataBr($dadosOficineiro['dataFim']) ?>">
+                                <input class="form-control" type="text" name="dataFim" id="datepicker02" value="<?= ($dadosOficineiro['dataFim'] == null) ? "" : exibirDataBr($dadosOficineiro['dataFim']) ?>">
                             </div>
                         </div>
                     </div>
