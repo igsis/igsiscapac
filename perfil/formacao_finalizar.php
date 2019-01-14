@@ -214,7 +214,7 @@ function listaArquivoCamposMultiplos1($idPessoa, $tipoPessoa = 6)
             </div>
 
             <div class="alert alert-warning ">
-                <strong>Complete seu cadastro no formulário "Anexo III": </strong> <!--<a href="#">######</a>-->
+            <strong>Complete seu cadastro no formulário "Cadastro de Preferências": </strong> <a href="https://editaisformacaosmc.wixsite.com/2019/cadastro-de-preferencias">Clique Aqui!</a>
             </div>
             <?php } ?>
 
