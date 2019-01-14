@@ -6,7 +6,6 @@ $faixaEtaria = recuperaDados("faixa_etaria","id",$evento['idFaixaEtaria']);
 $tipoPessoa = recuperaDados("tipo_pessoa","id",$evento['idTipoPessoa']);
 $pessoaJuridica = recuperaDados("pessoa_juridica","id",$evento['idPj']);
 $representante1 = recuperaDados("representante_legal","id",$pessoaJuridica['idRepresentanteLegal1']);
-$representante2 = recuperaDados("representante_legal","id",$pessoaJuridica['idRepresentanteLegal2']);
 $pessoaFisica = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 $bool = false;
 $mensagem = "";
@@ -142,22 +141,22 @@ function listaArquivosComProd($idEvento)
 $i = 0;
 if($evento['nomeEvento'] == NULL)
 {
-    $mensagem = "<a href='index.php?perfil=evento_edicao'>Nome do evento</a><br/>";
+    $mensagem = "<a href='index.php?perfil=oficina_edicao'>Nome do evento</a><br/>";
     $i = 1;
 }
 if($evento['idTipoEvento'] == NULL)
 {
-    $mensagem = $mensagem."<a href='index.php?perfil=evento_edicao'>Tipo de evento</a><br/>";
+    $mensagem = $mensagem."<a href='index.php?perfil=oficina_edicao'>Tipo de evento</a><br/>";
     $i = 1;
 }
 if($evento['idFaixaEtaria'] == NULL OR $evento['idFaixaEtaria'] == 0)
 {
-    $mensagem = $mensagem."<a href='index.php?perfil=evento_edicao'>Faixa Etária</a><br/>";
+    $mensagem = $mensagem."<a href='index.php?perfil=oficina_edicao'>Faixa Etária</a><br/>";
     $i = 1;
 }
 if($evento['sinopse'] == NULL)
 {
-    $mensagem = $mensagem."<a href='index.php?perfil=evento_edicao'>Sinopse</a><br/>";
+    $mensagem = $mensagem."<a href='index.php?perfil=oficina_edicao'>Sinopse</a><br/>";
     $i = 1;
 }
 
@@ -166,42 +165,42 @@ $idTipoPessoa = $evento['idTipoPessoa'];
 if($evento['contratacao'] != 3)
 {
 
-    if($idTipoPessoa == 2)
+    if($idTipoPessoa == 5)
     {
         $pj = recuperaDados("pessoa_juridica","id",$evento['idPj']);
         if($pj['razaoSocial'] == NULL)
         {
-            $mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pj'>Razão Social</a><br/>";
+            $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pj_informacoes_iniciais'>Razão Social</a><br/>";
             $i = 1;
         }
         if($pj['cnpj'] == NULL)
         {
-            $mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pj'>CNPJ</a><br/>";
+            $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pj_informacoes_iniciais'>CNPJ</a><br/>";
             $i = 1;
         }
         if($pj['telefone1'] == NULL)
         {
-            $mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pj'>Celular da empresa</a><br/>";
+            $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pj_informacoes_iniciais'>Celular da empresa</a><br/>";
             $i = 1;
         }
         if($pj['email'] == NULL)
         {
-            $mensagem = $mensagem."<a href='index.php?perfil=informacoes_iniciais_pj'>E-mail da empresa</a><br/>";
+            $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pj_informacoes_iniciais'>E-mail da empresa</a><br/>";
             $i = 1;
         }
         if($pj['cep'] == NULL)
         {
-            $mensagem = $mensagem."<a href='index.php?perfil=endereco_pj'>CEP da empresa</a><br/>";
+            $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pj_endereco'>CEP da empresa</a><br/>";
             $i = 1;
         }
         if($pj['numero'] == NULL)
         {
-            $mensagem = $mensagem."<a href='index.php?perfil=endereco_pj'>Número do endereço da empresa</a><br/>";
+            $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pj_endereco'>Número do endereço da empresa</a><br/>";
             $i = 1;
         }
         if($pj['idRepresentanteLegal1'] == NULL)
         {
-            $mensagem = $mensagem."<a href='index.php?perfil=representante1_pj'>Representante legal 1</a><br/>";
+            $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pj_representante'>Representante legal</a><br/>";
             $i = 1;
         }
 
@@ -210,44 +209,44 @@ if($evento['contratacao'] != 3)
     $pf = recuperaDados("pessoa_fisica","id",$evento['idPf']);
     if($pf['nome'] == NULL)
     {
-        $mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>Nome do artista</a><br/>";
+        $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_informacoes_iniciais'>Nome do artista</a><br/>";
         $i = 1;
     }
     if($pf['nomeArtistico'] == NULL)
     {
-        $mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>Nome Artístico</a><br/>";
+        $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_informacoes_iniciais'>Nome Artístico</a><br/>";
         $i = 1;
     }
     if($pf['rg'] == NULL)
     {
-        $mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>RG do artista</a><br/>";
+        $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_informacoes_iniciais'>RG do artista</a><br/>";
         $i = 1;
     }
     if($pf['cpf'] == NULL)
     {
-        $mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>CPF do artista</a><br/>";
+        $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_informacoes_iniciais'>CPF do artista</a><br/>";
         $i = 1;
     }
     if($pf['telefone1'] == NULL)
     {
-        $mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>Telefone do artista</a><br/>";
+        $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_informacoes_iniciais'>Telefone do artista</a><br/>";
         $i = 1;
     }
     if($pf['email'] == NULL)
     {
-        $mensagem = $mensagem."<a href='index.php?perfil=artista_pj_cadastro'>E-mail do artista</a><br/>";
+        $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_informacoes_iniciais'>E-mail do artista</a><br/>";
         $i = 1;
     }
     if($tipoPessoa == 1)
     {
         if($pf['cep'] == NULL)
         {
-            $mensagem = $mensagem."<a href='index.php?perfil=endereco_pf'>CEP do artista</a><br/>";
+            $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_endereco'>CEP do artista</a><br/>";
             $i = 1;
         }
         if($pf['numero'] == NULL)
         {
-            $mensagem = $mensagem."<a href='index.php?perfil=endereco_pf'>Número do endereço do artista</a><br/>";
+            $mensagem = $mensagem."<a href='index.php?perfil=oficineiro_pf_endereco'>Número do endereço do artista</a><br/>";
             $i = 1;
         }
     }
@@ -313,7 +312,7 @@ if(isset($_POST['enviar']))
                         <p align="justify"><strong>Tipo:</strong> <?php echo $tipoPessoa['tipoPessoa'] ?></p>
                         <br/>
                         <?php
-                        if($evento['idTipoPessoa'] == 2)
+                        if($evento['idTipoPessoa'] == 5)
                         {
                             ?>
                             <p align="justify"><strong>Razão Social:</strong> <?php echo $pessoaJuridica['razaoSocial'] ?></p>
@@ -330,18 +329,7 @@ if(isset($_POST['enviar']))
                             <p align="justify"><strong>RG/RNE/PASSAPORTE:</strong> <?php echo $representante1['rg'] ?></p>
                             <p align="justify"><strong>CPF:</strong> <?php echo $representante1['cpf'] ?></p>
                             <br/>
-                            <?php
-                            if($representante2 != NULL)
-                            {
-                                ?>
-                                <p align="justify"><strong>REPRESENTANTE LEGAL #2</strong></p>
-                                <p align="justify"><strong>Nome:</strong> <?php echo $representante2['nome'] ?></p>
-                                <p align="justify"><strong>RG/RNE/PASSAPORTE:</strong> <?php echo $representante2['rg'] ?></p>
-                                <p align="justify"><strong>CPF:</strong> <?php echo $representante2['cpf'] ?></p>
-                                <br/>
-                                <?php
-                            }
-                            ?>
+
                             <p align="justify"><strong>Banco:</strong> <?php echo recuperaBanco($pessoaJuridica['codigoBanco']) ?></p>
                             <p align="justify"><strong>Agência:</strong> <?php echo $pessoaJuridica['agencia'] ?></p>
                             <p align="justify"><strong>Conta:</strong> <?php echo $pessoaJuridica['conta'] ?></p>
@@ -351,7 +339,7 @@ if(isset($_POST['enviar']))
                         }
                         ?>
 
-                        <p align="justify"><strong>ARTISTA</strong></p>
+                        <p align="justify"><strong>OFICINEIRO</strong></p>
                         <p align="justify"><strong>Nome:</strong> <?php echo $pessoaFisica['nome'] ?></p>
                         <p align="justify"><strong>Nome Artístico:</strong> <?php echo $pessoaFisica['nomeArtistico'] ?></p>
                         <p align="justify"><strong>RG/RNE/PASSAPORTE:</strong> <?php echo $pessoaFisica['rg'] ?></p>
@@ -360,7 +348,7 @@ if(isset($_POST['enviar']))
                         <p align="justify"><strong>E-mail:</strong> <?php echo $pessoaFisica['email'] ?></p>
                         <p align="justify"><strong>DRT:</strong> <?php echo $pessoaFisica['drt'] ?></p>
                         <?php
-                        if($evento['idTipoPessoa'] == 1)
+                        if($evento['idTipoPessoa'] == 4)
                         {
                             ?>
                             <p align="justify"><strong>Data de Nascimento:</strong> <?php echo exibirDataBr($pessoaFisica['dataNascimento']) ?></p>
