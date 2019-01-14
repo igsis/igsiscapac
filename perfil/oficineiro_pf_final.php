@@ -10,7 +10,7 @@ $idDados = recuperaIdDadosOficineiro($tipoPessoa, $idPf);
 $dados = recuperaDados('oficina_dados', 'id', $idDados);
 $nivel = recuperaDados('oficina_niveis', 'id', $dados['oficina_nivel_id']);
 $linguagem = recuperaDados('oficina_linguagens', 'id', $dados['oficina_linguagem_id']);
-$sublinguagem = recuperaDados('oficina_linguagens', 'id', $dados['oficina_sublinguagem_id']);
+$sublinguagem = recuperaDados('oficina_sublinguagens', 'id', $dados['oficina_sublinguagem_id']);
 
 function recuperaBanco($campoY)
 {
