@@ -252,7 +252,7 @@ $evento_pj = recuperaDados("evento","id",$evento);
         <div class="form-group">
 
             <div class="col-md-offset-2 col-md-2">
-                <form class="form-horizontal" role="form" action="?perfil=oficinas_cronograma" method="post">
+                <form class="form-horizontal" role="form" action="?perfil=oficineiro_pj_arquivos_dados_bancarios" method="post">
                     <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPj ?>">
                 </form>
             </div>
