@@ -400,8 +400,8 @@ function geraCronogramaOficina($idModalidade)
     }
 }
 
-//header("Content-type: application/vnd.ms-word");
-//header("Content-Disposition: attachment;Filename=cronograma-oficinas.doc");
+header("Content-type: application/vnd.ms-word");
+header("Content-Disposition: attachment;Filename=cronograma-oficinas.doc");
 setlocale(LC_TIME, 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
 
