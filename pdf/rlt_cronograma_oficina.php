@@ -435,9 +435,9 @@ date_default_timezone_set('America/Sao_Paulo');
             <p><strong>Período: </strong><?= exibirDataBr($dados['dataInicio']) ?> a <?= exibirDataBr($dados['dataFim']) ?></p>
             <p><strong>Dias da Semana: </strong> <?= implode(', ', $diasSemana) ?></p>
             <p><strong>Horário: </strong>_________________</p>
-            <p><strong>Carga Horária Total: </strong></p>
-            <p><strong>Local / Equipamento: _________________</strong></p>
-            <p><strong>Público: _________________</strong></p>
+            <p><strong>Carga Horária Total: </strong>____ Horas</p>
+            <p><strong>Local / Equipamento: </strong>_________________</p>
+            <p><strong>Público: </strong>_________________</p>
             <p><strong>Nível: </strong><?= $nivel['nivel'] ?></p>
 
             <?php geraCronogramaOficina($idModalidade) ?>
