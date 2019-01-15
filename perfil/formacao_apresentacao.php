@@ -73,7 +73,7 @@ $idUser= $_SESSION['idUser'];
                             </ul>
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-success"><b>Demais Anexos (Upload de arquivo em formato PDF)</b></li>
-                                <li class="list-group-item">Anexos de II a IV</li>
+                                <li class="list-group-item">Anexos de III a V</li>
                                 <li class="list-group-item">Currículo</li>
                                 <?php
                                     $comprovantes = [
