@@ -18,7 +18,6 @@ unset($_SESSION['menu']);
 					<div class="col-md-offset-2 col-md-8">
 						<div class="alert alert-danger">
 							<h5><font color="red">ATENÇÃO!</font></h5>
-							<p><font color="red">Para gerar o código do CAPAC é necessário preencher a área de EVENTO.</font></p>
 							<p>A utilização de mais de uma aba ou janela do mesmo navegador para inserção ou edição dos dados pode causar perda de informações.</p>
 						</div>
 						<?php
