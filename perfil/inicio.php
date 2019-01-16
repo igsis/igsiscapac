@@ -44,11 +44,11 @@ unset($_SESSION['menu']);
                         </div>
                         <br>
                         <p>Aqui são inseridas as informações sobre os Oficineiros e sobre as Oficinas que serão executadas.</p>
-						<a href="?perfil=evento_apresentacao_oficinas" class="btn btn-theme btn-lg btn-block">OFICINAS</a>
+						<a href="?perfil=evento_apresentacao_oficinas" class="btn btn-theme btn-lg btn-block">OFICINAS - CASAS DE CULTURA</a>
 						<br />
                         <?php if($formacao['situacao'] == 1) { ?>
                             <p>Aqui são inseridas os dados para inscrição às vagas dos Editais dos Programas da Supervisão de Formação (Vocacional / PIA).</p>
-                            <a href="?perfil=formacao_apresentacao" class="btn btn-theme btn-lg btn-block">FORMAÇÃO</a>
+                            <a href="?perfil=formacao_apresentacao" class="btn btn-theme btn-lg btn-block">FORMAÇÃO - PIÁ e VOCACIONAL</a>
                             <br />
 						<?php
                         }
