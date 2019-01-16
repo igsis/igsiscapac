@@ -7,7 +7,12 @@ session_start();
 $con = bancoMysqli();
 
 $idModalidade = $_POST['modalidade'];
+$idOficina = $_POST['idOficina'];
 $tabela = ($_POST['tipoPessoa'] == 4) ? "pessoa_fisica" : "pessoa_juridica";
+$dataInicio = exibirDataMysql($_POST['dataInicio']);
+$dataFim = exibirDataMysql($_POST['dataFim']);
+$dia1 = $_POST['dia1'];
+$dia2 = $_POST['dia2'];
 
 $modalidade = recuperaDados('modalidades', 'id', $idModalidade);
 $oficineiro = recuperaDados($tabela, 'id', $_POST['id']);
@@ -23,14 +28,14 @@ else
     $documento = $representante['rg'];
 }
 
-$nomeOficina = addslashes($_POST['nomeOficina']);
-$sinopseOficina = addslashes($_POST['sinopseOficina']);
-
 $idDados = $_POST['idDadosOficineiro'];
 $sql_dados = "UPDATE `oficina_dados` SET 
                 `modalidade_id` = '$idModalidade',
-                `nomeOficina` = '$nomeOficina',
-                `sinopseOficina` = '$sinopseOficina'
+                `idOficina` = '$idOficina',
+                `dataInicio` = '$dataInicio',
+                `dataFim` = '$dataFim',
+                `dia1` = '$dia1',
+                `dia2` = '$dia2'
               WHERE `id` = '$idDados'";
 $query = $con->query($sql_dados);
 if ($query)
@@ -38,10 +43,19 @@ if ($query)
     gravarLog($sql_dados);
 }
 
+$oficina = recuperaDados('evento', 'id', $idOficina);
+
 $dados = recuperaDados('oficina_dados', 'id', $idDados);
 $linguagem = recuperaDados('oficina_linguagens', 'id', $dados['oficina_linguagem_id']);
 $nivel = recuperaDados('oficina_niveis', 'id', $dados['oficina_nivel_id']);
 $subLinguagem = recuperaDados('oficina_sublinguagens', 'id', $dados['oficina_sublinguagem_id']);
+$dia1 = recuperaDados('dia_semanas', 'id', $dados['dia1']);
+$diasSemana = [$dia1['dia']];
+if ($dados['dia2'] != 0)
+{
+    $dia2 = recuperaDados('dia_semanas', 'id', $dados['dia2']);
+    array_push($diasSemana, $dia2['dia']);
+}
 
 function geraCronogramaOficina($idModalidade)
 {
@@ -411,19 +425,19 @@ date_default_timezone_set('America/Sao_Paulo');
             <p style="text-align: justify">O presente projeto de Oficina foi selecionado a partir do <strong>EDITAL DE
                     CREDENCIAMENTO Nº 02 /2018 – SMC/GAB</strong>, o qual credenciou projetos de artistas e outros
                 profissionais interessados em realizar oficinas em equipamentos da Secretaria Municipal de Cultura.</p>
-            <p style="text-align: justify">O(a) contratado(a) executará o projeto de oficina <strong><?= $dados['nomeOficina'] ?></strong>, nos exatos
+            <p style="text-align: justify">O(a) contratado(a) executará o projeto de oficina <strong><?= $oficina['nomeEvento'] ?></strong>, nos exatos
                 termos de sua proposta apresentada na ocasião de sua inscrição para o referido Edital.</p>
 
             <p>&nbsp;</p>
 
             <p><strong>Nome do Oficineiro: </strong><?= $nome ?></p>
             <p><strong>Linguagem Artística e Cultural: </strong><?= $linguagem['linguagem'] ?> - <?= $subLinguagem['sublinguagem'] ?></p>
-            <p><strong>Período: </strong>__/__/____ a __/__/____</p>
-            <p><strong>Dias da Semana: </strong></p>
-            <p><strong>Horário: </strong></p>
-            <p><strong>Carga Horária Total: </strong></p>
-            <p><strong>Local / Equipamento: </strong></p>
-            <p><strong>Público: </strong></p>
+            <p><strong>Período: </strong><?= exibirDataBr($dados['dataInicio']) ?> a <?= exibirDataBr($dados['dataFim']) ?></p>
+            <p><strong>Dias da Semana: </strong> <?= implode(', ', $diasSemana) ?></p>
+            <p><strong>Horário: </strong>_________________</p>
+            <p><strong>Carga Horária Total: </strong>____ Horas</p>
+            <p><strong>Local / Equipamento: </strong>_________________</p>
+            <p><strong>Público: </strong>_________________</p>
             <p><strong>Nível: </strong><?= $nivel['nivel'] ?></p>
 
             <?php geraCronogramaOficina($idModalidade) ?>

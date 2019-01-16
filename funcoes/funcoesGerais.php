@@ -1175,7 +1175,7 @@ function validaEmail($email)
 	}
 }
 
-function listaArquivos($idEvento)
+function listaArquivos($idEvento, $action = "arquivos_com_prod")
 {
 	//lista arquivos de determinado evento
 	$con = bancoMysqli();
@@ -1196,7 +1196,7 @@ function listaArquivos($idEvento)
 		echo "<td class='list_description'><a href='../uploads/".$campo['arquivo']."' target='_blank'>".$campo['arquivo']."</a></td>";
 		echo "
 			<td class='list_description'>
-				<form id='apagarArq' method='POST' action='?perfil=arquivos_com_prod'>
+				<form id='apagarArq' method='POST' action='?perfil=$action'>
 					<input type='hidden' name='apagar' value='".$campo['id']."' />
 					<button class='btn btn-theme' type='button' data-toggle='modal' data-target='#confirmApagar' data-title='Excluir Arquivo?' data-message='Desejar realmente excluir o arquivo ".$campo['arquivo']."?'>Apagar
 					</button></td></form>"	;

@@ -1,6 +1,7 @@
 <?php
 
 $con = bancoMysqli();
+$idOficina = $_SESSION['idEvento'];
 
 if (isset($_SESSION['idPf']))
 {
@@ -98,29 +99,15 @@ $dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
 
 <section id="list_items" class="home-section bg-white">
     <div class="container">
-        <?php include 'includes/menu_oficinas.php'; ?>
+        <?php include 'includes/oficina_menu_evento.php'; ?>
         <div class="form-group">
             <h3>Cronograma de Oficinas</h3>
-            <p><b>Nome:</b> <?= ($tipoPessoa == 4) ? $pessoa['nome'] : $pessoa['razaoSocial']; ?></p>
             <h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
         </div>
         <div class="row">
             <div class="col-md-offset-1 col-md-10">
                 <form name="form1" class="form-horizontal" role="form" action="../pdf/rlt_cronograma_oficina.php" method="post" target="_blank">
 
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-8">
-                            <label for="nomeOficina">Nome da Oficina: *:</label>
-                            <input type="text" class="form-control" name="nomeOficina" id="nomeOficina" maxlength="240" value="<?= $dadosOficineiro['nomeOficina'] ?>" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-8">
-                            <label for="sinopseOficina">Sinopse *</label>
-                            <p><label>Esse campo deve conter uma breve descrição da oficina que será apresentada.</i></strong></label></p>
-                            <textarea id="sinopseOficina" name="sinopseOficina" class="form-control" rows="10" required><?= $dadosOficineiro['sinopseOficina'] ?></textarea>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
                             <label for="modalidade">Modalidade *:</label> <button class='btn btn-default btn-sm' type='button' data-toggle='modal' data-target='#infoModalidade' style="border-radius: 15px;"><i class="fa fa-question-circle"></i></button>
@@ -130,10 +117,48 @@ $dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
                             </select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label>Período</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-4">
+                                <label for="datepicker01">Data de Inicio *:</label>
+                                <input class="form-control" type="text" name="dataInicio" id="datepicker01" value="<?= ($dadosOficineiro['dataInicio'] == null) ? "" : exibirDataBr($dadosOficineiro['dataInicio']) ?>">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="datepicker02">Data de Fim *:</label>
+                                <input class="form-control" type="text" name="dataFim" id="datepicker02" value="<?= ($dadosOficineiro['dataFim'] == null) ? "" : exibirDataBr($dadosOficineiro['dataFim']) ?>">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <label>Dias de Execução</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-4">
+                                <label>Dia 1 *:</label>
+                                <select class="form-control " name="dia1" id="dia1" required>
+                                    <option value="">Selecione...</option>
+                                    <?php geraOpcao('dia_semanas', $dadosOficineiro['dia1']) ?>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Dia 2:</label>
+                                <select class="form-control" name="dia2" id="dia2">
+                                    <option value="">Selecione...</option>
+                                    <?php geraOpcao('dia_semanas', $dadosOficineiro['dia2']) ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
                             <input type="hidden" name="gerarCronograma">
+                            <input type="hidden" name="idOficina" value="<?= $idOficina ?>">
                             <input type="hidden" name="id" value="<?= $id ?>">
                             <input type="hidden" name="tipoPessoa" value="<?= $tipoPessoa ?>">
                             <input type="hidden" name="idDadosOficineiro" value="<?= $dadosOficineiro['id'] ?>">
@@ -161,7 +186,7 @@ $dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
                                     </tr>
                                     <?php
                                     if(verificaArquivosExistentesPF($id,$idCampo, $tipoPessoa)){
-                                        echo '<div class="alert alert-success">O arquivo Cronograma de Oficinas foi enviado.</div> ';
+                                        echo '<div class="alert alert-success">O arquivo Cronograma de oficinas foi enviado.</div> ';
                                     }
                                     else{
                                         $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idCampo'";
@@ -253,12 +278,12 @@ $dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
                 <!-- Botão para Voltar e Prosseguir -->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-2">
-                        <form class="form-horizontal" role="form" action="<?= ($tipoPessoa == 4) ? "?perfil=oficineiro_pf_arquivos_dados_bancarios" : "?perfil=oficineiro_pj_arquivos_dados_bancarios"?>" method="post">
+                        <form class="form-horizontal" role="form" action="?perfil=oficinas/oficina_edicao" method="post">
                             <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $id ?>">
                         </form>
                     </div>
                     <div class="col-md-offset-4 col-md-2">
-                        <form class="form-horizontal" role="form" action="<?= ($tipoPessoa == 4) ? "?perfil=oficineiro_pf_anexos" : "?perfil=oficineiro_pj_demais_anexos"?>" method="post">
+                        <form class="form-horizontal" role="form" action="?perfil=oficinas/oficina_arquivos_com_prod" method="post">
                             <input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $id ?>">
                         </form>
                     </div>

@@ -12,13 +12,13 @@ $nivel = recuperaDados('oficina_niveis', 'id', $dados['oficina_nivel_id']);
 $linguagem = recuperaDados('oficina_linguagens', 'id', $dados['oficina_linguagem_id']);
 $sublinguagem = recuperaDados('oficina_sublinguagens', 'id', $dados['oficina_sublinguagem_id']);
 
+
 function recuperaBanco($campoY)
 {
 	$banco = recuperaDados("banco","id",$campoY);
 	$nomeBanco = $banco['banco'];
 	return $nomeBanco;
 }
-
 
 function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '1')
 {
@@ -123,18 +123,15 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '1')
 	<div class="container">
         <?php include 'includes/menu_oficinas.php'; ?>
 		<div class="form-group">
-			<h4>Finalizar</h4>
+			<h4>Confirmação dos Dados</h4>
             <p>
                 <strong>
                     <span style="color: green;">
-                        Todos os campos obrigatórios foram preenchidos corretamente.<br/>
-                        Seu cadastro de Pessoa Física foi concluído com sucesso!<br>
+                        Seu cadastro de Oficineiro Pessoa Física foi concluído!<br>
+                        Avance para cadastrar a Oficina que será realizada!<br>
                     </span>
                 </strong>
             </p><br>
-            <div class="alert alert-success ">
-                Seu Código de Cadastro é <strong>4-<?= $pf['id'] ?></strong>
-            </div>
 	<div class="container">
 		 <div class = "page-header"> <h5>Informações Pessoais</h5><br></div>
 		 <div class="well">
@@ -175,6 +172,19 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '1')
 
         <div class="table-responsive list_info"><h6>Arquivo(s) de Pessoa Física</h6>
             <?php listaArquivoCamposMultiplos1($pf['id'],1, $tipoPessoa); ?>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-2">
+                <form class="form-horizontal" role="form" action="?perfil=oficineiro_pf_anexos" method="post">
+                    <input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
+                </form>
+            </div>
+            <div class="col-md-offset-4 col-md-2">
+                <form class="form-horizontal" role="form" action="?perfil=oficinas/oficinas" method="post">
+                    <input type="hidden" value="<?= $tipoPessoa ?>" name="tipoPessoa">
+                    <input type="submit" name="id" value="Avançar" class="btn btn-theme btn-lg btn-block">
+                </form>
+            </div>
         </div>
     </div>
 </section>

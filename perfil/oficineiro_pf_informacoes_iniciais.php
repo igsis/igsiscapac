@@ -43,6 +43,7 @@ if(isset($_POST['cadastrarFisica']))
 
 if(isset($_POST['atualizarFisica']))
 {
+    $oficineiro = 1;
     $nome = addslashes($_POST['nome']);
     $nomeArtistico = addslashes($_POST['nomeArtistico']);
     $idTipoDocumento = $_POST['idTipoDocumento'];
@@ -70,6 +71,8 @@ if(isset($_POST['atualizarFisica']))
 	`email` = '$email',
 	`dataNascimento` = '$dataNascimento',
 	`pis` = '$pis',
+    `oficineiro` = '$oficineiro',
+    `idUsuario` = '$idUser',
 	`dataAtualizacao` = '$dataAtualizacao'
 	WHERE `id` = '$idPf'";
 
