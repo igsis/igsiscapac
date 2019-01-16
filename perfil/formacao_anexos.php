@@ -117,11 +117,22 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
             <p><b>Nome:</b> <?php echo $pf['nome']; ?></p>
             <h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
         </div>
+                <!-- Links emissão de documentos -->
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-8">
+						<h6>Gerar Arquivo(s)</h6>
+						<p>Para gerar alguns dos arquivos online, utilize os links abaixo:</p>
+						<p align="justify">
+							<a href="https://editaisformacaosmc.wixsite.com/2019/anexos" target="_blank">Anexos III a V (arquivo único)</a><br />
+						</p>
+					</div>
+				</div>
 
                 <!-- Exibir arquivos -->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-8">
-                        <div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s)</h6>
+                        <div class="table-responsive list_info">
+                            <h6>Arquivo(s) Anexado(s)</h6>
                             <?php listaArquivoCamposMultiplos($idPf,$tipoPessoa,"","formacao_anexos",18); ?>
                         </div>
                     </div>
