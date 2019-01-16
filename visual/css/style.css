@@ -180,7 +180,7 @@ lista de informações
 ================================= */
 .lista-informacao{
 	margin-top: 10px;
-	margin-left: 5%;
+	margin-left: 8%;
 }
 
 @media screen and (max-width:600px){
@@ -193,7 +193,7 @@ lista de informações
 @media only screen and (min-width: 1367px) {
 	lista-informacao{
 		margin-top: 8px;
-		margin-left: 20%;
+		margin-left: 15%;
 	}
 }
 

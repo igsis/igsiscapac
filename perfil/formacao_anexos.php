@@ -122,7 +122,7 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 					<div class="col-md-offset-2 col-md-8">
 						<h6>Gerar Arquivo(s)</h6>
 						<p>Para gerar alguns dos arquivos online, utilize os links abaixo:</p>
-						<p align="justify">
+						<p align="center">
 							<a href="https://editaisformacaosmc.wixsite.com/2019/anexos" target="_blank">Anexos III a V (arquivo único)</a><br />
 						</p>
 					</div>
