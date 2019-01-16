@@ -61,6 +61,7 @@ if(isset($_POST['cadastrarJuridica']))
 
 if(isset($_POST['atualizarJuridica']))
 {
+    $oficineiro = 1;
     $razaoSocial = addslashes($_POST['razaoSocial']);
     $cnpj = $_POST['cnpj'];
     $ccm = $_POST['ccm'];
@@ -78,7 +79,9 @@ if(isset($_POST['atualizarJuridica']))
 	`telefone2` = '$telefone2',
 	`telefone3` = '$telefone3',
 	`email` = '$email',
-	`dataAtualizacao` = 'dataAtualizacao'
+    `oficineiro` = '$oficineiro',
+    `idUsuario` = '$idUser',
+	`dataAtualizacao` = '$dataAtualizacao'
 	WHERE `id` = '$idPj'";
 
     if(mysqli_query($con,$sql_atualiza_pj))

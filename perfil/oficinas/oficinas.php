@@ -7,11 +7,18 @@ if (isset($_SESSION['idPf']))
 {
     $id = $_SESSION['idPf'];
     $tabela = "pessoa_fisica";
+    $tipoPessoa = 4;
+    $idPf = $id;
+    $idPj = 0;
+
 }
 elseif (isset($_SESSION['idPj']))
 {
     $id = $_SESSION['idPj'];
     $tabela = "pessoa_juridica";
+    $tipoPessoa = 5;
+    $idPj = $id;
+    $idPf = 0;
 }
 
 unset($_SESSION['idEvento']);
@@ -33,6 +40,12 @@ if(isset($_POST['apagar']))
 
 $usuario = recuperaDados("usuario","id",$idUser);
 
+$sql = "SELECT * FROM evento
+							WHERE publicado > 0 AND `idTipoEvento` = '4' AND `idTipoPessoa` = '$tipoPessoa' AND `idPf` = '$idPf' AND `idPj` = '$idPj'
+							ORDER BY id DESC";
+$query = mysqli_query($con,$sql);
+$num = mysqli_num_rows($query);
+
 ?>
 <section id="list_items" class="home-section bg-white">
     <div class="container">
@@ -45,13 +58,33 @@ $usuario = recuperaDados("usuario","id",$idUser);
         </div>
         <div class="row">
             <div class="col-md-offset-1 col-md-10">
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-8">
-                        <form class="form-horizontal" role="form" action="?perfil=oficinas/oficina_novo" method="post">
-                            <input type="submit" value="Inserir nova oficina" class="btn btn-theme btn-lg btn-block">
-                        </form>
+                <?php
+                if ($num == 3)
+                {
+                ?>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8">
+                            <div class="alert alert-danger ">
+                                Envio máximo de 3 oficinas atingido
+                            </div>
+                        </div>
                     </div>
-                </div>
+                <?php
+                }
+                else
+                {
+                ?>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8">
+                            <form class="form-horizontal" role="form" action="?perfil=oficinas/oficina_novo" method="post">
+                                <input type="submit" value="Inserir nova oficina" class="btn btn-theme btn-lg btn-block">
+                            </form>
+                        </div>
+                    </div>
+                <?php
+                }
+                ?>
+
                 <br/>
             </div>
             <div class="form-group">
@@ -61,7 +94,7 @@ $usuario = recuperaDados("usuario","id",$idUser);
                 <div class="table-responsive list_info">
                     <?php
                     $sql = "SELECT * FROM evento
-							WHERE publicado > 0 AND idUsuario ='$idUser' AND `idTipoEvento` = '4'
+							WHERE publicado > 0 AND `idTipoEvento` = '4' AND `idTipoPessoa` = '$tipoPessoa' AND `idPf` = '$idPf' AND `idPj` = '$idPj'
 							ORDER BY id DESC";
                     $query = mysqli_query($con,$sql);
                     $num = mysqli_num_rows($query);

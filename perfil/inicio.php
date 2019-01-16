@@ -26,6 +26,10 @@ unset($_SESSION['menu']);
 							if($usr < 11)
 							{
 								echo "<a href='?perfil=busca_reset' class='btn btn-theme btn-lg btn-block'>Reiniciar Senha</a><br/>";
+								if($usr == 3)
+                                {
+                                    echo "<a href='?perfil=importar_dados_para_evento' class='btn btn-theme btn-lg btn-block'>Função Marota do Diego</a><br/>";
+                                }
 							}
 						?>
 						<p>Aqui são inseridas as informações sobre o seu evento com cachê, incluindo pessoa jurídica e/ou física.</p>
