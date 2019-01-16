@@ -25,21 +25,24 @@ unset($_SESSION['menu']);
 							if($usr < 11)
 							{
 								echo "<a href='?perfil=busca_reset' class='btn btn-theme btn-lg btn-block'>Reiniciar Senha</a><br/>";
-								if($usr == 3)
-                                {
-                                    echo "<a href='?perfil=importar_dados_para_evento' class='btn btn-theme btn-lg btn-block'>Função Marota do Diego</a><br/>";
-                                }
 							}
 						?>
-						<p>Aqui são inseridas as informações sobre o seu evento com cachê, incluindo pessoa jurídica e/ou física.</p>
-						<a href="?perfil=evento_apresentacao" class="btn btn-theme btn-lg btn-block">EVENTO COM CACHÊ</a>
-						<br />
-						<p>Aqui são inseridas as informações sobre o seu evento sem cachê, incluindo pessoa jurídica e/ou física.</p>
-						<a href="?perfil=evento_apresentacao_semcache" class="btn btn-theme btn-lg btn-block">EVENTO SEM CACHÊ</a>
-						<br />
-						<p>Aqui são inseridas as informações sobre o seu evento, que não terá contratação.</p>
-						<a href="?perfil=evento_apresentacao_semcontratacao" class="btn btn-theme btn-lg btn-block">EVENTO SEM CONTRATAÇÃO</a>
-						<br />
+                        <p>Selecione aqui o tipo de evento de deseja cadastrar</p>
+                        <button type="button" class="btn btn-theme btn-lg btn-block" data-toggle="collapse" data-target="#evento">EVENTO</button>
+                        <div id="evento" class="collapse">
+                            <div class="well">
+                                <p>Aqui são inseridas as informações sobre o seu evento com cachê, incluindo pessoa jurídica e/ou física.</p>
+                                <a href="?perfil=evento_apresentacao" class="btn btn-theme btn-lg btn-block">EVENTO COM CACHÊ</a>
+                                <br />
+                                <p>Aqui são inseridas as informações sobre o seu evento sem cachê, incluindo pessoa jurídica e/ou física.</p>
+                                <a href="?perfil=evento_apresentacao_semcache" class="btn btn-theme btn-lg btn-block">EVENTO SEM CACHÊ</a>
+                                <br />
+                                <p>Aqui são inseridas as informações sobre o seu evento, que não terá contratação.</p>
+                                <a href="?perfil=evento_apresentacao_semcontratacao" class="btn btn-theme btn-lg btn-block">EVENTO SEM CONTRATAÇÃO</a>
+                                <br />
+                            </div>
+                        </div>
+                        <br>
                         <p>Aqui são inseridas as informações sobre os Oficineiros e sobre as Oficinas que serão executadas.</p>
 						<a href="?perfil=evento_apresentacao_oficinas" class="btn btn-theme btn-lg btn-block">OFICINAS</a>
 						<br />
