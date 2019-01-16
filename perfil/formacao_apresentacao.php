@@ -18,41 +18,41 @@ $idUser= $_SESSION['idUser'];
                             </p>
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-success"><b>Informações iniciais - Pessoa Física</b></li>
-                                <li class="list-group-item">Nome</li>
-                                <li class="list-group-item">Nome Artístico</li>
-                                <li class="list-group-item">Tipo de Documento</li>
-                                <li class="list-group-item">Nº do documento</li>
-                                <li class="list-group-item">CPF</li>
-                                <li class="list-group-item">CCM</li>
-                                <li class="list-group-item">Celular</li>
-                                <li class="list-group-item">Telefone #2</li>
-                                <li class="list-group-item">Telefone #3</li>
-                                <li class="list-group-item">E-mail</li>
-                                <li class="list-group-item">Data de Nascimento</li>
-                                <li class="list-group-item">Estado Civil</li>
-                                <li class="list-group-item">Nacionalidade</li>
-                                <li class="list-group-item">PIS/PASEP/NIT</li>
-                                <li class="list-group-item">Programa</li>
+                                <li class="lista-informacao">Nome</li>
+                                <li class="lista-informacao">Nome Artístico</li>
+                                <li class="lista-informacao">Tipo de Documento</li>
+                                <li class="lista-informacao">Nº do documento</li>
+                                <li class="lista-informacao">CPF</li>
+                                <li class="lista-informacao">CCM</li>
+                                <li class="lista-informacao">Celular</li>
+                                <li class="lista-informacao">Telefone #2</li>
+                                <li class="lista-informacao">Telefone #3</li>
+                                <li class="lista-informacao">E-mail</li>
+                                <li class="lista-informacao">Data de Nascimento</li>
+                                <li class="lista-informacao">Estado Civil</li>
+                                <li class="lista-informacao">Nacionalidade</li>
+                                <li class="lista-informacao">PIS/PASEP/NIT</li>
+                                <li class="lista-informacao">Programa</li>
                             </ul>
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-success"><b>Arquivos da Pessoa (Upload de arquivo em formato PDF)</b></li>
-                                <li class="list-group-item">RG/RNE/PASSAPORTE</li>
-                                <li class="list-group-item">CPF</li>
-                                <li class="list-group-item">PIS/PASEP/NIT</li>
+                                <li class="lista-informacao">RG/RNE/PASSAPORTE</li>
+                                <li class="lista-informacao">CPF</li>
+                                <li class="lista-informacao">PIS/PASEP/NIT</li>
                             </ul>
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-success"><b>Endereço</b></li>
-                                <li class="list-group-item">CEP</li>
-                                <li class="list-group-item">Número</li>
-                                <li class="list-group-item">Complemento</li>
-                                <li class="list-group-item">Comprovante de Residência</li>
+                                <li class="lista-informacao">CEP</li>
+                                <li class="lista-informacao">Número</li>
+                                <li class="lista-informacao">Complemento</li>
+                                <li class="lista-informacao">Comprovante de Residência</li>
                             </ul>
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-success"><b>Informações Complementares</b></li>
-                                <li class="list-group-item">DRT</li>
-                                <li class="list-group-item">Etnia</li>
-                                <li class="list-group-item">Grau de Instrução</li>
-                                <li class="list-group-item">Função</li>
+                                <li class="lista-informacao">DRT</li>
+                                <li class="lista-informacao">Etnia</li>
+                                <li class="lista-informacao">Grau de Instrução</li>
+                                <li class="lista-informacao">Função</li>
                             </ul>
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-success"><b>Dados Bancários</b></li>
@@ -67,14 +67,14 @@ $idUser= $_SESSION['idUser'];
                                         </p>
                                     </b>
                                 </li>
-                                <li class="list-group-item">Banco</li>
-                                <li class="list-group-item">Agência</li>
-                                <li class="list-group-item">Conta</li>
+                                <li class="lista-informacao">Banco</li>
+                                <li class="lista-informacao">Agência</li>
+                                <li class="lista-informacao">Conta</li>
                             </ul>
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-success"><b>Demais Anexos (Upload de arquivo em formato PDF)</b></li>
-                                <li class="list-group-item">Anexos de III a V</li>
-                                <li class="list-group-item">Currículo</li>
+                                <li class="lista-informacao">Anexos de III a V</li>
+                                <li class="lista-informacao">Currículo</li>
                                 <?php
                                     $comprovantes = [
                                         'Comprovante de Formação',
@@ -87,7 +87,7 @@ $idUser= $_SESSION['idUser'];
                                         for ($i=1;$i<=4;$i++)
                                         {
                                 ?>
-                                            <li class="list-group-item"><?= $comprovante." ".$i ?> <?= ($key == 3) ? "*(Para algumas funções)*" : "" ?></li>
+                                            <li class="lista-informacao"><?= $comprovante." ".$i ?> <?= ($key == 3) ? "*(Para algumas funções)*" : "" ?></li>
                                 <?php
                                         }
                                     }
@@ -95,8 +95,8 @@ $idUser= $_SESSION['idUser'];
                             </ul>
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-success"><b>Finalizar</b></li>
-                                <li class="list-group-item">Nesta tela haverá um resumo com todas as informações inseridas neste evento</li>
-                                <li class="list-group-item">Listará também, quando existirem, os campos pendente para preenchimento.</li>
+                                <li class="lista-informacao ">Nesta tela haverá um resumo com todas as informações inseridas neste evento</li>
+                                <li class="lista-informacao ">Listará também, quando existirem, os campos pendente para preenchimento.</li>
                             </ul>
                         </div>
                     </div>
