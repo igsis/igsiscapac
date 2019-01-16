@@ -179,21 +179,15 @@ Spacer
 lista de informações
 ================================= */
 .lista-informacao{
+	position: relative;
+	left: 8%;
 	margin-top: 10px;
-	margin-left: 8%;
 }
 
 @media screen and (max-width:600px){
 	.lista-informacao{
 		margin-top: 8px;
 		margin-left: 10%;
-	}
-}
-
-@media only screen and (min-width: 1367px) {
-	lista-informacao{
-		margin-top: 8px;
-		margin-left: 15%;
 	}
 }
 
