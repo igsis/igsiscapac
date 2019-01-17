@@ -43,7 +43,7 @@ unset($_SESSION['menu']);
                             </div>
                         </div>
                         <br>
-                        <p>Aqui são inseridas as informações sobre os Oficineiros e sobre as Oficinas que serão executadas.</p>
+                        <p>Aqui são inseridas as informações dos oficineiros <strong>JÁ SELECIONADOS</strong> pelas Casas de Cultura</p>
 						<a href="?perfil=evento_apresentacao_oficinas" class="btn btn-theme btn-lg btn-block">OFICINAS - CASAS DE CULTURA</a>
 						<br />
                         <?php if($formacao['situacao'] == 1) { ?>
