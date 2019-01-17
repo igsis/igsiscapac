@@ -199,7 +199,7 @@ else
                         <div class="col-md-offset-2 col-md-6"><strong>Nacionalidade:</strong><br/>
                             <input type="text" class="form-control" name="nacionalidade" placeholder="Nacionalidade" value="<?= $pf['nacionalidade'] ?>">
                         </div>
-                        <div class="col-md-6"><strong>PIS/PASEP/NIT:</strong><br/>
+                        <div class="col-md-6"><strong>PIS/PASEP/NIT *:</strong><br/>
                             <input type="text" class="form-control" name="pis" placeholder="Nº do PIS/PASEP/NIT" maxlength="50" value="<?php echo $pf['pis']; ?>" required>
                         </div>
                     </div>
