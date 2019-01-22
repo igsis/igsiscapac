@@ -43,7 +43,7 @@ unset($_SESSION['menu']);
                             </div>
                         </div>
                         <br>
-                        <p>Aqui são inseridas as informações dos oficineiros <strong>JÁ SELECIONADOS NO EDITAL n. 002/2018 SMC/GAB</strong> pelas Casas de Cultura</p>
+                        <p>Aqui são inseridas as informações dos oficineiros <strong>JÁ SELECIONADOS NO EDITAL n. 002/2018 SMC/GAB</strong></p>
 						<a href="?perfil=evento_apresentacao_oficinas" class="btn btn-theme btn-lg btn-block">OFICINAS</a>
 						<br />
                         <?php if($formacao['situacao'] == 1) { ?>
