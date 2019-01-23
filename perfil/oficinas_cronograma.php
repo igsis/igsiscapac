@@ -21,6 +21,51 @@ $idCampo = ($tipoPessoa == 4) ? 134 : 135;
 $consulta = "SELECT * FROM `oficina_dados` WHERE `tipoPessoa` = '$tipoPessoa' AND `idPessoa` = '$id' AND `publicado` = '1'";
 $dados = $con->query($consulta)->fetch_assoc();
 
+if (isset($_POST['cadastrar']))
+{
+    $idModalidade = $_POST['modalidade'];
+    $idOficina = $_POST['idOficina'];
+    $tabela = ($_POST['tipoPessoa'] == 4) ? "pessoa_fisica" : "pessoa_juridica";
+    $dataInicio = exibirDataMysql($_POST['dataInicio']);
+    $dataFim = exibirDataMysql($_POST['dataFim']);
+    $dia1 = $_POST['dia1'];
+    $dia2 = $_POST['dia2'];
+
+    $modalidade = recuperaDados('modalidades', 'id', $idModalidade);
+    $oficineiro = recuperaDados($tabela, 'id', $_POST['id']);
+    $nome = ($_POST['tipoPessoa'] == 4) ? $oficineiro['nome'] : $oficineiro['razaoSocial'];
+
+    if ($_POST['tipoPessoa'] == 4)
+    {
+        $documento = $oficineiro['rg'];
+    }
+    else
+    {
+        $representante = recuperaDados('representante_legal', 'id', $oficineiro['idRepresentanteLegal1']);
+        $documento = $representante['rg'];
+    }
+
+    $idDados = $_POST['idDadosOficineiro'];
+    $sql_dados = "UPDATE `oficina_dados` SET 
+                `modalidade_id` = '$idModalidade',
+                `idOficina` = '$idOficina',
+                `dataInicio` = '$dataInicio',
+                `dataFim` = '$dataFim',
+                `dia1` = '$dia1',
+                `dia2` = '$dia2'
+              WHERE `id` = '$idDados'";
+    $query = $con->query($sql_dados);
+    if ($query)
+    {
+        gravarLog($sql_dados);
+        $mensagem = "<span style=\"color: #01DF3A; \"><strong>Atualizado com sucesso!</strong></span>";
+    }
+    else
+    {
+        $mensagem = "<span style=\"color: #FF0000; \"><strong>Erro ao gravar!</strong></span>";
+    }
+}
+
 if(isset($_POST["enviar"]))
 {
     $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idCampo'";
@@ -101,12 +146,12 @@ $dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
     <div class="container">
         <?php include 'includes/oficina_menu_evento.php'; ?>
         <div class="form-group">
-            <h3>Cronograma de Oficinas</h3>
+            <h3>Informações Complementares da Oficinas</h3>
             <h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
         </div>
         <div class="row">
             <div class="col-md-offset-1 col-md-10">
-                <form name="form1" class="form-horizontal" role="form" action="../pdf/rlt_cronograma_oficina.php" method="post" target="_blank">
+                <form name="form1" class="form-horizontal" role="form" action="?perfil=oficinas_cronograma" method="post">
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
@@ -162,72 +207,72 @@ $dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
                             <input type="hidden" name="id" value="<?= $id ?>">
                             <input type="hidden" name="tipoPessoa" value="<?= $tipoPessoa ?>">
                             <input type="hidden" name="idDadosOficineiro" value="<?= $dadosOficineiro['id'] ?>">
-                            <input type="submit" value="Gerar Cronograma para Preenchimento" class="btn btn-theme btn-lg btn-block">
+                            <input type="submit" name="cadastrar" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
                         </div>
                     </div>
                 </form>
 
                 <!-- Exibir arquivos -->
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-8">
-                        <div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s) Somente em PDF</h6>
-                            <?php listaArquivoCamposMultiplos($id,$tipoPessoa,$idCampo,"oficinas_cronograma",3); ?>
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="form-group">-->
+<!--                    <div class="col-md-offset-2 col-md-8">-->
+<!--                        <div class="table-responsive list_info"><h6>Arquivo(s) Anexado(s) Somente em PDF</h6>-->
+<!--                            --><?php //listaArquivoCamposMultiplos($id,$tipoPessoa,$idCampo,"oficinas_cronograma",3); ?>
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <!-- Upload de arquivo -->
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-8">
-                        <div class = "center">
-                            <form method="POST" action="?perfil=oficinas_cronograma" enctype="multipart/form-data">
-                                <table>
-                                    <tr>
-                                        <td width="50%"><td>
-                                    </tr>
-                                    <?php
-                                    if(verificaArquivosExistentesPF($id,$idCampo, $tipoPessoa)){
-                                        echo '<div class="alert alert-success">O arquivo Cronograma de oficinas foi enviado.</div> ';
-                                    }
-                                    else{
-                                        $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idCampo'";
-                                        $query_arquivos = mysqli_query($con,$sql_arquivos);
-                                        while($arq = mysqli_fetch_array($query_arquivos))
-                                        {
-                                            ?>
-                                            <tr>
-                                                <td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
-                                            </tr>
-                                            <?php
-                                        }
-                                    }
-                                    ?>
-                                </table><br>
-                                <input type="hidden" name="idPessoa" value="<?php echo $id; ?>"  />
-                                <input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
-                                <input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="form-group">-->
+<!--                    <div class="col-md-offset-2 col-md-8">-->
+<!--                        <div class = "center">-->
+<!--                            <form method="POST" action="?perfil=oficinas_cronograma" enctype="multipart/form-data">-->
+<!--                                <table>-->
+<!--                                    <tr>-->
+<!--                                        <td width="50%"><td>-->
+<!--                                    </tr>-->
+<!--                                    --><?php
+//                                    if(verificaArquivosExistentesPF($id,$idCampo, $tipoPessoa)){
+//                                        echo '<div class="alert alert-success">O arquivo Cronograma de oficinas foi enviado.</div> ';
+//                                    }
+//                                    else{
+//                                        $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idCampo'";
+//                                        $query_arquivos = mysqli_query($con,$sql_arquivos);
+//                                        while($arq = mysqli_fetch_array($query_arquivos))
+//                                        {
+//                                            ?>
+<!--                                            <tr>-->
+<!--                                                <td><label>--><?php //echo $arq['documento']?><!--</label></td><td><input type='file' name='arquivo[--><?php //echo $arq['sigla']; ?><!--]'></td>-->
+<!--                                            </tr>-->
+<!--                                            --><?php
+//                                        }
+//                                    }
+//                                    ?>
+<!--                                </table><br>-->
+<!--                                <input type="hidden" name="idPessoa" value="--><?php //echo $id; ?><!--"  />-->
+<!--                                <input type="hidden" name="tipoPessoa" value="--><?php //echo $tipoPessoa; ?><!--"  />-->
+<!--                                <input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>-->
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <!-- Fim Upload de arquivo -->
                 <!-- Confirmação de Exclusão -->
-                <div class="modal fade" id="confirmApagar" role="dialog" aria-labelledby="confirmApagarLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Excluir Arquivo?</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>Confirma?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-danger" id="confirm">Apagar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="modal fade" id="confirmApagar" role="dialog" aria-labelledby="confirmApagarLabel" aria-hidden="true">-->
+<!--                    <div class="modal-dialog">-->
+<!--                        <div class="modal-content">-->
+<!--                            <div class="modal-header">-->
+<!--                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+<!--                                <h4 class="modal-title">Excluir Arquivo?</h4>-->
+<!--                            </div>-->
+<!--                            <div class="modal-body">-->
+<!--                                <p>Confirma?</p>-->
+<!--                            </div>-->
+<!--                            <div class="modal-footer">-->
+<!--                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>-->
+<!--                                <button type="button" class="btn btn-danger" id="confirm">Apagar</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <!-- Fim Confirmação de Exclusão -->
 
                 <div class="modal fade" id="infoModalidade" role="dialog" aria-labelledby="infoModalidadeLabel" aria-hidden="true">
