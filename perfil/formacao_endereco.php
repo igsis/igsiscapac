@@ -9,8 +9,8 @@ if(isset($_POST['cadastrarEndereco']))
 {
     $idPf = $_POST['cadastrarEndereco'];
     $Endereco = addslashes($_POST['Endereco']);
-    $Bairro = $_POST['Bairro'];
-    $Cidade = $_POST['Cidade'];
+    $Bairro = addslashes($_POST['Bairro']);
+    $Cidade = addslashes($_POST['Cidade']);
     $Estado = $_POST['Estado'];
     $CEP = $_POST['CEP'];
     $Numero = $_POST['Numero'];

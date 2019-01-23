@@ -33,8 +33,9 @@ if(isset($_POST['cadastrarFormacao']))
     $programa = $_POST['programa'];
     $dataAtualizacao = date("Y-m-d H:i:s");
     $formacaoAno = anoFormacao();
+    $nacionalidade = $_POST['nacionalidade'];
 
-    $sql_cadastra_pf = "INSERT INTO `pessoa_fisica`(`nome`, `nomeArtistico`, `idTipoDocumento`, `rg`, `cpf`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `idEstadoCivil`, `dataNascimento`, `pis`, `tipo_formacao_id`, `dataAtualizacao`, `idUsuario`) VALUES ('$nome', '$nomeArtistico', '$idTipoDocumento', '$rg', '$cpf', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$estadoCivil', '$dataNascimento', '$pis', '$programa', '$dataAtualizacao', '$idUser')";
+    $sql_cadastra_pf = "INSERT INTO `pessoa_fisica`(`nome`, `nomeArtistico`, `idTipoDocumento`, `rg`, `cpf`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `idEstadoCivil`, `dataNascimento`, `nacionalidade`, `pis`, `tipo_formacao_id`, `dataAtualizacao`, `idUsuario`) VALUES ('$nome', '$nomeArtistico', '$idTipoDocumento', '$rg', '$cpf', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$estadoCivil', '$dataNascimento', '$nacionalidade', '$pis', '$programa', '$dataAtualizacao', '$idUser')";
     if(mysqli_query($con,$sql_cadastra_pf))
     {
         $mensagem = "<font color='#01DF3A'><strong>Cadastrado com sucesso!</strong></font>";
@@ -70,6 +71,7 @@ if(isset($_POST['atualizarFormacao']))
     date_default_timezone_set('America/Sao_Paulo');
     $dataAtualizacao = date("Y-m-d");
     $idPf = $_SESSION['idPf'];
+    $nacionalidade = $_POST['nacionalidade'];
     $formacaoAno = anoFormacao();
 
     $sql_atualiza_pf = "UPDATE pessoa_fisica SET
@@ -84,6 +86,7 @@ if(isset($_POST['atualizarFormacao']))
 	`email` = '$email',
 	`idEstadoCivil` = '$estadoCivil',
 	`dataNascimento` = '$dataNascimento',
+    `nacionalidade` = '$nacionalidade',
 	`pis` = '$pis',
 	`tipo_formacao_id` = '$programa',
 	`dataAtualizacao` = '$dataAtualizacao',
@@ -196,7 +199,7 @@ else
                         <div class="col-md-offset-2 col-md-6"><strong>Nacionalidade:</strong><br/>
                             <input type="text" class="form-control" name="nacionalidade" placeholder="Nacionalidade" value="<?= $pf['nacionalidade'] ?>">
                         </div>
-                        <div class="col-md-6"><strong>PIS/PASEP/NIT:</strong><br/>
+                        <div class="col-md-6"><strong>PIS/PASEP/NIT *:</strong><br/>
                             <input type="text" class="form-control" name="pis" placeholder="Nº do PIS/PASEP/NIT" maxlength="50" value="<?php echo $pf['pis']; ?>" required>
                         </div>
                     </div>
