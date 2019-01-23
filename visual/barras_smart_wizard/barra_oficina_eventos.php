@@ -28,7 +28,7 @@ for ($i = 0; $i < count($urlOficina); $i++) {
                         <a onclick="location.href='index.php?perfil=oficinas/oficina_edicao'" href=""><br /><small>Informações Gerais da Oficina</small></a>
                     </li>
                     <li class="<?php echo isset($active2) ? $active2 : 'clickable'; ?>">
-                        <a onclick="location.href='index.php?perfil=oficinas_cronograma'" href=""><br /><small>Cronograma da Oficina</small></a>
+                        <a onclick="location.href='index.php?perfil=oficinas_cronograma'" href=""><br /><small>Informações Complementares da Oficina</small></a>
                     </li>
                     <li class="<?php echo isset($active4) ? $active4 : 'clickable'; ?>">
                         <a onclick="location.href='index.php?perfil=oficinas/oficina_arquivos_com_prod'" href=""><br /><small>Arquivos Para Comunicação e Produção</small></a>
