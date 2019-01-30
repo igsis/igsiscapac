@@ -127,8 +127,8 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '1')
             <p>
                 <strong>
                     <span style="color: green;">
-                        Seu cadastro de Oficineiro Pessoa Física foi concluído!<br>
-                        Avance para cadastrar a Oficina que será realizada!<br>
+                        Confirme seus dados abaixo,<br>
+                        Avance para cadastrar a Oficina e gerar o código solicitado!<br>
                     </span>
                 </strong>
             </p><br>
