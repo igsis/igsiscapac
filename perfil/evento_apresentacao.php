@@ -15,39 +15,39 @@ $idUser= $_SESSION['idUser'];
 							<p align="justify">Inicia-se aqui um processo passo-a-passo para o  preenchimento dos dados do evento conforme descrito abaixo. Antes de começar, tenha disponível estas informações para que o cadastro possa ser concluído.</p>
 							<ul class="list-group">
 								<li class="list-group-item list-group-item-success list-group-item"><b>Informações Gerais do Evento</b></li>
-								<li class="list-group-item">Nome do evento</li>
-								<li class="list-group-item">Tipo de evento</li>
-								<li class="list-group-item">Nome do grupo (se houver)</li>
-								<li class="list-group-item">Ficha técnica completa</li>
-								<li class="list-group-item">Integrantes do Grupo</li>
-								<li class="list-group-item">Classificação indicativa</li>
-								<li class="list-group-item">Sinopse</li>
-								<li class="list-group-item">Release</li>
-								<li class="list-group-item">Links para divulgação</li>
+								<li class="lista-informacao">Nome do evento</li>
+								<li class="lista-informacao">Tipo de evento</li>
+								<li class="lista-informacao">Nome do grupo (se houver)</li>
+								<li class="lista-informacao">Ficha técnica completa</li>
+								<li class="lista-informacao">Integrantes do Grupo</li>
+								<li class="lista-informacao">Classificação indicativa</li>
+								<li class="lista-informacao">Sinopse</li>
+								<li class="lista-informacao">Release</li>
+								<li class="lista-informacao">Links para divulgação</li>
 							</ul>
 							<ul class="list-group">
 								<li class="list-group-item list-group-item-success"><b>Arquivos do Evento em PDF</b></li>
-								<li class="list-group-item">Repertório</li>
-								<li class="list-group-item">Material de imprensa (clipping)</li>
-								<li class="list-group-item">Autorização SBAT</li>
-								<li class="list-group-item">Currículo do Grupo</li>
-								<li class="list-group-item">Documentos Comprobatórios de Valor</li>
-								<li class="list-group-item">DRT dos Integrantes do Grupo</li>
+								<li class="lista-informacao">Repertório</li>
+								<li class="lista-informacao">Material de imprensa (clipping)</li>
+								<li class="lista-informacao">Autorização SBAT <font size="1">(Declaração do cumprimento dos direitos dos autores (declaração de autoria). Nela o autor da obra declara que permite que o grupo utilize e faça a apresentação. É usada no teatro, artes cênicas,teatro, dança (autorização da coreografia) e em alguns casos o circo.)</font></li>
+								<li class="lista-informacao">Currículo do Grupo</li>
+                                <li class="lista-informacao">Documentos Comprobatórios de Valor <font size="1">(Notas Fiscais de outras apresentações do mesmo evento do cadastro.)</font></li>
+								<li class="lista-informacao">DRT dos Integrantes do Grupo (Somente para Teatro, Dança ou Circo)</li>
 							</ul>
 							<ul class="list-group">
 								<li class="list-group-item list-group-item-success"><b>Dados do Produtor</b></li>
-								<li class="list-group-item">Nome</li>
-								<li class="list-group-item">E-mail</li>
-								<li class="list-group-item">Celular</li>
-								<li class="list-group-item">Outro telefone (se houver)</li>
+								<li class="lista-informacao">Nome</li>
+								<li class="lista-informacao">E-mail</li>
+								<li class="lista-informacao">Celular</li>
+								<li class="lista-informacao">Outro telefone (se houver)</li>
 							</ul>
 							<ul class="list-group">
 								<li class="list-group-item list-group-item-success"><b>Arquivos Para Comunicação e Produção</b></li>
-								<li class="list-group-item">Nesta página você envia os arquivos como o rider, mapas de cenas e luz, logos de parceiros, programação de filmes de mostras de cinema, entre outros arquivos destinados à comunicação e produção.</li>
+								<li class="lista-informacao">Nesta página você envia os arquivos como o rider, mapas de cenas e luz, logos de parceiros, programação de filmes de mostras de cinema, entre outros arquivos destinados à comunicação e produção.</li>
 							</ul>
 							<ul class="list-group">
 								<li class="list-group-item list-group-item-success"><b>Cadastro do Proponente</b></li>
-								<li class="list-group-item">Informe se haverá ou não haverá representação jurídica</li>
+								<li class="lista-informacao">Informe se haverá ou não haverá representação jurídica</li>
 							</ul>
 
 							<ul class="nav nav-tabs">
@@ -61,88 +61,88 @@ $idUser= $_SESSION['idUser'];
         							<br>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Informações iniciais</b></li>
-										<li class="list-group-item">Razão Social</li>
-										<li class="list-group-item">CNPJ</li>
-										<li class="list-group-item">CCM</li>
-										<li class="list-group-item">Celular</li>
-										<li class="list-group-item">Telefone #2</li>
-										<li class="list-group-item">Telefone #3</li>
-										<li class="list-group-item">E-mail</li>
+										<li class="lista-informacao">Razão Social</li>
+										<li class="lista-informacao">CNPJ</li>
+										<li class="lista-informacao">CCM</li>
+										<li class="lista-informacao">Celular</li>
+										<li class="lista-informacao">Telefone #2</li>
+										<li class="lista-informacao">Telefone #3</li>
+										<li class="lista-informacao">E-mail</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Arquivos da Empresa em PDF</b></li>
-										<li class="list-group-item"><a href="http://www.receita.fazenda.gov.br/pessoajuridica/cnpj/cnpjreva/cnpjreva_solicitacao.asp" target="_blank">Cartão CNPJ</a></li>
-										<li class="list-group-item"><a href="https://ccm.prefeitura.sp.gov.br/login/contribuinte?tipo=F" target="_blank">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</a></li>
-										<li class="list-group-item"><a href="https://www3.prefeitura.sp.gov.br/cpom2/Consulta_Tomador.aspx" target="_blank">CPOM - Cadastro de Empresas Fora do Município</a></li>
+										<li class="lista-informacao"><a href="http://www.receita.fazenda.gov.br/pessoajuridica/cnpj/cnpjreva/cnpjreva_solicitacao.asp" target="_blank">Cartão CNPJ</a></li>
+										<li class="lista-informacao"><a href="https://ccm.prefeitura.sp.gov.br/login/contribuinte?tipo=F" target="_blank">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</a></li>
+										<li class="lista-informacao"><a href="https://www3.prefeitura.sp.gov.br/cpom2/Consulta_Tomador.aspx" target="_blank">CPOM - Cadastro de Empresas Fora do Município</a></li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Endereço</b></li>
-										<li class="list-group-item">CEP</li>
-										<li class="list-group-item">Número</li>
-										<li class="list-group-item">Complemento</li>
+										<li class="lista-informacao">CEP</li>
+										<li class="lista-informacao">Número</li>
+										<li class="lista-informacao">Complemento</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Representante Legal</b></li>
-										<li class="list-group-item">Nome</li>
-										<li class="list-group-item">RG/RNE/PASSAPORTE</li>
-										<li class="list-group-item">CPF</li>
+										<li class="lista-informacao">Nome</li>
+										<li class="lista-informacao">RG/RNE/PASSAPORTE</li>
+										<li class="lista-informacao">CPF</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Arquivos do Representante Legal em PDF</b></li>
-										<li class="list-group-item">RG/RNE/PASSAPORTE</li>
-										<li class="list-group-item">CPF</li>
+										<li class="lista-informacao">RG/RNE/PASSAPORTE</li>
+										<li class="lista-informacao">CPF</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Dados Bancários</b></li>
 										<li class="list-group-item list-group-item-danger"><b>Realizamos pagamentos de valores acima de R$ 5.000,00 *SOMENTE COM CONTA CORRENTE NO BANCO DO BRASIL*.<br/> Não são aceitas: conta fácil, poupança e conjunta. <br/> *A conta deve estar em nome da Pessoa Jurídica que está sendo contratada*</b></li>
-										<li class="list-group-item">Banco</li>
-										<li class="list-group-item">Agência</li>
-										<li class="list-group-item">Conta</li>
+										<li class="lista-informacao">Banco</li>
+										<li class="lista-informacao">Agência</li>
+										<li class="lista-informacao">Conta</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Arquivo dos Dados Bancários em PDF</b></li>
-										<li class="list-group-item">Gerar FACC</li>
-										<li class="list-group-item">Anexar a FACC depois de assinada</li>
+										<li class="lista-informacao">Gerar FACC (Documento gerado pelo sistema necessário para recebimento do cachê.)</li>
+										<li class="lista-informacao">Anexar a FACC depois de assinada</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>ARTISTA - Líder do Grupo ou Artista Solo</b></li>
-										<li class="list-group-item">Nome</li>
-										<li class="list-group-item">Nome Artístico</li>
-										<li class="list-group-item">RG/RNE/PASSAPORTE</li>
-										<li class="list-group-item">CPF</li>
-										<li class="list-group-item">E-mail</li>
-										<li class="list-group-item">Celular</li>
-										<li class="list-group-item">Telefone #2</li>
-										<li class="list-group-item">Telefone #3</li>
-										<li class="list-group-item">DRT</li>
+										<li class="lista-informacao">Nome</li>
+										<li class="lista-informacao">Nome Artístico</li>
+										<li class="lista-informacao">RG/RNE/PASSAPORTE</li>
+										<li class="lista-informacao">CPF</li>
+										<li class="lista-informacao">E-mail</li>
+										<li class="lista-informacao">Celular</li>
+										<li class="lista-informacao">Telefone #2</li>
+										<li class="lista-informacao">Telefone #3</li>
+										<li class="lista-informacao">DRT (Somente para Teatro, Dança ou Circo)</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Arquivos do Líder do Grupo ou Artista Solo em PDF</b></li>
-										<li class="list-group-item">RG/RNE/PASSAPORTE</li>
-										<li class="list-group-item">CPF</li>
-										<li class="list-group-item">DRT</li>
-										<li class="list-group-item">Currículo Artístico do Líder do Grupo</li>
+										<li class="lista-informacao">RG/RNE/PASSAPORTE</li>
+										<li class="lista-informacao">CPF</li>
+										<li class="lista-informacao">DRT (Somente para Teatro, Dança ou Circo)</li>
+										<li class="lista-informacao">Currículo Artístico do Líder do Grupo</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Declaração de Exclusividade</b></li>
-										<li class="list-group-item">Gerar a Declaração de Exclusividade</li>
-										<li class="list-group-item">Anexar a Declaração de Exclusividade depois de assinada</li>
+										<li class="lista-informacao">Gerar a Declaração de Exclusividade</li>
+										<li class="lista-informacao">Anexar a Declaração de Exclusividade depois de assinada</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Demais Anexos</b></li>
-										<li class="list-group-item">Demais anexos necessários para a contratação</li>
-										<li class="list-group-item"><a href="https://www.sifge.caixa.gov.br/Cidadao/Crf/FgeCfSCriteriosPesquisa.asp" target="_blank">CRF do FGTS</a></li>
-										<li class="list-group-item">Contrato Social</li>
-										<li class="list-group-item"><a href="https://duc.prefeitura.sp.gov.br/certidoes/forms_anonimo/frmConsultaEmissaoCertificado.aspx" target="_blank">CTM - Certidão Negativa de Débitos Tributários Mobiliários Municipais</a></li>
-										<li class="list-group-item"><a href="http://www3.prefeitura.sp.gov.br/cadin/Pesq_Deb.aspx">CADIN Municipal</a></li>
-										<li class="list-group-item">Estatuto Social</li>
-										<li class="list-group-item"><a href="http://www.receita.fazenda.gov.br/Aplicacoes/ATSPO/Certidao/CNDConjuntaSegVia/NICertidaoSegVia.asp?Tipo=1" target="_blank">CND</a></li>
+										<li class="lista-informacao">Demais anexos necessários para a contratação</li>
+										<li class="lista-informacao"><a href="https://www.sifge.caixa.gov.br/Cidadao/Crf/FgeCfSCriteriosPesquisa.asp" target="_blank">CRF do FGTS</a></li>
+										<li class="lista-informacao">Contrato Social</li>
+										<li class="lista-informacao"><a href="https://duc.prefeitura.sp.gov.br/certidoes/forms_anonimo/frmConsultaEmissaoCertificado.aspx" target="_blank">CTM - Certidão Negativa de Débitos Tributários Mobiliários Municipais</a></li>
+										<li class="lista-informacao"><a href="http://www3.prefeitura.sp.gov.br/cadin/Pesq_Deb.aspx">CADIN Municipal</a></li>
+										<li class="lista-informacao">Estatuto Social</li>
+										<li class="lista-informacao"><a href="http://www.receita.fazenda.gov.br/Aplicacoes/ATSPO/Certidao/CNDConjuntaSegVia/NICertidaoSegVia.asp?Tipo=1" target="_blank">CND</a></li>
 
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Finalizar</b></li>
-										<li class="list-group-item">Nesta tela haverá um resumo com todas as informações inseridas neste evento</li>
-										<li class="list-group-item">Listará também, quando existirem, os campos pendente para preenchimento.</li>
+										<li class="lista-informacao">Nesta tela haverá um resumo com todas as informações inseridas neste evento</li>
+										<li class="lista-informacao">Listará também, quando existirem, os campos pendente para preenchimento.</li>
 									</ul>
         						</div>
 
@@ -151,64 +151,64 @@ $idUser= $_SESSION['idUser'];
         							<br>
         							<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Informações iniciais</b></li>
-										<li class="list-group-item">Nome</li>
-										<li class="list-group-item">Nome Artístico</li>
-										<li class="list-group-item">Tipo de Documento</li>
-										<li class="list-group-item">Nº do documento</li>
-										<li class="list-group-item">CPF</li>
-										<li class="list-group-item">CCM</li>
-										<li class="list-group-item">Celular</li>
-										<li class="list-group-item">Telefone #2</li>
-										<li class="list-group-item">Telefone #3</li>
-										<li class="list-group-item">E-mail</li>
-										<li class="list-group-item">Data de Nascimento</li>
-										<li class="list-group-item">PIS/PASEP/NIT</li>
+										<li class="lista-informacao">Nome</li>
+										<li class="lista-informacao">Nome Artístico</li>
+										<li class="lista-informacao">Tipo de Documento</li>
+										<li class="lista-informacao">Nº do documento</li>
+										<li class="lista-informacao">CPF</li>
+										<li class="lista-informacao">CCM</li>
+										<li class="lista-informacao">Celular</li>
+										<li class="lista-informacao">Telefone #2</li>
+										<li class="lista-informacao">Telefone #3</li>
+										<li class="lista-informacao">E-mail</li>
+										<li class="lista-informacao">Data de Nascimento</li>
+										<li class="lista-informacao">PIS/PASEP/NIT</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Arquivos da Pessoa</b></li>
-										<li class="list-group-item">RG/RNE/PASSAPORTE</li>
-										<li class="list-group-item">CPF</li>
-										<li class="list-group-item">PIS/PASEP/NIT</li>
-										<li class="list-group-item">FDC – CCM (Ficha de Dados Cadastrais de Contribuintes Mobiliários)</li>	
+										<li class="lista-informacao">RG/RNE/PASSAPORTE</li>
+										<li class="lista-informacao">CPF</li>
+										<li class="lista-informacao">PIS/PASEP/NIT</li>
+										<li class="lista-informacao">FDC – CCM (Ficha de Dados Cadastrais de Contribuintes Mobiliários)</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Endereço</b></li>
-										<li class="list-group-item">CEP</li>
-										<li class="list-group-item">Número</li>
-										<li class="list-group-item">Complemento</li>
-										<li class="list-group-item">Comprovante de Residência</li>
+										<li class="lista-informacao">CEP</li>
+										<li class="lista-informacao">Número</li>
+										<li class="lista-informacao">Complemento</li>
+										<li class="lista-informacao">Comprovante de Residência</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Informações Complementares</b></li>
-										<li class="list-group-item">DRT (Somente para Teatro, Dança ou Circo)</li>
+										<li class="lista-informacao">DRT (Somente para Teatro, Dança ou Circo)</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Dados Bancários</b></li>
 										<li class="list-group-item list-group-item-danger"><b>Realizamos pagamentos de valores acima de R$ 5.000,00 *SOMENTE COM CONTA CORRENTE NO BANCO DO BRASIL*.<br />Não são aceitas: conta fácil, poupança e conjunta.</b></li>
-										<li class="list-group-item">Banco</li>
-										<li class="list-group-item">Agência</li>
-										<li class="list-group-item">Conta</li>
+										<li class="lista-informacao">Banco</li>
+										<li class="lista-informacao">Agência</li>
+										<li class="lista-informacao">Conta</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Arquivo dos Dados Bancários em PDF</b></li>
-										<li class="list-group-item">Gerar FACC</li>
-										<li class="list-group-item">Anexar a FACC depois de assinada</li>
+										<li class="lista-informacao">Gerar FACC (Documento gerado pelo sistema necessário para recebimento do cachê.)</li>
+										<li class="lista-informacao">Anexar a FACC depois de assinada.</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Demais Anexos</b></li>
-										<li class="list-group-item">Demais anexos necessários para a contratação</li>
-										<li class="list-group-item"><a href="https://duc.prefeitura.sp.gov.br/certidoes/forms_anonimo/frmConsultaEmissaoCertificado.aspx" target="_blank">CTM - Certidão Negativa de Débitos Tributários Mobiliários Municipais</a></li>
-										<li class="list-group-item"><a href="http://www3.prefeitura.sp.gov.br/cadin/Pesq_Deb.aspx">CADIN Municipal</a></li>
-										<li class="list-group-item">Currículo</li>
-										<li class="list-group-item">CND Federal - (Certidão Negativa de Débitos de Tributos Federais)</li>
-										<li class="list-group-item">Gerar a Declaração de Exclusividade</li>
-										<li class="list-group-item">Anexar a Declaração de Exclusividade depois de assinada</li>
-										<li class="list-group-item">Currículo Artístico do Líder do Grupo</li>
+										<li class="lista-informacao">Demais anexos necessários para a contratação</li>
+										<li class="lista-informacao"><a href="https://duc.prefeitura.sp.gov.br/certidoes/forms_anonimo/frmConsultaEmissaoCertificado.aspx" target="_blank">CTM - Certidão Negativa de Débitos Tributários Mobiliários Municipais</a></li>
+										<li class="lista-informacao"><a href="http://www3.prefeitura.sp.gov.br/cadin/Pesq_Deb.aspx">CADIN Municipal</a></li>
+										<li class="lista-informacao">Currículo</li>
+										<li class="lista-informacao">CND Federal - (Certidão Negativa de Débitos de Tributos Federais)</li>
+										<li class="lista-informacao">Gerar a Declaração de Exclusividade</li>
+										<li class="lista-informacao">Anexar a Declaração de Exclusividade depois de assinada</li>
+										<li class="lista-informacao">Currículo Artístico do Líder do Grupo</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Finalizar</b></li>
-										<li class="list-group-item">Nesta tela haverá um resumo com todas as informações inseridas neste evento</li>
-										<li class="list-group-item">Listará também, quando existirem, os campos pendente para preenchimento.</li>
+										<li class="lista-informacao">Nesta tela haverá um resumo com todas as informações inseridas neste evento</li>
+										<li class="lista-informacao">Listará também, quando existirem, os campos pendente para preenchimento.</li>
 									</ul>
         						</div>
     						</div>
