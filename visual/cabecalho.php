@@ -34,11 +34,11 @@ else
                 <div class="col-md-2" style="padding: 13px">
                     <span style="color: #fff">IGSIS-CAPAC</span>
                 </div>
-                <!--
+
                 <div class="col-md-offset-4 col-md-4" style="padding: 5px">
-                    <span style="color: #fff">Suporte para o sistema:<br><i class="fab fa-whatsapp"></i> 96912-4884</span>
+                    <span style="color: #fff">Suporte de T.I. via WhatsApp:<br><i class="fab fa-whatsapp"></i> <a href="https://wa.me/5511942430570" target="_blank">94243-0570</a></span>
                 </div>
-                -->
+
         </div>
 		<!--<div id="bar">
 			<p id="p-bar"><img src="images/logo_cultura_h.png" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IGSIS-CAPAC

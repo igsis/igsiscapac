@@ -71,11 +71,11 @@ date_default_timezone_set('America/Sao_Paulo');
         <div class="col-md-2" style="padding: 13px">
             <span style="color: #fff">IGSIS-CAPAC</span>
         </div>
-        <!--
+
         <div class="col-md-offset-4 col-md-4" style="padding: 5px">
-            <span style="color: #fff">Suporte para o sistema:<br><i class="fab fa-whatsapp"></i> 96912-4884</span>
+            <span style="color: #fff">Suporte de T.I. via WhatsApp:<br><a href="https://wa.me/5511942430570" target="_blank"><i class="fab fa-whatsapp"></i> 94243-0570</a></span>
         </div>
-        -->
+
     </div>
 
 		<section id="contact" class="home-section bg-white">
