@@ -73,7 +73,7 @@ date_default_timezone_set('America/Sao_Paulo');
         </div>
 
         <div class="col-md-offset-4 col-md-4" style="padding: 5px">
-            <span style="color: #fff">Suporte de T.I. via WhatsApp:<br><a href="https://wa.me/5511942430570" target="_blank"><i class="fab fa-whatsapp"></i> 94243-0570</a></span>
+            <span style="color: #fff">Suporte de T.I. via WhatsApp:<br><a href="https://wa.me/5511942430570" target="_blank"><i class="fab fa-whatsapp"></i> 94243-0570</a> | Seg-Sex, 10h-16h</span>
         </div>
 
     </div>
