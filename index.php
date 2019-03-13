@@ -120,7 +120,7 @@ date_default_timezone_set('America/Sao_Paulo');
 								<br />
 							</div>
 							<div class="col-md-6">
-								<p>Esqueceu a senha? <a href="recuperar_senha.php">Clique aqui.</a></p>
+								<p>Esqueceu a senha? <a href="email.php">Clique aqui.</a></p>
 								<br />
 							</div>
 						</div>
