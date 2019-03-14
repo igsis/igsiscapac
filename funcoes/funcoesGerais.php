@@ -1362,7 +1362,7 @@ function emailReset($token){
                                        center;\">
                                        <table style=\"border-collapse:
                                           collapse; border-spacing: 0; background-color:
-                                          rgb(64,190,255); border-radius: 10px; color:
+                                          rgb(32,178,170); border-radius: 10px; color:
                                           rgb(255,255,255); display: inline-block;
                                           font-family: Arial; font-size: 15px; font-weight:
                                           bold; text-align: center;\">
@@ -1421,31 +1421,7 @@ function emailReset($token){
                            </tr>
                            </tbody>
                         </table>
-                        <table style=\"border-collapse: collapse;
-                           border-spacing: 0; box-sizing: border-box;
-                           min-height: 40px; position: relative; width:
-                           100%;\">
-                           <tbody>
-                           <tr>
-                              <td style=\"border-collapse:
-                                    collapse; font-family: Arial; padding: 10px
-                                    15px;\">
-                                 <table width=\"100%\" style=\"border-collapse: collapse; border-spacing:
-                                       0; font-family: Arial;\">
-                                    <tbody>
-                                    <tr>
-                                       <td style=\"border-collapse: collapse;\">
-                                          <hr style=\"border-color: rgb(255,255,255);
-                                                   border-style:
-                                                   solid;\">
-                                       </td>
-                                    </tr>
-                                    </tbody>
-                                 </table>
-                              </td>
-                           </tr>
-                           </tbody>
-                        </table>
+
                         <table style=\"border-collapse: collapse;
                            border-spacing: 0; box-sizing: border-box;
                            min-height: 40px; position: relative; width:
@@ -1468,7 +1444,21 @@ function emailReset($token){
                                                    word-wrap: break-word;\">
                                                    <div style=\"text-align:
                                                       center; color: rgb(120,113,99);\"><span style=\"line-height: 0; display: none; color:
-                                                      rgb(120,113,99);\"></span>Atenciosamente,<br/><br/><strong>SMC Sistemas</strong>
+                                                      rgb(120,113,99);\"></span><br/>Atenciosamente,<br/><br/><strong>SMC Sistemas</strong>
+                                                   </div>
+                                                </div>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <td style=\"border-collapse:
+                                                collapse;\">
+                                                <div style=\"font-family: Arial;
+                                                   font-size: 15px; font-weight: normal; line-height:
+                                                   170%; text-align: left; color: rgb(120,113,99);
+                                                   word-wrap: break-word;\">
+                                                   <div style=\"text-align:
+                                                      center; color: rgb(120,113,99);\"><span style=\"line-height: 0; display: none; color:
+                                                      rgb(120,113,99);\"></span><br/><hr/><strong>Esta é uma mensagem automática. Por favor, não responda este e-mail.</strong>
                                                    </div>
                                                 </div>
                                              </td>
