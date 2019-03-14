@@ -3,6 +3,8 @@ include "funcoes/funcoesConecta.php";
 include "funcoes/funcoesGerais.php";
 $con = bancoMysqli();
 
+$linkValido = false;
+
 if (isset($_GET['token']))
 {
     $token = $_GET['token'];
@@ -10,8 +12,13 @@ if (isset($_GET['token']))
 
     if ($con->query($sqlConsultaToken)->num_rows <= 0)
     {
+
         $mensagem = "<span style='color: #ff0000; '><strong>Link Inválido! Tente recuperar sua senha novamente. Redirecionando a tela de login.</strong></span>";
         echo "<meta HTTP-EQUIV='refresh' CONTENT='3.5;URL=index.php'>";
+    }
+    else
+    {
+        $linkValido = true;
     }
 }
 else
@@ -90,29 +97,34 @@ if (isset($_POST['reset'])) {
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-offset-4 col-md-4">
-                        <form action="reset.php?token=<?= $_GET['token'] ?>" method="post">
-                            <div class="form-group has-feedback">
-                                <label for="novaSenha">Nova senha: </label>
-                                <input type="password" class="form-control" id="novaSenha" name="novaSenha" required>
-                            </div>
-                            <div class="form-group has-feedback" id="divConfirmaSenha">
-                                <label for="confirmaSenha">Confirmar Senha: </label>
-                                <input type="password" class="form-control" id="confirmaSenha" name="confirmaSenha"
-                                       onblur="comparaSenhas()" onkeypress="comparaSenhas()" required>
-                                <span class="help-block" id="spanHelp"></span>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col-xs-12">
-                                    <input type="hidden" name="reset">
-                                    <input type="hidden" name="token" value="<?= $_GET['token'] ?>">
-                                    <button type="submit" id="atualizar" class="btn btn-primary btn-block btn-flat" >Atualizar</button>
+                <?php if ($linkValido){ ?>
+                    <div class="row">
+                        <div class="col-md-offset-4 col-md-4">
+                            <form action="reset.php?token=<?= $_GET['token'] ?>" method="post">
+                                <div class="form-group has-feedback">
+                                    <label for="novaSenha">Nova senha: </label>
+                                    <input type="password" class="form-control" id="novaSenha" name="novaSenha"
+                                           required>
                                 </div>
-                            </div>
-                        </form>
+                                <div class="form-group has-feedback" id="divConfirmaSenha">
+                                    <label for="confirmaSenha">Confirmar Senha: </label>
+                                    <input type="password" class="form-control" id="confirmaSenha" name="confirmaSenha"
+                                           onblur="comparaSenhas()" onkeypress="comparaSenhas()" required>
+                                    <span class="help-block" id="spanHelp"></span>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-xs-12">
+                                        <input type="hidden" name="reset">
+                                        <input type="hidden" name="token" value="<?= $_GET['token'] ?>">
+                                        <button type="submit" id="atualizar" class="btn btn-primary btn-block btn-flat">
+                                            Atualizar
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
 
                 <div class="row">
                     <div class="col-md-offset-4 col-md-4">

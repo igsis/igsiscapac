@@ -1239,6 +1239,9 @@ function emailReset($token){
                 <p>SMC Sistemas</p>
                 <h3><small>Esta é uma mensagem automática. Por favor, não responda este e-mail</small></h3>";
     $html = "<html lang='pt-BR'>
+                <head>
+                    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+                </head>
                     <body>
                         $mensagem
                     </body>
