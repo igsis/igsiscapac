@@ -260,8 +260,8 @@ date_default_timezone_set("America/Sao_Paulo");
 	{
 		//grava na tabela log os inserts e updates
 		$logTratado = addslashes($log);
-		$idUser = $_SESSION['idUser'];
-		$ip = $_SERVER["REMOTE_ADDR"];
+        $idUser = $_SESSION['idUser'] ?? "0";
+        $ip = $_SERVER["REMOTE_ADDR"];
 		$data = date('Y-m-d H:i:s');
 		$sql = "INSERT INTO `log` (`id`, `idUsuario`, `enderecoIP`, `dataLog`, `descricao`)
 			VALUES (NULL, '$idUser', '$ip', '$data', '$logTratado')";
@@ -1217,6 +1217,34 @@ function arquivosObrigatorios($tipoPessoa, $idPessoa, $idListaDocumento) {
     else {
         return true;
     }
+}
+
+/**
+ * <p>Função cria o corpo do email enviado para reset de senha</p>
+ * <p>Tutorial para configurar o xampp para envio de emails no link</p>
+ * @link https://stackoverflow.com/a/18185233
+ * @param string $token
+ * @return string
+ */
+function emailReset($token){
+    $endereco = "http://".$_SERVER['SERVER_NAME']."/igsiscapac/reset.php?token=$token";
+    $mensagem = "<h3>CAPAC - Recuperação de Senha</h3>
+                <p>Olá,</p>
+                <p>Recebemos uma solicitação de recuperação de senha. Caso tenha solicitado, por favor clique no link abaixo para continuar:</p>
+                <p><a href='$endereco'>RECUPERAÇÃO DE SENHA CAPAC</a></p>
+                <p>Caso não tenha sido você, apenas ignore este e-mail e sua senha se manterá a mesma</p>
+                <p></p>
+                
+                <p>Atenciosamente,</p>
+                <p>SMC Sistemas</p>
+                <h3><small>Esta é uma mensagem automática. Por favor, não responda este e-mail</small></h3>";
+    $html = "<html lang='pt-BR'>
+                    <body>
+                        $mensagem
+                    </body>
+                </html>";
+
+    return $html;
 }
 
 ?>
