@@ -19,13 +19,13 @@
 define('DB_NAME', 'capac_wp');
 
 /** Usuário do banco de dados MySQL */
-define('DB_USER', 'root');
+define('DB_USER', 'capac');
 
 /** Senha do banco de dados MySQL */
-define('DB_PASSWORD', 'lic54eca');
+define('DB_PASSWORD', 'c1a2p3a4c5');
 
 /** nome do host do MySQL */
-define('DB_HOST', '200.237.5.34');
+define('DB_HOST', 'localhost');
 
 /** Conjunto de caracteres do banco de dados a ser usado na criação das tabelas. */
 define('DB_CHARSET', 'utf8mb4');
