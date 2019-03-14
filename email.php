@@ -1,93 +1,52 @@
 <?php
-	include "funcoes/funcoesConecta.php";
-	include "funcoes/funcoesGerais.php";
-	$con = bancoMysqli();
+include "funcoes/funcoesConecta.php";
+include "funcoes/funcoesGerais.php";
+$con = bancoMysqli();
 
-	if(isset($_POST['enviarEmail']))
-	{	
-		$email = $_POST['email'];
-		$sql = "SELECT email FROM usuario WHERE email = '$email'";
-		$query = mysqli_query($con,$sql);
-		$num = mysqli_num_rows($query);
-		if($num > 0)
-		{
-			$etapa = 2;
-			$tentativa = 0;
-			$usuario = recuperaDados("usuario","email",$email);
-		}
-		else
-		{
-			$mensagem = "<font color='#ff0000'><strong>E-mail não encontrado em nossa base de dados. </strong></font>";
-		}
-	}
+if (isset($_POST['enviarEmail']))
+{
+    $token = bin2hex(random_bytes(50));
+    $email = trim($_POST['email']);
 
-	if (isset($_POST['enviarResposta']))
-	{	
-		$email = $_POST['email'];
-		$frase = $_POST['frase'];
-		$resposta = $_POST['resposta'];
+    $sqlConsulta = "SELECT * FROM `usuario` WHERE email = '$email'";
+    $queryConsulta = $con->query($sqlConsulta);
+    if ($queryConsulta->num_rows > 0)
+    {
+        // store token in the password-reset database table against the user's email
+        $sqlConsultaToken = "SELECT * FROM `reset_senhas` WHERE `email` = '$email'";
+        if ($con->query($sqlConsultaToken)->num_rows > 0)
+        {
+            $sqlToken = "UPDATE `reset_senhas` SET `token` = '$token' WHERE `email` = '$email'";
+        }
+        else
+        {
+            $sqlToken = "INSERT INTO `reset_senhas`(email, token) VALUES ('$email', '$token')";
+        }
+        $results = $con->query($sqlToken);
 
-		$sql = "SELECT email, idFraseSeguranca, respostaFrase FROM usuario WHERE email = '$email' AND idFraseSeguranca = '$frase' AND respostaFrase = '$resposta'";
-		$query = mysqli_query($con,$sql);
-		$num = mysqli_num_rows($query);
-		if($num > 0)
-		{
-			$etapa = 3;
-			$tentativa = 0;
-			$usuario = recuperaDados("usuario","email",$email);
-		}
-		else
-		{
-			$etapa = 2;
-			$usuario = recuperaDados("usuario","email",$email);
-			$mensagem = "<font color='#ff0000'><strong>Pergunta secreta ou Resposta não confere com a cadastrada em nossa base de dados.</strong></font>";
-			$tentativa++;
-		}
-	}
+        // Send email to user with the token in a link they can click on
+        $to = $email;
+        $subject = "CAPAC - Recuperação de Senha";
+        $msg = emailReset($token);
 
-	if (isset($_POST['enviarSenha']))
-	{
-		$email = $_POST['email'];
-		$idUsuario = $_POST['id'];
+        // To send HTML mail, the Content-type header must be set
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-		if(($_POST['senha01'] != "") AND (strlen($_POST['senha01']) >= 5))
-		{
-			if($_POST['senha01'] == $_POST['senha02'])
-			{
-				$senha01 = md5($_POST['senha01']);
-				$sql_senha = "UPDATE `usuario` SET `senha` = '$senha01' WHERE `id` = '$idUsuario'";
-				$query_senha = mysqli_query($con,$sql_senha);
-				
-				if($query_senha)
-				{
-					$mensagem = "<font color='#33cc33'><strong>Senha alterada com sucesso! Aguarde que você será redirecionado para a página de login</strong></font>";
-					gravarLogSenha($sql_senha, $idUsuario);
-					echo "<script type=\"text/javascript\">
-						  window.setTimeout(\"location.href='index.php';\", 3000);
-						</script>";
-				}
-				else
-				{
-					$mensagem = "<font color='#FF0000'><strong>Não foi possível mudar a senha! Tente novamente.</strong></font>";
-					echo "<script type=\"text/javascript\">
-						  window.setTimeout(\"location.href='recuperar_senha.php';\", 3000);
-						</script>";
-				}
-			}
-			else
-			{
-				$etapa = 3;
-				$mensagem = "<font color='#FF0000'><strong>Senhas não conferem! Tente novamente.</strong></font>";
-				$usuario = recuperaDados("usuario","email",$email);
-			}
-		}
-		else
-		{	
-			$etapa = 3;
-			$mensagem = "<font color='#FF0000'><strong>Senha de conter um minímo de 5 dígitos</strong></font>";
-			$usuario = recuperaDados("usuario","email",$email);
-		}
-	}
+        // Create email headers
+        $headers .= "De: no.reply.smcsistemas@gmail.com\r\n";
+        mail($to, $subject, $msg, $headers);
+
+        $mensagem = "<span style='color: #00a201; '>Enviamos um email para <b>$email</b> para a reiniciarmos sua senha. <br>
+                    Por favor acesse seu email e clique no link recebido para cadastrar uma nova senha! (Lembre-se de verificar o spam)</span>";
+    }
+    else
+    {
+        $mensagem = "<span style='color: #ff0000; '><strong>E-mail não encontrado em nossa base de dados. </strong></span>";
+    }
+
+}
+
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
