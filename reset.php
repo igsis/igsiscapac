@@ -10,7 +10,7 @@ if (isset($_GET['token']))
 
     if ($con->query($sqlConsultaToken)->num_rows <= 0)
     {
-        $mensagem = callout("danger","Link Inválido! Tente recuperar sua senha novamente. Redirecionando a tela de login.");
+        $mensagem = "<span style='color: #ff0000; '><strong>Link Inválido! Tente recuperar sua senha novamente. Redirecionando a tela de login.</strong></span>";
         echo "<meta HTTP-EQUIV='refresh' CONTENT='3.5;URL=index.php'>";
     }
 }
