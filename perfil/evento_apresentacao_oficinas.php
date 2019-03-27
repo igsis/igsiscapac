@@ -82,7 +82,6 @@ $idUser= $_SESSION['idUser'];
                                         <li class="list-group-item list-group-item-success"><b>Dados e Cronograma da Oficina</b></li>
                                         <li class="lista-informacao">Nome da Oficina</li>
                                         <li class="lista-informacao">Modalidade</li>
-                                        <li class="lista-informacao">Proposta e Cronograma de Realização de Oficinas</li>
                                     </ul>
                                     <ul class="list-group">
                                         <li class="list-group-item list-group-item-success"><b>Demais Anexos</b></li>
@@ -153,7 +152,6 @@ $idUser= $_SESSION['idUser'];
                                         <li class="list-group-item list-group-item-success"><b>Dados e Cronograma da Oficina</b></li>
                                         <li class="lista-informacao">Nome da Oficina</li>
                                         <li class="lista-informacao">Modalidade</li>
-                                        <li class="lista-informacao">Proposta e Cronograma de Realização de Oficinas</li>
                                     </ul>
                                     <ul class="list-group">
                                         <li class="list-group-item list-group-item-success"><b>Demais Anexos</b></li>
