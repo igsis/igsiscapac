@@ -348,7 +348,7 @@ $evento_pf = recuperaDados("evento","id",$evento);
 					?>	
 				</div>
                     <?php
-                    if ($tipoPessoa == 1)
+                    if ($evento_pf != NULL)
                     {
                     ?>
                         <div class="col-md-offset-4 col-md-2">

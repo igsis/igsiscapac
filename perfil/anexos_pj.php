@@ -297,7 +297,7 @@ $evento_pj = recuperaDados("evento","id",$evento);
 					?>	
 					<!-- Botão para Avançar -->
                     <?php
-                        if ($tipoPessoa == 2)
+                        if ($evento_pj != NULL)
                         {
                             ?>
                             <div class="col-md-offset-4 col-md-2">
