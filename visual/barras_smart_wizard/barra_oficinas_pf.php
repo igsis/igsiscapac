@@ -63,7 +63,7 @@ for ($i = 0; $i < count($urlPf); $i++) {
                         <a onclick="location.href='index.php?perfil=oficineiro_pf_anexos'" href=""><br /><small>Demais Anexos</small></a>
                     </li>
                     <li class="<?php echo isset($active7) ? $active7 : 'clickable'; ?>">
-                        <a onclick="location.href='index.php?perfil=oficineiro_pf_final'" href=""><br /><small>Finalizar</small></a>
+                        <a onclick="location.href='index.php?perfil=oficineiro_pf_final'" href=""><br /><small>Próxima etapa</small></a>
                     </li>
                 </ul>
             </div>

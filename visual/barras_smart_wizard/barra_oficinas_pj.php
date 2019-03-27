@@ -77,7 +77,7 @@ for ($i = 0; $i < count($urlPf); $i++) {
                     <a onclick="location.href='index.php?perfil=oficineiro_pj_demais_anexos'" href=""><br /><small>Demais Anexos</small></a>
                 </li>
                 <li class="<?php echo isset($active10) ? $active10 : 'clickable'; ?>">
-                    <a onclick="location.href='index.php?perfil=oficineiro_pj_finalizar'" href=""><br /><small>Finalizar</small></a>
+                    <a onclick="location.href='index.php?perfil=oficineiro_pj_finalizar'" href=""><br /><small>Próxima etapa</small></a>
                 </li>
             </ul>
         </div>
