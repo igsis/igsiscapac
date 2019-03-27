@@ -27,7 +27,7 @@ unset($_SESSION['menu']);
 								echo "<a href='?perfil=busca_reset' class='btn btn-theme btn-lg btn-block'>Reiniciar Senha</a><br/>";
 							}
 						?>
-                        <p>Selecione aqui o tipo de evento de deseja cadastrar</p>
+                        <p>Selecione aqui o tipo de evento <strong>(teatro, dança, oficina, música, etc)</strong> que deseja cadastrar</p>
                         <button type="button" class="btn btn-theme btn-lg btn-block" data-toggle="collapse" data-target="#evento">EVENTO</button>
                         <div id="evento" class="collapse">
                             <div class="well">
