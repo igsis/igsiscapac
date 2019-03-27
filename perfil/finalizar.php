@@ -302,7 +302,7 @@ if(isset($_POST['enviar']))
 						if($i == 0)
 						{
 						?>
-							<p><strong><font color='#01DF3A'>Não há pendências de preenchimento de campos.</font></strong></p>
+							<p><strong><font color='#01DF3A'>Não há pendências de preenchimento de campos.<br/>Confira as informações abaixo e se estiver tudo correto, clique no botão ENVIAR no fim da página.</font></strong></p>
 						<?php
 						}
 						else
