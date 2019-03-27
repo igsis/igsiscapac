@@ -44,7 +44,7 @@ unset($_SESSION['menu']);
                         </div>
                         <br>
                         <p>Aqui são inseridas as informações dos oficineiros <strong>JÁ SELECIONADOS NO EDITAL n. 002/2018 SMC/GAB</strong></p>
-						<a href="?perfil=evento_apresentacao_oficinas" class="btn btn-theme btn-lg btn-block">OFICINAS</a>
+						<a href="?perfil=evento_apresentacao_oficinas" class="btn btn-theme btn-lg btn-block">OFICINAS - EDITAL 002/2018</a>
 						<br />
                         <?php if($formacao['situacao'] == 1) { ?>
                             <p>Aqui são inseridas os dados para inscrição às vagas dos Editais dos Programas da Supervisão de Formação (Vocacional / PIA).</p>
