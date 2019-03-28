@@ -3,25 +3,20 @@
 $con = bancoMysqli();
 $idOficina = $_SESSION['idEvento'];
 
-if (isset($_SESSION['idPf']))
-{
-    $id = $_SESSION['idPf'];
-    $tabela = "pessoa_fisica";
-    $tipoPessoa = 4;
-}
-elseif (isset($_SESSION['idPj']))
-{
-    $id = $_SESSION['idPj'];
-    $tabela = "pessoa_juridica";
-    $tipoPessoa = 5;
-}
-$pessoa = recuperaDados($tabela,"id",$id);
-$idCampo = ($tipoPessoa == 4) ? 134 : 135;
+    if (isset($_SESSION['idPf']))
+    {
+        $id = $_SESSION['idPf'];
+        $tabela = "pessoa_fisica";
+        $tipoPessoa = 4;
+    }
+    elseif (isset($_SESSION['idPj']))
+    {
+        $id = $_SESSION['idPj'];
+        $tabela = "pessoa_juridica";
+        $tipoPessoa = 5;
+    }
 
-$consulta = "SELECT * FROM `oficina_dados` WHERE `tipoPessoa` = '$tipoPessoa' AND `idPessoa` = '$id' AND `publicado` = '1'";
-$dados = $con->query($consulta)->fetch_assoc();
-
-if (isset($_POST['cadastrar']))
+if ((isset($_POST['cadastrar']) || (isset($_POST['atualizar']))))
 {
     $idModalidade = $_POST['modalidade'];
     $idOficina = $_POST['idOficina'];
@@ -45,15 +40,11 @@ if (isset($_POST['cadastrar']))
         $documento = $representante['rg'];
     }
 
-    $idDados = $_POST['idDadosOficineiro'];
-    $sql_dados = "UPDATE `oficina_dados` SET 
-                `modalidade_id` = '$idModalidade',
-                `idOficina` = '$idOficina',
-                `dataInicio` = '$dataInicio',
-                `dataFim` = '$dataFim',
-                `dia1` = '$dia1',
-                `dia2` = '$dia2'
-              WHERE `id` = '$idDados'";
+    if (isset($_POST['atualizar'])) {
+        $sql_dados = "UPDATE `oficina_dados_complementares` SET modalidade_id = '$idModalidade', dataInicio = '$dataInicio', dataFim = '$dataFim', dia1 = '$dia1', dia2 = '$dia2' WHERE oficina_id = '$idOficina'";
+    } else {
+        $sql_dados = "INSERT INTO `oficina_dados_complementares` (oficina_id, modalidade_id, dataInicio, dataFim, dia1, dia2) VALUES ('$idOficina', '$idModalidade', '$dataInicio', '$dataFim', '$dia1', '$dia2')";
+    }
     $query = $con->query($sql_dados);
     if ($query)
     {
@@ -66,80 +57,89 @@ if (isset($_POST['cadastrar']))
     }
 }
 
-if(isset($_POST["enviar"]))
-{
-    $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idCampo'";
-    $query_arquivos = mysqli_query($con,$sql_arquivos);
-    while($arq = mysqli_fetch_array($query_arquivos))
+/*
+INICIO DO BLOCO DE ENVIO DE CRONOGRAMA (DESATIVADO DIA 22/01
+    $idCampo = ($tipoPessoa == 4) ? 134 : 135;
+
+    if(isset($_POST["enviar"]))
     {
-        $y = $arq['id'];
-        $x = $arq['sigla'];
-        $nome_arquivo = $_FILES['arquivo']['name'][$x];
-        $f_size = $_FILES['arquivo']['size'][$x];
-        $ext = array("PDF","pdf"); //Extensões permitidas
+        $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idCampo'";
+        $query_arquivos = mysqli_query($con,$sql_arquivos);
+        while($arq = mysqli_fetch_array($query_arquivos))
+        {
+            $y = $arq['id'];
+            $x = $arq['sigla'];
+            $nome_arquivo = $_FILES['arquivo']['name'][$x];
+            $f_size = $_FILES['arquivo']['size'][$x];
+            $ext = array("PDF","pdf"); //Extensões permitidas
 
-        if($f_size > 5242880) // 5MB em bytes
-        {
-            $mensagem = "<font color='#FF0000'><strong>Erro! Tamanho de arquivo excedido! Tamanho máximo permitido: 05 MB.</strong></font>";
-        }
-        else
-        {
-            if($nome_arquivo != "")
+            if($f_size > 5242880) // 5MB em bytes
             {
-                $nome_temporario = $_FILES['arquivo']['tmp_name'][$x];
-                $new_name = date("YmdHis")."_".semAcento($nome_arquivo); //Definindo um novo nome para o arquivo
-                $hoje = date("Y-m-d H:i:s");
-                $dir = '../uploadsdocs/'; //Diretório para uploads
-                $allowedExts = array(".pdf", ".PDF"); //Extensões permitidas
-                $ext = strtolower(substr($nome_arquivo,-4));
-
-                if(in_array($ext, $allowedExts)) //Pergunta se a extensão do arquivo, está presente no array das extensões permitidas
+                $mensagem = "<font color='#FF0000'><strong>Erro! Tamanho de arquivo excedido! Tamanho máximo permitido: 05 MB.</strong></font>";
+            }
+            else
+            {
+                if($nome_arquivo != "")
                 {
-                    if(move_uploaded_file($nome_temporario, $dir.$new_name))
+                    $nome_temporario = $_FILES['arquivo']['tmp_name'][$x];
+                    $new_name = date("YmdHis")."_".semAcento($nome_arquivo); //Definindo um novo nome para o arquivo
+                    $hoje = date("Y-m-d H:i:s");
+                    $dir = '../uploadsdocs/'; //Diretório para uploads
+                    $allowedExts = array(".pdf", ".PDF"); //Extensões permitidas
+                    $ext = strtolower(substr($nome_arquivo,-4));
+
+                    if(in_array($ext, $allowedExts)) //Pergunta se a extensão do arquivo, está presente no array das extensões permitidas
                     {
-                        $sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$id', '$idCampo', '$new_name', '$hoje', '1'); ";
-                        $query = mysqli_query($con,$sql_insere_arquivo);
-                        if($query)
+                        if(move_uploaded_file($nome_temporario, $dir.$new_name))
                         {
-                            $mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
-                            gravarLog($sql_insere_arquivo);
+                            $sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$id', '$idCampo', '$new_name', '$hoje', '1'); ";
+                            $query = mysqli_query($con,$sql_insere_arquivo);
+                            if($query)
+                            {
+                                $mensagem = "<font color='#01DF3A'><strong>Arquivo recebido com sucesso!</strong></font>";
+                                gravarLog($sql_insere_arquivo);
+                            }
+                            else
+                            {
+                                $mensagem = "<font color='#FF0000'><strong>Erro ao gravar no banco.</strong></font>";
+                            }
                         }
                         else
                         {
-                            $mensagem = "<font color='#FF0000'><strong>Erro ao gravar no banco.</strong></font>";
+                            $mensagem = "<font color='#FF0000'><strong>Erro no upload! Tente novamente.</strong></font>";
                         }
                     }
                     else
                     {
-                        $mensagem = "<font color='#FF0000'><strong>Erro no upload! Tente novamente.</strong></font>";
+                        $mensagem = "<font color='#FF0000'><strong>Erro no upload! Anexar documentos somente no formato PDF.</strong></font>";
                     }
-                }
-                else
-                {
-                    $mensagem = "<font color='#FF0000'><strong>Erro no upload! Anexar documentos somente no formato PDF.</strong></font>";
                 }
             }
         }
     }
-}
 
-if(isset($_POST['apagar']))
-{
-    $idArquivo = $_POST['apagar'];
-    $sql_apagar_arquivo = "UPDATE upload_arquivo SET publicado = 0 WHERE id = '$idArquivo'";
-    if(mysqli_query($con,$sql_apagar_arquivo))
+    if(isset($_POST['apagar']))
     {
-        $mensagem = "<font color='#01DF3A'><strong>Arquivo apagado com sucesso!</strong></font>";
-        gravarLog($sql_apagar_arquivo);
+        $idArquivo = $_POST['apagar'];
+        $sql_apagar_arquivo = "UPDATE upload_arquivo SET publicado = 0 WHERE id = '$idArquivo'";
+        if(mysqli_query($con,$sql_apagar_arquivo))
+        {
+            $mensagem = "<font color='#01DF3A'><strong>Arquivo apagado com sucesso!</strong></font>";
+            gravarLog($sql_apagar_arquivo);
+        }
+        else
+        {
+            $mensagem = "<font color='#FF0000'><strong>Erro ao apagar arquivo! Tente novamente.</strong></font>";
+        }
     }
-    else
-    {
-        $mensagem = "<font color='#FF0000'><strong>Erro ao apagar arquivo! Tente novamente.</strong></font>";
-    }
-}
+FIM DO BLOCO DE ENVIO DE CRONOGRAMA
+*/
 
-$pessoa = recuperaDados($tabela,"id",$id);
-$dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
+$sqlConsulta = "SELECT * FROM `oficina_dados_complementares` WHERE `oficina_id` = '$idOficina'";
+$consulta = $con->query($sqlConsulta);
+$acao = ($consulta->num_rows == 0) ? "cadastrar" : "atualizar";
+
+$dadosOficineiro = recuperaDados('oficina_dados_complementares', 'oficina_id', $idOficina);
 ?>
 
 <section id="list_items" class="home-section bg-white">
@@ -207,7 +207,7 @@ $dadosOficineiro = recuperaDados('oficina_dados', 'id', $dados['id']);
                             <input type="hidden" name="id" value="<?= $id ?>">
                             <input type="hidden" name="tipoPessoa" value="<?= $tipoPessoa ?>">
                             <input type="hidden" name="idDadosOficineiro" value="<?= $dadosOficineiro['id'] ?>">
-                            <input type="submit" name="cadastrar" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
+                            <input type="submit" name="<?=$acao?>" value="GRAVAR" class="btn btn-theme btn-lg btn-block">
                         </div>
                     </div>
                 </form>
