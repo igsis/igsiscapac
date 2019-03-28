@@ -131,16 +131,19 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
-						<p align="left">Após inserir os dados pessoais, clique no botão para gerar a Declaração de Exclusividade. Escolha entre um dos dois modelos abaixo:</p>
+						<p align="left">Após inserir os dados pessoais, clique no botão para gerar a Declaração de Exclusividade. Escolha entre um dos modelos abaixo:</p>
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="col-md-offset-2 col-md-6">
+					<div class="col-md-offset-2 col-md-3">
 						<a href='<?php echo $link1; ?>' target='_blank' class="btn btn-theme btn-md btn-block"><strong>Grupo</strong></a>
 					</div>
-					<div class="col-md-6">
-						<a href='<?php echo $link2; ?>' target='_blank' class="btn btn-theme btn-md btn-block"><strong>Artista Solo</strong></a>
-					</div>
+                    <div class="col-md-3">
+                        <a href='<?php echo $link1; ?>' target='_blank' class="btn btn-theme btn-md btn-block"><strong>Virada Cultural</strong></a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href='<?php echo $link2; ?>' target='_blank' class="btn btn-theme btn-md btn-block"><strong>Artista Solo</strong></a>
+                    </div>
 				</div>
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-8">
