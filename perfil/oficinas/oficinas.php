@@ -52,6 +52,13 @@ $num = mysqli_num_rows($query);
         <?php include '../perfil/includes/oficina_menu_evento.php'; ?>
         <div class="form-group">
             <h3>OFICINAS</h3>
+            <p>
+                <strong>
+                    <span style="color: green;">
+                        Após completar o cadastro de sua oficina, clique no botão "Enviar" para gerar o código CAPAC
+                    </span>
+                </strong>
+            </p><br>
             <h5>
                 <?php if(isset($mensagem)){echo $mensagem;}; ?>
             </h5>

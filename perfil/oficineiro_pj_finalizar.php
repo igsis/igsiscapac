@@ -151,7 +151,7 @@ function listaArquivoCamposMultiplos1($idPessoa,$pf, $tipoPessoa = '2')
                 <strong>
                     <span style="color: green;">
                         Confirme seus dados abaixo,<br>
-                        Avance para cadastrar a Oficina e gerar o código solicitado!<br>
+                        Avance para cadastrar a oficina que será realizada!<br>
                     </span>
                 </strong>
             </p><br>
