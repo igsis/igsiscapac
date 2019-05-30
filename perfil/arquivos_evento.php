@@ -119,7 +119,7 @@ if(isset($_POST['apagar']))
 			<h4>Arquivos do Evento</h4>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
-		<div class="alert alert-danger col-md-offset-3 col-sm-6" role="alert"><br><h2><strong>AVISO</strong></h2>Clique nos arquivos após efetuar o upload e confira a exibição do documento!<br>Tamanho máximo permitido: 05 MB.<br><br></div>
+        <div class="alert alert-danger col-md-offset-3 col-sm-6" role="alert"><br><h2><strong>AVISO</strong></h2>Clique nos arquivos após efetuar o upload e confira a exibição do documento!<br>Tamanho máximo permitido: 05 MB.<br>Apenas 01 arquivo por campo de upload.<br> Utilize o site <a href="https://www.ilovepdf.com/pt">I LOVE PDF</a> para juntar os documentos em um único arquivo.<br><br></div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
 				<!-- Exibir arquivos -->
