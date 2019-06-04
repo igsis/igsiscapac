@@ -1,3 +1,4 @@
+// Henrique
 CREATE TABLE capac.jovem_monitor (
 id INT NOT NULL AUTO_INCREMENT,
 nome VARCHAR(80) NOT NULL,
@@ -22,3 +23,14 @@ ADD COLUMN user_id INT NOT NULL AFTER estado;
 
 ALTER TABLE capac.jovem_monitor
 ADD COLUMN telefone VARCHAR(15) NOT NULL AFTER cpf;
+
+// Maria
+
+INSERT INTO `capac`.`upload_tipo` (`id`, `tipo`) VALUES ('7', 'jovem_monitor');
+INSERT INTO `capac`.`upload_lista_documento` (`idTipoUpload`, `documento`, `sigla`, `teatro`, `musica`, `oficina`, `edital`, `publicado`) VALUES ('7', 'Fotocópia da carteira de identidade', 'rg_arquivo', '0', '0', '0', '0', '1');
+INSERT INTO `capac`.`upload_lista_documento` (`idTipoUpload`, `documento`, `sigla`, `teatro`, `musica`, `oficina`, `edital`, `publicado`) VALUES ('7', 'Fotocópia do registro no cadastro de pessoa física', 'cpf_arquivo', '0', '0', '0', '0', '1');
+INSERT INTO `capac`.`upload_lista_documento` (`idTipoUpload`, `documento`, `sigla`, `teatro`, `musica`, `oficina`, `edital`, `publicado`) VALUES ('7', 'Fotocópia de Comprovante de Residência recente', 'residencia', '0', '0', '0', '0', '1');
+INSERT INTO `capac`.`upload_lista_documento` (`idTipoUpload`, `documento`, `sigla`, `teatro`, `musica`, `oficina`, `edital`, `publicado`) VALUES ('7', 'Currículo Vitae atualizado', 'curriculo_atual', '0', '0', '0', '0', '1');
+INSERT INTO `capac`.`upload_lista_documento` (`idTipoUpload`, `documento`, `sigla`, `teatro`, `musica`, `oficina`, `edital`, `publicado`) VALUES ('7', 'Fotocópia do Comprovante de conclusão de ensino médio', 'comprovante', '0', '0', '0', '0', '1');
+INSERT INTO `capac`.`upload_lista_documento` (`idTipoUpload`, `documento`, `sigla`, `teatro`, `musica`, `oficina`, `edital`, `publicado`) VALUES ('7', 'Fotocópia dos comprovantes de eventuais participações', 'participacao', '0', '0', '0', '0', '1');
+
