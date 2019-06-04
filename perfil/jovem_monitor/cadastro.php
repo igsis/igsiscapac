@@ -59,7 +59,7 @@ $idJovemMonitor = $jovem_monitor['id'] ?? null;
 </script>
 
 <section id="list_items" class="home-section bg-white">
-    <div class="container"><?php include '../perfil/includes/menu_oficinas.php'; ?>
+    <div class="container"><?php include '../perfil/includes/menu_jovem_monitor.php'; ?>
         <div class="form-group">
             <h3>Jovem monitor</h3>
             <h4>
