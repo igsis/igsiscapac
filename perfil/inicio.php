@@ -43,6 +43,18 @@ unset($_SESSION['menu']);
                             </div>
                         </div>
                         <br>
+                        <p> </p>
+                        <button type="button" class="btn btn-theme btn-lg btn-block" data-toggle="collapse" data-target="#emenda">EMENDA PARLAMENTAR</button>
+                        <div id="emenda" class="collapse">
+                            <div class="well">
+                                <p>Aqui são inseridas as informações sobre o seu evento apenas com cachê do artista</p>
+                                <a href="?perfil=emenda&p=contratacao_apresentacao" class="btn btn-theme btn-lg btn-block">CONTRATAÇÃO ARTÍSTICA</a>
+                                <br />
+                                <p>Aqui são inseridas as informações sobre seu evento que tenha outros custos além do cachê artístico</p>
+                                <a href="?perfil=emenda&p=parceria_apresentacao" class="btn btn-theme btn-lg btn-block">PARCERIA</a>
+                            </div>
+                        </div>
+                        <br>
                         <p>Aqui são inseridas as informações dos oficineiros <strong>JÁ SELECIONADOS NO EDITAL n. 002/2018 SMC/GAB</strong></p>
 						<a href="?perfil=evento_apresentacao_oficinas" class="btn btn-theme btn-lg btn-block">OFICINAS - EDITAL 002/2018</a>
 						<br />
