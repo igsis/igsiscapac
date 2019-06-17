@@ -117,8 +117,13 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
 
 <section id="list_items" class="home-section bg-white">
 	<div class="container">
-        <?php include 'includes/menu_evento.php'; ?>
-
+        <?php
+        if (isset($_SESSION['emenda'])) {
+            include '../perfil/includes/menu_emenda.php';
+        } else {
+            include '../perfil/includes/menu_evento.php';
+        }
+        ?>
 		<div class="form-group">
 			<h3>Endereço</h3>
 			<p><b>Código de cadastro:</b> <?php echo $idPf; ?> | <b>Nome:</b> <?php echo $pf['nome']; ?></p>

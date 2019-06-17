@@ -61,7 +61,14 @@ if(isset($_POST['atualizar']))
 $produtor = recuperaDados("produtor","id",$idProdutor);
 ?>
 <section id="inserir" class="home-section bg-white">
-    <div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
+    <div class="container">
+        <?php
+        if (isset($_SESSION['emenda'])) {
+            include '../perfil/includes/menu_emenda.php';
+        } else {
+            include '../perfil/includes/menu_evento.php';
+        }
+        ?>
 		<div class="form-group">
 			<h4>Dados do Produtor</h4>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
@@ -124,7 +131,7 @@ $produtor = recuperaDados("produtor","id",$idProdutor);
 				?>	
 				<div class="col-md-offset-1 col-md-2">
 					<form class="form-horizontal" role="form" action="?perfil=arquivos_evento" method="post">
-						<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
+						<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block">
 					</form>
 				</div>
 				<?php
@@ -132,7 +139,7 @@ $produtor = recuperaDados("produtor","id",$idProdutor);
 				?>
 				<div class="col-md-offset-6 col-md-2">
 					<form class="form-horizontal" role="form" action="?perfil=arquivos_com_prod" method="post">
-						<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
+						<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
 					</form>
 				</div>
 			</div>
