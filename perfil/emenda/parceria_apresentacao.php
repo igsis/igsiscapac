@@ -1,8 +1,9 @@
 <?php
 $idUser= $_SESSION['idUser'];
+$_SESSION['emenda'] = 2;
 ?>
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
+	<div class="container"><?php include '../perfil/includes/menu_emenda.php'; ?>
 		<div class="form-group">
 			<h3>Resumo das Informações para preenchimento do evento <br>
             <small>Emenda - Parceria</small></h3>
@@ -78,7 +79,9 @@ $idUser= $_SESSION['idUser'];
 										<li class="lista-informacao"><a href="http://www.receita.fazenda.gov.br/pessoajuridica/cnpj/cnpjreva/cnpjreva_solicitacao.asp" target="_blank">Cartão CNPJ</a></li>
 										<li class="lista-informacao"><a href="https://ccm.prefeitura.sp.gov.br/login/contribuinte?tipo=F" target="_blank">FDC CCM - Ficha de Dados Cadastrais de Contribuintes Mobiliários</a></li>
 										<li class="lista-informacao"><a href="https://www3.prefeitura.sp.gov.br/cpom2/Consulta_Tomador.aspx" target="_blank">CPOM - Cadastro de Empresas Fora do Município</a></li>
-									</ul>
+                                        <li class="lista-informacao">Ofício de Solicitação de Parceria</li>
+                                        <li class="lista-informacao">Comprovante de Endereço da Instituição Proponente</li>
+                                    </ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>Endereço</b></li>
 										<li class="lista-informacao">CEP</li>
@@ -107,6 +110,7 @@ $idUser= $_SESSION['idUser'];
 										<li class="list-group-item list-group-item-success"><b>Arquivo dos Dados Bancários em PDF</b></li>
 										<li class="lista-informacao">Gerar FACC (Documento gerado pelo sistema necessário para recebimento do cachê.)</li>
 										<li class="lista-informacao">Anexar a FACC depois de assinada</li>
+										<li class="lista-informacao">Formulário de Abertura de Conta Corrente no Banco do Brasil</li>
 									</ul>
 									<ul class="list-group">
 										<li class="list-group-item list-group-item-success"><b>ARTISTA - Líder do Grupo ou Artista Solo</b></li>
@@ -141,6 +145,18 @@ $idUser= $_SESSION['idUser'];
 										<li class="lista-informacao"><a href="http://www3.prefeitura.sp.gov.br/cadin/Pesq_Deb.aspx">CADIN Municipal</a></li>
 										<li class="lista-informacao">Estatuto Social</li>
 										<li class="lista-informacao"><a href="http://www.receita.fazenda.gov.br/Aplicacoes/ATSPO/Certidao/CNDConjuntaSegVia/NICertidaoSegVia.asp?Tipo=1" target="_blank">CND</a></li>
+                                        <li class="lista-informacao">Plano de Trabalho</li>
+                                        <li class="lista-informacao">Declaração De Inexistência De Débitos Perante A Fazenda SP</li>
+                                        <li class="lista-informacao">Declaração De Não Emprego De Menores</li>
+                                        <li class="lista-informacao">Declaração de Ficha Limpa</li>
+                                        <li class="lista-informacao">Declaração De Inexistência De Impedimentos</li>
+                                        <li class="lista-informacao">Declaração de Não Servidor Público</li>
+                                        <li class="lista-informacao">Declaração de Ciência; Carta de Autorização de Abertura de Contas; Inscrição no CNPJ – Receita Federal</li>
+                                        <li class="lista-informacao">Contrato Social / Estatuto / Requerimento de Empresário</li>
+                                        <li class="lista-informacao">Cópia da ATA da última reunião de eleição de Diretoria</li>
+                                        <li class="lista-informacao">Cópia da ATA da última reunião para os demais casos</li>
+                                        <li class="lista-informacao">Relação nominal atualizada dos dirigentes da entidade</li>
+                                        <li class="lista-informacao">Currículo da entidade/empresa</li>
 
 									</ul>
 									<ul class="list-group">
@@ -161,7 +177,7 @@ $idUser= $_SESSION['idUser'];
 
 			<div class="form-group">
 				<div class="col-md-offset-2 col-md-8">
-					<form class="form-horizontal" role="form" action="?perfil=evento" method="post">
+					<form class="form-horizontal" role="form" action="?perfil=emenda&p=emenda_lista" method="post">
 						<input type="submit" value="Iniciar Evento" class="btn btn-theme btn-lg btn-block" />
 					</form>
 				</div>
