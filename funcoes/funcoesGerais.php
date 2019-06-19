@@ -843,9 +843,12 @@ function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, 
 		case 2: //informacoes_iniciais_pj
 			$arq1 = "AND (list.id = '22' OR ";
 			$arq2 = "list.id = '43' OR";
-			$arq3 = "list.id = '28')";
-			$sql = "SELECT *
-				FROM upload_lista_documento as list
+            if ((isset($_SESSION['emenda'])) && ($_SESSION['emenda'] == 2)) {
+                $arq3 = "list.id = '28' OR list.sigla = 'parc_of' OR list.sigla = 'parc_end')";
+            } else {
+                $arq3 = "list.id = '28')";
+            }
+			$sql = "SELECT * FROM upload_lista_documento as list
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
 				AND arq.idTipoPessoa = '$tipoPessoa'
@@ -860,6 +863,9 @@ function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, 
 				AND arq.idTipoPessoa = '$tipoPessoa'
 				AND list.id = '$idCampo'
 				AND arq.publicado = '1'";
+            if ((isset($_SESSION['emenda'])) && ($_SESSION['emenda'] == 2)) {
+                $sql .= " OR list.sigla = 'parc_bb'";
+            }
 		break;
 		case 4: //anexos_pf
 			$sql = "SELECT *
