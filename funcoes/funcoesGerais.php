@@ -856,16 +856,18 @@ function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, 
 				AND arq.publicado = '1'";
 		break;
 		case 3: //dados_bancarios e informações_complementares
+            if ((isset($_SESSION['emenda'])) && ($_SESSION['emenda'] == 2)) {
+                $busca = " AND (list.id = '$idCampo' OR list.sigla = 'parc_bb')";
+            } else {
+                $busca = " AND list.id = '$idCampo'";
+            }
 			$sql = "SELECT *
 				FROM upload_lista_documento as list
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
 				AND arq.idTipoPessoa = '$tipoPessoa'
-				AND list.id = '$idCampo'
+				$busca
 				AND arq.publicado = '1'";
-            if ((isset($_SESSION['emenda'])) && ($_SESSION['emenda'] == 2)) {
-                $sql .= " OR list.sigla = 'parc_bb'";
-            }
 		break;
 		case 4: //anexos_pf
 			$sql = "SELECT *
@@ -912,12 +914,22 @@ function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, 
 				AND arq.publicado = '1'";
 		break;
 		case 8: //anexos_pj
-			$sql = "SELECT *
+            $arquivos = [20,21,22,28,43,89,103,104];
+            if (!isset($_SESSION['emenda'])){
+                array_push($arquivos, 165);
+            }
+
+            if ((isset($_SESSION['emenda'])) && ($_SESSION['emenda'] == 2)) {
+                $busca = " AND (list.id NOT IN (".implode(", ", $arquivos).") AND list.sigla NOT IN ('parc_of', 'parc_end', 'parc_bb'))";
+            } else {
+                $busca = " AND list.id NOT IN (".implode(", ", $arquivos).")";
+            }
+            $sql = "SELECT *
 				FROM upload_lista_documento as list
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
 				AND arq.idTipoPessoa = '$tipoPessoa'
-				AND list.id NOT IN ('20','21','22','28','43','89','103','104')
+				$busca
 				AND arq.publicado = '1'";
 		break;
 		case 9: //grupo
