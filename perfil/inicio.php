@@ -48,7 +48,7 @@ unset($_SESSION['menu']);
 						<br />
 
                         <p>Aqui é realizado o cadastro de novos <strong>Jovens Monitores </strong></p>
-                        <a href="?perfil=jovem_monitor/cadastro" class="btn btn-theme btn-lg btn-block">Cadastro de jovem monitor</a>
+                        <a href="?perfil=jovem_monitor/cadastro" class="btn btn-theme btn-lg btn-block">Programa Jovem Monitor Cultural</a>
                         <br />
                         <?php if($formacao['situacao'] == 1) { ?>
                             <p>Aqui são inseridas os dados para inscrição às vagas dos Editais dos Programas da Supervisão de Formação (Vocacional / PIA).</p>
