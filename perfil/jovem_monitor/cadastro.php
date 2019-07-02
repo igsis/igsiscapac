@@ -18,12 +18,13 @@ if(isset($_POST['cadastrar']) || isset($_POST['editar'])){
     $bairro = $_POST['Bairro'];
     $cidade = $_POST['Cidade'];
     $estado = $_POST['Estado'];
+    $email = $_POST['email'];
 
     if(isset($_POST['cadastrar'])){
-        $sql = "INSERT INTO jovem_monitor (nome, nome_social, data_nascimento, rg, cpf, telefone, cep, logradouro, numero, complemento, bairro, cidade, estado, user_id)
-                VALUES ('$nome','$nomeSocial', '$dataNascimento', '$rg', '$cpf', '$telefone', '$cep',  '$logradouro', '$numero', '$complemento', '$bairro', '$cidade', '$estado', '$idUser')";
+        $sql = "INSERT INTO pessoa_fisica (nome, nomeArtistico, rg, cpf, dataNascimento, bairro, cidade, estado, cep, numero, complemento, telefone1, email, jovem_monitor, idUsuario)
+                VALUES ('$nome','$nomeSocial', '$rg', '$cpf', '$dataNascimento','$bairro', '$cidade', '$estado', '$cep', '$numero', '$complemento', '$telefone', '$email', 1, '$idUser')";
     }else{
-        $sql = "UPDATE jovem_monitor SET 
+        $sql = "UPDATE pessoa_fisica SET 
                 nome = '$nome',
                 nome_social = '$nomeSocial', 
                 data_nascimento = '$dataNascimento', 
@@ -44,11 +45,12 @@ if(isset($_POST['cadastrar']) || isset($_POST['editar'])){
         $mensagem = "<font color='#01DF3A'><strong>Informações salvas com sucesso!</strong></font>";
         gravarLog($sql);
     }else{
+        echo $sql;
         $mensagem = "<font color='#FF0000'><strong>Erro ao salvar as informações! Tente novamente.</strong></font>";
     }
 }
 
-$jovem_monitor = recuperaDados('jovem_monitor', 'user_id', $idUser);
+$jovem_monitor = recuperaDados('pessoa_fisica', 'id', $idUser);
 $idJovemMonitor = $jovem_monitor['id'] ?? null;
 ?>
 
@@ -75,7 +77,7 @@ $idJovemMonitor = $jovem_monitor['id'] ?? null;
                         <form method="POST" action="?perfil=jovem_monitor/cadastro" class="form-horizontal"
                               role="form">
                             <div class="form-group">
-                                <label for="nome">Nome </label>
+                                <label for="nome">Nome Completo </label>
                                 <input type="text" name="nome" class="form-control" id="nome" readonly
                                        value="<?= $cadastro_basico['nome'] ?>" required>
                             </div>
@@ -83,7 +85,7 @@ $idJovemMonitor = $jovem_monitor['id'] ?? null;
                             <div class="form-group">
                                 <label>Nome Social</label>
                                 <input type="text" name="nomeSocial" class="form-control" id="nomeSocial"
-                                       value="<?= $jovem_monitor['nome_social'] ?>" required>
+                                       value="<?= $jovem_monitor['nome_social'] ?>" >
                             </div>
 
                             <div class="form-group">
