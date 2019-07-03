@@ -6,7 +6,7 @@ $cadastro_basico = recuperaDados('usuario', 'id', $idUser);
 
 if(isset($_POST['cadastrar']) || isset($_POST['editar'])){
     $nome = $_POST['nome'];
-    $nomeSocial = $_POST['nomeSocial'] ?? NULL;
+    $nomeArtistico = $_POST['nomeArtistico'] ?? NULL;
     $dataNascimento = exibirDataMysql($_POST['dataNascimento']);
     $rg = $_POST['rg'];
     $cpf = $_POST['cpf'];
@@ -22,36 +22,35 @@ if(isset($_POST['cadastrar']) || isset($_POST['editar'])){
 
     if(isset($_POST['cadastrar'])){
         $sql = "INSERT INTO pessoa_fisica (nome, nomeArtistico, rg, cpf, dataNascimento, bairro, cidade, estado, cep, numero, complemento, telefone1, email, jovem_monitor, idUsuario)
-                VALUES ('$nome','$nomeSocial', '$rg', '$cpf', '$dataNascimento','$bairro', '$cidade', '$estado', '$cep', '$numero', '$complemento', '$telefone', '$email', 1, '$idUser')";
+                VALUES ('$nome','$nomeArtistico', '$rg', '$cpf', '$dataNascimento','$bairro', '$cidade', '$estado', '$cep', '$numero', '$complemento', '$telefone', '$email', 1, '$idUser')";
     }else{
         $sql = "UPDATE pessoa_fisica SET 
                 nome = '$nome',
-                nome_social = '$nomeSocial', 
-                data_nascimento = '$dataNascimento', 
+                nomeArtistico = '$nomeArtistico', 
                 rg = '$rg', 
                 cpf = '$cpf', 
-                telefone = '$telefone', 
-                cep = '$cep', 
-                logradouro = '$logradouro', 
-                numero = '$numero', 
-                complemento = '$complemento', 
+                dataNascimento = '$dataNascimento', 
                 bairro = '$bairro', 
                 cidade = '$cidade', 
                 estado = '$estado'
-                WHERE user_id = '$idUser'";
+                cep = '$cep', 
+                numero = '$numero', 
+                complemento = '$complemento', 
+                 telefone1 = '$telefone', 
+                WHERE idUsuario = '$idUser'";
     }
 
     if(mysqli_query($con, $sql)){
         $mensagem = "<font color='#01DF3A'><strong>Informações salvas com sucesso!</strong></font>";
         gravarLog($sql);
     }else{
-        echo $sql;
         $mensagem = "<font color='#FF0000'><strong>Erro ao salvar as informações! Tente novamente.</strong></font>";
     }
 }
 
-$jovem_monitor = recuperaDados('pessoa_fisica', 'id', $idUser);
-$idJovemMonitor = $jovem_monitor['id'] ?? null;
+$jovem_monitor = recuperaDados('pessoa_fisica', 'idUsuario', $idUser);
+$idJovemMonitor = $jovem_monitor['idUsuario'] ?? null;
+
 ?>
 
 <script type="text/javascript">
@@ -84,15 +83,15 @@ $idJovemMonitor = $jovem_monitor['id'] ?? null;
 
                             <div class="form-group">
                                 <label>Nome Social</label>
-                                <input type="text" name="nomeSocial" class="form-control" id="nomeSocial"
-                                       value="<?= $jovem_monitor['nome_social'] ?>" >
+                                <input type="text" name="nomeArtistico" class="form-control" id="nomeArtistico"
+                                       value="<?= $jovem_monitor['nomeArtistico'] ?>" >
                             </div>
 
                             <div class="form-group">
                                 <label>Data Nascimento </label>
                                 <input type="text" class="form-control" name="dataNascimento" id="datepicker01"
                                        placeholder="Data de Nascimento" required
-                                       value="<?= ($idJovemMonitor == null) ? "" : exibirDataBr($jovem_monitor['data_nascimento']) ?>">
+                                       value="<?= ($idJovemMonitor == null) ? "" : exibirDataBr($jovem_monitor['dataNascimento']) ?>">
                             </div>
 
                             <div class="form-group">
@@ -119,7 +118,7 @@ $idJovemMonitor = $jovem_monitor['id'] ?? null;
                                 <input type="text" class="form-control" name="telefone" id="telefone"
                                        onkeyup="mascara( this, mtel );" maxlength="15"
                                        placeholder="Exemplo: (11) 98765-4321" required
-                                       value="<?= $jovem_monitor['telefone'] ?>">
+                                       value="<?= $jovem_monitor['telefone1'] ?>">
                             </div>
 
                             <div class="form-group">

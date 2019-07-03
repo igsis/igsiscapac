@@ -1,6 +1,8 @@
 <?php
 $con = bancoMysqli();
 $idUser = $_SESSION['idUser'];
+$jovem_monitor = recuperaDados('pessoa_fisica', 'idUsuario', $idUser);
+$idJovemMonitor = $jovem_monitor['idUsuario'] ?? null;
 
 // Gerar documentos
 $server = "http://".$_SERVER['SERVER_NAME']."/igsiscapac";
