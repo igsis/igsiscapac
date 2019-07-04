@@ -23,6 +23,7 @@ if(isset($_POST['cadastrar']) || isset($_POST['editar'])){
     if(isset($_POST['cadastrar'])){
         $sql = "INSERT INTO pessoa_fisica (nome, nomeArtistico, rg, cpf, dataNascimento, bairro, cidade, estado, cep, numero, complemento, telefone1, email, jovem_monitor, idUsuario)
                 VALUES ('$nome','$nomeArtistico', '$rg', '$cpf', '$dataNascimento','$bairro', '$cidade', '$estado', '$cep', '$numero', '$complemento', '$telefone', '$email', 1, '$idUser')";
+
     }else{
         $sql = "UPDATE pessoa_fisica SET 
                 nome = '$nome',
@@ -41,6 +42,12 @@ if(isset($_POST['cadastrar']) || isset($_POST['editar'])){
     }
 
     if(mysqli_query($con, $sql)){
+        if(isset($_POST['cadastrar'])) {
+            $pessoa_fisica = recuperaDados('pessoa_fisica', 'idUsuario', $idUser);
+            $pessoa_fisica_id = $pessoa_fisica['id'] ?? null;
+            $sql_jm = "INSERT INTO `jm_dados` (`pessoa_fisica_id`, `publicado`) VALUES ('$pessoa_fisica_id', '1'); ";
+            $query = mysqli_query($con,$sql_jm);
+        }
         $mensagem = "<font color='#01DF3A'><strong>Informações salvas com sucesso!</strong></font>";
         gravarLog($sql);
     }else{
