@@ -795,7 +795,7 @@ function verificaArquivosExistentesPJ($idPessoa,$idDocumento)
 function verificaArquivosExistentesJM($idPessoa,$idDocumento)
 {
     $con = bancoMysqli();
-    $verificacaoArquivo = "SELECT arquivo FROM upload_arquivo WHERE idTipoPessoa = '2' AND idPessoa = '$idPessoa' AND idUploadListaDocumento = '$idDocumento' AND publicado = '1'";
+    $verificacaoArquivo = "SELECT arquivo FROM upload_arquivo WHERE idTipoPessoa = '7' AND idPessoa = '$idPessoa' AND idUploadListaDocumento = '$idDocumento' AND publicado = '1'";
     $envio = mysqli_query($con, $verificacaoArquivo);
     if (mysqli_num_rows($envio) > 0) {
         return true;
