@@ -1,5 +1,15 @@
 USE capac;
 
+INSERT INTO capac.upload_tipo (id, tipo) VALUES ('7', 'jovem_monitor');
+INSERT INTO capac.upload_lista_documento (idTipoUpload, documento, sigla, teatro, musica, oficina, edital, publicado) VALUES ('7', 'Fotocópia da carteira de identidade', 'rg_arquivo', '0', '0', '0', '0', '1');
+INSERT INTO capac.upload_lista_documento (idTipoUpload, documento, sigla, teatro, musica, oficina, edital, publicado) VALUES ('7', 'Fotocópia do registro no cadastro de pessoa física', 'cpf_arquivo', '0', '0', '0', '0', '1');
+INSERT INTO capac.upload_lista_documento (idTipoUpload, documento, sigla, teatro, musica, oficina, edital, publicado) VALUES ('7', 'Fotocópia de Comprovante de Residência recente', 'residencia', '0', '0', '0', '0', '1');
+INSERT INTO capac.upload_lista_documento (idTipoUpload, documento, sigla, teatro, musica, oficina, edital, publicado) VALUES ('7', 'Currículo Vitae atualizado', 'curriculo_atual', '0', '0', '0', '0', '1');
+INSERT INTO capac.upload_lista_documento (idTipoUpload, documento, sigla, teatro, musica, oficina, edital, publicado) VALUES ('7', 'Fotocópia do Comprovante de conclusão de ensino médio', 'comprovante', '0', '0', '0', '0', '1');
+INSERT INTO capac.upload_lista_documento (idTipoUpload, documento, sigla, teatro, musica, oficina, edital, publicado) VALUES ('7', 'Fotocópia dos comprovantes de eventuais participações', 'participacao', '0', '0', '0', '0', '1');
+
+ALTER TABLE pessoa_fisica CHANGE idEstadoCivil idEstadoCivil INT(11) NULL;
+
 CREATE TABLE `emenda_parlamentar` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `idEvento` INT NOT NULL,
@@ -28,13 +38,3 @@ INSERT INTO `upload_lista_documento` (`idTipoUpload`, `documento`, `sigla`, `tea
 INSERT INTO `upload_lista_documento` (`idTipoUpload`, `documento`, `sigla`, `teatro`, `musica`, `oficina`, `edital`, `validade`, `publicado`) VALUES ('8', 'Cópia da ATA da última reunião para os demais casos', 'parc_ata2', '0', '0', '0', '0', NULL, '1');
 INSERT INTO `upload_lista_documento` (`idTipoUpload`, `documento`, `sigla`, `teatro`, `musica`, `oficina`, `edital`, `validade`, `publicado`) VALUES ('8', 'Relação nominal atualizada dos dirigentes da entidade', 'parc_diri', '0', '0', '0', '0', NULL, '1');
 INSERT INTO `upload_lista_documento` (`idTipoUpload`, `documento`, `sigla`, `teatro`, `musica`, `oficina`, `edital`, `validade`, `publicado`) VALUES ('8', 'Currículo da entidade/empresa', 'parc_curri', '0', '0', '0', '0', NULL, '1');
-
-INSERT INTO capac.upload_tipo (id, tipo) VALUES ('7', 'jovem_monitor');
-INSERT INTO capac.upload_lista_documento (idTipoUpload, documento, sigla, teatro, musica, oficina, edital, publicado) VALUES ('7', 'Fotocópia da carteira de identidade', 'rg_arquivo', '0', '0', '0', '0', '1');
-INSERT INTO capac.upload_lista_documento (idTipoUpload, documento, sigla, teatro, musica, oficina, edital, publicado) VALUES ('7', 'Fotocópia do registro no cadastro de pessoa física', 'cpf_arquivo', '0', '0', '0', '0', '1');
-INSERT INTO capac.upload_lista_documento (idTipoUpload, documento, sigla, teatro, musica, oficina, edital, publicado) VALUES ('7', 'Fotocópia de Comprovante de Residência recente', 'residencia', '0', '0', '0', '0', '1');
-INSERT INTO capac.upload_lista_documento (idTipoUpload, documento, sigla, teatro, musica, oficina, edital, publicado) VALUES ('7', 'Currículo Vitae atualizado', 'curriculo_atual', '0', '0', '0', '0', '1');
-INSERT INTO capac.upload_lista_documento (idTipoUpload, documento, sigla, teatro, musica, oficina, edital, publicado) VALUES ('7', 'Fotocópia do Comprovante de conclusão de ensino médio', 'comprovante', '0', '0', '0', '0', '1');
-INSERT INTO capac.upload_lista_documento (idTipoUpload, documento, sigla, teatro, musica, oficina, edital, publicado) VALUES ('7', 'Fotocópia dos comprovantes de eventuais participações', 'participacao', '0', '0', '0', '0', '1');
-
-ALTER TABLE pessoa_fisica CHANGE idEstadoCivil idEstadoCivil INT(11) NULL;
