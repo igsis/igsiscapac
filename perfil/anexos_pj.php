@@ -216,7 +216,7 @@ $evento_pj = recuperaDados("evento","id",$evento);
                                     {
                                         $arquivos = [20,21,22,28,43,89,103,104];
                                         if (!isset($_SESSION['emenda'])){
-                                            array_push($arquivos, 165);
+                                            array_push($arquivos, 171);
                                         }
                                     }
                                     else

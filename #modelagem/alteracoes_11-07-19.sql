@@ -20,7 +20,7 @@ CREATE TABLE `emenda_parlamentar` (
 
 ALTER TABLE `upload_lista_documento` CHANGE COLUMN `publicado` `publicado` TINYINT(1) NULL DEFAULT '1' AFTER `validade`;
 
-INSERT INTO `upload_lista_documento` (`id`, `idTipoUpload`, `documento`, `sigla`, `teatro`, `musica`, `oficina`, `edital`, `validade`, `publicado`) VALUES (165, 2, 'Plano de Trabalho', 'planot', 1, 1, 1, 1, NULL, 1);
+INSERT INTO `upload_lista_documento` (`idTipoUpload`, `documento`, `sigla`, `teatro`, `musica`, `oficina`, `edital`, `validade`, `publicado`) VALUES (2, 'Plano de Trabalho', 'planot', 1, 1, 1, 1, NULL, 1);
 
 INSERT INTO `upload_tipo` (`id`, `tipo`) VALUES ('8', 'emenda_parceria');
 
