@@ -30,7 +30,14 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 ?>
 
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_evento.php'; ?>
+	<div class="container">
+        <?php
+        if (isset($_SESSION['emenda'])) {
+            include '../perfil/includes/menu_emenda.php';
+        } else {
+            include '../perfil/includes/menu_evento.php';
+        }
+        ?>
 		<div class="form-group">
 			<h4>Dados Bancários</h4>
 			<p><b>Razão Social:</b> <?php echo $pj['razaoSocial']; ?></p>

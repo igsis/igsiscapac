@@ -9,6 +9,9 @@ $tipoPessoa = ($pj['oficineiro'] == 1) ? 5 : 2;
 if(isset($_POST["enviar"]))
 {
 	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '$idCampo'";
+    if ((isset($_SESSION['emenda'])) && ($_SESSION['emenda'] == 2)) {
+        $sql_arquivos .= " OR (idTipoUpload = '8' AND id IN (".$_POST['idDocumentoBB']."))";
+    }
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
 	{
@@ -41,7 +44,7 @@ if(isset($_POST["enviar"]))
 				{
 					if(move_uploaded_file($nome_temporario, $dir.$new_name))
 					{
-						$sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPj', '$idCampo', '$new_name', '$hoje', '1'); ";
+						$sql_insere_arquivo = "INSERT INTO `upload_arquivo` (`idTipoPessoa`, `idPessoa`, `idUploadListaDocumento`, `arquivo`, `dataEnvio`, `publicado`) VALUES ('$tipoPessoa', '$idPj', '$y', '$new_name', '$hoje', '1'); ";
 						$query = mysqli_query($con,$sql_insere_arquivo);
 
 						if($query)
@@ -192,6 +195,34 @@ $pj = recuperaDados("pessoa_juridica","id",$idPj);
 								}
 								?>
 							</table><br>
+
+                            <?php if ((isset($_SESSION['emenda'])) && ($_SESSION['emenda'] = 2)) { ?>
+                                <table>
+                                    <tr>
+                                        <td width="50%">
+                                        <td>
+                                    </tr>
+                                    <?php
+                                    $idDocumentoBB = $con->query("SELECT id FROM upload_lista_documento WHERE sigla = 'parc_bb'")->fetch_assoc()['id'];
+                                    echo "<input type='hidden' name='idDocumentoBB' value='$idDocumentoBB'>";
+                                    if (verificaArquivosExistentesPF($idPj, $idDocumentoBB, $tipoPessoa)) {
+                                        echo '<div class="alert alert-success">O arquivo Formulário de Abertura de Conta Corrente no Banco do Brasil foi enviado.</div> ';
+                                    } else {
+                                        $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '8' AND id = '$idDocumentoBB'";
+                                        $query_arquivos = mysqli_query($con, $sql_arquivos);
+                                        while ($arq = mysqli_fetch_array($query_arquivos)) {
+                                            ?>
+                                            <tr>
+                                                <td><label><?php echo $arq['documento'] ?></label></td>
+                                                <td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                </table><br>
+                            <?php } ?>
 							<input type="hidden" name="idPessoa" value="<?php echo $idPj; ?>"  />
 							<input type="hidden" name="tipoPessoa" value="<?php echo $tipoPessoa; ?>"  />
 							<input type="submit" name="enviar" class="btn btn-theme btn-lg btn-block" value='Enviar'>

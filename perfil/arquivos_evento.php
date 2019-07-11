@@ -114,7 +114,14 @@ if(isset($_POST['apagar']))
 }
 ?>
 <section id="list_items" class="home-section bg-white">
-    <div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
+    <div class="container">
+        <?php
+        if (isset($_SESSION['emenda'])) {
+            include '../perfil/includes/menu_emenda.php';
+        } else {
+            include '../perfil/includes/menu_evento.php';
+        }
+        ?>
 		<div class="form-group">
 			<h4>Arquivos do Evento</h4>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
@@ -198,36 +205,38 @@ if(isset($_POST['apagar']))
 				</div>
 
 				<!-- Upload de arquivo 3 -->
-				<div class="form-group">
-					<div class="col-md-offset-2 col-md-8">
-						<div class = "center">
-							<table>
-								<tr>
-									<td width="50%"><td>
-								</tr>
-								<?php
-								if(verificaArquivosExistentesEvento($idEvento,'78'))
-								{
-									echo '<div class="alert alert-success">O arquivo Autorização SBAT já foi enviado. </div>';
-								}
-								else
-								{
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '78'";
-									$query_arquivos = mysqli_query($con,$sql_arquivos);
-									while($arq = mysqli_fetch_array($query_arquivos))
-									{
-								?>
-										<tr>
-											<td><label><?php echo $arq['documento']?></label></td><td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'></td>
-										</tr>
-								<?php
-									}
-								}
-								?>
-							</table><br>
-						</div>
-					</div>
-				</div>
+                <?php if (!isset($_SESSION['emenda'])): ?>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8">
+                            <div class="center">
+                                <table>
+                                    <tr>
+                                        <td width="50%">
+                                        <td>
+                                    </tr>
+                                    <?php
+                                    if (verificaArquivosExistentesEvento($idEvento, '78')) {
+                                        echo '<div class="alert alert-success">O arquivo Autorização SBAT já foi enviado. </div>';
+                                    } else {
+                                        $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id = '78'";
+                                        $query_arquivos = mysqli_query($con, $sql_arquivos);
+                                        while ($arq = mysqli_fetch_array($query_arquivos)) {
+                                            ?>
+                                            <tr>
+                                                <td><label><?php echo $arq['documento'] ?></label></td>
+                                                <td><input type='file' name='arquivo[<?php echo $arq['sigla']; ?>]'>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                </table>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif ?>
 
 				<!-- Upload de arquivo 4 -->
 				<div class="form-group">
