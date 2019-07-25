@@ -2,6 +2,7 @@
 $con = bancoMysqli();
 
 $formacao = $con->query('SELECT `situacao` FROM `formacao_cadastro`')->fetch_assoc();
+$situacao_jm = $con->query('SELECT `situacao_atual` FROM `jm_cadastro`')->fetch_assoc();
 
 unset($_SESSION['idEvento']);
 unset($_SESSION['idPj']);
@@ -60,9 +61,14 @@ unset($_SESSION['emenda']);
 						<a href="?perfil=evento_apresentacao_oficinas" class="btn btn-theme btn-lg btn-block">OFICINAS - EDITAL 002/2018</a>
 						<br />
 
-                        <p>Aqui é realizado o cadastro de novos <strong>Jovens Monitores </strong></p>
-                        <a href="?perfil=jovem_monitor/cadastro" class="btn btn-theme btn-lg btn-block">Programa Jovem Monitor Cultural</a>
-                        <br />
+                        <?php if($situacao_jm['situacao_atual'] == 1) { ?>
+                            <p>Aqui é realizado o cadastro de novos <strong>Jovens Monitores </strong></p>
+                            <a href="?perfil=jovem_monitor/cadastro" class="btn btn-theme btn-lg btn-block">Programa
+                                Jovem Monitor Cultural</a>
+                            <br/>
+                        <?php
+                        }
+                        ?>
                         <?php if($formacao['situacao'] == 1) { ?>
                             <p>Aqui são inseridas os dados para inscrição às vagas dos Editais dos Programas da Supervisão de Formação (Vocacional / PIA).</p>
                             <a href="?perfil=formacao_apresentacao" class="btn btn-theme btn-lg btn-block">FORMAÇÃO - PIÁ e VOCACIONAL</a>
