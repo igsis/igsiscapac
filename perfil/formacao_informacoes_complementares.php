@@ -13,17 +13,44 @@ if(isset($_POST['cadastrarFisica']))
     $grauInstrucao = $_POST['grauInstrucao'];
     $funcaoFormacao = $_POST['funcaoFormacao'];
     $linguagem = $_POST['linguagem'];
+    $regiaoPrefencial = $_POST['regiaoPreferencial'];
+    $funcaoFormacao2 = $_POST['funcaoFormacao2'] ?? null;
+    $funcaoFormacao3 = $_POST['funcaoFormacao3'] ?? null;
 
     $sql_atualiza_complementares = "UPDATE pessoa_fisica SET
 	`drt` = '$Drt',
 	`etnia_id` = '$etnia',
 	`grau_instrucao_id` = '$grauInstrucao',
 	`formacao_funcao_id` = '$funcaoFormacao',
-    `formacao_linguagem_id` = '$linguagem'
+    `formacao_linguagem_id` = '$linguagem',
+    `formacao_regiao_preferencial` = '$regiaoPrefencial'
 	WHERE `id` = '$idPf'";
 
     if (mysqli_query($con,$sql_atualiza_complementares))
     {
+        $numRegistros = $con->query("SELECT id FROM formacao_dados_complementares WHERE pessoa_fisica_id = '$idPf'")->num_rows;
+
+        if ($funcaoFormacao2 != null) {
+            if ($numRegistros == 0) {
+                $query = "INSERT INTO formacao_dados_complementares (pessoa_fisica_id, area_atuacao_2, area_atuacao_3)
+                          VALUES ('$idPf', '$funcaoFormacao2', '$funcaoFormacao3')";
+            } else {
+                $query = "UPDATE formacao_dados_complementares SET
+                            area_atuacao_2 = '$funcaoFormacao2',
+                            area_atuacao_3 = '$funcaoFormacao3'
+                          WHERE pessoa_fisica_id = '$idPf'";
+            }
+            if ($con->query($query)) {
+                gravarLog($query);
+            }
+        } elseif ($numRegistros > 0) {
+            $query = "DELETE FROM formacao_dados_complementares WHERE pessoa_fisica_id = '$idPf'";
+            $con->query($query);
+
+            if ($con->query($query)) {
+                gravarLog($query);
+            }
+        }
         $mensagem = "<font color='#01DF3A'><strong>Atualizado com sucesso!</strong></font>";
         gravarLog($sql_atualiza_complementares);
     }
@@ -108,8 +135,8 @@ if(isset($_POST['apagar']))
 }
 
 
-
 $pf = recuperaDados("pessoa_fisica","id",$idPf);
+$pfComplementar = recuperaDados("formacao_dados_complementares","pessoa_fisica_id",$idPf);
 ?>
 
 <section id="list_items" class="home-section bg-white">
@@ -126,6 +153,15 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8"><strong>DRT:</strong><br/>
                             <input type="text" class="form-control" name="drt" placeholder="DRT caso for teatro, dança ou circo" maxlength="15" value="<?php echo $pf['drt']; ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8"><strong>Região de preferência para atuação:</strong><br/>
+                            <select name="regiaoPreferencial" id="regiaoPreferencial" class="form-control" required>
+                                <option value="">Selecione...</option>
+                                <?php geraOpcao('regioes', $pf['formacao_regiao_preferencial']); ?>
+                            </select>
                         </div>
                     </div>
 
@@ -151,10 +187,24 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
                                 <?php geraOpcaoFormacao($pf['formacao_linguagem_id'], $pf['tipo_formacao_id'], 'formacao_linguagem') ?>
                             </select>
                         </div>
-                        <div class="col-md-4"><strong>Função:</strong><br/>
-                            <select name="funcaoFormacao" id="funcaoFormacao" class="form-control" required>
+                        <div class="col-md-4"><strong>Função (1º Opção):</strong><br/>
+                            <select name="funcaoFormacao" id="funcaoFormacao" class="form-control" required onchange="funcaoPreferencial('<?=$pf['tipo_formacao_id']?>')">
                                 <option value="">Selecione...</option>
                                 <?php geraOpcaoFormacao($pf['formacao_funcao_id'], $pf['tipo_formacao_id']) ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" style="display: none" id="funcaoPreferencial">
+                        <div class="col-md-offset-2 col-md-4"><strong>Função (2º Opção):</strong><br/>
+                            <select name="funcaoFormacao2" id="funcaoFormacao2" class="form-control">
+                                <option value="">Selecione...</option>
+                                <?php geraOpcaoFormacao($pfComplementar['area_atuacao_2'], $pf['tipo_formacao_id']) ?>
+                            </select>
+                        </div>
+                        <div class="col-md-4"><strong>Função (3º Opção):</strong><br/>
+                            <select name="funcaoFormacao3" id="funcaoFormacao3" class="form-control">
+                                <option value="">Selecione...</option>
+                                <?php geraOpcaoFormacao($pfComplementar['area_atuacao_3'], $pf['tipo_formacao_id']) ?>
                             </select>
                         </div>
                     </div>
@@ -258,3 +308,34 @@ $pf = recuperaDados("pessoa_fisica","id",$idPf);
         </div>
     </div>
 </section>
+
+<script>
+
+
+    function funcaoPreferencial(tipoFormacao) {
+        let funcao = document.getElementById('funcaoFormacao').value;
+        let funcaoPreferencial = document.getElementById('funcaoPreferencial');
+        let selects = funcaoPreferencial.querySelectorAll('select');
+        let funcoes = ["1", "2", "3", "5", "6", "7"];
+
+        if (funcoes.includes(funcao)) {
+            funcaoPreferencial.removeAttribute("style");
+            funcaoPreferencial.removeAttribute("disabled");
+
+            for (let i in selects) {
+                selects[i].remove(4);
+                selects[i].removeAttribute("disabled");
+                selects[i].setAttribute("required", true)
+            }
+        } else {
+            funcaoPreferencial.setAttribute("style", "display: none;");
+
+            for (let i in selects) {
+                selects[i].removeAttribute("required")
+                selects[i].setAttribute("disabled", true)
+            }
+        }
+    }
+</script>
+
+<?php echo "<script>window.onload = funcaoPreferencial('".$pf['tipo_formacao_id']."');</script>"; ?>
