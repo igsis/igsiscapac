@@ -792,6 +792,142 @@ function verificaArquivosExistentesPJ($idPessoa,$idDocumento)
     }
 }
 
+function verificaArquivosExistentesJM($idPessoa,$idDocumento)
+{
+    $con = bancoMysqli();
+    $verificacaoArquivo = "SELECT arquivo FROM upload_arquivo WHERE idTipoPessoa = '7' AND idPessoa = '$idPessoa' AND idUploadListaDocumento = '$idDocumento' AND publicado = '1'";
+    $envio = mysqli_query($con, $verificacaoArquivo);
+    if (mysqli_num_rows($envio) > 0) {
+        return true;
+    }
+}
+
+function verificaArquivosExistentes($idPessoa,$idDocumento)
+{
+    $con = bancoMysqli();
+    $verificacaoArquivo = "SELECT arquivo FROM upload_arquivo WHERE  idTipoPessoa = 7 AND  idPessoa = '$idPessoa' AND idUploadListaDocumento = '$idDocumento' AND publicado = 1";
+    $envio = mysqli_query($con, $verificacaoArquivo);
+
+    if (mysqli_num_rows($envio)>0) {
+        return true;
+    }
+}
+
+function arquivosExiste($urlArquivo, $extensao = '.php')
+{
+    $file = $urlArquivo.$extensao;
+    $file_headers = @get_headers($file);
+    if($file_headers[0] == 'HTTP/1.1 404 Not Found'):
+        return false;
+    endif;
+
+    return true;
+}
+
+function selecionaArquivoAnexo($http, $idListaDocumento, $extensao = '.php')
+{
+    $path = $http.$idListaDocumento.$extensao;
+    return $path;
+}
+
+function listaArquivosPessoaVisualizacao($idPessoa, $tipoPessoa,$pagina)
+{
+    $con = bancoMysqli();
+    $sql = "SELECT *
+			FROM upload_lista_documento as list
+			INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+			WHERE arq.idPessoa = '$idPessoa'
+			AND arq.idTipoPessoa = '$tipoPessoa'
+			AND arq.publicado = '1'";
+
+    $query = mysqli_query($con,$sql);
+    $linhas = mysqli_num_rows($query);
+
+    if ($linhas > 0)
+    {
+        echo "
+		<table class='table table-condensed'>
+			<thead>
+				<tr class='list_menu'>
+					<td>Tipo de arquivo</td>
+					<td width='15%'></td>
+				</tr>
+			</thead>
+			<tbody>";
+        while($arquivo = mysqli_fetch_array($query))
+        {
+            echo "<tr>";
+            echo "<td class='list_description'><a href='../uploadsdocs/".$arquivo['arquivo']."' target='_blank'>". mb_strimwidth($arquivo['documento'], 0 ,25,"..." )."</a></td>";
+        }
+        echo "
+		</tbody>
+		</table>";
+    }
+    else
+    {
+        echo "<p>Não há arquivo(s) inserido(s).<p/><br/>";
+    }
+}
+
+function listaArquivosPessoa($idPessoa,$tipoPessoa,$pagina, $idsDeterminados = '', $table = '')
+{
+    $con = bancoMysqli();
+
+    if ($idsDeterminados != '') {
+        $filtroIds = "AND list.idListaDocumento IN ($idsDeterminados)";
+    } else {
+        $filtroIds = '';
+    }
+
+    $sql = "SELECT *
+			FROM upload_lista_documento as list
+			INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
+			WHERE arq.idPessoa = '$idPessoa'
+			$filtroIds
+			AND arq.idTipoPessoa = '$tipoPessoa'
+			AND arq.publicado = '1'";
+    $query = mysqli_query($con,$sql);
+    $linhas = mysqli_num_rows($query);
+
+    if ($linhas > 0)
+    {
+        echo "
+		<table class='table table-condensed $table'>
+			<thead>
+				<tr class='list_menu'>
+					<td>Tipo de arquivo</td>
+					<td>Nome do arquivo</td>
+					<td width='15%'></td>
+				</tr>
+			</thead>
+			<tbody>";
+        while($arquivo = mysqli_fetch_array($query))
+        {
+            echo "<tr>";
+            echo "<td class='list_description'>(".$arquivo['documento'].")</td>";
+            echo "<td class='list_description'><a href='../uploadsdocs/".$arquivo['arquivo']."' target='_blank'>". mb_strimwidth($arquivo['arquivo'], 15 ,25,"..." )."</a></td>";
+            echo "
+						<td class='list_description'>
+							<form id='apagarArq' method='POST' action='?perfil=".$pagina."'>
+								<input type='hidden' name='idPessoa' value='".$idPessoa."' />
+								<input type='hidden' name='tipoPessoa' value='".$tipoPessoa."' />
+								<input type='hidden' name='apagar' value='".$arquivo['idUploadListaDocumento']."' />
+								<input type='hidden' name='idListaDocumento' value='".$arquivo['idUploadListaDocumento']."' />
+								<button class='btn btn-theme' type='button' data-toggle='modal' data-target='#confirmApagar' data-title='Remover Arquivo?' data-message='Deseja realmente excluir o arquivo ".$arquivo['documento']."?'>Remover
+								</button></td>
+							</form>";
+            echo "</tr>";
+        }
+        echo "
+		</tbody>
+		</table>";
+        return $linhas;
+    }
+    else
+    {
+        echo "<p>Não há arquivo(s) inserido(s).<p/><br/>";
+    }
+}
 
 /**
  * @param $idPessoa
