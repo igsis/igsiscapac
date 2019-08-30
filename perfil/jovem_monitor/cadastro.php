@@ -43,11 +43,13 @@ if(isset($_POST['cadastrar']) || isset($_POST['editar'])){
     }
 
     if(mysqli_query($con, $sql)){
-        if(isset($_POST['cadastrar'])) {
-            $pessoa_fisica = recuperaDados('pessoa_fisica', 'idUsuario', $idUser);
-            $pessoa_fisica_id = $pessoa_fisica['id'] ?? null;
+        $pessoa_fisica = recuperaDados('pessoa_fisica', 'idUsuario', $idUser);
+        $pessoa_fisica_id = $pessoa_fisica['id'] ?? null;
+        $consultaJm = $con->query("SELECT * FROM jm_dados WHERE pessoa_fisica_id = '$pessoa_fisica_id' AND publicado = '1'")->num_rows;
+        if ($consultaJm == 0) {
             $sql_jm = "INSERT INTO `jm_dados` (`pessoa_fisica_id`, `data_cadastro`, `publicado`) VALUES ('$pessoa_fisica_id', '$dataCadastro', '1'); ";
-            $query = mysqli_query($con,$sql_jm);
+            $query = mysqli_query($con, $sql_jm);
+            gravarLog($sql_jm);
         }
         $mensagem = "<font color='#01DF3A'><strong>Informações salvas com sucesso!</strong></font>";
         gravarLog($sql);
