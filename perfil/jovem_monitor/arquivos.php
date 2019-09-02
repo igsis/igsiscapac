@@ -72,7 +72,7 @@ if(isset($_POST["enviar"]))
 if(isset($_POST['apagar']))
 {
     $idArquivo = $_POST['apagar'];
-    $sql_apagar_arquivo = "UPDATE upload_arquivo SET publicado = 0 WHERE idUploadListaDocumento = '$idArquivo'";
+    $sql_apagar_arquivo = "UPDATE upload_arquivo SET publicado = 0 WHERE idTipoPessoa = 7 AND idUploadListaDocumento = '$idArquivo'";
     if(mysqli_query($con,$sql_apagar_arquivo))
     {
         $mensagem = "<font color='#01DF3A'><strong>Arquivo apagado com sucesso!</strong></font>";
