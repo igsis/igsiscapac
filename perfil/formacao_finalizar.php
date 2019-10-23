@@ -203,7 +203,7 @@ function listaArquivoCamposMultiplos1($idPessoa, $tipoPessoa = 6)
                     <span style="color: green;">
                         Todos os campos obrigatórios foram preenchidos corretamente.<br/>
                         Seu cadastro de Pessoa Física foi concluído com sucesso!<br>
-                        Anote seu código de cadastro, ele é o seu comprovante de inscrição e deverá ser informado no preenchimento do Cadastro de Preferências (Anexo III).
+                        Anote seu código de cadastro, ele é o seu comprovante de inscrição.
                     </span>
                 </strong>
             </p>
@@ -211,10 +211,6 @@ function listaArquivoCamposMultiplos1($idPessoa, $tipoPessoa = 6)
 
             <div class="alert alert-success ">
                 Seu Código de Cadastro é <strong><?= $pf['id'] ?></strong>
-            </div>
-
-            <div class="alert alert-warning ">
-            <strong>Complete seu cadastro no formulário "Cadastro de Preferências": </strong> <a href="https://editaisformacaosmc.wixsite.com/2019/cadastro-de-preferencias">Clique Aqui!</a>
             </div>
             <?php } ?>
 
