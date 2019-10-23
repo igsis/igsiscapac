@@ -127,7 +127,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-8">
-                                <a href="http://smcsistemas.prefeitura.sp.gov.br/igsiscapac/manual/" target="_blank" class="btn btn-theme btn-md btn-block">Manual de Uso e Dúvidas frequentes</a>
+                                <a href="http://smcsistemas.prefeitura.sp.gov.br/manual/igsiscapac/" target="_blank" class="btn btn-theme btn-md btn-block">Manual de Uso e Dúvidas frequentes</a>
                             </div>
                         </div>
 					</div>
