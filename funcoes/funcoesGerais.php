@@ -304,7 +304,7 @@ date_default_timezone_set("America/Sao_Paulo");
 function geraOpcaoFormacao($select, $tipoFormacao, $tabela = 'formacao_funcoes', $publicado = 1)
 {
     //gera os options de um select
-    $sql = "SELECT * FROM `$tabela` WHERE `tipo_formacao_id` = '$tipoFormacao' AND `publicado` = '$publicado' ORDER BY 2";
+    $sql = "SELECT * FROM `$tabela` WHERE `tipo_formacao_id` = '$tipoFormacao' AND `publicado` = '$publicado'";
 
     $con = bancoMysqli();
     $query = mysqli_query($con,$sql);
