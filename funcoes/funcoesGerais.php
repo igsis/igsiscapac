@@ -285,7 +285,7 @@ date_default_timezone_set("America/Sao_Paulo");
 	{
 		//gera os options de um select
         if ($publicado) {
-            $sql = "SELECT * FROM $tabela ORDER BY 2 WHERE publicado = '1'";
+            $sql = "SELECT * FROM $tabela WHERE publicado = 1 ORDER BY 2";
         } else {
             $sql = "SELECT * FROM $tabela ORDER BY 2";
         }
