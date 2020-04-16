@@ -92,7 +92,7 @@ unset($_SESSION['emenda']);
 				</div>
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-6">
-						<a href="http://smcsistemas.prefeitura.sp.gov.br/igsiscapac/manual/" target="_blank" class="btn btn-theme btn-lg btn-block">Ajuda</a>
+						<a href="http://smcsistemas.prefeitura.sp.gov.br/manual/igsiscapac/" target="_blank" class="btn btn-theme btn-lg btn-block">Ajuda</a>
 					</div>
 					<div  class="col-md-6">
 						<a href="../include/logoff.php" class="btn btn-theme btn-lg btn-block">SAIR</a>

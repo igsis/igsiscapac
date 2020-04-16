@@ -281,10 +281,14 @@ date_default_timezone_set("America/Sao_Paulo");
 		$mysqli->query($sql);
 	}
 
-	function geraOpcao($tabela,$select)
+	function geraOpcao($tabela,$select,$publicado = false)
 	{
 		//gera os options de um select
-		$sql = "SELECT * FROM $tabela ORDER BY 2";
+        if ($publicado) {
+            $sql = "SELECT * FROM $tabela WHERE publicado = 1 ORDER BY 2";
+        } else {
+            $sql = "SELECT * FROM $tabela ORDER BY 2";
+        }
 
 		$con = bancoMysqli();
 		$query = mysqli_query($con,$sql);
@@ -911,7 +915,7 @@ function listaArquivosPessoa($idPessoa,$tipoPessoa,$pagina, $idsDeterminados = '
 							<form id='apagarArq' method='POST' action='?perfil=".$pagina."'>
 								<input type='hidden' name='idPessoa' value='".$idPessoa."' />
 								<input type='hidden' name='tipoPessoa' value='".$tipoPessoa."' />
-								<input type='hidden' name='apagar' value='".$arquivo['idUploadListaDocumento']."' />
+								<input type='hidden' name='apagar' value='".$arquivo['id']."' />
 								<input type='hidden' name='idListaDocumento' value='".$arquivo['idUploadListaDocumento']."' />
 								<button class='btn btn-theme' type='button' data-toggle='modal' data-target='#confirmApagar' data-title='Remover Arquivo?' data-message='Deseja realmente excluir o arquivo ".$arquivo['documento']."?'>Remover
 								</button></td>
@@ -1236,9 +1240,9 @@ function validaCPF($cpf)
 		return false;
 	// Calcula e confere primeiro dígito verificador
 	for ($i = 0, $j = 10, $soma = 0; $i < 9; $i++, $j--)
-		$soma += $cpf{$i} * $j;
+		$soma += $cpf[$i] * $j;
 	$resto = $soma % 11;
-	if ($cpf{9} != ($resto < 2 ? 0 : 11 - $resto))
+	if ($cpf[9] != ($resto < 2 ? 0 : 11 - $resto))
 		return false;
 	// Lista de CPFs inválidos
 	$invalidos = array(
@@ -1256,9 +1260,9 @@ function validaCPF($cpf)
 		return false;
 	// Calcula e confere segundo dígito verificador
 	for ($i = 0, $j = 11, $soma = 0; $i < 10; $i++, $j--)
-		$soma += $cpf{$i} * $j;
+		$soma += $cpf[$i] * $j;
 	$resto = $soma % 11;
-	return $cpf{10} == ($resto < 2 ? 0 : 11 - $resto);
+	return $cpf[10] == ($resto < 2 ? 0 : 11 - $resto);
 }
 
 // Função que valida o CNPJ
@@ -1271,11 +1275,11 @@ function validaCNPJ($cnpj)
 	// Valida primeiro dígito verificador
 	for ($i = 0, $j = 5, $soma = 0; $i < 12; $i++)
 	{
-		$soma += $cnpj{$i} * $j;
+		$soma += $cnpj[$i] * $j;
 		$j = ($j == 2) ? 9 : $j - 1;
 	}
 	$resto = $soma % 11;
-	if ($cnpj{12} != ($resto < 2 ? 0 : 11 - $resto))
+	if ($cnpj[12] != ($resto < 2 ? 0 : 11 - $resto))
 		return false;
 	// Lista de CNPJs inválidos
 	$invalidos = array(
@@ -1297,11 +1301,11 @@ function validaCNPJ($cnpj)
 	// Valida segundo dígito verificador
 	for ($i = 0, $j = 6, $soma = 0; $i < 13; $i++)
 	{
-		$soma += $cnpj{$i} * $j;
+		$soma += $cnpj[$i] * $j;
 		$j = ($j == 2) ? 9 : $j - 1;
 	}
 	$resto = $soma % 11;
-	return $cnpj{13} == ($resto < 2 ? 0 : 11 - $resto);
+	return $cnpj[13] == ($resto < 2 ? 0 : 11 - $resto);
 }
 
 // Função que valida e-mails

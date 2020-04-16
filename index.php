@@ -1,155 +1,173 @@
 <?php
-
-include "funcoes/funcoesGerais.php";
-require "funcoes/funcoesConecta.php";
-
-//autentica login e cria inicia uma session
-if(isset($_POST['login']))
-{
-	$login = $_POST['login'];
-	$senha = $_POST['senha'];
-	$sql = "SELECT * FROM usuario AS usr
-	WHERE usr.email = '$login' LIMIT 0,1";
-	$con = bancoMysqli();
-	$query = mysqli_query($con,$sql);
-	//query que seleciona os campos que voltarão para na matriz
-	if($query)
-	{
-		//verifica erro no banco de dados
-		if(mysqli_num_rows($query) > 0)
-		{
-			// verifica se retorna usuário válido
-			$user = mysqli_fetch_array($query);
-			if($user['senha'] == md5($_POST['senha']))
-			{
-				// compara as senhas
-				session_start();
-				$_SESSION['login'] = $user['email'];
-				$_SESSION['nome'] = $user['nome'];
-				$_SESSION['idUser'] = $user['id'];
-				$log = "Fez login.";
-				//gravarLog($log);
-				header("Location: visual/index.php");
-				gravarLog($sql);
-			}
-			else
-
-			{
-			$mensagem = "<font color='#FF0000'><strong>A senha está incorreta!</strong></font>";
-
-			}
-		}
-		else
-		{
-			$mensagem = "<font color='#FF0000'><strong>O usuário não existe.</strong></font>";
-		}
-	}
-	else
-	{
-		$mensagem = "<font color='#FF0000'><strong>Erro no banco de dados!</strong></font>";
-	}
-}
-
+define('SERVERURL', "http://{$_SERVER['HTTP_HOST']}/igsiscapac/");
+define('NOMESIS', "CAPAC");
 date_default_timezone_set('America/Sao_Paulo');
-
+ini_set('session.gc_maxlifetime', 60*60); // 60 minutos
 ?>
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Cadastro de Artistas e Profissionais de Arte e Cultura</title>
-		<link href="visual/css/bootstrap.min.css" rel="stylesheet" media="screen">
-		<link href="visual/css/style.css" rel="stylesheet" media="screen">
-		<link href="visual/color/default.css" rel="stylesheet" media="screen">
-		<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-		<script src="visual/js/modernizr.custom.js"></script>
-	</head>
-	<body>
-    <div id="bar">
-        <div class="col-xs-2" style="padding: 10px">
-            <img src="visual/images/logo_cultura_h.png">
-        </div>
-        <div class="col-md-2" style="padding: 13px">
-            <span style="color: #fff">IGSIS-CAPAC</span>
-        </div>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-<!--        <div class="col-md-offset-4 col-md-4" style="padding: 5px">-->
-<!--            <span style="color: #fff">Suporte de T.I. via WhatsApp:<br><a href="https://wa.me/5511942430570" target="_blank"><i class="fab fa-whatsapp"></i> 94243-0570</a> | Seg-Sex, 10h-16h</span>-->
-<!--        </div>-->
+    <title>CAPAC | SMC</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="<?= SERVERURL ?>views/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="<?= SERVERURL ?>views/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="<?= SERVERURL ?>views/dist/css/custom.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="<?= SERVERURL ?>views/dist/img/AdminLTELogo.png" />
 
-    </div>
+</head>
+<!--<body class="hold-transition login-page">-->
+<body class="hold-transition layout-top-nav">
+    <div class="wrapper">
+        <div class="content-wrapper">
+            <div class="login-page">
+                <!-- Main content -->
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="offset-1 col-lg-10">
+                                <div class="card">
+                                    <div class="card-header bg-dark">
+                                        <a href="<?= SERVERURL ?>inicio" class="brand-link">
+                                            <img src="<?= SERVERURL ?>views/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                                            <span class="brand-text font-weight-light"><?= NOMESIS ?> - Cadastro de Artistas e Profissionais de Arte e Cultura</span>
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <p class="card-text"><span style="text-align: justify; display:block;">Este sistema tem por objetivo criar um ambiente para credenciamento de artistas e profissionais de arte e cultura a fim de agilizar os processos de contratação artística em eventos realizados pela Secretaria Municipal de Cultura de São Paulo.</span></p>
+                                                <p class="card-text"><span style="text-align: justify; display:block;">Uma vez cadastrados, esses artistas poderão atualizar suas informações e enviar a documentação necessária para o processo de contratação. Como o sistema possui ligação direta com o sistema da programação, a medida que o cadastro do artista no CAPAC encontra-se atualizado, o processo de contratação consequentemente é agilizado.</span></p>
+                                                <p class="card-text">Podem se cadastrar artistas ou grupos artísticos, como pessoa física ou jurídica.</p>
+                                                <p class="card-text">Dúvidas entre em contato com o setor responsável por sua contratação.</p>
+                                                <a href="http://smcsistemas.prefeitura.sp.gov.br/manual/capac" target="_blank" class="btn btn-danger btn-block">Manual de Uso e Dúvidas Frequentes</a>
+                                            </div>
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body text-center">
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <div class="btn disabled info-box bg-purple" id="inscreverEvento" data-toggle="tooltip" data-placement="top" title="Em Breve">
+                                                                    <span class="info-box-icon"><i class="fas fa-file"></i></span>
+                                                                    <div class="card-body">
+                                                                        <span class="info-box-number">Quero Inscrever Meu Evento</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/igsiscapac/login.php">
+                                                                    <div class="info-box bg-cyan">
+                                                                        <span class="info-box-icon"><i class="fas fa-users"></i></span>
+                                                                        <div class="card-body">
+                                                                            <span class="info-box-number">Sou Proponente de Emenda Parlamentar</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
 
-		<section id="contact" class="home-section bg-white">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-offset-1 col-md-10">
-						<p align="justify">Este sistema tem por objetivo criar um ambiente para credenciamento de artistas e profissionais de arte e cultura a fim de agilizar os processos de contratação artística em eventos realizados pela Secretaria Municipal de Cultura de São Paulo.</p>
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/igsiscapac/login.php">
+                                                                    <div class="info-box bg-olive">
+                                                                        <span class="info-box-icon"><i class="fas fa-thumbs-up"></i></span>
+                                                                        <div class="card-body">
+                                                                            <span class="info-box-number">Sou Contratado</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/capac/fomento_edital">
+                                                                    <div class="info-box bg-maroon">
+                                                                        <span class="info-box-icon"><i class="fas fa-theater-masks"></i></span>
+                                                                        <div class="card-body">
+                                                                            <span class="info-box-number">Fomentos</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
 
-						<p align="justify">Uma vez cadastrados, esses artistas poderão atualizar suas informações e enviar a documentação necessária para o processo de contratação. Como o sistema possui ligação direta com o sistema da programação, a medida que o cadastro do artista no IGSIS - CAPAC encontra-se atualizado, o processo de contratação consequentemente é agilizado.</p>
-
-						<p align="justify">Podem se cadastrar artistas ou grupos artísticos, como pessoa física ou jurídica.</p>
-
-						<p align="justify">Dúvidas entre em contato com o setor responsável por sua contratação.</p>
-
-						<hr/>
-
-						<h5><?php if(isset($mensagem)){ echo $mensagem; } ?></h5>
-
-						<form method="POST" action="index.php" class="form-horizontal" role="form">
-							<div class="form-group">
-								<div class="col-md-offset-2 col-md-6">
-									<label>E-mail</label>
-									<input type="email" name="login" class="form-control" placeholder="E-mail" maxlength="120">
-								</div>
-								<div class=" col-md-6">
-									<label>Senha</label>
-									<input type="password" name="senha" class="form-control" placeholder="Senha" maxlength="60">
-								</div>
-							</div>
-
-							<div class="form-group">
-								<div class="col-md-offset-2 col-md-8">
-									<button type="submit" class="btn btn-theme btn-lg btn-block">Entrar</button>
-								</div>
-							</div>
-						</form>
-						<br />
-
-						<div class="form-group">
-							<div class="col-md-offset-2 col-md-6">
-								<p>Não possui cadastro? <a href="verifica.php">Clique aqui.</a></p>
-								<br />
-							</div>
-							<div class="col-md-6">
-								<p>Esqueceu a senha? <a href="email.php">Clique aqui.</a></p>
-								<br />
-							</div>
-						</div>
-
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-8">
-                                <a href="http://smcsistemas.prefeitura.sp.gov.br/igsiscapac/manual/" target="_blank" class="btn btn-theme btn-md btn-block">Manual de Uso e Dúvidas frequentes</a>
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/igsiscapac/login.php">
+                                                                    <div class="info-box bg-orange">
+                                                                        <span class="info-box-icon"><i class="fas fa-guitar"></i></span>
+                                                                        <div class="card-body">
+                                                                            <span class="info-box-number">Oficineiros</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/igsiscapac/login.php">
+                                                                    <div class="btn info-box bg-teal" id="formacao">
+                                                                        <span class="info-box-icon"><i class="fas fa-child"></i></span>
+                                                                        <div class="card-body">
+                                                                            <span class="info-box-number">Formação</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.login-card-body -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer bg-light-gradient text-center">
+                                        <img src="<?= SERVERURL ?>views/dist/img/CULTURA_HORIZONTAL_pb_positivo.png" alt="logo cultura">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-					</div>
-				</div>
-			</div>
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-			<footer>
-				<div class="container">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <img src="visual/images/logo_cultura_q.png">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Formação -->
+            <div class="modal fade" id="modalFormacao" style="display: none" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Ações (Expressões Artístico-culturais)</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
-                        <div class="col-md-offset-2 col-md-4" style="padding: 10px">
-                            <span style="color: #ccc; "><?= date("Y") ?> @ IGSIS - CAPAC<br>Secretaria Municipal de Cultura<br>Prefeitura de São Paulo</span>
+                        <div class="modal-body" style="text-align: left;">
+                            Aeoo
                         </div>
-                        <div class="col-md-offset-2 col-md-2">
-                            <img src="visual/images/logo_igsis_azul.png">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-theme" data-dismiss="modal">Fechar</button>
                         </div>
                     </div>
-				</div>
-			</footer>
-		</section>
-    </body>
+                </div>
+            </div>
+
+            <script>
+                $('#formacao').on('click', function () {
+                    $('#modalFormacao').modal();
+                });
+
+                $(document).ready(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                });
+            </script>
+        </div>
+    </div>
+
+<script src="<?= SERVERURL ?>views/plugins/moment/moment.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="<?= SERVERURL ?>views/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="<?= SERVERURL ?>views/dist/js/adminlte.min.js"></script>
+</body>
 </html>

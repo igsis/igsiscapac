@@ -160,7 +160,10 @@ $pfComplementar = recuperaDados("formacao_dados_complementares","pessoa_fisica_i
                         <div class="col-md-offset-2 col-md-8"><strong>Região de preferência para atuação:</strong><br/>
                             <select name="regiaoPreferencial" id="regiaoPreferencial" class="form-control" required>
                                 <option value="">Selecione...</option>
-                                <?php geraOpcao('regioes', $pf['formacao_regiao_preferencial']); ?>
+                                <?php
+                                $regiaoSelecionada = $pf['formacao_regiao_preferencial'] == 5 ? 1 : $pf['formacao_regiao_preferencial'];
+                                geraOpcao('regioes', $regiaoSelecionada, true);
+                                ?>
                             </select>
                         </div>
                     </div>
@@ -337,5 +340,4 @@ $pfComplementar = recuperaDados("formacao_dados_complementares","pessoa_fisica_i
         }
     }
 </script>
-
 <?php echo "<script>window.onload = funcaoPreferencial('".$pf['tipo_formacao_id']."');</script>"; ?>
