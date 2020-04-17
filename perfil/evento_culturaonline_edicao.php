@@ -8,7 +8,6 @@ if(isset($_POST['insere']) || isset($_POST['atualizar']))
 	$idTipoEvento = $_POST['idTipoEvento'];
 	$nomeGrupo = addslashes($_POST['nomeGrupo']);
 	$fichaTecnica = addslashes($_POST['fichaTecnica']);
-	$integrantes = addslashes($_POST['integrantes']);
 	$idFaixaEtaria = $_POST['idFaixaEtaria'];
 	$sinopse = addslashes($_POST['sinopse']);
 	$release = addslashes($_POST['release']);
@@ -19,7 +18,7 @@ if(isset($_POST['insere']) || isset($_POST['atualizar']))
 
 if(isset($_POST['insere']))
 {
-	$sql_insere = "INSERT INTO `evento`(`idTipoEvento`, `nomeEvento`, `nomeGrupo`, `fichaTecnica`, `integrantes`, `idFaixaEtaria`, `sinopse`, `releaseCom`, `link`, `dataCadastro`, `publicado`, `contratacao`, `idUsuario`) VALUES ('$idTipoEvento', '$nomeEvento', '$nomeGrupo', '$fichaTecnica', '$integrantes', '$idFaixaEtaria', '$sinopse', '$release', '$link', '$dataCadastro', '1', '1', '$idUser')";
+	$sql_insere = "INSERT INTO `evento`(`idTipoEvento`, `nomeEvento`, `nomeGrupo`, `fichaTecnica`, `idFaixaEtaria`, `sinopse`, `releaseCom`, `link`, `dataCadastro`, `publicado`, `contratacao`, `idUsuario`) VALUES ('$idTipoEvento', '$nomeEvento', '$nomeGrupo', '$fichaTecnica', '$idFaixaEtaria', '$sinopse', '$release', '$link', '$dataCadastro', '1', '1', '$idUser')";
 	if(mysqli_query($con,$sql_insere))
 	{
         $sql_ultimo = $con->query("SELECT id FROM evento WHERE idUsuario = '$idUser' ORDER BY id DESC LIMIT 0,1")->fetch_array();
@@ -51,7 +50,6 @@ if(isset($_POST['atualizar']))
 		idTipoEvento = '$idTipoEvento',
 		nomeGrupo = '$nomeGrupo',
 		fichaTecnica = '$fichaTecnica',
-		integrantes = '$integrantes',
 		idFaixaEtaria = '$idFaixaEtaria',
 		sinopse = '$sinopse',
 		releaseCom = '$release',
@@ -102,7 +100,7 @@ include '../perfil/includes/menu_culturaonline.php';
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-				<form method="POST" action="?perfil=evento_edicao" class="form-horizontal" role="form">
+				<form method="POST" action="?perfil=evento_culturaonline_edicao" class="form-horizontal" role="form">
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
                             <label>Chamamento *</label>
@@ -139,13 +137,6 @@ include '../perfil/includes/menu_culturaonline.php';
 							<label>Esse campo deve conter a listagem de pessoas envolvidas no espetáculo, como elenco, técnicos, e outros profissionais envolvidos na realização do mesmo.</i></strong></label>
 							<p align="justify"><font color="gray"><strong><i>Elenco de exemplo:</strong><br/>Ana Cañas (voz e guitarra)<br/>Lúcio Maia (guitarra solo)<br/>Fabá Jimenez (guitarra base)</br> Fabio Sá (baixo)</br>Marco da Costa (bateria)<br/>Eloá Faria (figurinista)<br/>Leonardo Kuero (técnico de som)</font></i></p>
 							<textarea name="fichaTecnica" class="form-control" rows="10"><?php echo $evento['fichaTecnica'] ?></textarea>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-8"><strong>Integrantes do grupo:</strong><br/>
-								<label>Esse campo deve conter a listagem de pessoas envolvidas no espetáculo <font color='#FF0000'>incluindo o líder do grupo</font>.<br/>Apenas o <font color='#FF0000'>nome civil, RG e CPF</font> de quem irá se apresentar, excluindo técnicos.</i></strong></label>
-								<p align="justify"><font color="gray"><strong><i>Elenco de exemplo:</strong><br/>Ana Cañas RG 00000000-0 CPF 000.000.000-00<br/>Lúcio Maia RG 00000000-0 CPF 000.000.000-00<br/>Fabá Jimenez RG 00000000-0 CPF 000.000.000-00</br>Fabio Sá RG 00000000-0 CPF 000.000.000-00</br>Marco da Costa RG 00000000-0 CPF 000.000.000-00</font></i></p>
-							<textarea name="integrantes" class='form-control' cols="40" rows="5" required><?php echo $evento['integrantes'] ?></textarea>
 						</div>
 					</div>
 					<div class="form-group">
@@ -189,8 +180,14 @@ include '../perfil/includes/menu_culturaonline.php';
 						</div>
 					</div>
 				</form>
+                <div class="row">
+                    <div class="col-md-offset-8 col-md-2">
+                        <a href="?perfil=evento_culturaonline_integrantes" class="btn btn-theme btn-lg btn-block">
+                            Integrantes
+                        </a>
+                    </div>
+                </div>
 			</div>
 		</div>
-		<?php include '../perfil/includes/menu_evento_footer.php'; ?>
 	</div>
 </section>
