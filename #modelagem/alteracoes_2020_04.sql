@@ -188,3 +188,16 @@ INSERT INTO `co_modalidade_linguagem` (`co_modalidade_id`, `co_linguagem_id`) VA
 (4, 29),
 (4, 13),
 (4, 36);
+
+--
+-- Estrutura da tabela `co_pf_complementar`
+--
+
+CREATE TABLE `co_pf_complementar` (
+  `pessoa_fisica_id` int(11) NOT NULL,
+  `estado_civil_id` int(11) NOT NULL,
+  `nacionalidade_id` int(11) NOT NULL,
+  `curriculo` longtext NOT NULL,
+  `rede_social` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
