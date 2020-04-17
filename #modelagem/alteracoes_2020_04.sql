@@ -36,6 +36,9 @@ ALTER TABLE `cultura_online`
 ALTER TABLE `cultura_online`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
+ALTER TABLE `integrante`
+    CHANGE COLUMN `publicado` `publicado` TINYINT(1) NOT NULL DEFAULT '1' AFTER `cpf`;
+
 CREATE TABLE `evento_integrante` (
      `evento_id` INT NOT NULL,
      `integrante_id` INT NOT NULL,
