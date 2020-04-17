@@ -25,7 +25,7 @@ $evento = $con->query("SELECT eve.id, nomeEvento, chamamento, dataCadastro, publ
 ?>
 <section id="list_items" class="home-section bg-white">
     <div class="container">
-        <?php include '../perfil/includes/menu_evento.php'; ?>
+        <?php include '../perfil/includes/menu_culturaonline.php'; ?>
         <div class="form-group">
             <h3>EVENTOS</h3>
             <h5>
