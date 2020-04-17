@@ -6,26 +6,38 @@ $idEvento = $_SESSION['idEvento'];
 $evento = recuperaDados("evento","id", $idEvento);
 
 if (isset($_POST['addIntegrante'])) {
-    $nome = trim($_POST['nome']);
-    $rg = trim($_POST['rg']);
-    $cpf = $_POST['cpf'];
+    if (!isset($_POST['idIntegrante'])) {
+        $nome = trim($_POST['nome']);
+        $rg = trim($_POST['rg']);
+        $cpf = $_POST['cpf'];
 
-    $integrante = $con->query("SELECT idIntegrante FROM integrante WHERE cpf = '$cpf' AND publicado = '1'")->num_rows;
 
-    if ($integrante == 0) {
         $sql = "INSERT INTO integrante (nome, rg, cpf) VALUES ('$nome', '$rg', '$cpf')";
-        if ($con->query($sql)) {
-            $integrante_id = $con->insert_id;
-
-            $con->query("INSERT INTO evento_integrante (evento_id, integrante_id) VALUES ('$idEvento', '$integrante_id')");
-
-            $mensagem = "<font color='#01DF3A'><strong>Integrante inserido com sucesso!</strong></font>";
-            gravarLog($sql);
-        } else {
-            $mensagem = "<font color='#FF0000'><strong>Erro ao gravar! Tente novamente. COD[2]</strong></font>";
-        }
+        $con->query($sql);
+        $integrante_id = $con->insert_id;
     } else {
-        $mensagem = "<font color='#FF0000'><strong>! Tente novamente.</strong></font>";
+        $integrante_id = $_POST['idIntegrante'];
+    }
+
+    $sqlEventoIntegrante = "INSERT INTO evento_integrante (evento_id, integrante_id) VALUES ('$idEvento', '$integrante_id')";
+
+    if ($con->query($sqlEventoIntegrante)) {
+        $mensagem = "<font color='#01DF3A'><strong>Integrante inserido com sucesso!</strong></font>";
+        gravarLog($sql);
+    } else {
+        $mensagem = "<font color='#FF0000'><strong>Erro ao gravar! Tente novamente. COD[2]</strong></font>";
+    }
+}
+
+if (isset($_POST['removeIntegrante'])) {
+    $sqlRemover = "DELETE FROM evento_integrante WHERE evento_id = '{$_POST['idEvento']}' AND integrante_id = '{$_POST['idIntegrante']}'";
+    $queryRemover = $con->query($sqlRemover);
+
+    if ($queryRemover) {
+        $mensagem = "<font color='#01DF3A'><strong>Integrante removido com sucesso!</strong></font>";
+        gravarLog($sqlRemover);
+    } else {
+        $mensagem = "<font color='#FF0000'><strong>Erro ao gravar! Tente novamente. COD[2]</strong></font>";
     }
 }
 
@@ -76,8 +88,8 @@ include '../perfil/includes/menu_culturaonline.php';
                                     <td>
                                         <form action="?perfil=evento_culturaonline_integrantes" method="post">
                                             <input type="hidden" name="idIntegrante" id="idIntegrante" value="<?=$integrante['idIntegrante']?>">
-                                            <input type="hidden" name="idIntegrante" id="idEvento" value="<?=$idEvento?>">
-                                            <input type="submit" name="removerIntegrante" class="btn btn-sm btn-danger" value="Remover">
+                                            <input type="hidden" name="idEvento" id="idEvento" value="<?=$idEvento?>">
+                                            <input type="submit" name="removeIntegrante" class="btn btn-sm btn-danger" value="Remover">
                                         </form>
                                     </td>
                                 </tr>
@@ -92,11 +104,18 @@ include '../perfil/includes/menu_culturaonline.php';
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-offset-2 col-md-2">
+                <a href="?perfil=evento_culturaonline_edicao" class="btn btn-theme btn-lg btn-block">
+                    Evento
+                </a>
+            </div>
+        </div>
     </div>
 
     <div class="modal fade" id="addIntegrante" role="dialog" aria-labelledby="addIntegranteLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="?perfil=evento_culturaonline_integrantes" method="post">
+            <form action="?perfil=evento_culturaonline_addintegrantes" method="post">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -104,21 +123,13 @@ include '../perfil/includes/menu_culturaonline.php';
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="nome">Nome*</label>
-                            <input type="text" name="nome" id="nome" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="rg">RG*</label>
-                            <input type="text" name="rg" id="rg" class="form-control" required>
-                        </div>
-                        <div class="form-group">
                             <label for="cpf">CPF*</label>
                             <input type="text" name="cpf" id="cpf" class="form-control" required>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <input type="submit" class="btn btn-success" name="addIntegrante" id="confirm" value="Adicionar">
+                        <input type="submit" class="btn btn-success" name="consultaIntegrante" id="confirm" value="Adicionar">
                     </div>
                 </div>
             </form>
