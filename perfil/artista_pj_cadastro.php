@@ -125,7 +125,14 @@ $artista = recuperaDados("pessoa_fisica","id",$evento['idPf']);
 ?>
 
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include 'includes/menu_evento.php'; ?>
+	<div class="container">
+        <?php
+        if (isset($_SESSION['emenda'])) {
+            include '../perfil/includes/menu_emenda.php';
+        } else {
+            include '../perfil/includes/menu_evento.php';
+        }
+        ?>
 		<div class="form-group">
 			<h4>ARTISTA - Líder do Grupo ou Artista Solo</h4>
 			<div class="col-md-offset-3 col-md-3">

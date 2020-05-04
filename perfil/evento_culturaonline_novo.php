@@ -1,23 +1,26 @@
 <?php
 	$con = bancoMysqli();
 	$idUser= $_SESSION['idUser'];
+include '../perfil/includes/menu_culturaonline.php';
 ?>
 <section id="inserir" class="home-section bg-white">
     <div class="container">
-        <?php
-        if (isset($_SESSION['emenda'])) {
-            include '../perfil/includes/menu_emenda.php';
-        } else {
-            include '../perfil/includes/menu_evento.php';
-        }
-        ?>
 		<div class="form-group">
 			<h4>Informações Gerais do Evento</h4>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-				<form method="POST" action="?perfil=evento_edicao" class="form-horizontal" role="form">
-					<div class="form-group">
+				<form method="POST" action="?perfil=evento_culturaonline_edicao" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8">
+                            <label>Chamamento *</label>
+                            <select class="form-control" name="tipo_chamamento_id" id="inputSubject" required>
+                                <option value="">Selecione...</option>
+                                <?php echo geraOpcao("tipo_chamamento","") ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
 							<label>Nome do Evento *</label>
 							<input type="text" name="nomeEvento" class="form-control" />

@@ -1,11 +1,6 @@
 <?php
 $con = bancoMysqli();
 $idUser= $_SESSION['idUser'];
-$tipoPessoa = "3";
-
-if (isset($_POST['tipoEmenda']) && isset($_SESSION['emenda'])) {
-    $_SESSION['emenda'] = $_POST['tipoEmenda'];
-}
 
 if(isset($_POST['insere']) || isset($_POST['atualizar']))
 {
@@ -18,29 +13,27 @@ if(isset($_POST['insere']) || isset($_POST['atualizar']))
 	$release = addslashes($_POST['release']);
 	$link = addslashes($_POST['link']);
 	$dataCadastro = date('YmdHis');
-
-	if (isset($_SESSION['emenda'])) {
-	    $tipoEmenda = $_SESSION['emenda'];
-    }
+	$tipo_chamamento_id = $_POST['tipo_chamamento_id'];
 }
 
 if(isset($_POST['insere']))
 {
-	$sql_insere = "INSERT INTO `evento`(`idTipoEvento`, `nomeEvento`, `nomeGrupo`, `fichaTecnica`, `integrantes`, `idFaixaEtaria`, `sinopse`, `releaseCom`, `link`, `dataCadastro`, `publicado`, `contratacao`, `idUsuario`) VALUES ('$idTipoEvento', '$nomeEvento', '$nomeGrupo', '$fichaTecnica', '$integrantes', '$idFaixaEtaria', '$sinopse', '$release', '$link', '$dataCadastro', '1', '1', '$idUser')";
+	$sql_insere = "INSERT INTO `evento`(`idTipoEvento`, `nomeEvento`, `nomeGrupo`, `fichaTecnica`, `idFaixaEtaria`, `sinopse`, `releaseCom`, `link`, `dataCadastro`, `publicado`, `contratacao`, `idUsuario`) VALUES ('$idTipoEvento', '$nomeEvento', '$nomeGrupo', '$fichaTecnica', '$idFaixaEtaria', '$sinopse', '$release', '$link', '$dataCadastro', '1', '1', '$idUser')";
 	if(mysqli_query($con,$sql_insere))
 	{
-		$mensagem = "<font color='#01DF3A'><strong>Inserido com sucesso!</strong></font>";
-		gravarLog($sql_insere);
-		$sql_ultimo = "SELECT id FROM evento WHERE idUsuario = '$idUser' ORDER BY id DESC LIMIT 0,1";
-		$query_ultimo = mysqli_query($con,$sql_ultimo);
-		$ultimoEvento = mysqli_fetch_array($query_ultimo);
-		$_SESSION['idEvento'] = $ultimoEvento['id'];
-		$idEvento = $_SESSION['idEvento'];
-
-		if (isset($_SESSION['emenda'])) {
-		    $sql_insere_emenda = "INSERT INTO `emenda_parlamentar` (`idEvento`, `tipoEmenda`) VALUES ('$idEvento', '$tipoEmenda')";
-		    $con->query($sql_insere_emenda);
-		    gravarLog($sql_insere_emenda);
+        $sql_ultimo = $con->query("SELECT id FROM evento WHERE idUsuario = '$idUser' ORDER BY id DESC LIMIT 0,1")->fetch_array();
+        $ultimoEvento = $sql_ultimo['id'];
+        $sql_insere_chamamento = "INSERT INTO cultura_online (evento_id,tipo_chamamento_id) VALUES ('$ultimoEvento', '$tipo_chamamento_id')";
+        gravarLog($sql_insere);
+        if(mysqli_query($con,$sql_insere_chamamento)){
+            $mensagem = "<font color='#01DF3A'><strong>Inserido com sucesso!</strong></font>";
+            gravarLog($sql_insere);
+            $_SESSION['idEvento'] = $ultimoEvento;
+            $idEvento = $_SESSION['idEvento'];
+        }
+        else
+        {
+            $mensagem = "<font color='#FF0000'><strong>Erro ao gravar! Tente novamente. COD[2]</strong></font>";
         }
 	}
 	else
@@ -66,8 +59,16 @@ if(isset($_POST['atualizar']))
 		WHERE id = '$idEvento'";
 	if(mysqli_query($con,$sql_atualizar))
 	{
-		$mensagem = "<font color='#01DF3A'><strong>Atualizado com sucesso!</strong></font>";
-		gravarLog($sql_atualizar);
+		$sql_atualiza_chamamento = "UPDATE cultura_online SET tipo_chamamento_id = '$tipo_chamamento_id' WHERE evento_id = '$idEvento'";
+        gravarLog($sql_atualizar);
+        if(mysqli_query($con,$sql_atualiza_chamamento)) {
+            $mensagem = "<font color='#01DF3A'><strong>Atualizado com sucesso!</strong></font>";
+            gravarLog($sql_atualiza_chamamento);
+        }
+        else
+        {
+            $mensagem = "<font color='#FF0000'><strong>Erro ao atualizar! Tente novamente. COD[2]</strong></font>";
+        }
 	}
 	else
 	{
@@ -86,26 +87,29 @@ if(isset($_SESSION['idEvento']))
 	$idEvento = $_SESSION['idEvento'];
 }
 
-
-
 $evento = recuperaDados("evento","id", $idEvento);
+$cham = recuperaDados("cultura_online","evento_id",$idEvento);
+
+include '../perfil/includes/menu_culturaonline.php';
 ?>
 <section id="list_items" class="home-section bg-white">
     <div class="container">
-        <?php
-        if (isset($_SESSION['emenda'])) {
-            include '../perfil/includes/menu_emenda.php';
-        } else {
-            include '../perfil/includes/menu_evento.php';
-        }
-        ?>
 		<div class="form-group">
 			<h4>Informações Gerais do Evento</h4>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-				<form method="POST" action="?perfil=evento_edicao" class="form-horizontal" role="form">
+				<form method="POST" action="?perfil=evento_culturaonline_edicao" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8">
+                            <label>Chamamento *</label>
+                            <select class="form-control" name="tipo_chamamento_id" id="inputSubject" required>
+                                <option value="">Selecione...</option>
+                                <?php echo geraOpcao("tipo_chamamento",$cham['tipo_chamamento_id']) ?>
+                            </select>
+                        </div>
+                    </div>
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8">
 							<label>Nome do Evento *</label>
@@ -176,8 +180,14 @@ $evento = recuperaDados("evento","id", $idEvento);
 						</div>
 					</div>
 				</form>
+                <div class="row">
+                    <div class="col-md-offset-8 col-md-2">
+                        <a href="?perfil=evento_culturaonline_integrantes" class="btn btn-theme btn-lg btn-block">
+                            Integrantes
+                        </a>
+                    </div>
+                </div>
 			</div>
 		</div>
-		<?php include '../perfil/includes/menu_evento_footer.php'; ?>
 	</div>
 </section>

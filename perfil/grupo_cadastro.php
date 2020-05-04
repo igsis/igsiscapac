@@ -4,14 +4,14 @@ $idEvento = $_SESSION['idEvento'];
 ?>
 <section id="contact" class="home-section bg-white">
 	<div class="container">
-		<?php include 'includes/menu_interno_pj.php'; ?>
-		<div class="form-group">
+        <?php include '../perfil/includes/menu_evento.php'; ?>
+        <div class="form-group">
 			<h4>Integrantes do Elenco ou Artista Solo</h4>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10">
-				<form class="form-horizontal" role="form" action="?perfil=grupo_edicao" method="post">
+				<form class="form-horizontal" role="form" action="?perfil=grupo" method="post">
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-8"><strong>Nome: *</strong><br/>
 							<input type="text" class="form-control" name="nome" placeholder="Nome completo" >
