@@ -22,14 +22,7 @@ if($num_busca > 0)
 { // Se exisitr, lista a resposta.
 ?>
 	<section id="list_items" class="home-section bg-white">
-		<div class="container">
-            <?php
-            if (isset($_SESSION['emenda'])) {
-                include '../perfil/includes/menu_emenda.php';
-            } else {
-                include '../perfil/includes/menu_evento.php';
-            }
-            ?>
+		<div class="container"><?php include 'includes/menu_evento.php'; ?>
 			<div class="form-group">
 				<h3>ARTISTA - Líder do Grupo ou Artista Solo</h3>
 				<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>

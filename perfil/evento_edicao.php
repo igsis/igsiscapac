@@ -3,9 +3,6 @@ $con = bancoMysqli();
 $idUser= $_SESSION['idUser'];
 $tipoPessoa = "3";
 
-if (isset($_POST['tipoEmenda']) && isset($_SESSION['emenda'])) {
-    $_SESSION['emenda'] = $_POST['tipoEmenda'];
-}
 
 if(isset($_POST['insere']) || isset($_POST['atualizar']))
 {
@@ -13,15 +10,12 @@ if(isset($_POST['insere']) || isset($_POST['atualizar']))
 	$idTipoEvento = $_POST['idTipoEvento'];
 	$nomeGrupo = addslashes($_POST['nomeGrupo']);
 	$fichaTecnica = addslashes($_POST['fichaTecnica']);
+	$integrantes = addslashes($_POST['integrantes']);
 	$idFaixaEtaria = $_POST['idFaixaEtaria'];
 	$sinopse = addslashes($_POST['sinopse']);
 	$release = addslashes($_POST['release']);
 	$link = addslashes($_POST['link']);
 	$dataCadastro = date('YmdHis');
-
-	if (isset($_SESSION['emenda'])) {
-	    $tipoEmenda = $_SESSION['emenda'];
-    }
 }
 
 if(isset($_POST['insere']))
@@ -36,12 +30,6 @@ if(isset($_POST['insere']))
 		$ultimoEvento = mysqli_fetch_array($query_ultimo);
 		$_SESSION['idEvento'] = $ultimoEvento['id'];
 		$idEvento = $_SESSION['idEvento'];
-
-		if (isset($_SESSION['emenda'])) {
-		    $sql_insere_emenda = "INSERT INTO `emenda_parlamentar` (`idEvento`, `tipoEmenda`) VALUES ('$idEvento', '$tipoEmenda')";
-		    $con->query($sql_insere_emenda);
-		    gravarLog($sql_insere_emenda);
-        }
 	}
 	else
 	{
@@ -57,6 +45,7 @@ if(isset($_POST['atualizar']))
 		idTipoEvento = '$idTipoEvento',
 		nomeGrupo = '$nomeGrupo',
 		fichaTecnica = '$fichaTecnica',
+		integrantes = '$integrantes',
 		idFaixaEtaria = '$idFaixaEtaria',
 		sinopse = '$sinopse',
 		releaseCom = '$release',
@@ -91,14 +80,7 @@ if(isset($_SESSION['idEvento']))
 $evento = recuperaDados("evento","id", $idEvento);
 ?>
 <section id="list_items" class="home-section bg-white">
-    <div class="container">
-        <?php
-        if (isset($_SESSION['emenda'])) {
-            include '../perfil/includes/menu_emenda.php';
-        } else {
-            include '../perfil/includes/menu_evento.php';
-        }
-        ?>
+    <div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
 		<div class="form-group">
 			<h4>Informações Gerais do Evento</h4>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
@@ -133,6 +115,13 @@ $evento = recuperaDados("evento","id", $idEvento);
 							<label>Esse campo deve conter a listagem de pessoas envolvidas no espetáculo, como elenco, técnicos, e outros profissionais envolvidos na realização do mesmo.</i></strong></label>
 							<p align="justify"><font color="gray"><strong><i>Elenco de exemplo:</strong><br/>Ana Cañas (voz e guitarra)<br/>Lúcio Maia (guitarra solo)<br/>Fabá Jimenez (guitarra base)</br> Fabio Sá (baixo)</br>Marco da Costa (bateria)<br/>Eloá Faria (figurinista)<br/>Leonardo Kuero (técnico de som)</font></i></p>
 							<textarea name="fichaTecnica" class="form-control" rows="10"><?php echo $evento['fichaTecnica'] ?></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8"><strong>Integrantes do grupo:</strong><br/>
+								<label>Esse campo deve conter a listagem de pessoas envolvidas no espetáculo <font color='#FF0000'>incluindo o líder do grupo</font>.<br/>Apenas o <font color='#FF0000'>nome civil, RG e CPF</font> de quem irá se apresentar, excluindo técnicos.</i></strong></label>
+								<p align="justify"><font color="gray"><strong><i>Elenco de exemplo:</strong><br/>Ana Cañas RG 00000000-0 CPF 000.000.000-00<br/>Lúcio Maia RG 00000000-0 CPF 000.000.000-00<br/>Fabá Jimenez RG 00000000-0 CPF 000.000.000-00</br>Fabio Sá RG 00000000-0 CPF 000.000.000-00</br>Marco da Costa RG 00000000-0 CPF 000.000.000-00</font></i></p>
+							<textarea name="integrantes" class='form-control' cols="40" rows="5" required><?php echo $evento['integrantes'] ?></textarea>
 						</div>
 					</div>
 					<div class="form-group">

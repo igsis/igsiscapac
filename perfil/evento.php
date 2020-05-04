@@ -66,10 +66,9 @@ $usuario = recuperaDados("usuario","id",$idUser);
                 <div class="col-md-offset-1 col-md-10">
                     <div class="table-responsive list_info">
                         <?php
-                        $sql = "SELECT eve.* FROM evento as eve
-                            LEFT JOIN emenda_parlamentar AS ep ON eve.id = ep.idEvento
-                            WHERE eve.publicado > 0 AND eve.idUsuario ='$idUser' AND ep.idEvento IS NULL
-                            ORDER BY eve.id DESC";
+					$sql = "SELECT * FROM evento
+							WHERE publicado > 0 AND idUsuario ='$idUser'
+							ORDER BY id DESC";
 					$query = mysqli_query($con,$sql);
 					$num = mysqli_num_rows($query);
 					if($num > 0)

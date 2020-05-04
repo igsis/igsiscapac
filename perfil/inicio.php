@@ -8,7 +8,6 @@ unset($_SESSION['idEvento']);
 unset($_SESSION['idPj']);
 unset($_SESSION['idPf']);
 unset($_SESSION['menu']);
-unset($_SESSION['emenda']);
 ?>
 <section id="contact" class="home-section bg-white">
 	<div class="container">
@@ -29,9 +28,7 @@ unset($_SESSION['emenda']);
 								echo "<a href='?perfil=busca_reset' class='btn btn-theme btn-lg btn-block'>Reiniciar Senha</a><br/>";
 							}
 						?>
-                        <a href="?perfil=cultura_online" class="btn btn-theme btn-lg btn-block">ATIVIDADES ARTÍSTICAS ONLINE</a>
-                        <br>
-                        <!--<p>Selecione aqui o tipo de evento <strong>(teatro, dança, oficina, música, etc)</strong> que deseja cadastrar</p>
+                        <p>Selecione aqui o tipo de evento <strong>(teatro, dança, oficina, música, etc)</strong> que deseja cadastrar</p>
                         <button type="button" class="btn btn-theme btn-lg btn-block" data-toggle="collapse" data-target="#evento">EVENTO</button>
                         <div id="evento" class="collapse">
                             <div class="well">
@@ -47,21 +44,9 @@ unset($_SESSION['emenda']);
                             </div>
                         </div>
                         <br>
-                        <p> </p>
-                        <button type="button" class="btn btn-theme btn-lg btn-block" data-toggle="collapse" data-target="#emenda">EMENDA PARLAMENTAR</button>
-                        <div id="emenda" class="collapse">
-                            <div class="well">
-                                <p>Aqui são inseridas as informações sobre o seu evento apenas com cachê do artista</p>
-                                <a href="?perfil=emenda&p=contratacao_apresentacao" class="btn btn-theme btn-lg btn-block">CONTRATAÇÃO ARTÍSTICA</a>
-                                <br />
-                                <p>Aqui são inseridas as informações sobre seu evento que tenha outros custos além do cachê artístico</p>
-                                <a href="?perfil=emenda&p=parceria_apresentacao" class="btn btn-theme btn-lg btn-block">PARCERIA</a>
-                            </div>
-                        </div>
-                        <br>
                         <p>Aqui são inseridas as informações dos oficineiros <strong>JÁ SELECIONADOS NO EDITAL n. 002/2018 SMC/GAB</strong></p>
 						<a href="?perfil=evento_apresentacao_oficinas" class="btn btn-theme btn-lg btn-block">OFICINAS - EDITAL 002/2018</a>
-						<br />-->
+						<br />
 
                         <?php if($situacao_jm['situacao_atual'] == 1) { ?>
                             <p>Aqui é realizado o cadastro de novos <strong>Jovens Monitores </strong></p>

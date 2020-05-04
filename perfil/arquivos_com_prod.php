@@ -20,14 +20,7 @@ $campo = recuperaDados("evento","id",$_SESSION['idEvento']);
 ?>
 
 <section id="list_items" class="home-section bg-white">
-	<div class="container">
-        <?php
-        if (isset($_SESSION['emenda'])) {
-            include '../perfil/includes/menu_emenda.php';
-        } else {
-            include '../perfil/includes/menu_evento.php';
-        }
-        ?>
+	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
 			<h4>Arquivos Para Comunicação e Produção</h4>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
@@ -155,7 +148,7 @@ $campo = recuperaDados("evento","id",$_SESSION['idEvento']);
 			<div class="col-md-offset-2 col-md-8">
 				<div class="col-md-offset-1 col-md-2">
 					<form class="form-horizontal" role="form" action="?perfil=produtor_edicao" method="post">
-						<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block">
+						<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
 					</form>
 				</div>
 				<?php
@@ -164,7 +157,7 @@ $campo = recuperaDados("evento","id",$_SESSION['idEvento']);
 				?>	
 				<div class="col-md-offset-6 col-md-2">
 					<form class="form-horizontal" role="form" action="?perfil=finalizar" method="post">
-						<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
+						<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
 					</form>
 				</div>
 				<?php
@@ -174,7 +167,7 @@ $campo = recuperaDados("evento","id",$_SESSION['idEvento']);
 				?>	
 				<div class="col-md-offset-6 col-md-2">
 					<form class="form-horizontal" role="form" action="?perfil=proponente" method="post">
-						<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block">
+						<input type="submit" value="Avançar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPf ?>">
 					</form>
 				</div>
 				<?php

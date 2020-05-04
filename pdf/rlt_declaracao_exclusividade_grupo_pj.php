@@ -81,16 +81,16 @@ $rep01RG = $rep01["rg"];
 $rep01CPF = $rep01["cpf"];
 
 //Representante02
-$rep02Nome = $rep02["nome"] ?? NULL;
-$rep02RG = $rep02["rg"] ?? NULL;
-$rep02CPF = $rep02["cpf"] ?? NULL;
+$rep02Nome = $rep02["nome"];
+$rep02RG = $rep02["rg"];
+$rep02CPF = $rep02["cpf"];
 
 //Executante
 $exNome = $executante["nome"];
 $exRG = $executante["rg"];
 $exCPF = $executante["cpf"];
 
-$grupo = $evento["nomeGrupo"] ?? NULL;
+$grupo = $evento["nomeGrupo"];
 $Objeto = $evento["nomeEvento"];
 $integrantes = $evento["integrantes"];
 
@@ -153,18 +153,14 @@ $f=9; //tamanho da fonte
   $pdf->Ln();
 
   $pdf->SetX($x);
-  $pdf->SetFont('Arial','B', $f);
-  $pdf->Cell(128,$l,utf8_decode("Integrantes do grupo:"),0,1,'L');
-
-  $pdf->SetX($x);
   $pdf->SetFont('Arial','', $f);
-  $pdf->MultiCell(170,$l,utf8_decode($integrantes));
+  $pdf->MultiCell(170,$l,utf8_decode("Integrantes do grupo: "."$integrantes".""));
 
   $pdf->Ln();
 
   $pdf->SetX($x);
   $pdf->SetFont('Arial','', $f);
-  $pdf->Cell(180,$l,utf8_decode("São Paulo, _______ / _______ / " .$ano."."),0,1,'C');
+  $pdf->Cell(128,$l,utf8_decode("São Paulo, _______ / _______ / " .$ano."."),0,1,'L');
 
   $pdf->Ln();
 
@@ -183,37 +179,47 @@ $f=9; //tamanho da fonte
   $pdf->SetFont('Arial','', $f);
   $pdf->Cell(128,4,utf8_decode("CPF: "."$exCPF".""),0,1,'L');
 
-  $pdf->Ln(15);
+  $pdf->Ln();
 
   $pdf->SetX($x);
-  $pdf->SetFont('Arial','B', $f);
-  $pdf->Cell(80,4,utf8_decode("Representante Legal 1"),'T',0,'L');
-  if($rep02){
-      $pdf->SetX($x);
-      $pdf->Cell(95,4,utf8_decode(""),0,0,'R');
-      $pdf->Cell(80,4,utf8_decode("Representante Legal 2"),'T',0,'R');
+  $pdf->SetFont('Arial','', $f);
+  $pdf->SetX($x);
+  $pdf->SetFont('Arial','', $f);
+  $pdf->Cell(128,4,utf8_decode("_______________________________"),0,1,'L');
+  $pdf->SetX($x);
+  $pdf->SetFont('Arial','', $f);
+  $pdf->Cell(128,4,utf8_decode("Representante Legal 1: "."$rep01Nome".""),0,1,'L');
+  $pdf->SetX($x);
+  $pdf->SetFont('Arial','', $f);
+  $pdf->Cell(128,4,utf8_decode("RG: "."$rep01RG".""),0,1,'L');
+  $pdf->SetX($x);
+  $pdf->SetFont('Arial','', $f);
+  $pdf->Cell(128,4,utf8_decode("CPF: "."$rep01CPF".""),0,1,'L');
+
+  $pdf->Ln();
+
+  if ($rep02Nome != '')
+  {
+
+    $pdf->SetX($x);
+    $pdf->SetFont('Arial','', $f);
+    $pdf->SetX($x);
+    $pdf->SetFont('Arial','', $f);
+    $pdf->Cell(128,4,utf8_decode("_______________________________"),0,1,'L');
+    $pdf->SetX($x);
+    $pdf->SetFont('Arial','', $f);
+    $pdf->Cell(128,4,utf8_decode("Representante Legal 2: "."$rep02Nome".""),0,1,'L');
+    $pdf->SetX($x);
+    $pdf->SetFont('Arial','', $f);
+    $pdf->Cell(128,4,utf8_decode("RG: "."$rep02RG".""),0,1,'L');
+    $pdf->SetX($x);
+    $pdf->SetFont('Arial','', $f);
+    $pdf->Cell(128,4,utf8_decode("CPF: "."$rep02CPF".""),0,1,'L');
   }
-  $pdf->Ln();
 
-  $pdf->SetX($x);
-  $pdf->SetFont('Arial','', $f);
-  $pdf->Cell(80,4,utf8_decode($rep01Nome),0,0,'L');
-  if($rep02)
-      $pdf->Cell(95,4,utf8_decode($rep02Nome),0,0,'R');
-  $pdf->Ln();
 
-  $pdf->SetX($x);
-  $pdf->Cell(80,4,utf8_decode("RG: "."$rep01RG".""),0,0,'L');
-  if($rep02)
-      $pdf->Cell(95,4,utf8_decode("RG: "."$rep02RG".""),0,0,'R');
-  $pdf->Ln();
-
-  $pdf->SetX($x);
-  $pdf->SetFont('Arial','', $f);
-  $pdf->Cell(80,4,utf8_decode("CPF: "."$rep01CPF".""),0,0,'L');
-  if($rep02)
-      $pdf->Cell(95,4,utf8_decode("CPF: "."$rep02CPF".""),0,0,'R');
-  $pdf->Ln();
 
 $pdf->Output();
+
+
 ?>

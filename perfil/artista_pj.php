@@ -8,14 +8,7 @@ if($evento['idPf'] == NULL)
 {
 ?>
 	<section id="services" class="home-section bg-white">
-		<div class="container">
-            <?php
-                if (isset($_SESSION['emenda'])) {
-                    include '../perfil/includes/menu_emenda.php';
-                } else {
-                    include '../perfil/includes/menu_evento.php';
-                }
-            ?>
+		<div class="container"><?php include 'includes/menu_evento.php'; ?>
 			<div class="row">
 				<div class="col-md-offset-2 col-md-8">
 					<div class="section-heading">

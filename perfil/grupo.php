@@ -1,57 +1,8 @@
 <?php
 $con = bancoMysqli();
 $idEvento = $_SESSION['idEvento'];
-//$tipoPessoa = '3';
+$tipoPessoa = '3';
 
-if(isset($_POST['insereIntegrante']))
-{
-    $nome = $_POST['nome'];
-    $rg = $_POST['rg'];
-    $cpf = $_POST['cpf'];
-
-    $sql_insere_integrante = "INSERT INTO integrante (`nome`, `rg`, `cpf`, `publicado`) VALUES (
-	'$nome', '$rg', '$cpf', '1')";
-    if(mysqli_query($con,$sql_insere_integrante))
-    {
-        $sql_ultimo = "SELECT idIntegrante FROM integrante ORDER BY idIntegrante DESC LIMIT 0,1";
-        $query_ultimo = mysqli_query($con,$sql_ultimo);
-        $ultimo = mysqli_fetch_array($query_ultimo);
-        $idIntegrante = $ultimo['idIntegrante'];
-        $sql_insere_grupo = "INSERT INTO `grupo` (`idEvento`, `idIntegrante`, `nome`, `rg`, `cpf`, `publicado`) VALUES ('$idEvento', '$idIntegrante', '$nome', '$rg', '$cpf', '1')";
-        if(mysqli_query($con,$sql_insere_grupo))
-        {
-            gravarLog($sql_insere_grupo);
-            $sql_grupos = "SELECT * 
-                FROM grupo 
-                WHERE idEvento = '$idEvento' 
-                AND publicado = '1'";
-            $query_grupos = mysqli_query($con, $sql_grupos);
-            $num = mysqli_num_rows($query_grupos);
-            if ($num > 0) {
-                $txt = "";
-                while ($grupo = mysqli_fetch_array($query_grupos)) {
-                    $txt .= $grupo['nome'] . " CPF: " . $grupo['cpf'] . " RG: " . $grupo['rg'] . "\n";
-                }
-            } else {
-                $txt = "Não há integrantes de grupo inseridos";
-            }
-            $upPedido = $con->query("UPDATE evento SET integrantes = '$txt' WHERE id = '$idEvento'");
-            if ($upPedido) {
-                $mensagem = "Integrante inserido com sucesso!";
-            } else {
-                $mensagem = "Erro";
-            }
-        }
-        else
-        {
-            $mensagem = "<font color='#FF0000'><strong>Erro ao inserir no grupo! Tente novamente.</strong></font>";
-        }
-    }
-    else
-    {
-        $mensagem = "<font color='#FF0000'><strong>Erro ao inserir! Tente novamente.</strong></font>";
-    }
-}
 
 if(isset($_POST['apagarIntegrante']))
 {
@@ -59,27 +10,8 @@ if(isset($_POST['apagarIntegrante']))
 	$sql_apaga = "UPDATE `grupo` SET publicado = '0' WHERE id = '$idIntegrante'";
 	if(mysqli_query($con,$sql_apaga))
 	{
+		$mensagem = "<font color='#01DF3A'><strong>Removido com sucesso!</strong></font>";
 		gravarLog($sql_apaga);
-        $sql_grupos = "SELECT * 
-                FROM grupo 
-                WHERE idEvento = '$idEvento' 
-                AND publicado = '1'";
-        $query_grupos = mysqli_query($con, $sql_grupos);
-        $num = mysqli_num_rows($query_grupos);
-        if ($num > 0) {
-            $txt = "";
-            while ($grupo = mysqli_fetch_array($query_grupos)) {
-                $txt .= $grupo['nome'] . " CPF: " . $grupo['cpf'] . " RG: " . $grupo['rg'] . "\n";
-            }
-        } else {
-            $txt = "Não há integrantes de grupo inseridos";
-        }
-        $upPedido = $con->query("UPDATE evento SET integrantes = '$txt' WHERE id = '$idEvento'");
-        if ($upPedido) {
-            $mensagem = "<font color='#01DF3A'><strong>Removido com sucesso!</strong></font>";
-        } else {
-            $mensagem = "Erro";
-        }
 	}
 	else
 	{
@@ -87,7 +19,7 @@ if(isset($_POST['apagarIntegrante']))
 	}
 }
 
-/*if(isset($_POST["enviar"]))
+if(isset($_POST["enviar"]))
 {
 	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id IN (99,100,101,102)";
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
@@ -143,7 +75,7 @@ if(isset($_POST['apagarIntegrante']))
 			}
 		}
 	}
-}*/
+}
 
 if(isset($_POST['apagar']))
 {
@@ -166,14 +98,7 @@ $num = mysqli_num_rows($query_grupos);
 ?>
 
 <section id="list_items" class="home-section bg-white">
-	<div class="container">
-        <?php
-        if (isset($_SESSION['emenda'])) {
-            include '../perfil/includes/menu_emenda.php';
-        } else {
-            include '../perfil/includes/menu_evento.php';
-        }
-        ?>
+	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
 			<h4>Integrantes do Elenco ou Artista Solo</h4>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>

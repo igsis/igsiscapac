@@ -14,17 +14,18 @@
 -- Copiando estrutura para tabela capac.regioes
 CREATE TABLE IF NOT EXISTS `regioes` (
                                          `id` int(2) NOT NULL AUTO_INCREMENT,
-                                         `regiao` varchar(12) DEFAULT NULL,
+                                         `regiao` varchar(6) DEFAULT NULL,
                                          PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela capac.regioes: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `regioes` DISABLE KEYS */;
 INSERT INTO `regioes` (`id`, `regiao`) VALUES
-(1, 'Centro-Oeste'),
+(1, 'Centro'),
 (2, 'Norte'),
 (3, 'Sul'),
-(4, 'Leste');
+(4, 'Leste'),
+(5, 'Oeste');
 /*!40000 ALTER TABLE `regioes` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela capac.formacao_dados_complementares

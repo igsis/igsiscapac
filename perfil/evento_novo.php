@@ -3,14 +3,7 @@
 	$idUser= $_SESSION['idUser'];
 ?>
 <section id="inserir" class="home-section bg-white">
-    <div class="container">
-        <?php
-        if (isset($_SESSION['emenda'])) {
-            include '../perfil/includes/menu_emenda.php';
-        } else {
-            include '../perfil/includes/menu_evento.php';
-        }
-        ?>
+    <div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
 		<div class="form-group">
 			<h4>Informações Gerais do Evento</h4>
 		</div>
@@ -44,6 +37,13 @@
 							<label>Esse campo deve conter a listagem de pessoas envolvidas no espetáculo, como elenco, técnicos, e outros profissionais envolvidos na realização do mesmo.</i></strong></label>
 							<p align="justify"><font color="gray"><strong><i>Elenco de exemplo:</strong><br/>Ana Cañas (voz e guitarra)<br/>Lúcio Maia (guitarra solo)<br/>Fabá Jimenez (guitarra base)</br> Fabio Sá (baixo)</br>Marco da Costa (bateria)<br/>Eloá Faria (figurinista)<br/>Leonardo Kuero (técnico de som)</font></i></p>
 							<textarea name="fichaTecnica" class="form-control" rows="10"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-8"><strong>Integrantes do grupo:</strong><br/>
+								<label>Esse campo deve conter a listagem de pessoas envolvidas no espetáculo <font color='#FF0000'>incluindo o líder do grupo</font>.<br/>Apenas o <font color='#FF0000'>nome civil, RG e CPF</font> de quem irá se apresentar, excluindo técnicos.</i></strong></label>
+								<p align="justify"><font color="gray"><strong><i>Elenco de exemplo:</strong><br/>Ana Cañas RG 00000000-0 CPF 000.000.000-00<br/>Lúcio Maia RG 00000000-0 CPF 000.000.000-00<br/>Fabá Jimenez RG 00000000-0 CPF 000.000.000-00</br>Fabio Sá RG 00000000-0 CPF 000.000.000-00</br>Marco da Costa RG 00000000-0 CPF 000.000.000-00</font></i></p>
+							<textarea name="integrantes" class='form-control' cols="40" rows="5" required></textarea>
 						</div>
 					</div>
 					<div class="form-group">

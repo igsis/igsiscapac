@@ -286,25 +286,11 @@ if(isset($_POST['enviar']))
 		$mensagem = "<h4><font color='#01DF3A'>Enviado com sucesso! Entre em contato com o programador do seu evento e informe o código do CAPAC: </font><font color='#FF0000'>".$idEvento."</font></h4>";
 		gravarLog($sql_envia);
 		$bool = true;
-
-		if (isset($_SESSION['emenda'])) {
-		    $dataAtual = date('Y-m-d');
-		    $sqlInsereData = "UPDATE `emenda_parlamentar` SET `DataEnvio` = '$dataAtual' WHERE idEvento = '$idEvento'";
-		    $con->query($sqlInsereData);
-		    gravarLog($sqlInsereData);
-        }
 	}
 }
 ?>
 <section id="list_items" class="home-section bg-white">
-	<div class="container">
-        <?php
-        if (isset($_SESSION['emenda'])) {
-            include '../perfil/includes/menu_emenda.php';
-        } else {
-            include '../perfil/includes/menu_evento.php';
-        }
-        ?>
+	<div class="container"><?php include 'includes/menu_evento.php'; ?>
 		<div class="form-group">
 			<h4>Finalizar</h4>
 		</div>
@@ -489,7 +475,7 @@ if(isset($_POST['enviar']))
 						?>	
 						<div class="col-md-offset-2 col-md-2">
 							<form class="form-horizontal" role="form" action="?perfil=anexos_pj" method="post">
-								<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block">
+								<input type="submit" value="Voltar" class="btn btn-theme btn-lg btn-block"  value="<?php echo $idPessoaJuridica ?>">
 							</form>
 						</div>	
 						<?php

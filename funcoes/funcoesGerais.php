@@ -983,12 +983,9 @@ function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, 
 		case 2: //informacoes_iniciais_pj
 			$arq1 = "AND (list.id = '22' OR ";
 			$arq2 = "list.id = '43' OR";
-            if ((isset($_SESSION['emenda'])) && ($_SESSION['emenda'] == 2)) {
-                $arq3 = "list.id = '28' OR list.sigla = 'parc_of' OR list.sigla = 'parc_end')";
-            } else {
-                $arq3 = "list.id = '28')";
-            }
-			$sql = "SELECT * FROM upload_lista_documento as list
+			$arq3 = "list.id = '28')";
+			$sql = "SELECT *
+				FROM upload_lista_documento as list
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
 				AND arq.idTipoPessoa = '$tipoPessoa'
@@ -996,17 +993,12 @@ function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, 
 				AND arq.publicado = '1'";
 		break;
 		case 3: //dados_bancarios e informações_complementares
-            if ((isset($_SESSION['emenda'])) && ($_SESSION['emenda'] == 2)) {
-                $busca = " AND (list.id = '$idCampo' OR list.sigla = 'parc_bb')";
-            } else {
-                $busca = " AND list.id = '$idCampo'";
-            }
 			$sql = "SELECT *
 				FROM upload_lista_documento as list
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
 				AND arq.idTipoPessoa = '$tipoPessoa'
-				$busca
+				AND list.id = '$idCampo'
 				AND arq.publicado = '1'";
 		break;
 		case 4: //anexos_pf
@@ -1054,22 +1046,12 @@ function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, 
 				AND arq.publicado = '1'";
 		break;
 		case 8: //anexos_pj
-            $arquivos = [20,21,22,28,43,89,103,104];
-            if (!isset($_SESSION['emenda'])){
-                array_push($arquivos, 165);
-            }
-
-            if ((isset($_SESSION['emenda'])) && ($_SESSION['emenda'] == 2)) {
-                $busca = " AND (list.id NOT IN (".implode(", ", $arquivos).") AND list.sigla NOT IN ('parc_of', 'parc_end', 'parc_bb'))";
-            } else {
-                $busca = " AND list.id NOT IN (".implode(", ", $arquivos).")";
-            }
-            $sql = "SELECT *
+			$sql = "SELECT *
 				FROM upload_lista_documento as list
 				INNER JOIN upload_arquivo as arq ON arq.idUploadListaDocumento = list.id
 				WHERE arq.idPessoa = '$idPessoa'
 				AND arq.idTipoPessoa = '$tipoPessoa'
-				$busca
+				AND list.id NOT IN ('20','21','22','28','43','89','103','104')
 				AND arq.publicado = '1'";
 		break;
 		case 9: //grupo
