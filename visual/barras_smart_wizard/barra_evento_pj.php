@@ -46,7 +46,9 @@ if ($contratacao != 2) {
         '/igsiscapac/visual/index.php?perfil=representante1_pj_cadastro&id_pj=' . $idPj,// 19 representante 1
         '/igsiscapac/visual/index.php?perfil=representante2_pj_cadastro&id_pj=' . $idPj, // 20 representante 2
         '/igsiscapac/visual/index.php?perfil=declaracao_exclusividade_pj', // 21 declaração exclusividade
-        '/igsiscapac/visual/index.php?perfil=finalizar' // 22
+        '/igsiscapac/visual/index.php?perfil=finalizar', // 22
+        '/igsiscapac/visual/index.php?perfil=grupo', // 23
+        '/igsiscapac/visual/index.php?perfil=grupo_cadastro' // 23
     );
 
     # Verifica se a pagina contem o endereço correspondente ao de pessoa Juridica
@@ -80,6 +82,8 @@ if ($contratacao != 2) {
                 $ativ_13 = 'active loading';
             } elseif ($i == 22) { // arquivo representante 2
                 $ativ_14 = 'active loading';
+            } elseif ($i == 23 || $i = 24) { // integrantes
+                $ativ_15 = 'active loading';
             }
 
             if (isset($_SESSION['idEvento'])) {
@@ -128,7 +132,6 @@ if ($contratacao != 2) {
                             </li>
                         </ul>
                         <ul>
-
                             <li class="<?php echo $ativ_12 ?? 'clickable'; ?>">
                                 <a onclick="location.href='index.php?perfil=arquivos_representante2'" href=""><br/>
                                     <small>Arquivos Representante 2</small>
@@ -152,6 +155,11 @@ if ($contratacao != 2) {
                             <li class="<?php echo $ativ_9 ?? 'clickable'; ?>">
                                 <a onclick="location.href='index.php?perfil=arquivos_artista_pj'" href=""><br/>
                                     <small>Arquivos Líder do Grupo/Artista</small>
+                                </a>
+                            </li>
+                            <li class="<?php echo $ativ_15 ?? 'clickable'; ?>">
+                                <a onclick="location.href='index.php?perfil=grupo'" href=""><br/>
+                                    <small>Integrantes</small>
                                 </a>
                             </li>
                         </ul>
