@@ -108,7 +108,7 @@ ini_set('session.gc_maxlifetime', 60*60); // 60 minutos
                                                                 </a>
                                                             </div>
                                                             <div class="col-6">
-                                                                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/igsiscapac/login.php">
+                                                                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/capac/formacao_edital">
                                                                     <div class="btn info-box bg-teal" id="formacao">
                                                                         <span class="info-box-icon"><i class="fas fa-child"></i></span>
                                                                         <div class="card-body">
