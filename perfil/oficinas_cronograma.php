@@ -158,7 +158,7 @@ $dadosOficineiro = recuperaDados('oficina_dados_complementares', 'oficina_id', $
                             <label for="modalidade">Modalidade *:</label> <button class='btn btn-default btn-sm' type='button' data-toggle='modal' data-target='#infoModalidade' style="border-radius: 15px;"><i class="fa fa-question-circle"></i></button>
                             <select class="form-control" name="modalidade" id="modalidade" required>
                                 <option value="">Selecione...</option>
-                                <?php geraOpcao('modalidades', $dadosOficineiro['modalidade_id']) ?>
+                                <?php geraOpcao('modalidades', $dadosOficineiro['modalidade_id'], true) ?>
                             </select>
                         </div>
                     </div>
