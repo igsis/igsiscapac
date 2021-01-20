@@ -288,23 +288,11 @@ $dadosOficineiro = recuperaDados('oficina_dados_complementares', 'oficina_id', $
                                     <tbody>
                                         <tr>
                                             <td width="50%"><strong>Modalidade I:</strong> Oficinas de Curta Duração</td>
-                                            <td width="50%" class="text-center">1 mês de atividade</td>
+                                            <td width="50%" class="text-center">1 mês a 4 meses de atividades</td>
                                         </tr>
                                         <tr>
-                                            <td width="50%"><strong>Modalidade II:</strong> Oficinas de Média Duração I</td>
-                                            <td width="50%" class="text-center">3 mês de atividade</td>
-                                        </tr>
-                                        <tr>
-                                            <td width="50%"><strong>Modalidade III:</strong> Oficinas de Média Duração II</td>
-                                            <td width="50%" class="text-center">4 mês de atividade</td>
-                                        </tr>
-                                        <tr>
-                                            <td width="50%"><strong>Modalidade IV:</strong> Oficinas Estendida I</td>
-                                            <td width="50%" class="text-center">6 mês de atividade</td>
-                                        </tr>
-                                        <tr>
-                                            <td width="50%"><strong>Modalidade V:</strong> Oficinas Estendida II</td>
-                                            <td width="50%" class="text-center">10 mês de atividade</td>
+                                            <td width="50%"><strong>Modalidade II:</strong> Oficinas Estendidas</td>
+                                            <td width="50%" class="text-center">5 meses a 10 meses de atividades</td>
                                         </tr>
                                     </tbody>
                                 </table>
