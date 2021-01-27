@@ -42,9 +42,11 @@ ini_set('session.gc_maxlifetime', 60*60); // 60 minutos
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-5">
-                                                <p class="card-text"><span style="text-align: justify; display:block;">Este sistema tem por objetivo criar um ambiente para credenciamento de artistas e profissionais de arte e cultura a fim de agilizar os processos de contratação artística em eventos realizados pela Secretaria Municipal de Cultura de São Paulo.</span></p>
-                                                <p class="card-text"><span style="text-align: justify; display:block;">Uma vez cadastrados, esses artistas poderão atualizar suas informações e enviar a documentação necessária para o processo de contratação. Como o sistema possui ligação direta com o sistema da programação, a medida que o cadastro do artista no CAPAC encontra-se atualizado, o processo de contratação consequentemente é agilizado.</span></p>
-                                                <p class="card-text">Podem se cadastrar artistas ou grupos artísticos, como pessoa física ou jurídica.</p>
+                                                <p class="card-text"><span style="text-align: justify; display:block;">
+                                        Este sistema tem por objetivo criar um ambiente para credenciamento de artistas e profissionais de arte e cultura, a fim de agilizar os processos de contratação artística em eventos realizados pela Secretaria Municipal de Cultura de São Paulo. Podem se cadastrar artistas ou grupos artísticos, como pessoa física ou jurídica.</span></p>
+                                                <p class="card-text"><span style="text-align: justify; display:block;">
+                                        Em Fomento, são abertos ao longo de todo ano diversos editais com o objetivo de apoiar e fomentar artistas, coletivos e grupos culturais, que realizam atividades voltados a diversas linguagens, como: teatro, dança, circo, culturas periféricas, música dentre outras.</span></p>
+                                                <p class="card-text"><span style="text-align: justify; display:block;">Quanto à Formação, visa o credenciamento de artistas interessados em compor o quadro de prestadores de serviço do Programa Vocacional e PIÁ em funções como artista orientador (Vocacional), artista educador (PIÁ), artista articulador regional, artista articulador de área e coordenador artístico-pedagógico.</span></p>
                                                 <p class="card-text">Dúvidas entre em contato com o setor responsável por sua contratação.</p>
                                                 <a href="http://smcsistemas.prefeitura.sp.gov.br/manual/capac" target="_blank" class="btn btn-danger btn-block">Manual de Uso e Dúvidas Frequentes</a>
                                             </div>
@@ -53,15 +55,7 @@ ini_set('session.gc_maxlifetime', 60*60); // 60 minutos
                                                 <div class="card">
                                                     <div class="card-body text-center">
                                                         <div class="row">
-                                                            <div class="col-6">
-                                                                <div class="btn disabled info-box bg-purple" id="inscreverEvento" data-toggle="tooltip" data-placement="top" title="Em Breve">
-                                                                    <span class="info-box-icon"><i class="fas fa-file"></i></span>
-                                                                    <div class="card-body">
-                                                                        <span class="info-box-number">Quero Inscrever Meu Evento</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-6">
+                                                            <div class="col">
                                                                 <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/igsiscapac/login.php">
                                                                     <div class="info-box bg-cyan">
                                                                         <span class="info-box-icon"><i class="fas fa-users"></i></span>
@@ -85,11 +79,11 @@ ini_set('session.gc_maxlifetime', 60*60); // 60 minutos
                                                                 </a>
                                                             </div>
                                                             <div class="col-6">
-                                                                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/capac/fomento_edital">
-                                                                    <div class="info-box bg-maroon">
-                                                                        <span class="info-box-icon"><i class="fas fa-theater-masks"></i></span>
+                                                                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/igsiscapac/login.php">
+                                                                    <div class="info-box bg-orange">
+                                                                        <span class="info-box-icon"><i class="fas fa-guitar"></i></span>
                                                                         <div class="card-body">
-                                                                            <span class="info-box-number">Fomentos</span>
+                                                                            <span class="info-box-number">Oficineiros</span>
                                                                         </div>
                                                                     </div>
                                                                 </a>
@@ -98,11 +92,11 @@ ini_set('session.gc_maxlifetime', 60*60); // 60 minutos
 
                                                         <div class="row">
                                                             <div class="col-6">
-                                                                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/igsiscapac/login.php">
-                                                                    <div class="info-box bg-orange">
-                                                                        <span class="info-box-icon"><i class="fas fa-guitar"></i></span>
+                                                                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/capac/fomento_edital">
+                                                                    <div class="info-box bg-maroon">
+                                                                        <span class="info-box-icon"><i class="fas fa-theater-masks"></i></span>
                                                                         <div class="card-body">
-                                                                            <span class="info-box-number">Oficineiros</span>
+                                                                            <span class="info-box-number">Fomentos</span>
                                                                         </div>
                                                                     </div>
                                                                 </a>
