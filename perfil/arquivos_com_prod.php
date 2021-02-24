@@ -16,6 +16,70 @@ if(isset($_POST['apagar']))
 	}
 }
 
+if( isset( $_POST['enviar'] ) )
+{
+    $pathToSave = '../uploads/';
+    $i = 0;
+    $msg = array( );
+    $arquivos = array( array( ) );
+    foreach(  $_FILES as $key=>$info )
+    {
+        foreach( $info as $key=>$dados )
+        {
+            for( $i = 0; $i < sizeof( $dados ); $i++ )
+            {
+                $arquivos[$i][$key] = $info[$key][$i];
+            }
+        }
+    }
+    $i = 1;
+
+    foreach( $arquivos as $file )
+    {
+        if( $file['name'] != '' )
+        {
+            $con = bancoMysqli();
+            $dataUnique = date('YmdHis');
+            $arquivoTmp = $file['tmp_name'];
+            $arquivo = $pathToSave.$dataUnique."_".semAcento($file['name']);
+            $arquivo_base = $dataUnique."_".semAcento($file['name']);
+            $allowedExts = array("doc", "docx", "pdf", "jpg", "jpeg", "png", "pdf"); //Extensões permitidas
+            $explodeName = explode(".", $file['name']);
+            $ext = strtolower(end($explodeName));
+
+            //Pergunta se a extensão do arquivo, está presente no array das extensões permitidas
+            if(in_array($ext, $allowedExts)) {
+                if (file_exists($arquivo)) {
+                    echo "<font color='#01DF3A'><strong>O arquivo " . $arquivo_base . " já existe! Renomeie e tente novamente</strong></font><br />";
+                } else {
+                    $idEvento = $_SESSION['idEvento'];
+                    $sql = "INSERT INTO `upload_arquivo_com_prod`(`idEvento`, `arquivo`, `publicado`) VALUES ('$idEvento', '$arquivo_base', '1' )";
+                    mysqli_query($con, $sql);
+                    if (!move_uploaded_file($arquivoTmp, $arquivo)) {
+                        $msg[$i] = 'Erro no upload do arquivo ' . $i;
+                    } else {
+                        $msg[$i] = sprintf('Upload do arquivo %s foi um sucesso!', $i);
+                        gravarLog($sql);
+                        echo '<script>window.location = "?perfil=arquivos_com_prod"</script>';
+                    }
+                }
+            }
+            else {
+                $mensagem = "<font color='#FF0000'><strong>Erro no upload! Formato do arquivo não aceito.</strong></font>";
+            }
+        }
+        $i++;
+    }
+
+    // Imprimimos as mensagens geradas pelo sistema
+    foreach( $msg as $e )
+    {
+        echo " <div id = 'mensagem_upload'>";
+        printf('%s<br>', $e);
+        echo " </div>";
+    }
+}
+
 $campo = recuperaDados("evento","id",$_SESSION['idEvento']);
 ?>
 
@@ -24,66 +88,6 @@ $campo = recuperaDados("evento","id",$_SESSION['idEvento']);
 		<div class="form-group">
 			<h4>Arquivos Para Comunicação e Produção</h4>
 			<h5><?php if(isset($mensagem)){echo $mensagem;};?></h5>
-			<?php
-			if( isset( $_POST['enviar'] ) )
-			{
-				$pathToSave = '../uploads/';
-				$i = 0;
-				$msg = array( );
-				$arquivos = array( array( ) );
-				foreach(  $_FILES as $key=>$info )
-				{
-					foreach( $info as $key=>$dados )
-					{
-						for( $i = 0; $i < sizeof( $dados ); $i++ )
-						{
-							$arquivos[$i][$key] = $info[$key][$i];
-						}
-					}
-				}
-				$i = 1;
-
-				foreach( $arquivos as $file )
-				{
-					if( $file['name'] != '' )
-					{
-						$con = bancoMysqli();
-						$dataUnique = date('YmdHis');
-						$arquivoTmp = $file['tmp_name'];
-						$arquivo = $pathToSave.$dataUnique."_".semAcento($file['name']);
-						$arquivo_base = $dataUnique."_".semAcento($file['name']);
-						if(file_exists($arquivo))
-						{
-							echo "<font color='#01DF3A'><strong>O arquivo ".$arquivo_base." já existe! Renomeie e tente novamente</strong></font><br />";
-						}
-						else
-						{
-							$idEvento = $_SESSION['idEvento'];
-							$sql = "INSERT INTO `upload_arquivo_com_prod`(`idEvento`, `arquivo`, `publicado`) VALUES ('$idEvento', '$arquivo_base', '1' )";
-							mysqli_query($con,$sql);
-							if( !move_uploaded_file( $arquivoTmp, $arquivo ) )
-							{
-								$msg[$i] = 'Erro no upload do arquivo '.$i;
-							}
-							else
-							{
-								$msg[$i] = sprintf('Upload do arquivo %s foi um sucesso!',$i);
-								gravarLog($sql);
-								echo '<script>window.location = "?perfil=arquivos_com_prod"</script>';
-							}
-						}
-					}
-					$i++;
-				}
-				// Imprimimos as mensagens geradas pelo sistema
-				foreach( $msg as $e )
-				{
-					echo " <div id = 'mensagem_upload'>";
-					printf('%s<br>', $e);
-					echo " </div>";
-				}
-			}
-			?>
 		</div>
 		<div class="row">
 			<div class="col-md-offset-2 col-md-8">
