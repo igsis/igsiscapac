@@ -1,6 +1,15 @@
 <?php
 include "funcoes/funcoesConecta.php";
 include "funcoes/funcoesGerais.php";
+
+require_once "include/phpmailer/src/PHPMailer.php";
+require_once "include/phpmailer/src/Exception.php";
+require_once "include/phpmailer/src/SMTP.php";
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 $con = bancoMysqli();
 
 if (isset($_POST['enviarEmail']))
@@ -24,21 +33,35 @@ if (isset($_POST['enviarEmail']))
         }
         $results = $con->query($sqlToken);
 
-        // Send email to user with the token in a link they can click on
-        $to = $email;
-        $subject = "CAPAC - Recuperação de Senha";
-        $msg = emailReset($token);
+        $mail = new PHPMailer();
 
-        // To send HTML mail, the Content-type header must be set
-        $headers  = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+        try {
+            $mail->isSMTP();
+            $mail->CharSet = "UTF-8";
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = "no-reply@teste.com";
+            $mail->Password = "senha123";
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
 
-        // Create email headers
-        $headers .= "De: no.reply.smcsistemas@gmail.com\r\n";
-        mail($to, $subject, $msg, $headers);
+            $mail->setFrom("no-reply@teste.com");
+            $mail->FromName = "CAPAC";
+            $mail->addReplyTo('no-reply@capac.com.br');
+            $mail->addAddress($email);
+            $mail->isHTML(true);
+            $mail->Subject = "CAPAC - Recuperação de Senha";
+            $mail->Body = emailReset($token);
 
-        $mensagem = "<span style='color: #00a201; '>Enviamos um email para <b>$email</b> para a reiniciarmos sua senha. <br>
+            if ($mail->send()){
+                $mensagem = "<span style='color: #00a201; '>Enviamos um email para <b>$email</b> para a reiniciarmos sua senha. <br>
                     Por favor acesse seu email e clique no link recebido para cadastrar uma nova senha! (Lembre-se de verificar o spam)</span>";
+            }
+
+        } catch (Exception $ex){
+            $mensagem = "<span style='color: #ff0000; '><strong>Erro durante o envio do e-mail. </strong></span>";
+            gravarLog("Erro ao enviar e-mail.... {$mail->ErrorInfo}");
+        }
     }
     else
     {
