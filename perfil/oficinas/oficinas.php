@@ -40,8 +40,14 @@ if(isset($_POST['apagar']))
 
 $usuario = recuperaDados("usuario","id",$idUser);
 
+$ano =  date("Y");
+
 $sql = "SELECT * FROM evento
-							WHERE publicado > 0 AND `idTipoEvento` = '4' AND `idTipoPessoa` = '$tipoPessoa' AND `idPf` = '$idPf' AND `idPj` = '$idPj'
+							WHERE publicado > 0 AND `idTipoEvento` = '4' 
+							  AND `idTipoPessoa` = '$tipoPessoa' 
+							  AND `idPf` = '$idPf' 
+							  AND `idPj` = '$idPj' 
+							  AND data_cadastro LIKE '%$ano%'
 							ORDER BY id DESC";
 $query = mysqli_query($con,$sql);
 $num = mysqli_num_rows($query);

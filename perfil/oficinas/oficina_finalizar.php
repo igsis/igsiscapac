@@ -4,9 +4,14 @@ $evento = recuperaDados("evento","id",$idEvento);
 $tipoEvento = recuperaDados("tipo_evento","id",$evento['idTipoEvento']);
 $faixaEtaria = recuperaDados("faixa_etaria","id",$evento['idFaixaEtaria']);
 $tipoPessoa = recuperaDados("tipo_pessoa","id",$evento['idTipoPessoa']);
-$pessoaJuridica = recuperaDados("pessoa_juridica","id",$evento['idPj']);
-$representante1 = recuperaDados("representante_legal","id",$pessoaJuridica['idRepresentanteLegal1']);
-$pessoaFisica = recuperaDados("pessoa_fisica","id",$evento['idPf']);
+if ($evento['idPj'] != 0){
+    $pessoaJuridica = recuperaDados("pessoa_juridica","id",$evento['idPj']);
+    $representante1 = recuperaDados("representante_legal","id",$pessoaJuridica['idRepresentanteLegal1']);
+}
+
+if ($evento['idPf'] != 0) {
+    $pessoaFisica = recuperaDados("pessoa_fisica","id",$evento['idPf']);
+}
 $bool = false;
 $mensagem = "";
 function recuperaBanco($campoY)
