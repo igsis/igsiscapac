@@ -3,8 +3,8 @@
 #### Arquivos da Empresa
 ```
 [x] FDC – Ficha de Dados Cadastrais (CCM);
-[ ] Ofício de Solicitação de Parceria;
-[ ] Comprovante de Endereço da Instituição Proponente;
+[x] Ofício de Solicitação de Parceria;
+[x] Comprovante de Endereço da Instituição Proponente;
 ```
 
 #### Arquivos do Representante Legal
@@ -15,7 +15,7 @@
 #### Arquivo dos Dados Bancários
 ```
 [x] FACC - Ficha de Atualização de Cadastro de Credores;
-[ ] Formulário de Abertura de Conta Corrente no Banco do Brasil;
+[x] Formulário de Abertura de Conta Corrente no Banco do Brasil;
 ```
 
 #### Demais Anexos
