@@ -1,5 +1,12 @@
 <section id="inserir" class="home-section bg-white">
-    <div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
+    <div class="container">
+        <?php
+        if (isset($_SESSION['emenda'])) {
+            include '../perfil/includes/menu_emenda.php';
+        } else {
+            include '../perfil/includes/menu_evento.php';
+        }
+        ?>
 		<div class="form-group">
 			<h4>Dados do Produtor</h4>
 		</div>

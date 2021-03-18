@@ -43,7 +43,7 @@ if(isset($_POST['inserePj']))
 	}
 }
 
-if(($idPf == NULL || $idPf == 0) && ($idPj == NULL || $idPj == 0))
+if(($idPf == NULL || $idPf == 0) && ($idPj == NULL || $idPj == 0) && (isset($_SESSION['emenda']) == false))
 {
 ?>
 	<section id="list_items" class="home-section bg-white">
@@ -90,7 +90,13 @@ else
 	{
 ?>
 		<section id="list_items" class="home-section bg-white">
-			<div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
+			<div class="container"><?php
+                if (isset($_SESSION['emenda'])) {
+                    include '../perfil/includes/menu_emenda.php';
+                } else {
+                    include '../perfil/includes/menu_evento.php';
+                }
+                ?>
 				<div class="form-group">
 					<h4>Cadastro do Proponente</h4>
 					<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>
