@@ -13,7 +13,8 @@ if(isset($_POST["enviar"]))
     {
         $arquivos = [20,21,22,28,43,89,103,104];
         if (!isset($_SESSION['emenda'])){
-            array_push($arquivos, 165);
+            $idArquivo = $con->query("SELECT id FROM upload_lista_documento WHERE sigla = 'planot'")->fetch_assoc()['id'];
+            array_push($arquivos, $idArquivo);
         }
     }
     else
@@ -216,7 +217,8 @@ $evento_pj = recuperaDados("evento","id",$evento);
                                     {
                                         $arquivos = [20,21,22,28,43,89,103,104];
                                         if (!isset($_SESSION['emenda'])){
-                                            array_push($arquivos, 165);
+                                            $idArquivo = $con->query("SELECT id FROM upload_lista_documento WHERE sigla = 'planot'")->fetch_assoc()['id'];
+                                            array_push($arquivos, $idArquivo);
                                         }
                                     }
                                     else

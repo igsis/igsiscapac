@@ -1056,7 +1056,8 @@ function listaArquivoCamposMultiplos($idPessoa, $tipoPessoa, $idCampo, $pagina, 
 		case 8: //anexos_pj
             $arquivos = [20,21,22,28,43,89,103,104];
             if (!isset($_SESSION['emenda'])){
-                array_push($arquivos, 165);
+                $idArquivo = $con->query("SELECT id FROM upload_lista_documento WHERE sigla = 'planot'")->fetch_assoc()['id'];
+                array_push($arquivos, $idArquivo);
             }
 
             if ((isset($_SESSION['emenda'])) && ($_SESSION['emenda'] == 2)) {
