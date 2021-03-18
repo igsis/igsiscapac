@@ -11,13 +11,20 @@ if(isset($_POST["enviar"]))
 {
     if ($tipoPessoa == 2)
     {
-        $arquivos = "20,21,22,28,43,89,103,104";
+        $arquivos = [20,21,22,28,43,89,103,104];
+        if (!isset($_SESSION['emenda'])){
+            array_push($arquivos, 165);
+        }
     }
     else
     {
-        $arquivos = "120, 121, 122, 123, 124, 125, 126, 127";
+        $arquivos = [120,121,122,123,124,125,126,127];
     }
-	$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN ($arquivos) AND publicado = '1'";
+
+    $sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN (".implode(', ', $arquivos).") AND publicado = '1'";
+    if ((isset($_SESSION['emenda'])) && ($_SESSION['emenda'] == 2)) {
+        $sql_arquivos .= " OR (idTipoUpload = '8' AND sigla NOT IN ('parc_of', 'parc_end', 'parc_bb'))";
+    }
 	$query_arquivos = mysqli_query($con,$sql_arquivos);
 	while($arq = mysqli_fetch_array($query_arquivos))
 	{
@@ -216,11 +223,10 @@ $evento_pj = recuperaDados("evento","id",$evento);
                                     {
                                         $arquivos = [120,121,122,123,124,125,126,127];
                                     }
+
 									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN (".implode(', ', $arquivos).") AND publicado = '1'";
-                                    if (isset($_SESSION['emenda'])) {
-                                        if ($_SESSION['emenda'] == 2) {
-                                            $sql_arquivos .= " OR idTipoUpload = '8'";
-                                        }
+                                    if ((isset($_SESSION['emenda'])) && ($_SESSION['emenda'] == 2)) {
+                                        $sql_arquivos .= " OR (idTipoUpload = '8' AND sigla NOT IN ('parc_of', 'parc_end', 'parc_bb'))";
                                     }
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
@@ -229,7 +235,11 @@ $evento_pj = recuperaDados("evento","id",$evento);
 										<tr>
 											<?php
 											$doc = $arq['documento'];
-										$query = "SELECT id FROM upload_lista_documento WHERE documento='$doc' AND publicado='1' AND idTipoUpload='$tipoPessoa'";
+                                        if ((isset($_SESSION['emenda'])) && ($_SESSION['emenda'] == 2)) {
+                                            $query = "SELECT id FROM upload_lista_documento WHERE documento='$doc' AND publicado='1' AND (idTipoUpload='$tipoPessoa' OR idTipoUpload='8')";
+                                        } else {
+                                            $query = "SELECT id FROM upload_lista_documento WHERE documento='$doc' AND publicado='1' AND idTipoUpload='$tipoPessoa'";
+                                        }
 										$envio = $con->query($query);
 
 										$row = $envio->fetch_array(MYSQLI_ASSOC);
