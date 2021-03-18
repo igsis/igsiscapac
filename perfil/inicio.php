@@ -8,6 +8,7 @@ unset($_SESSION['idEvento']);
 unset($_SESSION['idPj']);
 unset($_SESSION['idPf']);
 unset($_SESSION['menu']);
+unset($_SESSION['emenda']);
 ?>
 <section id="contact" class="home-section bg-white">
 	<div class="container">

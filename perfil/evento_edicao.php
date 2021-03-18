@@ -3,6 +3,9 @@ $con = bancoMysqli();
 $idUser= $_SESSION['idUser'];
 $tipoPessoa = "3";
 
+if (isset($_POST['tipoEmenda']) && isset($_SESSION['emenda'])) {
+    $_SESSION['emenda'] = $_POST['tipoEmenda'];
+}
 
 if(isset($_POST['insere']) || isset($_POST['atualizar']))
 {
@@ -16,6 +19,10 @@ if(isset($_POST['insere']) || isset($_POST['atualizar']))
 	$release = addslashes($_POST['release']);
 	$link = addslashes($_POST['link']);
 	$dataCadastro = date('YmdHis');
+
+	if (isset($_SESSION['emenda'])) {
+	    $tipoEmenda = $_SESSION['emenda'];
+    }
 }
 
 if(isset($_POST['insere']))
@@ -30,6 +37,12 @@ if(isset($_POST['insere']))
 		$ultimoEvento = mysqli_fetch_array($query_ultimo);
 		$_SESSION['idEvento'] = $ultimoEvento['id'];
 		$idEvento = $_SESSION['idEvento'];
+
+		if (isset($_SESSION['emenda'])) {
+		    $sql_insere_emenda = "INSERT INTO `emenda_parlamentar` (`idEvento`, `tipoEmenda`) VALUES ('$idEvento', '$tipoEmenda')";
+		    $con->query($sql_insere_emenda);
+		    gravarLog($sql_insere_emenda);
+        }
 	}
 	else
 	{
@@ -80,7 +93,14 @@ if(isset($_SESSION['idEvento']))
 $evento = recuperaDados("evento","id", $idEvento);
 ?>
 <section id="list_items" class="home-section bg-white">
-    <div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
+    <div class="container">
+        <?php
+        if (isset($_SESSION['emenda'])) {
+            include '../perfil/includes/menu_emenda.php';
+        } else {
+            include '../perfil/includes/menu_evento.php';
+        }
+        ?>
 		<div class="form-group">
 			<h4>Informações Gerais do Evento</h4>
 			<h5><?php if(isset($mensagem)){echo $mensagem;}; ?></h5>

@@ -1,8 +1,9 @@
 <?php
 $idUser= $_SESSION['idUser'];
+$_SESSION['emenda'] = 1;
 ?>
 <section id="list_items" class="home-section bg-white">
-	<div class="container"><?php include '../perfil/includes/menu_evento.php'; ?>
+	<div class="container"><?php include '../perfil/includes/menu_emenda.php'; ?>
 		<div class="form-group">
 			<h3>Resumo das Informações para preenchimento do evento <br>
                 <small>Emenda - Contratação Artística</small></h3>
@@ -136,6 +137,7 @@ $idUser= $_SESSION['idUser'];
 										<li class="lista-informacao"><a href="http://www3.prefeitura.sp.gov.br/cadin/Pesq_Deb.aspx">CADIN Municipal</a></li>
 										<li class="lista-informacao">Estatuto Social</li>
 										<li class="lista-informacao"><a href="http://www.receita.fazenda.gov.br/Aplicacoes/ATSPO/Certidao/CNDConjuntaSegVia/NICertidaoSegVia.asp?Tipo=1" target="_blank">CND</a></li>
+                                        <li class="lista-informacao">Plano de Trabalho</li>
 
 									</ul>
 									<ul class="list-group">
@@ -156,7 +158,7 @@ $idUser= $_SESSION['idUser'];
 
 			<div class="form-group">
 				<div class="col-md-offset-2 col-md-8">
-					<form class="form-horizontal" role="form" action="?perfil=evento" method="post">
+					<form class="form-horizontal" role="form" action="?perfil=emenda&p=emenda_lista" method="post">
 						<input type="submit" value="Iniciar Evento" class="btn btn-theme btn-lg btn-block" />
 					</form>
 				</div>
