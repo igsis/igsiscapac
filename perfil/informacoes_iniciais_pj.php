@@ -16,7 +16,7 @@ if(isset($_POST['cadastrarJuridica']))
 	$email = $_POST['email'];
 	$dataAtualizacao = date("Y-m-d H:i:s");
 
-	$sql_cadastra_pj = "INSERT INTO `pessoa_juridica`(`razaoSocial`, `cnpj`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `dataAtualizacao`, `oficineiro`, `idUsuario`) VALUES ('$razaoSocial', '$cnpj', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$dataAtualizacao', '$oficineiro', '$idUser')";
+	$sql_cadastra_pj = "INSERT INTO `pessoa_juridica`(`razaoSocial`, `cnpj`, `ccm`, `telefone1`, `telefone2`, `telefone3`, `email`, `dataAtualizacao`, `idUsuario`) VALUES ('$razaoSocial', '$cnpj', '$ccm', '$telefone1', '$telefone2', '$telefone3', '$email', '$dataAtualizacao', '$idUser')";
 	if(mysqli_query($con,$sql_cadastra_pj))
 	{
 		$mensagem = "<font color='#01DF3A'><strong>Cadastrado com sucesso!</strong></font>";
