@@ -207,13 +207,16 @@ $evento_pj = recuperaDados("evento","id",$evento);
 								<?php
                                     if ($tipoPessoa == 2)
                                     {
-                                        $arquivos = "20,21,22,28,43,89,103,104";
+                                        $arquivos = [20,21,22,28,43,89,103,104];
+                                        if (!isset($_SESSION['emenda'])){
+                                            array_push($arquivos, 165);
+                                        }
                                     }
                                     else
                                     {
-                                        $arquivos = "120, 121, 122, 123, 124, 125, 126, 127";
+                                        $arquivos = [120,121,122,123,124,125,126,127];
                                     }
-									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN ($arquivos) AND publicado = '1'";
+									$sql_arquivos = "SELECT * FROM upload_lista_documento WHERE idTipoUpload = '$tipoPessoa' AND id NOT IN (".implode(', ', $arquivos).") AND publicado = '1'";
 									$query_arquivos = mysqli_query($con,$sql_arquivos);
 									while($arq = mysqli_fetch_array($query_arquivos))
 									{

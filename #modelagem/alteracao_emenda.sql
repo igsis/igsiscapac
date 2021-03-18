@@ -7,3 +7,5 @@ CREATE TABLE `emenda_parlamentar` (
   `DataEnvio` DATE NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
+
+asINSERT INTO `upload_lista_documento` (`id`, `idTipoUpload`, `documento`, `sigla`, `teatro`, `musica`, `oficina`, `edital`, `validade`, `publicado`) VALUES (165, 2, 'Plano de Trabalho', 'planot', 1, 1, 1, 1, NULL, 1);
